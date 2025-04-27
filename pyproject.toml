@@ -1,0 +1,61 @@
+[project]
+name = "cdpkits"
+version = "0.1.0"
+description = "Chrome DevTools Protocol Toolkit in Python"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "pydantic>=2.11.3",
+]
+[project.urls]
+"Homepage" = "https://github.com/yie1d/cdpkit"
+
+[tool.uv]
+build-constraint-dependencies = ["setuptools==60.0.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ['cdpkit*']
+exclude = ['tests*', 'config*', 'examples*', 'generator*']
+
+[tool.ruff.lint]
+preview = true
+select = ["E", "F", "W", "I", "UP"]
+exclude = ["tests", "tests/*", "demos/*"]
+
+[tool.ruff.format]
+preview = true
+quote-style = "single"
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = "-p no:warnings"
+
+[dependency-groups]
+ruff = [
+    "pytest-cov>=6.1.0",
+    "ruff>=0.11.2",
+]
+test = [
+    "pytest>=8.3.5",
+]
