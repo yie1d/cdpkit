@@ -1,9 +1,9 @@
-from pathlib import Path
+import builtins
 import json
-from typing import Any
 import re
 import textwrap
-import builtins
+from pathlib import Path
+from typing import Any
 
 
 def read_protocol_json(file_path: Path) -> tuple[str, list[dict[str, Any]]]:

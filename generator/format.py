@@ -60,7 +60,6 @@ TYPES_SIMPLE_TEMPLATE = """{description}
 {name} = {value}\n"""
 
 
-
 def make_types_module(
     module_all: str,
     types_code: str,

@@ -1,8 +1,9 @@
 from pathlib import Path
 from typing import Any
-from generator.utils import read_protocol, update_cdp_version
+
 from generator.cdp import CDPTopDomain
 from generator.generate import generate_to_dir
+from generator.utils import read_protocol, update_cdp_version
 
 ROOT_PATH = Path(__file__).parent.parent.resolve()
 

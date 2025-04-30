@@ -1,11 +1,10 @@
-from collections import defaultdict
+from dataclasses import dataclass
 from pathlib import Path
-from dataclasses import dataclass, field
+
+from generator.cdp import CDPDomain, CDPProperty, CDPTopDomain, CDPType, CDPVariableType
+from generator.format import make_class, make_property, make_types_module
 from generator.logger import logger
-from generator.cdp import CDPTopDomain, CDPDomain, CDPType, CDPVariableType, CDPProperty
-from generator.format import *
-from generator.exceptions import GeneratorNameNotFound
-from generator.utils import rename_in_python, indent
+from generator.utils import indent, rename_in_python
 
 
 @dataclass
