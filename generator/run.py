@@ -1,7 +1,8 @@
 from pathlib import Path
 from typing import Any
 from generator.utils import read_protocol, update_cdp_version
-from generator.cdp_generate import CDPTopDomain
+from generator.cdp import CDPTopDomain
+from generator.generate import generate_to_dir
 
 ROOT_PATH = Path(__file__).parent.parent.resolve()
 
@@ -10,7 +11,7 @@ def write_cdp_protocol(dir_path: Path, protocol_domains_data: list[dict[str, Any
     dir_path.mkdir(parents=True, exist_ok=True)
 
     top_domain = CDPTopDomain(domains=protocol_domains_data)
-    top_domain.to_dir(dir_path)
+    generate_to_dir(top_domain, dir_path)
 
 
 def main():

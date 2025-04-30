@@ -5,8 +5,6 @@ import re
 import textwrap
 import builtins
 
-from _format import *
-
 
 def read_protocol_json(file_path: Path) -> tuple[str, list[dict[str, Any]]]:
     """
@@ -75,131 +73,75 @@ def update_cdp_version(package_path: Path, protocol_version: str) -> None:
         f.write(file_content)
 
 
-def module_format(
-    domain: str,
-    description: str = '',
-    other_imports: list[str] | None = None,
-    all_methods_code: str = '',
-    all_events_code: str = '',
-) -> str:
-    if other_imports:
-        other_imports.insert(0, '')
-        other_imports = ", ".join(other_imports)
+# def module_format(
+#     domain: str,
+#     description: str = '',
+#     all_types_code: str = '',
+#     all_methods_code: str = '',
+#     all_events_code: str = '',
+#     ref_imports: set[str] | None = None,
+# ) -> str:
+#     if all_types_code:
+#         all_types_code = f'{SPLIT_HINTS_TEMPLATE.format(hints="Types")}{all_types_code}'
+#
+#     if all_methods_code:
+#         all_methods_code = f'{SPLIT_HINTS_TEMPLATE.format(hints="Methods")}{all_methods_code}'
+#
+#     if all_events_code:
+#         all_events_code = f'{SPLIT_HINTS_TEMPLATE.format(hints="Events")}{all_events_code}'
+#
+#     if ref_imports:
+#         ref_imports = f'from cdpkit.protocol._types import {", ".join(ref_imports)}'
+#
+#     return MODULE_TEMPLATE.format(
+#         domain=domain,
+#         description=description,
+#         all_types_code=all_types_code,
+#         all_methods_code=all_methods_code,
+#         all_events_code=all_events_code,
+#         ref_imports=ref_imports
+#     )
+#
 
-    if all_methods_code:
-        all_methods_code = f'{SPLIT_HINTS_TEMPLATE.format("Methods")}{all_methods_code}'
-
-    if all_events_code:
-        all_events_code = f'{SPLIT_HINTS_TEMPLATE.format("Events")}{all_events_code}'
-
-    return MODULE_TEMPLATE.format(
-        domain=domain,
-        description=description,
-        other_imports=other_imports,
-        all_methods_code=all_methods_code,
-        all_events_code=all_events_code
-    )
-
-
-def types_module_format(
-    all_domains: list[str],
-    types_code: str,
-    types_for_class: str
-) -> str:
-    """
-    格式化types模块的代码
-
-    Args:
-        all_domains: 
-        types_code: 
-        types_for_class: 
-
-    Returns:
-
-    """
-    return TYPES_MODULE_TEMPLATE.format(
-        all_domains=', \n'.join([indent(f'\'{domain}\'') for domain in all_domains]),
-        types_code=types_code,
-        types_for_class=types_for_class
-    )
-
-
-def types_public_class_format(
-    class_name: str,
-    properties: str,
-) -> str:
-    return TYPES_CLASS_TEMPLATE.format(
-        class_name=class_name,
-        parent='',
-        description='',
-        properties=properties
-    )
-
-
-def types_enum_class_format(
-    class_name: str,
-    description: str,
-    enum_type: str,
-    properties: str
-) -> str:
-    return TYPES_CLASS_TEMPLATE.format(
-        class_name=class_name,
-        parent=f'({enum_type}, enum.Enum)',
-        description=description,
-        properties=properties
-    )
-
-
-def types_enum_item_format(
-    name: str,
-    hint: str,
-    value: str
-) -> str:
-    return TYPES_PROPERTY_TEMPLATE.format(
-        name=name,
-        hint=f': {hint}',
-        value=f' = \'{value}\'',
-        tips=''
-    )
-
-
-def types_simple_format(
-    name: str,
-    value: str
-) -> str:
-    return TYPES_PROPERTY_TEMPLATE.format(
-        name=name,
-        hint='',
-        value=f' = {value}',
-        tips=''
-    )
-
-
-def types_object_format(
-    class_name: str,
-    description: str,
-    properties: str
-):
-    return TYPES_CLASS_TEMPLATE.format(
-        class_name=class_name,
-        description=description,
-        parent='(CDPObject)',
-        properties=properties
-    )
-
-
-def types_property_format(
-    name: str,
-    hint: str,
-    value: str = '',
-    tips: str = ''
-):
-    return TYPES_PROPERTY_TEMPLATE.format(
-        name=name,
-        hint=f': {hint}',
-        value=f' = {value}' if value else '',
-        tips=f'  # {tips}' if tips else ''
-    )
+#
+# def command_class_format(
+#     class_name: str,
+#     return_type: str,
+#     tips: str,
+#     description: str,
+#     properties: str,
+#     input_validator: str,
+#     output_validator: str
+# ):
+#
+#     if input_validator:
+#         input_validator = indent(f'INPUT_VALIDATOR = {input_validator}\n')
+#     else:
+#         input_validator = ''
+#     if output_validator:
+#         output_validator = indent(f'OUTPUT_VALIDATOR = {output_validator}\n')
+#     else:
+#         output_validator = ''
+#     return TYPES_CLASS_TEMPLATE.format(
+#         class_name=class_name,
+#         description=description,
+#         parent=f'(CDPMethod[{return_type}])',
+#         tips=tips,
+#         properties=f'{input_validator}{output_validator}{properties}'
+#     )
+#
+#
+# def return_class_format(class_name: str, properties: str):
+#     if properties:
+#         return TYPES_CLASS_TEMPLATE.format(
+#             class_name=class_name,
+#             description='',
+#             parent=f'(OutputModel)',
+#             tips='',
+#             properties=properties
+#         )
+#     else:
+#         return ''
 
 
 def indent(text: str, by: int = 4) -> str:
