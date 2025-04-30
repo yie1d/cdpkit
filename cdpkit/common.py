@@ -1,15 +1,19 @@
 import inspect
 from typing import Any, TypeVar, Generic
 from pathlib import Path
-from pydantic import BaseModel, ConfigDict, TypeAdapter
+from pydantic import BaseModel, ConfigDict
+
+__all__ = [
+    'CDPObject',
+    'InputModel',
+    'OutputModel',
+    'CDPEvent',
+    'CDPMethod',
+    'JSON_DICT'
+]
 
 RESULT_TYPE = TypeVar('RESULT_TYPE')
-
-"""
-***************************************************
-                    Base Pydantic Models
-***************************************************
-"""
+JSON_DICT = dict[str, Any]
 
 
 class CDPObject(BaseModel):
@@ -40,25 +44,11 @@ class CDPEvent(BaseModel):
     )
 
 
-"""
-***************************************************
-                    Common Types
-***************************************************
-"""
-JSON_DICT = dict[str, Any]
-
-"""
-***************************************************
-                    Methods
-***************************************************
-"""
-
-
 class CDPMethod(Generic[RESULT_TYPE]):
     INPUT_VALIDATOR: InputModel | None = None
     OUTPUT_VALIDATOR: OutputModel | None = None
 
-    def __init__(self, *_, **kwargs):
+    def __init__(self, /, *_, **kwargs):
         if self.INPUT_VALIDATOR is None:
             self._params = kwargs
         else:
