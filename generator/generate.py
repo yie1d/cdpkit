@@ -1,6 +1,8 @@
+from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 
+from cdpkit.logger import logger
 from generator.cdp import (
     CDPCommand,
     CDPDomain,
@@ -18,7 +20,6 @@ from generator.format import (
     make_property,
     make_ref_imports,
 )
-from generator.logger import logger
 from generator.utils import indent, rename_camel2snake, rename_in_python
 
 
@@ -26,6 +27,7 @@ from generator.utils import indent, rename_camel2snake, rename_in_python
 class GenerateContext:
     domain: CDPDomain | None = None
     ref_imports_set: set[str] | None = None
+    files_all: dict[str, list[str]] | None = None
 
     def get_imports(self) -> set[str]:
         if self.ref_imports_set is None:
@@ -41,6 +43,12 @@ class GenerateContext:
     def clear_ref(self):
         if self.ref_imports_set is not None:
             self.ref_imports_set.clear()
+
+    def add_files_all(self, file_type: str, var_name: str):
+        if self.files_all is None:
+            return
+
+        self.files_all[file_type.lower()].append(var_name)
 
 
 class CodeGenerator:
@@ -308,6 +316,7 @@ def generate_domain_types(file_path: Path, context: GenerateContext) -> None:
             generate_types_obj.generate_code()
         )
         context.ref_imports_set.add(generate_types_obj.class_name)
+        context.add_files_all('types', domain_type.id)
 
     with file_path.open('w', encoding='utf-8') as f:
         f.write(make_module(
@@ -325,6 +334,7 @@ def generate_domain_events(file_path: Path, context: GenerateContext) -> None:
     for domain_event in context.domain.events:
         logger.debug(f'domain_event: {domain_event}')
         event_code += GenerateEvent(domain_event, context=context).generate_code()
+        context.add_files_all('events', domain_event.class_name)
 
     with file_path.open('w', encoding='utf-8') as f:
         f.write(make_module(
@@ -342,6 +352,7 @@ def generate_commands_code(file_path: Path, context: GenerateContext) -> None:
     for domain_command in context.domain.commands:
         generate_command_obj = GenerateCommand(domain_command, context=context)
         commands_code += generate_command_obj.generate_code()
+        context.add_files_all('methods', domain_command.class_name)
 
     with file_path.open('w', encoding='utf-8') as f:
         f.write(make_module(
@@ -384,7 +395,7 @@ def generate_types_file(file_path: Path, has_types_domain: list[CDPDomain]) -> N
 
 def generate_domain(domain_dir_path: Path, domain: CDPDomain) -> None:
     domain_dir_path.mkdir(exist_ok=True)
-    context = GenerateContext(domain=domain, ref_imports_set=set())
+    context = GenerateContext(domain=domain, ref_imports_set=set(), files_all=defaultdict(list))
 
     generate_domain_types(domain_dir_path / 'types.py', context)
     context.clear_ref()
@@ -397,6 +408,18 @@ def generate_domain(domain_dir_path: Path, domain: CDPDomain) -> None:
     generate_commands_code(domain_dir_path / 'methods.py', context)
     context.clear_ref()
     context.ref_imports_set.add(domain.domain)
+
+    init_content = ''
+
+    all_imports = ''
+    for k, v in context.files_all.items():
+        v_list = ",\n".join([indent(_, 4) for _ in v])
+        init_content += f'from .{k} import (\n{v_list}\n)\n'
+        all_imports += f'{v_list},\n'
+
+
+    with domain_dir_path.joinpath('__init__.py').open('w', encoding='utf-8') as f:
+        f.write(f'{init_content}\n__all__ = [\n{all_imports}]\n')
 
 
 def generate_to_dir(top_domain: CDPTopDomain, output_dir: Path):
