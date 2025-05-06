@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import textwrap
 from enum import StrEnum
+from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -95,7 +96,7 @@ class CDPProperty(CDPCommonObject, CDPItem):
     items: CDPItem | None = None
     optional: bool = False
 
-    default_value = Field(default=None, init=False)
+    default_value: Any = Field(default=None, init=False)
 
     def hint_type(
         self,

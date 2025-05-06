@@ -56,7 +56,7 @@ class GenerateProperty(CodeGenerator):
         super().__init__(context)
         self.property_obj = property_obj
 
-        # # if property is optional, default_value will be created
+        # if property is optional, default_value will be created
         self._hint: str = self.property_obj.hint_type(self._context.domain, self._context.ref_imports_set)
         self._name: str | None = None
         self._default_value: str | None = None
@@ -313,7 +313,7 @@ def generate_domain_types(file_path: Path, context: GenerateContext) -> None:
         f.write(make_module(
             domain=context.domain.domain,
             description=context.domain.description,
-            ref_imports=make_ref_imports(context.ref_imports_set),
+            ref_imports=make_ref_imports(context.get_imports()),
             main_code='\n'.join(types_code_list),
             hints='Types'
         ))
@@ -330,7 +330,7 @@ def generate_domain_events(file_path: Path, context: GenerateContext) -> None:
         f.write(make_module(
             domain=context.domain.domain,
             description=context.domain.description,
-            ref_imports=make_ref_imports(context.ref_imports_set),
+            ref_imports=make_ref_imports(context.get_imports()),
             main_code=event_code,
             hints='Events'
         ))
@@ -347,7 +347,7 @@ def generate_commands_code(file_path: Path, context: GenerateContext) -> None:
         f.write(make_module(
             domain=context.domain.domain,
             description=context.domain.description,
-            ref_imports=make_ref_imports(context.ref_imports_set),
+            ref_imports=make_ref_imports(context.get_imports()),
             main_code=commands_code,
             hints='Methods'
         ))
@@ -387,8 +387,16 @@ def generate_domain(domain_dir_path: Path, domain: CDPDomain) -> None:
     context = GenerateContext(domain=domain, ref_imports_set=set())
 
     generate_domain_types(domain_dir_path / 'types.py', context)
+    context.clear_ref()
+    context.ref_imports_set.add(domain.domain)
+
     generate_domain_events(domain_dir_path / 'events.py', context)
+    context.clear_ref()
+    context.ref_imports_set.add(domain.domain)
+
     generate_commands_code(domain_dir_path / 'methods.py', context)
+    context.clear_ref()
+    context.ref_imports_set.add(domain.domain)
 
 
 def generate_to_dir(top_domain: CDPTopDomain, output_dir: Path):
