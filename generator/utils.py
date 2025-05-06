@@ -174,7 +174,7 @@ def rename_camel2snake(word: str):
     word = re.sub(r"([A-Z]+)([A-Z][a-z])", r'\1_\2', word)
     word = re.sub(r"([a-z\d])([A-Z])", r'\1_\2', word)
 
-    return rename_in_python(word)
+    return rename_in_python(word).lower()
 
 
 def parse_ref(ref: str) -> tuple[str, str]:

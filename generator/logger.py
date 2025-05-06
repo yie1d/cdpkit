@@ -1,6 +1,5 @@
 import sys
 from enum import Enum
-from pathlib import Path
 
 import loguru._logger
 from loguru import logger as _loguru_logger
@@ -50,15 +49,15 @@ def set_logger(
                 'level': print_level.value,
                 'enqueue': True
             },
-            {
-                'sink': Path(__file__).parent.parent.joinpath('logs/log_file_{time:YYYY-MM-DD}.log'),
-                'format': _format,
-                'level': print_level.value,
-                'rotation': '1 day',
-                'retention': '7 days',
-                'mode': 'a',
-                'enqueue': True
-            }
+            # {
+            #     'sink': Path(__file__).parent.parent.joinpath('logs/log_file_{time:YYYY-MM-DD}.log'),
+            #     'format': _format,
+            #     'level': print_level.value,
+            #     'rotation': '1 day',
+            #     'retention': '7 days',
+            #     'mode': 'a',
+            #     'enqueue': True
+            # }
         ]
     )
     return _loguru_logger

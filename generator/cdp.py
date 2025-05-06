@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 import textwrap
-from enum import Enum
+from enum import StrEnum
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from generator.utils import *
+from generator.utils import fill_ref, parse_ref, resolve_docstring
 
 
 class CodeBase(BaseModel):
@@ -13,7 +13,7 @@ class CodeBase(BaseModel):
     model_config = ConfigDict(extra='forbid')
 
 
-class CDPVariableType(str, Enum):
+class CDPVariableType(StrEnum):
     """普通类型映射"""
     boolean = 'bool'
     integer = 'int'
@@ -95,7 +95,7 @@ class CDPProperty(CDPCommonObject, CDPItem):
     items: CDPItem | None = None
     optional: bool = False
 
-    default_value: Any = Field(default=None, init=False)
+    default_value = Field(default=None, init=False)
 
     def hint_type(
         self,
