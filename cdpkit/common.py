@@ -60,8 +60,8 @@ class CDPMethod(Generic[RESULT_TYPE]):
     @property
     def command(self):
         if self._command is None:
-            # /fake/dir/cdpkit/Target.py -> Target
-            domain_name = Path(inspect.getfile(self.__class__)).stem
+            # /fake/dir/cdpkit/Target/methods.py -> Target
+            domain_name = Path(inspect.getfile(self.__class__)).parent.name
             # ActivateTarget -> activateTarget
             method_name = self.__class__.__name__
             method_name = f'{method_name[0].lower()}{method_name[1:]}'
