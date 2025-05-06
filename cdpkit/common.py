@@ -1,6 +1,7 @@
 import inspect
-from typing import Any, TypeVar, Generic
 from pathlib import Path
+from typing import Any, Generic, TypeVar
+
 from pydantic import BaseModel, ConfigDict
 
 __all__ = [
@@ -75,4 +76,4 @@ class CDPMethod(Generic[RESULT_TYPE]):
         if self.OUTPUT_VALIDATOR is None:
             return None
         else:
-            return self.OUTPUT_VALIDATOR.model_validate(response).field
+            return self.OUTPUT_VALIDATOR.model_validate(response)
