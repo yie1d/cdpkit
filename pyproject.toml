@@ -1,6 +1,6 @@
 [project]
 name = "cdpkits"
-version = "1.1.0"
+version = "1.2.0"
 description = "Chrome DevTools Protocol Toolkit in Python"
 readme = "README.md"
 requires-python = ">=3.11"
