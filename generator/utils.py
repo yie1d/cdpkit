@@ -1,4 +1,6 @@
 import builtins
+import asyncio
+import aiohttp
 import json
 import re
 import textwrap
@@ -6,38 +8,28 @@ from pathlib import Path
 from typing import Any
 
 
-def read_protocol_json(file_path: Path) -> tuple[str, list[dict[str, Any]]]:
-    """
-    读取protocol中的版本号及domain的数据
+async def request_protocol_json() -> tuple[str, list[dict[str, Any]]]:
+    """请求获取最新的版本号及domain内容"""
+    protocol_version = None
+    browser_protocol_domains = []
 
-    Args:
-        file_path [Path]: protocol json文件路径
+    try:
+        async with aiohttp.ClientSession(trust_env=True) as session:
+            for protocol_name in ('browser_protocol', 'js_protocol'):
+                async with session.get(
+                    f'https://raw.githubusercontent.com/ChromeDevTools/devtools-protocol/refs/heads/master/json/{protocol_name}.json',
+                ) as resp:
+                    data = await resp.text()
+                    protocol_data = json.loads(data)
+                    browser_protocol_domains.extend(protocol_data['domains'])
 
-    Returns:
-
-    """
-    with open(file_path, 'rb') as f:
-        protocol_data = json.load(f)
-
-    _version = protocol_data['version']
-
-    return f'{_version["major"]}.{_version["minor"]}', protocol_data['domains']
-
-
-def read_protocol(root_path: Path) -> tuple[str, list[dict[str, Any]]]:
-    """
-    读取protocol.json的数据，返回版本信息和domain数据
-
-    Args:
-        root_path [Path]: 根路径
-
-    Returns:
-
-    """
-    protocol_dir = root_path.joinpath('generator/protocol')
-    protocol_version, browser_protocol_domains = read_protocol_json(protocol_dir.joinpath('browser_protocol.json'))
-    _, js_protocol_domains = read_protocol_json(protocol_dir.joinpath('js_protocol.json'))
-    browser_protocol_domains.extend(js_protocol_domains)
+                    if protocol_version is None:
+                        _version = protocol_data['version']
+                        protocol_version = f'{_version["major"]}.{_version["minor"]}'
+    except aiohttp.ClientError as err:
+        raise Exception(f'Failed to get websocket address: {err}')
+    except KeyError as err:
+        raise Exception(f'Failed to get websocket address: {err}')
 
     return protocol_version, browser_protocol_domains
 

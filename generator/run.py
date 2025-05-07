@@ -1,9 +1,10 @@
+import asyncio
 from pathlib import Path
 from typing import Any
 
 from generator.cdp import CDPTopDomain
 from generator.generate import generate_to_dir
-from generator.utils import read_protocol, update_cdp_version
+from generator.utils import request_protocol_json, update_cdp_version
 
 ROOT_PATH = Path(__file__).parent.parent.resolve()
 
@@ -15,8 +16,8 @@ def write_cdp_protocol(dir_path: Path, protocol_domains_data: list[dict[str, Any
     generate_to_dir(top_domain, dir_path)
 
 
-def main():
-    protocol_version, protocol_domains_data = read_protocol(ROOT_PATH)
+async def main():
+    protocol_version, protocol_domains_data = await request_protocol_json()
 
     package_path = ROOT_PATH / 'cdpkit'
 
@@ -25,4 +26,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    asyncio.run(main())
