@@ -29,7 +29,7 @@ dependencies = [
 "Homepage" = "https://github.com/yie1d/cdpkit"
 
 [tool.uv]
-build-constraint-dependencies = ["setuptools==60.0.0"]
+build-constraint-dependencies = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
