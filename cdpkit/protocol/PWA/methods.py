@@ -25,7 +25,7 @@ class GetOsAppStateInput(InputModel):
 class GetOsAppStateOutput(OutputModel):
 
     badgeCount: int
-    fileHandlers: PWA.FileHandler
+    fileHandlers: list[PWA.FileHandler]
 
 
 class GetOsAppState(CDPMethod[GetOsAppStateOutput]):  # deprecated
@@ -136,12 +136,12 @@ class Launch(CDPMethod[LaunchOutput]):  # deprecated
 class LaunchFilesInAppInput(InputModel):
 
     manifestId: str
-    files: str
+    files: list[str]
 
 
 class LaunchFilesInAppOutput(OutputModel):
 
-    targetIds: Target.TargetID  # deprecated
+    targetIds: list[Target.TargetID]  # deprecated
 
 
 class LaunchFilesInApp(CDPMethod[LaunchFilesInAppOutput]):  # deprecated
@@ -167,7 +167,7 @@ class LaunchFilesInApp(CDPMethod[LaunchFilesInAppOutput]):  # deprecated
         /,
         *,
         manifest_id: str,
-        files: str
+        files: list[str]
     ):
         super().__init__(
             manifestId=manifest_id,

@@ -41,4 +41,4 @@ class PreciseCoverageDeltaUpdate(CDPEvent):
 
     timestamp: float  # deprecated
     occasion: str  # deprecated
-    result: Profiler.ScriptCoverage  # deprecated
+    result: list[Profiler.ScriptCoverage]  # deprecated

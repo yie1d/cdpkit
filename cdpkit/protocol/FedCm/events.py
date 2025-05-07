@@ -20,7 +20,7 @@ class DialogShown(CDPEvent):
 
     dialogId: str
     dialogType: FedCm.DialogType
-    accounts: FedCm.Account
+    accounts: list[FedCm.Account]
     title: str  # deprecated
     subtitle: str | None = None
 

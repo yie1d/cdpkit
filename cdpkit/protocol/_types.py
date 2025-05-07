@@ -127,10 +127,10 @@ class AccessibilityAXValue(CDPObject):
     value: Any = None  # deprecated
 
     # One or more related nodes, if applicable.
-    relatedNodes: Accessibility.AXRelatedNode | None = None  # deprecated
+    relatedNodes: list[Accessibility.AXRelatedNode] | None = None  # deprecated
 
     # The sources which contributed to the computation of this property.
-    sources: Accessibility.AXValueSource | None = None  # deprecated
+    sources: list[Accessibility.AXValueSource] | None = None  # deprecated
 
 
 class AccessibilityAXPropertyName(str, enum.Enum):
@@ -194,7 +194,7 @@ class AccessibilityAXNode(CDPObject):
     ignored: bool  # deprecated
 
     # Collection of reasons why this node is hidden.
-    ignoredReasons: Accessibility.AXProperty | None = None  # deprecated
+    ignoredReasons: list[Accessibility.AXProperty] | None = None  # deprecated
 
     # This `Node`'s role, whether explicit or implicit.
     role: Accessibility.AXValue | None = None  # deprecated
@@ -212,13 +212,13 @@ class AccessibilityAXNode(CDPObject):
     value: Accessibility.AXValue | None = None  # deprecated
 
     # All other properties
-    properties: Accessibility.AXProperty | None = None  # deprecated
+    properties: list[Accessibility.AXProperty] | None = None  # deprecated
 
     # ID for this node's parent.
     parentId: Accessibility.AXNodeId | None = None  # deprecated
 
     # IDs for each of this node's child nodes.
-    childIds: Accessibility.AXNodeId | None = None  # deprecated
+    childIds: list[Accessibility.AXNodeId] | None = None  # deprecated
 
     # The backend ID for the associated DOM node, if any.
     backendDOMNodeId: DOM.BackendNodeId | None = None  # deprecated
@@ -324,7 +324,7 @@ class AnimationKeyframesRule(CDPObject):
     name: str | None = None  # deprecated
 
     # List of animation keyframes.
-    keyframes: Animation.KeyframeStyle  # deprecated
+    keyframes: list[Animation.KeyframeStyle]  # deprecated
 
 
 class AnimationKeyframeStyle(CDPObject):
@@ -429,9 +429,9 @@ class AuditsCookieIssueDetails(CDPObject):
 
     rawCookieLine: str | None = None
 
-    cookieWarningReasons: Audits.CookieWarningReason
+    cookieWarningReasons: list[Audits.CookieWarningReason]
 
-    cookieExclusionReasons: Audits.CookieExclusionReason
+    cookieExclusionReasons: list[Audits.CookieExclusionReason]
 
     # Optionally identifies the site-for-cookies and the cookie url, which maybe used by the front-end as additional context.
     operation: Audits.CookieOperation  # deprecated
@@ -780,7 +780,7 @@ class AuditsSRIMessageSignatureIssueDetails(CDPObject):
 
     signatureBase: str
 
-    integrityAssertions: str
+    integrityAssertions: list[str]
 
     request: Audits.AffectedRequest
 
@@ -834,7 +834,7 @@ class AuditsBounceTrackingIssueDetails(CDPObject):
     For example, if the URL `https://example.test:80/bounce` was in the
     redirect chain, the site reported would be `example.test`. """
 
-    trackingSites: str
+    trackingSites: list[str]
 
 
 class AuditsCookieDeprecationMetadataIssueDetails(CDPObject):
@@ -844,7 +844,7 @@ class AuditsCookieDeprecationMetadataIssueDetails(CDPObject):
     `https://example.test:80/web_page` was accessing cookies, the site reported
     would be `example.test`. """
 
-    allowedSites: str
+    allowedSites: list[str]
 
     optOutPercentage: float
 
@@ -1177,13 +1177,13 @@ class AutofillAddressField(CDPObject):
 class AutofillAddressFields(CDPObject):
     """ A list of address fields. """
 
-    fields: Autofill.AddressField
+    fields: list[Autofill.AddressField]
 
 
 class AutofillAddress(CDPObject):
 
     # fields and values defining an address.
-    fields: Autofill.AddressField  # deprecated
+    fields: list[Autofill.AddressField]  # deprecated
 
 
 class AutofillAddressUI(CDPObject):
@@ -1196,7 +1196,7 @@ class AutofillAddressUI(CDPObject):
     Munich 81456 """
 
     # A two dimension array containing the representation of values from anaddress profile.
-    addressFields: Autofill.AddressFields  # deprecated
+    addressFields: list[Autofill.AddressFields]  # deprecated
 
 
 class AutofillFillingStrategy(str, enum.Enum):
@@ -1275,7 +1275,7 @@ class BackgroundServiceBackgroundServiceEvent(CDPObject):
     instanceId: str  # deprecated
 
     # A list of event-specific information.
-    eventMetadata: BackgroundService.EventMetadata  # deprecated
+    eventMetadata: list[BackgroundService.EventMetadata]  # deprecated
 
     # Storage key this event belongs to.
     storageKey: str  # deprecated
@@ -1419,7 +1419,7 @@ class BrowserHistogram(CDPObject):
     count: int  # deprecated
 
     # Buckets.
-    buckets: Browser.Bucket  # deprecated
+    buckets: list[Browser.Bucket]  # deprecated
 
 
 class BrowserPrivacySandboxAPI(str, enum.Enum):
@@ -1452,7 +1452,7 @@ class CSSPseudoElementMatches(CDPObject):
     pseudoIdentifier: str | None = None  # deprecated
 
     # Matches of CSS rules applicable to the pseudo style.
-    matches: CSS.RuleMatch  # deprecated
+    matches: list[CSS.RuleMatch]  # deprecated
 
 
 class CSSCSSAnimationStyle(CDPObject):
@@ -1472,14 +1472,14 @@ class CSSInheritedStyleEntry(CDPObject):
     inlineStyle: CSS.CSSStyle | None = None  # deprecated
 
     # Matches of CSS rules matching the ancestor node in the style inheritancechain.
-    matchedCSSRules: CSS.RuleMatch  # deprecated
+    matchedCSSRules: list[CSS.RuleMatch]  # deprecated
 
 
 class CSSInheritedAnimatedStyleEntry(CDPObject):
     """ Inherited CSS style collection for animated styles from ancestor node. """
 
     # Styles coming from the animations of the ancestor, if any, in the styleinheritance chain.
-    animationStyles: CSS.CSSAnimationStyle | None = None  # deprecated
+    animationStyles: list[CSS.CSSAnimationStyle] | None = None  # deprecated
 
     # The style coming from the transitions of the ancestor, if any, in thestyle inheritance chain.
     transitionsStyle: CSS.CSSStyle | None = None  # deprecated
@@ -1489,7 +1489,7 @@ class CSSInheritedPseudoElementMatches(CDPObject):
     """ Inherited pseudo element matches from pseudos of an ancestor node. """
 
     # Matches of pseudo styles from the pseudos of an ancestor node.
-    pseudoElements: CSS.PseudoElementMatches  # deprecated
+    pseudoElements: list[CSS.PseudoElementMatches]  # deprecated
 
 
 class CSSRuleMatch(CDPObject):
@@ -1499,7 +1499,7 @@ class CSSRuleMatch(CDPObject):
     rule: CSS.CSSRule  # deprecated
 
     # Matching selector indices in the rule's selectorList selectors (0-based).
-    matchingSelectors: int  # deprecated
+    matchingSelectors: list[int]  # deprecated
 
 
 class CSSValue(CDPObject):
@@ -1533,7 +1533,7 @@ class CSSSelectorList(CDPObject):
     """ Selector list data. """
 
     # Selectors in the list.
-    selectors: CSS.Value  # deprecated
+    selectors: list[CSS.Value]  # deprecated
 
     # Rule selector text.
     text: str  # deprecated
@@ -1607,7 +1607,7 @@ class CSSCSSRule(CDPObject):
     selectorList: CSS.SelectorList  # deprecated
 
     # Array of selectors from ancestor style rules, sorted by distance from thecurrent rule.
-    nestingSelectors: str | None = None  # experimental deprecated
+    nestingSelectors: list[str] | None = None  # experimental deprecated
 
     # Parent stylesheet's origin.
     origin: CSS.StyleSheetOrigin  # deprecated
@@ -1616,25 +1616,25 @@ class CSSCSSRule(CDPObject):
     style: CSS.CSSStyle  # deprecated
 
     # Media list array (for rules involving media queries). The array enumeratesmedia queries starting with the innermost one, going outwards.
-    media: CSS.CSSMedia | None = None  # deprecated
+    media: list[CSS.CSSMedia] | None = None  # deprecated
 
     # Container query list array (for rules involving container queries). Thearray enumerates container queries starting with the innermost one, goingoutwards.
-    containerQueries: CSS.CSSContainerQuery | None = None  # experimental deprecated
+    containerQueries: list[CSS.CSSContainerQuery] | None = None  # experimental deprecated
 
     # @supports CSS at-rule array. The array enumerates @supports at-rulesstarting with the innermost one, going outwards.
-    supports: CSS.CSSSupports | None = None  # experimental deprecated
+    supports: list[CSS.CSSSupports] | None = None  # experimental deprecated
 
     # Cascade layer array. Contains the layer hierarchy that this rule belongsto starting with the innermost layer and going outwards.
-    layers: CSS.CSSLayer | None = None  # experimental deprecated
+    layers: list[CSS.CSSLayer] | None = None  # experimental deprecated
 
     # @scope CSS at-rule array. The array enumerates @scope at-rules startingwith the innermost one, going outwards.
-    scopes: CSS.CSSScope | None = None  # experimental deprecated
+    scopes: list[CSS.CSSScope] | None = None  # experimental deprecated
 
     # The array keeps the types of ancestor CSSRules from the innermost goingoutwards.
-    ruleTypes: CSS.CSSRuleType | None = None  # experimental deprecated
+    ruleTypes: list[CSS.CSSRuleType] | None = None  # experimental deprecated
 
     # @starting-style CSS at-rule array. The array enumerates @starting-styleat-rules starting with the innermost one, going outwards.
-    startingStyles: CSS.CSSStartingStyle | None = None  # experimental deprecated
+    startingStyles: list[CSS.CSSStartingStyle] | None = None  # experimental deprecated
 
 
 class CSSCSSRuleType(str, enum.Enum):
@@ -1710,10 +1710,10 @@ class CSSCSSStyle(CDPObject):
     styleSheetId: CSS.StyleSheetId | None = None  # deprecated
 
     # CSS properties in the style.
-    cssProperties: CSS.CSSProperty  # deprecated
+    cssProperties: list[CSS.CSSProperty]  # deprecated
 
     # Computed values for all shorthands found in the style.
-    shorthandEntries: CSS.ShorthandEntry  # deprecated
+    shorthandEntries: list[CSS.ShorthandEntry]  # deprecated
 
     # Style declaration text (if available).
     cssText: str | None = None  # deprecated
@@ -1750,7 +1750,7 @@ class CSSCSSProperty(CDPObject):
     range: CSS.SourceRange | None = None  # deprecated
 
     # Parsed longhand components of this property if it is a shorthand. Thisfield will be empty if the given property is not a shorthand.
-    longhandProperties: CSS.CSSProperty | None = None  # experimental deprecated
+    longhandProperties: list[CSS.CSSProperty] | None = None  # experimental deprecated
 
 
 class CSSCSSMedia(CDPObject):
@@ -1772,14 +1772,14 @@ class CSSCSSMedia(CDPObject):
     styleSheetId: CSS.StyleSheetId | None = None  # deprecated
 
     # Array of media queries.
-    mediaList: CSS.MediaQuery | None = None  # deprecated
+    mediaList: list[CSS.MediaQuery] | None = None  # deprecated
 
 
 class CSSMediaQuery(CDPObject):
     """ Media query descriptor. """
 
     # Array of media query expressions.
-    expressions: CSS.MediaQueryExpression  # deprecated
+    expressions: list[CSS.MediaQueryExpression]  # deprecated
 
     # Whether the media query condition is satisfied.
     active: bool  # deprecated
@@ -1888,7 +1888,7 @@ class CSSCSSLayerData(CDPObject):
     name: str  # deprecated
 
     # Direct sub-layers
-    subLayers: CSS.CSSLayerData | None = None  # deprecated
+    subLayers: list[CSS.CSSLayerData] | None = None  # deprecated
 
     # Layer order. The order determines the order of the layer in the cascadeorder. A higher number has higher priority in the cascade order.
     order: float  # deprecated
@@ -1961,7 +1961,7 @@ class CSSFontFace(CDPObject):
     platformFontFamily: str  # deprecated
 
     # Available variation settings (a.k.a. "axes").
-    fontVariationAxes: CSS.FontVariationAxis | None = None  # deprecated
+    fontVariationAxes: list[CSS.FontVariationAxis] | None = None  # deprecated
 
 
 class CSSCSSTryRule(CDPObject):
@@ -2002,7 +2002,7 @@ class CSSCSSKeyframesRule(CDPObject):
     animationName: CSS.Value  # deprecated
 
     # List of keyframes.
-    keyframes: CSS.CSSKeyframeRule  # deprecated
+    keyframes: list[CSS.CSSKeyframeRule]  # deprecated
 
 
 class CSSCSSPropertyRegistration(CDPObject):
@@ -2072,7 +2072,7 @@ class CSSCSSFunctionConditionNode(CDPObject):
     supports: CSS.CSSSupports | None = None  # deprecated
 
     # Block body.
-    children: CSS.CSSFunctionNode  # deprecated
+    children: list[CSS.CSSFunctionNode]  # deprecated
 
     # The condition text.
     conditionText: str  # deprecated
@@ -2101,10 +2101,10 @@ class CSSCSSFunctionRule(CDPObject):
     origin: CSS.StyleSheetOrigin  # deprecated
 
     # List of parameters.
-    parameters: CSS.CSSFunctionParameter  # deprecated
+    parameters: list[CSS.CSSFunctionParameter]  # deprecated
 
     # Function body.
-    children: CSS.CSSFunctionNode  # deprecated
+    children: list[CSS.CSSFunctionNode]  # deprecated
 
 
 class CSSCSSKeyframeRule(CDPObject):
@@ -2162,7 +2162,7 @@ class CacheStorageDataEntry(CDPObject):
     requestMethod: str  # deprecated
 
     # Request headers
-    requestHeaders: CacheStorage.Header  # deprecated
+    requestHeaders: list[CacheStorage.Header]  # deprecated
 
     # Number of seconds since epoch.
     responseTime: float  # deprecated
@@ -2177,7 +2177,7 @@ class CacheStorageDataEntry(CDPObject):
     responseType: CacheStorage.CachedResponseType  # deprecated
 
     # Response headers
-    responseHeaders: CacheStorage.Header  # deprecated
+    responseHeaders: list[CacheStorage.Header]  # deprecated
 
 
 class CacheStorageCache(CDPObject):
@@ -2353,10 +2353,10 @@ class DOMNode(CDPObject):
     childNodeCount: int | None = None  # deprecated
 
     # Child nodes of this node when requested with children.
-    children: DOM.Node | None = None  # deprecated
+    children: list[DOM.Node] | None = None  # deprecated
 
     # Attributes of the `Element` node in the form of flat array `[name1,value1, name2, value2]`.
-    attributes: str | None = None  # deprecated
+    attributes: list[str] | None = None  # deprecated
 
     # Document URL that `Document` or `FrameOwner` node points to.
     documentURL: str | None = None  # deprecated
@@ -2398,19 +2398,19 @@ class DOMNode(CDPObject):
     contentDocument: DOM.Node | None = None  # deprecated
 
     # Shadow root list for given element host.
-    shadowRoots: DOM.Node | None = None  # deprecated
+    shadowRoots: list[DOM.Node] | None = None  # deprecated
 
     # Content document fragment for template elements.
     templateContent: DOM.Node | None = None  # deprecated
 
     # Pseudo elements associated with this node.
-    pseudoElements: DOM.Node | None = None  # deprecated
+    pseudoElements: list[DOM.Node] | None = None  # deprecated
 
     # Deprecated, as the HTML Imports API has been removed (crbug.com/937746).This property used to return the imported document for the HTMLImport links. Theproperty is always undefined now.
     importedDocument: DOM.Node | None = None  # deprecated
 
     # Distributed nodes for given insertion point.
-    distributedNodes: DOM.BackendNode | None = None  # deprecated
+    distributedNodes: list[DOM.BackendNode] | None = None  # deprecated
 
     # Whether the node is SVG.
     isSVG: bool | None = None  # deprecated
@@ -2427,7 +2427,7 @@ class DOMDetachedElementInfo(CDPObject):
 
     treeNode: DOM.Node
 
-    retainedNodeIds: DOM.NodeId
+    retainedNodeIds: list[DOM.NodeId]
 
 
 class DOMRGBA(CDPObject):
@@ -2483,10 +2483,10 @@ class DOMShapeOutsideInfo(CDPObject):
     bounds: DOM.Quad  # deprecated
 
     # Shape coordinate details
-    shape: Any  # deprecated
+    shape: list[Any]  # deprecated
 
     # Margin shape bounds
-    marginShape: Any  # deprecated
+    marginShape: list[Any]  # deprecated
 
 
 class DOMRect(CDPObject):
@@ -2591,13 +2591,13 @@ class DOMSnapshotDOMNode(CDPObject):
     backendNodeId: DOM.BackendNodeId  # deprecated
 
     # The indexes of the node's child nodes in the `domNodes` array returned by`getSnapshot`, if any.
-    childNodeIndexes: int | None = None  # deprecated
+    childNodeIndexes: list[int] | None = None  # deprecated
 
     # Attributes of an `Element` node.
-    attributes: DOMSnapshot.NameValue | None = None  # deprecated
+    attributes: list[DOMSnapshot.NameValue] | None = None  # deprecated
 
     # Indexes of pseudo elements associated with this node in the `domNodes`array returned by `getSnapshot`, if any.
-    pseudoElementIndexes: int | None = None  # deprecated
+    pseudoElementIndexes: list[int] | None = None  # deprecated
 
     # The index of the node's related layout tree node in the `layoutTreeNodes`array returned by `getSnapshot`, if any.
     layoutNodeIndex: int | None = None  # deprecated
@@ -2636,7 +2636,7 @@ class DOMSnapshotDOMNode(CDPObject):
     isClickable: bool | None = None  # deprecated
 
     # Details of the node's event listeners, if any.
-    eventListeners: DOMDebugger.EventListener | None = None  # deprecated
+    eventListeners: list[DOMDebugger.EventListener] | None = None  # deprecated
 
     # The selected url for nodes with a srcset attribute.
     currentSourceURL: str | None = None  # deprecated
@@ -2677,7 +2677,7 @@ class DOMSnapshotLayoutTreeNode(CDPObject):
     layoutText: str | None = None  # deprecated
 
     # The post-layout inline text nodes, if any.
-    inlineTextNodes: DOMSnapshot.InlineTextBox | None = None  # deprecated
+    inlineTextNodes: list[DOMSnapshot.InlineTextBox] | None = None  # deprecated
 
     # Index into the `computedStyles` array returned by `getSnapshot`.
     styleIndex: int | None = None  # deprecated
@@ -2693,7 +2693,7 @@ class DOMSnapshotComputedStyle(CDPObject):
     """ A subset of the full ComputedStyle as defined by the request whitelist. """
 
     # Name/value pairs of computed style properties.
-    properties: DOMSnapshot.NameValue  # deprecated
+    properties: list[DOMSnapshot.NameValue]  # deprecated
 
 
 class DOMSnapshotNameValue(CDPObject):
@@ -2717,21 +2717,21 @@ DOMSnapshotArrayOfStrings = DOMSnapshotStringIndex
 class DOMSnapshotRareStringData(CDPObject):
     """ Data that is only present on rare nodes. """
 
-    index: int
+    index: list[int]
 
-    value: DOMSnapshot.StringIndex
+    value: list[DOMSnapshot.StringIndex]
 
 
 class DOMSnapshotRareBooleanData(CDPObject):
 
-    index: int
+    index: list[int]
 
 
 class DOMSnapshotRareIntegerData(CDPObject):
 
-    index: int
+    index: list[int]
 
-    value: int
+    value: list[int]
 
 
 DOMSnapshotRectangle = float
@@ -2790,25 +2790,25 @@ class DOMSnapshotNodeTreeSnapshot(CDPObject):
     """ Table containing nodes. """
 
     # Parent node index.
-    parentIndex: int | None = None  # deprecated
+    parentIndex: list[int] | None = None  # deprecated
 
     # `Node`'s nodeType.
-    nodeType: int | None = None  # deprecated
+    nodeType: list[int] | None = None  # deprecated
 
     # Type of the shadow root the `Node` is in. String values are equal to the`ShadowRootType` enum.
     shadowRootType: DOMSnapshot.RareStringData | None = None  # deprecated
 
     # `Node`'s nodeName.
-    nodeName: DOMSnapshot.StringIndex | None = None  # deprecated
+    nodeName: list[DOMSnapshot.StringIndex] | None = None  # deprecated
 
     # `Node`'s nodeValue.
-    nodeValue: DOMSnapshot.StringIndex | None = None  # deprecated
+    nodeValue: list[DOMSnapshot.StringIndex] | None = None  # deprecated
 
     # `Node`'s id, corresponds to DOM.Node.backendNodeId.
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
+    backendNodeId: list[DOM.BackendNodeId] | None = None  # deprecated
 
     # Attributes of an `Element` node. Flatten name, value pairs.
-    attributes: DOMSnapshot.ArrayOfStrings | None = None  # deprecated
+    attributes: list[DOMSnapshot.ArrayOfStrings] | None = None  # deprecated
 
     # Only set for textarea elements, contains the text value.
     textValue: DOMSnapshot.RareStringData | None = None  # deprecated
@@ -2845,37 +2845,37 @@ class DOMSnapshotLayoutTreeSnapshot(CDPObject):
     """ Table of details of an element in the DOM tree with a LayoutObject. """
 
     # Index of the corresponding node in the `NodeTreeSnapshot` array returnedby `captureSnapshot`.
-    nodeIndex: int  # deprecated
+    nodeIndex: list[int]  # deprecated
 
     # Array of indexes specifying computed style strings, filtered according tothe `computedStyles` parameter passed to `captureSnapshot`.
-    styles: DOMSnapshot.ArrayOfStrings  # deprecated
+    styles: list[DOMSnapshot.ArrayOfStrings]  # deprecated
 
     # The absolute position bounding box.
-    bounds: DOMSnapshot.Rectangle  # deprecated
+    bounds: list[DOMSnapshot.Rectangle]  # deprecated
 
     # Contents of the LayoutText, if any.
-    text: DOMSnapshot.StringIndex  # deprecated
+    text: list[DOMSnapshot.StringIndex]  # deprecated
 
     # Stacking context information.
     stackingContexts: DOMSnapshot.RareBooleanData  # deprecated
 
     # Global paint order index, which is determined by the stacking order of thenodes. Nodes that are painted together will have the same index. Only providedif includePaintOrder in captureSnapshot was true.
-    paintOrders: int | None = None  # deprecated
+    paintOrders: list[int] | None = None  # deprecated
 
     # The offset rect of nodes. Only available when includeDOMRects is set totrue
-    offsetRects: DOMSnapshot.Rectangle | None = None  # deprecated
+    offsetRects: list[DOMSnapshot.Rectangle] | None = None  # deprecated
 
     # The scroll rect of nodes. Only available when includeDOMRects is set totrue
-    scrollRects: DOMSnapshot.Rectangle | None = None  # deprecated
+    scrollRects: list[DOMSnapshot.Rectangle] | None = None  # deprecated
 
     # The client rect of nodes. Only available when includeDOMRects is set totrue
-    clientRects: DOMSnapshot.Rectangle | None = None  # deprecated
+    clientRects: list[DOMSnapshot.Rectangle] | None = None  # deprecated
 
     # The list of background colors that are blended with colors of overlappingelements.
-    blendedBackgroundColors: DOMSnapshot.StringIndex | None = None  # experimental deprecated
+    blendedBackgroundColors: list[DOMSnapshot.StringIndex] | None = None  # experimental deprecated
 
     # The list of computed text opacities.
-    textColorOpacities: float | None = None  # experimental deprecated
+    textColorOpacities: list[float] | None = None  # experimental deprecated
 
 
 class DOMSnapshotTextBoxSnapshot(CDPObject):
@@ -2883,16 +2883,16 @@ class DOMSnapshotTextBoxSnapshot(CDPObject):
     stable and may change between versions. """
 
     # Index of the layout tree node that owns this box collection.
-    layoutIndex: int  # deprecated
+    layoutIndex: list[int]  # deprecated
 
     # The absolute position bounding box.
-    bounds: DOMSnapshot.Rectangle  # deprecated
+    bounds: list[DOMSnapshot.Rectangle]  # deprecated
 
     # The starting index in characters, for this post layout textbox substring.Characters that would be represented as a surrogate pair in UTF-16 have length2.
-    start: int  # deprecated
+    start: list[int]  # deprecated
 
     # The number of characters in this post layout textbox substring. Charactersthat would be represented as a surrogate pair in UTF-16 have length 2.
-    length: int  # deprecated
+    length: list[int]  # deprecated
 
 
 DOMStorageSerializedStorageKey = str
@@ -3002,10 +3002,10 @@ class EmulationUserAgentMetadata(CDPObject):
     Missing optional values will be filled in by the target with what it would normally use. """
 
     # Brands appearing in Sec-CH-UA.
-    brands: Emulation.UserAgentBrandVersion | None = None  # deprecated
+    brands: list[Emulation.UserAgentBrandVersion] | None = None  # deprecated
 
     # Brands appearing in Sec-CH-UA-Full-Version-List.
-    fullVersionList: Emulation.UserAgentBrandVersion | None = None  # deprecated
+    fullVersionList: list[Emulation.UserAgentBrandVersion] | None = None  # deprecated
 
     fullVersion: str | None = None
 
@@ -3142,10 +3142,10 @@ class FileSystemDirectory(CDPObject):
 
     name: str
 
-    nestedDirectories: str
+    nestedDirectories: list[str]
 
     # Files that are directly nested under this directory.
-    nestedFiles: FileSystem.File  # deprecated
+    nestedFiles: list[FileSystem.File]  # deprecated
 
 
 class FileSystemBucketFileSystemLocator(CDPObject):
@@ -3157,7 +3157,7 @@ class FileSystemBucketFileSystemLocator(CDPObject):
     bucketName: str | None = None  # deprecated
 
     # Path to the directory using each path component as an array item.
-    pathComponents: str  # deprecated
+    pathComponents: list[str]  # deprecated
 
 
 class IndexedDBDatabaseWithObjectStores(CDPObject):
@@ -3170,7 +3170,7 @@ class IndexedDBDatabaseWithObjectStores(CDPObject):
     version: float  # deprecated
 
     # Object stores in this database.
-    objectStores: IndexedDB.ObjectStore  # deprecated
+    objectStores: list[IndexedDB.ObjectStore]  # deprecated
 
 
 class IndexedDBObjectStore(CDPObject):
@@ -3186,7 +3186,7 @@ class IndexedDBObjectStore(CDPObject):
     autoIncrement: bool  # deprecated
 
     # Indexes in this object store.
-    indexes: IndexedDB.ObjectStoreIndex  # deprecated
+    indexes: list[IndexedDB.ObjectStoreIndex]  # deprecated
 
 
 class IndexedDBObjectStoreIndex(CDPObject):
@@ -3221,7 +3221,7 @@ class IndexedDBKey(CDPObject):
     date: float | None = None  # deprecated
 
     # Array value.
-    array: IndexedDB.Key | None = None  # deprecated
+    array: list[IndexedDB.Key] | None = None  # deprecated
 
 
 class IndexedDBKeyRange(CDPObject):
@@ -3263,7 +3263,7 @@ class IndexedDBKeyPath(CDPObject):
     string: str | None = None  # deprecated
 
     # Array value.
-    array: str | None = None  # deprecated
+    array: list[str] | None = None  # deprecated
 
 
 class InputTouchPoint(CDPObject):
@@ -3341,10 +3341,10 @@ class InputDragDataItem(CDPObject):
 
 class InputDragData(CDPObject):
 
-    items: Input.DragDataItem
+    items: list[Input.DragDataItem]
 
     # List of filenames that should be included when dropping
-    files: str | None = None  # deprecated
+    files: list[str] | None = None  # deprecated
 
     # Bit field representing allowed drag operations. Copy = 1, Link = 2, Move =16
     dragOperationsMask: int  # deprecated
@@ -3422,7 +3422,7 @@ class LayerTreeLayer(CDPObject):
     height: float  # deprecated
 
     # Transformation matrix for layer, default is identity matrix
-    transform: float | None = None  # deprecated
+    transform: list[float] | None = None  # deprecated
 
     # Transform anchor point X, absent if no transform specified
     anchorX: float | None = None  # deprecated
@@ -3443,7 +3443,7 @@ class LayerTreeLayer(CDPObject):
     invisible: bool | None = None  # deprecated
 
     # Rectangles scrolling on main thread only.
-    scrollRects: LayerTree.ScrollRect | None = None  # deprecated
+    scrollRects: list[LayerTree.ScrollRect] | None = None  # deprecated
 
     # Sticky position constraint information
     stickyPositionConstraint: LayerTree.StickyPositionConstraint | None = None  # deprecated
@@ -3487,7 +3487,7 @@ class LogLogEntry(CDPObject):
     workerId: str | None = None  # deprecated
 
     # Call arguments.
-    args: Runtime.RemoteObject | None = None  # deprecated
+    args: list[Runtime.RemoteObject] | None = None  # deprecated
 
 
 class LogViolationSetting(CDPObject):
@@ -3517,15 +3517,15 @@ class MemorySamplingProfileNode(CDPObject):
     total: float  # deprecated
 
     # Execution stack at the point of allocation.
-    stack: str  # deprecated
+    stack: list[str]  # deprecated
 
 
 class MemorySamplingProfile(CDPObject):
     """ Array of heap profile samples. """
 
-    samples: Memory.SamplingProfileNode
+    samples: list[Memory.SamplingProfileNode]
 
-    modules: Memory.Module
+    modules: list[Memory.Module]
 
 
 class MemoryModule(CDPObject):
@@ -3767,7 +3767,7 @@ class NetworkRequest(CDPObject):
     hasPostData: bool | None = None  # deprecated
 
     # Request body elements (post data broken into individual entries).
-    postDataEntries: Network.PostDataEntry | None = None  # experimental deprecated
+    postDataEntries: list[Network.PostDataEntry] | None = None  # experimental deprecated
 
     # The mixed content type of the request.
     mixedContentType: Security.MixedContentType | None = None  # deprecated
@@ -3841,7 +3841,7 @@ class NetworkSecurityDetails(CDPObject):
     subjectName: str  # deprecated
 
     # Subject Alternative Name (SAN) DNS names and IP addresses.
-    sanList: str  # deprecated
+    sanList: list[str]  # deprecated
 
     # Name of the issuing CA.
     issuer: str  # deprecated
@@ -3853,7 +3853,7 @@ class NetworkSecurityDetails(CDPObject):
     validTo: Network.TimeSinceEpoch  # deprecated
 
     # List of signed certificate timestamps (SCTs).
-    signedCertificateTimestampList: Network.SignedCertificateTimestamp  # deprecated
+    signedCertificateTimestampList: list[Network.SignedCertificateTimestamp]  # deprecated
 
     # Whether the request complied with Certificate Transparency policy
     certificateTransparencyCompliance: Network.CertificateTransparencyCompliance  # deprecated
@@ -3960,7 +3960,7 @@ class NetworkTrustTokenParams(CDPObject):
     refreshPolicy: Literal['UseCached', 'Refresh']  # deprecated
 
     # Origins of issuers from whom to request tokens or redemption records.
-    issuers: str | None = None  # deprecated
+    issuers: list[str] | None = None  # deprecated
 
 
 class NetworkTrustTokenOperationType(str, enum.Enum):
@@ -4304,7 +4304,7 @@ class NetworkBlockedSetCookieWithReason(CDPObject):
     """ A cookie which was not stored from a response with the corresponding reason. """
 
     # The reason(s) this cookie was blocked.
-    blockedReasons: Network.SetCookieBlockedReason  # deprecated
+    blockedReasons: list[Network.SetCookieBlockedReason]  # deprecated
 
     # The string representing this individual cookie as it would appear in theheader. This is not the entire "cookie" or "set-cookie" header which could havemultiple cookies.
     cookieLine: str  # deprecated
@@ -4335,7 +4335,7 @@ class NetworkAssociatedCookie(CDPObject):
     cookie: Network.Cookie  # deprecated
 
     # The reason(s) the cookie was blocked. If empty means the cookie isincluded.
-    blockedReasons: Network.CookieBlockedReason  # deprecated
+    blockedReasons: list[Network.CookieBlockedReason]  # deprecated
 
     # The reason the cookie should have been blocked by 3PCD but is exempted. Acookie could only have at most one exemption reason.
     exemptionReason: Network.CookieExemptionReason | None = None  # deprecated
@@ -4466,7 +4466,7 @@ class NetworkSignedExchangeSignature(CDPObject):
     expires: int  # deprecated
 
     # The encoded certificates.
-    certificates: str | None = None  # deprecated
+    certificates: list[str] | None = None  # deprecated
 
 
 class NetworkSignedExchangeHeader(CDPObject):
@@ -4483,7 +4483,7 @@ class NetworkSignedExchangeHeader(CDPObject):
     responseHeaders: Network.Headers  # deprecated
 
     # Signed exchange response signature.
-    signatures: Network.SignedExchangeSignature  # deprecated
+    signatures: list[Network.SignedExchangeSignature]  # deprecated
 
     # Signed exchange header integrity hash in the form of `sha256-<base64-hash-value>`.
     headerIntegrity: str  # deprecated
@@ -4526,7 +4526,7 @@ class NetworkSignedExchangeInfo(CDPObject):
     securityDetails: Network.SecurityDetails | None = None  # deprecated
 
     # Errors occurred while handling the signed exchange.
-    errors: Network.SignedExchangeError | None = None  # deprecated
+    errors: list[Network.SignedExchangeError] | None = None  # deprecated
 
 
 class NetworkContentEncoding(str, enum.Enum):
@@ -4656,7 +4656,7 @@ class NetworkSecurityIsolationStatus(CDPObject):
 
     coep: Network.CrossOriginEmbedderPolicyStatus | None = None
 
-    csp: Network.ContentSecurityPolicyStatus | None = None
+    csp: list[Network.ContentSecurityPolicyStatus] | None = None
 
 
 class NetworkReportStatus(str, enum.Enum):
@@ -5089,7 +5089,7 @@ class PageAdFrameStatus(CDPObject):
 
     adFrameType: Page.AdFrameType
 
-    explanations: Page.AdFrameExplanation | None = None
+    explanations: list[Page.AdFrameExplanation] | None = None
 
 
 class PageAdScriptId(CDPObject):
@@ -5324,7 +5324,7 @@ class PageOriginTrial(CDPObject):
 
     status: Page.OriginTrialStatus
 
-    tokensWithStatus: Page.OriginTrialTokenWithStatus
+    tokensWithStatus: list[Page.OriginTrialTokenWithStatus]
 
 
 class PageSecurityOriginDetails(CDPObject):
@@ -5380,7 +5380,7 @@ class PageFrame(CDPObject):
     crossOriginIsolatedContextType: Page.CrossOriginIsolatedContextType  # experimental deprecated
 
     # Indicated which gated APIs / features are available.
-    gatedAPIFeatures: Page.GatedAPIFeatures  # experimental deprecated
+    gatedAPIFeatures: list[Page.GatedAPIFeatures]  # experimental deprecated
 
 
 class PageFrameResource(CDPObject):
@@ -5415,10 +5415,10 @@ class PageFrameResourceTree(CDPObject):
     frame: Page.Frame  # deprecated
 
     # Child frames.
-    childFrames: Page.FrameResourceTree | None = None  # deprecated
+    childFrames: list[Page.FrameResourceTree] | None = None  # deprecated
 
     # Information about frame resources.
-    resources: Page.FrameResource  # deprecated
+    resources: list[Page.FrameResource]  # deprecated
 
 
 class PageFrameTree(CDPObject):
@@ -5428,7 +5428,7 @@ class PageFrameTree(CDPObject):
     frame: Page.Frame  # deprecated
 
     # Child frames.
-    childFrames: Page.FrameTree | None = None  # deprecated
+    childFrames: list[Page.FrameTree] | None = None  # deprecated
 
 
 """ Unique script identifier. """
@@ -5676,7 +5676,7 @@ class PageInstallabilityError(CDPObject):
     errorId: str  # deprecated
 
     # The list of error arguments (e.g. {name:'minimum-icon-size-in-pixels',value:'64'}).
-    errorArguments: Page.InstallabilityErrorArgument  # deprecated
+    errorArguments: list[Page.InstallabilityErrorArgument]  # deprecated
 
 
 class PageReferrerPolicy(str, enum.Enum):
@@ -5706,7 +5706,7 @@ class PageFileFilter(CDPObject):
 
     name: str | None = None
 
-    accepts: str | None = None
+    accepts: list[str] | None = None
 
 
 class PageFileHandler(CDPObject):
@@ -5715,10 +5715,10 @@ class PageFileHandler(CDPObject):
 
     name: str
 
-    icons: Page.ImageResource | None = None
+    icons: list[Page.ImageResource] | None = None
 
     # Mimic a map, name is the key, accepts is the value.
-    accepts: Page.FileFilter | None = None  # deprecated
+    accepts: list[Page.FileFilter] | None = None  # deprecated
 
     # Won't repeat the enums, using string for easy comparison. Same as theother enums below.
     launchType: str  # deprecated
@@ -5786,7 +5786,7 @@ class PageShareTarget(CDPObject):
 
     url: str | None = None
 
-    files: Page.FileFilter | None = None
+    files: list[Page.FileFilter] | None = None
 
 
 class PageShortcut(CDPObject):
@@ -5808,12 +5808,12 @@ class PageWebAppManifest(CDPObject):
     display: str | None = None
 
     # The overrided display mode controlled by the user.
-    displayOverrides: str | None = None  # deprecated
+    displayOverrides: list[str] | None = None  # deprecated
 
     # The handlers to open files.
-    fileHandlers: Page.FileHandler | None = None  # deprecated
+    fileHandlers: list[Page.FileHandler] | None = None  # deprecated
 
-    icons: Page.ImageResource | None = None
+    icons: list[Page.ImageResource] | None = None
 
     id: str | None = None
 
@@ -5829,23 +5829,23 @@ class PageWebAppManifest(CDPObject):
     preferRelatedApplications: bool | None = None
 
     # The handlers to open protocols.
-    protocolHandlers: Page.ProtocolHandler | None = None  # deprecated
+    protocolHandlers: list[Page.ProtocolHandler] | None = None  # deprecated
 
-    relatedApplications: Page.RelatedApplication | None = None
+    relatedApplications: list[Page.RelatedApplication] | None = None
 
     scope: str | None = None
 
     # Non-standard, see https://github.com/WICG/manifest-incubations/blob/gh-pages/scope_extensions-explainer.md
-    scopeExtensions: Page.ScopeExtension | None = None  # deprecated
+    scopeExtensions: list[Page.ScopeExtension] | None = None  # deprecated
 
     # The screenshots used by chromium.
-    screenshots: Page.Screenshot | None = None  # deprecated
+    screenshots: list[Page.Screenshot] | None = None  # deprecated
 
     shareTarget: Page.ShareTarget | None = None
 
     shortName: str | None = None
 
-    shortcuts: Page.Shortcut | None = None
+    shortcuts: list[Page.Shortcut] | None = None
 
     startUrl: str | None = None
 
@@ -6049,7 +6049,7 @@ class PageBackForwardCacheNotRestoredExplanation(CDPObject):
     # Context associated with the reason. The meaning of this context isdependent on the reason: - EmbedderExtensionSentMessageToCachedFrame: theextension ID.
     context: str | None = None  # deprecated
 
-    details: Page.BackForwardCacheBlockingDetails | None = None
+    details: list[Page.BackForwardCacheBlockingDetails] | None = None
 
 
 class PageBackForwardCacheNotRestoredExplanationTree(CDPObject):
@@ -6058,10 +6058,10 @@ class PageBackForwardCacheNotRestoredExplanationTree(CDPObject):
     url: str  # deprecated
 
     # Not restored reasons of each frame
-    explanations: Page.BackForwardCacheNotRestoredExplanation  # deprecated
+    explanations: list[Page.BackForwardCacheNotRestoredExplanation]  # deprecated
 
     # Array of children frame
-    children: Page.BackForwardCacheNotRestoredExplanationTree  # deprecated
+    children: list[Page.BackForwardCacheNotRestoredExplanationTree]  # deprecated
 
 
 class PerformanceMetric(CDPObject):
@@ -6112,7 +6112,7 @@ class PerformanceTimelineLayoutShift(CDPObject):
 
     lastInputTime: Network.TimeSinceEpoch
 
-    sources: PerformanceTimeline.LayoutShiftAttribution
+    sources: list[PerformanceTimeline.LayoutShiftAttribution]
 
 
 class PerformanceTimelineTimelineEvent(CDPObject):
@@ -6181,7 +6181,7 @@ class SecurityCertificateSecurityState(CDPObject):
     mac: str | None = None  # deprecated
 
     # Page certificate.
-    certificate: str  # deprecated
+    certificate: list[str]  # deprecated
 
     # Certificate subject name.
     subjectName: str  # deprecated
@@ -6248,7 +6248,7 @@ class SecurityVisibleSecurityState(CDPObject):
     safetyTipInfo: Security.SafetyTipInfo | None = None  # deprecated
 
     # Array of security state issues ids.
-    securityStateIssueIds: str  # deprecated
+    securityStateIssueIds: list[str]  # deprecated
 
 
 class SecuritySecurityStateExplanation(CDPObject):
@@ -6270,10 +6270,10 @@ class SecuritySecurityStateExplanation(CDPObject):
     mixedContentType: Security.MixedContentType  # deprecated
 
     # Page certificate.
-    certificate: str  # deprecated
+    certificate: list[str]  # deprecated
 
     # Recommendations to fix any issues.
-    recommendations: str | None = None  # deprecated
+    recommendations: list[str] | None = None  # deprecated
 
 
 class SecurityInsecureContentStatus(CDPObject):
@@ -6359,7 +6359,7 @@ class ServiceWorkerServiceWorkerVersion(CDPObject):
     # The time at which the response headers of the main script were receivedfrom the server. For cached script it is the last time the cache entry wasvalidated.
     scriptResponseTime: float | None = None  # deprecated
 
-    controlledClients: Target.TargetID | None = None
+    controlledClients: list[Target.TargetID] | None = None
 
     targetId: Target.TargetID | None = None
 
@@ -6545,7 +6545,7 @@ class StorageSharedStorageUrlWithMetadata(CDPObject):
     url: str  # deprecated
 
     # Any associated reporting metadata.
-    reportingMetadata: Storage.SharedStorageReportingMetadata  # deprecated
+    reportingMetadata: list[Storage.SharedStorageReportingMetadata]  # deprecated
 
 
 class StorageSharedStorageAccessParams(CDPObject):
@@ -6571,7 +6571,7 @@ class StorageSharedStorageAccessParams(CDPObject):
     serializedData: str | None = None  # deprecated
 
     # Array of candidate URLs' specs, along with any associated metadata.Present only for SharedStorageAccessMethod: selectURL.
-    urlsWithMetadata: Storage.SharedStorageUrlWithMetadata | None = None  # deprecated
+    urlsWithMetadata: list[Storage.SharedStorageUrlWithMetadata] | None = None  # deprecated
 
     # Spec of the URN:UUID generated for a selectURL call. Present only forSharedStorageAccessMethod: selectURL.
     urnUuid: str | None = None  # deprecated
@@ -6645,12 +6645,12 @@ class StorageAttributionReportingFilterDataEntry(CDPObject):
 
     key: str
 
-    values: str
+    values: list[str]
 
 
 class StorageAttributionReportingFilterConfig(CDPObject):
 
-    filterValues: Storage.AttributionReportingFilterDataEntry
+    filterValues: list[Storage.AttributionReportingFilterDataEntry]
 
     # duration in seconds
     lookbackWindow: int | None = None  # deprecated
@@ -6658,9 +6658,9 @@ class StorageAttributionReportingFilterConfig(CDPObject):
 
 class StorageAttributionReportingFilterPair(CDPObject):
 
-    filters: Storage.AttributionReportingFilterConfig
+    filters: list[Storage.AttributionReportingFilterConfig]
 
-    notFilters: Storage.AttributionReportingFilterConfig
+    notFilters: list[Storage.AttributionReportingFilterConfig]
 
 
 class StorageAttributionReportingAggregationKeysEntry(CDPObject):
@@ -6676,13 +6676,13 @@ class StorageAttributionReportingEventReportWindows(CDPObject):
     start: int  # deprecated
 
     # duration in seconds
-    ends: int  # deprecated
+    ends: list[int]  # deprecated
 
 
 class StorageAttributionReportingTriggerSpec(CDPObject):
 
     # number instead of integer because not all uint32 can be represented by int
-    triggerData: float  # deprecated
+    triggerData: list[float]  # deprecated
 
     eventReportWindows: Storage.AttributionReportingEventReportWindows
 
@@ -6700,7 +6700,7 @@ class StorageAttributionReportingAggregatableDebugReportingData(CDPObject):
     # number instead of integer because not all uint32 can be represented by int
     value: float  # deprecated
 
-    types: str
+    types: list[str]
 
 
 class StorageAttributionReportingAggregatableDebugReportingConfig(CDPObject):
@@ -6710,14 +6710,14 @@ class StorageAttributionReportingAggregatableDebugReportingConfig(CDPObject):
 
     keyPiece: Storage.UnsignedInt128AsBase16
 
-    debugData: Storage.AttributionReportingAggregatableDebugReportingData
+    debugData: list[Storage.AttributionReportingAggregatableDebugReportingData]
 
     aggregationCoordinatorOrigin: str | None = None
 
 
 class StorageAttributionScopesData(CDPObject):
 
-    values: str
+    values: list[str]
 
     # number instead of integer because not all uint32 can be represented by int
     limit: float  # deprecated
@@ -6739,7 +6739,7 @@ class StorageAttributionReportingSourceRegistration(CDPObject):
     # duration in seconds
     expiry: int  # deprecated
 
-    triggerSpecs: Storage.AttributionReportingTriggerSpec
+    triggerSpecs: list[Storage.AttributionReportingTriggerSpec]
 
     # duration in seconds
     aggregatableReportWindow: int  # deprecated
@@ -6750,15 +6750,15 @@ class StorageAttributionReportingSourceRegistration(CDPObject):
 
     reportingOrigin: str
 
-    destinationSites: str
+    destinationSites: list[str]
 
     eventId: Storage.UnsignedInt64AsBase10
 
     priority: Storage.SignedInt64AsBase10
 
-    filterData: Storage.AttributionReportingFilterDataEntry
+    filterData: list[Storage.AttributionReportingFilterDataEntry]
 
-    aggregationKeys: Storage.AttributionReportingAggregationKeysEntry
+    aggregationKeys: list[Storage.AttributionReportingAggregationKeysEntry]
 
     debugKey: Storage.UnsignedInt64AsBase10 | None = None
 
@@ -6772,7 +6772,7 @@ class StorageAttributionReportingSourceRegistration(CDPObject):
 
     maxEventLevelReports: int
 
-    namedBudgets: Storage.AttributionReportingNamedBudgetDef
+    namedBudgets: list[Storage.AttributionReportingNamedBudgetDef]
 
     debugReporting: bool
 
@@ -6817,7 +6817,7 @@ class StorageAttributionReportingAggregatableValueDictEntry(CDPObject):
 
 class StorageAttributionReportingAggregatableValueEntry(CDPObject):
 
-    values: Storage.AttributionReportingAggregatableValueDictEntry
+    values: list[Storage.AttributionReportingAggregatableValueDictEntry]
 
     filters: Storage.AttributionReportingFilterPair
 
@@ -6837,7 +6837,7 @@ class StorageAttributionReportingAggregatableTriggerData(CDPObject):
 
     keyPiece: Storage.UnsignedInt128AsBase16
 
-    sourceKeys: str
+    sourceKeys: list[str]
 
     filters: Storage.AttributionReportingFilterPair
 
@@ -6862,13 +6862,13 @@ class StorageAttributionReportingTriggerRegistration(CDPObject):
 
     debugKey: Storage.UnsignedInt64AsBase10 | None = None
 
-    aggregatableDedupKeys: Storage.AttributionReportingAggregatableDedupKey
+    aggregatableDedupKeys: list[Storage.AttributionReportingAggregatableDedupKey]
 
-    eventTriggerData: Storage.AttributionReportingEventTriggerData
+    eventTriggerData: list[Storage.AttributionReportingEventTriggerData]
 
-    aggregatableTriggerData: Storage.AttributionReportingAggregatableTriggerData
+    aggregatableTriggerData: list[Storage.AttributionReportingAggregatableTriggerData]
 
-    aggregatableValues: Storage.AttributionReportingAggregatableValueEntry
+    aggregatableValues: list[Storage.AttributionReportingAggregatableValueEntry]
 
     aggregatableFilteringIdMaxBytes: int
 
@@ -6882,9 +6882,9 @@ class StorageAttributionReportingTriggerRegistration(CDPObject):
 
     aggregatableDebugReportingConfig: Storage.AttributionReportingAggregatableDebugReportingConfig
 
-    scopes: str
+    scopes: list[str]
 
-    namedBudgets: Storage.AttributionReportingNamedBudgetCandidate
+    namedBudgets: list[Storage.AttributionReportingNamedBudgetCandidate]
 
 
 class StorageAttributionReportingEventLevelResult(str, enum.Enum):
@@ -6933,13 +6933,13 @@ class StorageRelatedWebsiteSet(CDPObject):
     """ A single Related Website Set object. """
 
     # The primary site of this set, along with the ccTLDs if there is any.
-    primarySites: str  # deprecated
+    primarySites: list[str]  # deprecated
 
     # The associated sites of this set, along with the ccTLDs if there is any.
-    associatedSites: str  # deprecated
+    associatedSites: list[str]  # deprecated
 
     # The service sites of this set, along with the ccTLDs if there is any.
-    serviceSites: str  # deprecated
+    serviceSites: list[str]  # deprecated
 
 
 class SystemInfoGPUDevice(CDPObject):
@@ -7040,14 +7040,14 @@ class SystemInfoImageDecodeAcceleratorCapability(CDPObject):
     minDimensions: SystemInfo.Size  # deprecated
 
     # Optional array of supported subsampling formats, e.g. 4:2:0, if known.
-    subsamplings: SystemInfo.SubsamplingFormat  # deprecated
+    subsamplings: list[SystemInfo.SubsamplingFormat]  # deprecated
 
 
 class SystemInfoGPUInfo(CDPObject):
     """ Provides information about the GPU(s) on the system. """
 
     # The graphics devices on the system. Element 0 is the primary GPU.
-    devices: SystemInfo.GPUDevice  # deprecated
+    devices: list[SystemInfo.GPUDevice]  # deprecated
 
     # An optional dictionary of additional GPU related attributes.
     auxAttributes: JSON_DICT | None = None  # deprecated
@@ -7056,16 +7056,16 @@ class SystemInfoGPUInfo(CDPObject):
     featureStatus: JSON_DICT | None = None  # deprecated
 
     # An optional array of GPU driver bug workarounds.
-    driverBugWorkarounds: str  # deprecated
+    driverBugWorkarounds: list[str]  # deprecated
 
     # Supported accelerated video decoding capabilities.
-    videoDecoding: SystemInfo.VideoDecodeAcceleratorCapability  # deprecated
+    videoDecoding: list[SystemInfo.VideoDecodeAcceleratorCapability]  # deprecated
 
     # Supported accelerated video encoding capabilities.
-    videoEncoding: SystemInfo.VideoEncodeAcceleratorCapability  # deprecated
+    videoEncoding: list[SystemInfo.VideoEncodeAcceleratorCapability]  # deprecated
 
     # Supported accelerated image decoding capabilities.
-    imageDecoding: SystemInfo.ImageDecodeAcceleratorCapability  # deprecated
+    imageDecoding: list[SystemInfo.ImageDecodeAcceleratorCapability]  # deprecated
 
 
 class SystemInfoProcessInfo(CDPObject):
@@ -7175,13 +7175,13 @@ class TracingTraceConfig(CDPObject):
     enableArgumentFilter: bool | None = None  # experimental deprecated
 
     # Included category filters.
-    includedCategories: str | None = None  # deprecated
+    includedCategories: list[str] | None = None  # deprecated
 
     # Excluded category filters.
-    excludedCategories: str | None = None  # deprecated
+    excludedCategories: list[str] | None = None  # deprecated
 
     # Configuration to synthesize the delays in tracing.
-    syntheticDelays: str | None = None  # experimental deprecated
+    syntheticDelays: list[str] | None = None  # experimental deprecated
 
     # Configuration for memory dump triggers. Used only when "memory-infra"category is enabled.
     memoryDumpConfig: Tracing.MemoryDumpConfig | None = None  # experimental deprecated
@@ -7576,10 +7576,10 @@ class MediaPlayerError(CDPObject):
     code: int  # deprecated
 
     # A trace of where this error was caused / where it passed through.
-    stack: Media.PlayerErrorSourceLocation  # deprecated
+    stack: list[Media.PlayerErrorSourceLocation]  # deprecated
 
     # Errors potentially have a root cause error, ie, a DecoderError might becaused by an WindowsError
-    cause: Media.PlayerError  # deprecated
+    cause: list[Media.PlayerError]  # deprecated
 
     # Extra data attached to an error, such as an HRESULT, Video Codec, etc.
     data: JSON_DICT  # deprecated
@@ -7681,9 +7681,9 @@ class PreloadPreloadingAttemptSource(CDPObject):
 
     key: Preload.PreloadingAttemptKey
 
-    ruleSetIds: Preload.RuleSetId
+    ruleSetIds: list[Preload.RuleSetId]
 
-    nodeIds: DOM.BackendNodeId
+    nodeIds: list[DOM.BackendNodeId]
 
 
 """ Chrome manages different types of preloads together using a
@@ -7902,14 +7902,14 @@ class PWAFileHandlerAccept(CDPObject):
     # New name of the mimetype according tohttps://www.iana.org/assignments/media-types/media-types.xhtml
     mediaType: str  # deprecated
 
-    fileExtensions: str
+    fileExtensions: list[str]
 
 
 class PWAFileHandler(CDPObject):
 
     action: str
 
-    accepts: PWA.FileHandlerAccept
+    accepts: list[PWA.FileHandlerAccept]
 
     displayName: str
 
@@ -7951,7 +7951,7 @@ class BluetoothEmulationScanRecord(CDPObject):
 
     name: str | None = None
 
-    uuids: str | None = None
+    uuids: list[str] | None = None
 
     # Stores the external appearance description of the device.
     appearance: int | None = None  # deprecated
@@ -7960,7 +7960,7 @@ class BluetoothEmulationScanRecord(CDPObject):
     txPower: int | None = None  # deprecated
 
     # Key is the company identifier and the value is an array of bytes ofmanufacturer specific data.
-    manufacturerData: BluetoothEmulation.ManufacturerData | None = None  # deprecated
+    manufacturerData: list[BluetoothEmulation.ManufacturerData] | None = None  # deprecated
 
 
 class BluetoothEmulationScanEntry(CDPObject):
@@ -8074,7 +8074,7 @@ class DebuggerCallFrame(CDPObject):
     url: str  # deprecated
 
     # Scope chain for this call frame.
-    scopeChain: Debugger.Scope  # deprecated
+    scopeChain: list[Debugger.Scope]  # deprecated
 
     # `this` object for this call frame.
     this: Runtime.RemoteObject  # deprecated
@@ -8131,10 +8131,10 @@ class DebuggerBreakLocation(CDPObject):
 class DebuggerWasmDisassemblyChunk(CDPObject):
 
     # The next chunk of disassembled lines.
-    lines: str  # deprecated
+    lines: list[str]  # deprecated
 
     # The bytecode offsets describing the start of each line.
-    bytecodeOffsets: int  # deprecated
+    bytecodeOffsets: list[int]  # deprecated
 
 
 class DebuggerScriptLanguage(str, enum.Enum):
@@ -8181,7 +8181,7 @@ class HeapProfilerSamplingHeapProfileNode(CDPObject):
     id: int  # deprecated
 
     # Child nodes.
-    children: HeapProfiler.SamplingHeapProfileNode  # deprecated
+    children: list[HeapProfiler.SamplingHeapProfileNode]  # deprecated
 
 
 class HeapProfilerSamplingHeapProfileSample(CDPObject):
@@ -8202,7 +8202,7 @@ class HeapProfilerSamplingHeapProfile(CDPObject):
 
     head: HeapProfiler.SamplingHeapProfileNode
 
-    samples: HeapProfiler.SamplingHeapProfileSample
+    samples: list[HeapProfiler.SamplingHeapProfileSample]
 
 
 class ProfilerProfileNode(CDPObject):
@@ -8218,20 +8218,20 @@ class ProfilerProfileNode(CDPObject):
     hitCount: int | None = None  # deprecated
 
     # Child node ids.
-    children: int | None = None  # deprecated
+    children: list[int] | None = None  # deprecated
 
     # The reason of being not optimized. The function may be deoptimized ormarked as don't optimize.
     deoptReason: str | None = None  # deprecated
 
     # An array of source position ticks.
-    positionTicks: Profiler.PositionTickInfo | None = None  # deprecated
+    positionTicks: list[Profiler.PositionTickInfo] | None = None  # deprecated
 
 
 class ProfilerProfile(CDPObject):
     """ Profile. """
 
     # The list of profile nodes. First item is the root node.
-    nodes: Profiler.ProfileNode  # deprecated
+    nodes: list[Profiler.ProfileNode]  # deprecated
 
     # Profiling start timestamp in microseconds.
     startTime: float  # deprecated
@@ -8240,10 +8240,10 @@ class ProfilerProfile(CDPObject):
     endTime: float  # deprecated
 
     # Ids of samples top nodes.
-    samples: int | None = None  # deprecated
+    samples: list[int] | None = None  # deprecated
 
     # Time intervals between adjacent samples in microseconds. The first deltais relative to the profile startTime.
-    timeDeltas: int | None = None  # deprecated
+    timeDeltas: list[int] | None = None  # deprecated
 
 
 class ProfilerPositionTickInfo(CDPObject):
@@ -8276,7 +8276,7 @@ class ProfilerFunctionCoverage(CDPObject):
     functionName: str  # deprecated
 
     # Source ranges inside the function with coverage data.
-    ranges: Profiler.CoverageRange  # deprecated
+    ranges: list[Profiler.CoverageRange]  # deprecated
 
     # Whether coverage data for this function has block granularity.
     isBlockCoverage: bool  # deprecated
@@ -8292,7 +8292,7 @@ class ProfilerScriptCoverage(CDPObject):
     url: str  # deprecated
 
     # Functions contained in the script that has coverage data.
-    functions: Profiler.FunctionCoverage  # deprecated
+    functions: list[Profiler.FunctionCoverage]  # deprecated
 
 
 """ Unique script identifier. """
@@ -8392,10 +8392,10 @@ class RuntimeObjectPreview(CDPObject):
     overflow: bool  # deprecated
 
     # List of the properties.
-    properties: Runtime.PropertyPreview  # deprecated
+    properties: list[Runtime.PropertyPreview]  # deprecated
 
     # List of the entries. Specified for `map` and `set` subtype values only.
-    entries: Runtime.EntryPreview | None = None  # deprecated
+    entries: list[Runtime.EntryPreview] | None = None  # deprecated
 
 
 class RuntimePropertyPreview(CDPObject):
@@ -8592,7 +8592,7 @@ class RuntimeStackTrace(CDPObject):
     description: str | None = None  # deprecated
 
     # JavaScript function name.
-    callFrames: Runtime.CallFrame  # deprecated
+    callFrames: list[Runtime.CallFrame]  # deprecated
 
     # Asynchronous JavaScript stack trace that preceded this stack, ifavailable.
     parent: Runtime.StackTrace | None = None  # deprecated

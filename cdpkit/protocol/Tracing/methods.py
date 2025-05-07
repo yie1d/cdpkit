@@ -27,7 +27,7 @@ class End(CDPMethod[None]):  # deprecated
 
 class GetCategoriesOutput(OutputModel):
 
-    categories: str  # deprecated
+    categories: list[str]  # deprecated
 
 
 class GetCategories(CDPMethod[GetCategoriesOutput]):  # experimental deprecated

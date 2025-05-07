@@ -141,7 +141,7 @@ class GetPossibleBreakpointsInput(InputModel):
 
 class GetPossibleBreakpointsOutput(OutputModel):
 
-    locations: Debugger.BreakLocation  # deprecated
+    locations: list[Debugger.BreakLocation]  # deprecated
 
 
 class GetPossibleBreakpoints(CDPMethod[GetPossibleBreakpointsOutput]):  # deprecated
@@ -203,7 +203,7 @@ class DisassembleWasmModuleOutput(OutputModel):
 
     streamId: str | None = None  # deprecated
     totalNumberOfLines: int  # deprecated
-    functionBodyOffsets: int  # deprecated
+    functionBodyOffsets: list[int]  # deprecated
     chunk: Debugger.WasmDisassemblyChunk  # deprecated
 
 
@@ -365,7 +365,7 @@ class RestartFrameInput(InputModel):
 
 class RestartFrameOutput(OutputModel):
 
-    callFrames: Debugger.CallFrame  # deprecated
+    callFrames: list[Debugger.CallFrame]  # deprecated
     asyncStackTrace: Runtime.StackTrace | None = None  # deprecated
     asyncStackTraceId: Runtime.StackTraceId | None = None  # deprecated
 
@@ -433,7 +433,7 @@ class SearchInContentInput(InputModel):
 
 class SearchInContentOutput(OutputModel):
 
-    result: Debugger.SearchMatch  # deprecated
+    result: list[Debugger.SearchMatch]  # deprecated
 
 
 class SearchInContent(CDPMethod[SearchInContentOutput]):  # deprecated
@@ -483,7 +483,7 @@ class SetAsyncCallStackDepth(CDPMethod[None]):  # deprecated
 
 class SetBlackboxExecutionContextsInput(InputModel):
 
-    uniqueIds: str  # deprecated
+    uniqueIds: list[str]  # deprecated
 
 
 class SetBlackboxExecutionContexts(CDPMethod[None]):  # experimental deprecated
@@ -498,7 +498,7 @@ class SetBlackboxExecutionContexts(CDPMethod[None]):  # experimental deprecated
         self,
         /,
         *,
-        unique_ids: str
+        unique_ids: list[str]
     ):
         super().__init__(
             uniqueIds=unique_ids
@@ -507,7 +507,7 @@ class SetBlackboxExecutionContexts(CDPMethod[None]):  # experimental deprecated
 
 class SetBlackboxPatternsInput(InputModel):
 
-    patterns: str  # deprecated
+    patterns: list[str]  # deprecated
     skipAnonymous: bool | None = None  # deprecated
 
 
@@ -523,7 +523,7 @@ class SetBlackboxPatterns(CDPMethod[None]):  # experimental deprecated
         self,
         /,
         *,
-        patterns: str,
+        patterns: list[str],
         skip_anonymous: bool | None = None
     ):
         super().__init__(
@@ -535,7 +535,7 @@ class SetBlackboxPatterns(CDPMethod[None]):  # experimental deprecated
 class SetBlackboxedRangesInput(InputModel):
 
     scriptId: Runtime.ScriptId  # deprecated
-    positions: Debugger.ScriptPosition
+    positions: list[Debugger.ScriptPosition]
 
 
 class SetBlackboxedRanges(CDPMethod[None]):  # experimental deprecated
@@ -552,7 +552,7 @@ class SetBlackboxedRanges(CDPMethod[None]):  # experimental deprecated
         /,
         *,
         script_id: Runtime.ScriptId,
-        positions: Debugger.ScriptPosition
+        positions: list[Debugger.ScriptPosition]
     ):
         super().__init__(
             scriptId=script_id,
@@ -631,7 +631,7 @@ class SetBreakpointByUrlInput(InputModel):
 class SetBreakpointByUrlOutput(OutputModel):
 
     breakpointId: Debugger.BreakpointId  # deprecated
-    locations: Debugger.Location  # deprecated
+    locations: list[Debugger.Location]  # deprecated
 
 
 class SetBreakpointByUrl(CDPMethod[SetBreakpointByUrlOutput]):  # deprecated
@@ -773,7 +773,7 @@ class SetScriptSourceInput(InputModel):
 
 class SetScriptSourceOutput(OutputModel):
 
-    callFrames: Debugger.CallFrame | None = None  # deprecated
+    callFrames: list[Debugger.CallFrame] | None = None  # deprecated
     stackChanged: bool | None = None  # deprecated
     asyncStackTrace: Runtime.StackTrace | None = None  # deprecated
     asyncStackTraceId: Runtime.StackTraceId | None = None  # deprecated
@@ -867,7 +867,7 @@ class SetVariableValue(CDPMethod[None]):  # deprecated
 class StepIntoInput(InputModel):
 
     breakOnAsyncCall: bool | None = None  # experimental deprecated
-    skipList: Debugger.LocationRange | None = None  # experimental deprecated
+    skipList: list[Debugger.LocationRange] | None = None  # experimental deprecated
 
 
 class StepInto(CDPMethod[None]):  # deprecated
@@ -881,7 +881,7 @@ class StepInto(CDPMethod[None]):  # deprecated
         /,
         *,
         break_on_async_call: bool | None = None,
-        skip_list: Debugger.LocationRange | None = None
+        skip_list: list[Debugger.LocationRange] | None = None
     ):
         super().__init__(
             breakOnAsyncCall=break_on_async_call,
@@ -898,7 +898,7 @@ class StepOut(CDPMethod[None]):  # deprecated
 
 class StepOverInput(InputModel):
 
-    skipList: Debugger.LocationRange | None = None  # experimental deprecated
+    skipList: list[Debugger.LocationRange] | None = None  # experimental deprecated
 
 
 class StepOver(CDPMethod[None]):  # deprecated
@@ -911,7 +911,7 @@ class StepOver(CDPMethod[None]):  # deprecated
         self,
         /,
         *,
-        skip_list: Debugger.LocationRange | None = None
+        skip_list: list[Debugger.LocationRange] | None = None
     ):
         super().__init__(
             skipList=skip_list

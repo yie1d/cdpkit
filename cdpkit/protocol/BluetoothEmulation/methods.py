@@ -75,8 +75,8 @@ class SimulatePreconnectedPeripheralInput(InputModel):
 
     address: str
     name: str
-    manufacturerData: BluetoothEmulation.ManufacturerData
-    knownServiceUuids: str
+    manufacturerData: list[BluetoothEmulation.ManufacturerData]
+    knownServiceUuids: list[str]
 
 
 class SimulatePreconnectedPeripheral(CDPMethod[None]):  # deprecated
@@ -92,8 +92,8 @@ class SimulatePreconnectedPeripheral(CDPMethod[None]):  # deprecated
         *,
         address: str,
         name: str,
-        manufacturer_data: BluetoothEmulation.ManufacturerData,
-        known_service_uuids: str
+        manufacturer_data: list[BluetoothEmulation.ManufacturerData],
+        known_service_uuids: list[str]
     ):
         super().__init__(
             address=address,

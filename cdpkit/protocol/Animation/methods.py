@@ -71,7 +71,7 @@ class GetPlaybackRate(CDPMethod[GetPlaybackRateOutput]):  # deprecated
 
 class ReleaseAnimationsInput(InputModel):
 
-    animations: str  # deprecated
+    animations: list[str]  # deprecated
 
 
 class ReleaseAnimations(CDPMethod[None]):  # deprecated
@@ -84,7 +84,7 @@ class ReleaseAnimations(CDPMethod[None]):  # deprecated
         self,
         /,
         *,
-        animations: str
+        animations: list[str]
     ):
         super().__init__(
             animations=animations
@@ -120,7 +120,7 @@ class ResolveAnimation(CDPMethod[ResolveAnimationOutput]):  # deprecated
 
 class SeekAnimationsInput(InputModel):
 
-    animations: str  # deprecated
+    animations: list[str]  # deprecated
     currentTime: float  # deprecated
 
 
@@ -134,7 +134,7 @@ class SeekAnimations(CDPMethod[None]):  # deprecated
         self,
         /,
         *,
-        animations: str,
+        animations: list[str],
         current_time: float
     ):
         super().__init__(
@@ -145,7 +145,7 @@ class SeekAnimations(CDPMethod[None]):  # deprecated
 
 class SetPausedInput(InputModel):
 
-    animations: str  # deprecated
+    animations: list[str]  # deprecated
     paused: bool  # deprecated
 
 
@@ -159,7 +159,7 @@ class SetPaused(CDPMethod[None]):  # deprecated
         self,
         /,
         *,
-        animations: str,
+        animations: list[str],
         paused: bool
     ):
         super().__init__(

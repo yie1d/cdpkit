@@ -281,7 +281,7 @@ class RequestWillBeSentExtraInfo(CDPEvent):
     or requestWillBeSentExtraInfo will be fired first for the same request. """
 
     requestId: Network.RequestId  # deprecated
-    associatedCookies: Network.AssociatedCookie  # deprecated
+    associatedCookies: list[Network.AssociatedCookie]  # deprecated
     headers: Network.Headers  # deprecated
     connectTiming: Network.ConnectTiming  # experimental deprecated
     clientSecurityState: Network.ClientSecurityState | None = None  # deprecated
@@ -294,14 +294,14 @@ class ResponseReceivedExtraInfo(CDPEvent):
     it, and responseReceivedExtraInfo may be fired before or after responseReceived. """
 
     requestId: Network.RequestId  # deprecated
-    blockedCookies: Network.BlockedSetCookieWithReason  # deprecated
+    blockedCookies: list[Network.BlockedSetCookieWithReason]  # deprecated
     headers: Network.Headers  # deprecated
     resourceIPAddressSpace: Network.IPAddressSpace  # deprecated
     statusCode: int  # deprecated
     headersText: str | None = None  # deprecated
     cookiePartitionKey: Network.CookiePartitionKey | None = None  # experimental deprecated
     cookiePartitionKeyOpaque: bool | None = None  # deprecated
-    exemptedCookies: Network.ExemptedSetCookieWithReason | None = None  # deprecated
+    exemptedCookies: list[Network.ExemptedSetCookieWithReason] | None = None  # deprecated
 
 
 class ResponseReceivedEarlyHints(CDPEvent):
@@ -338,7 +338,7 @@ class SubresourceWebBundleMetadataReceived(CDPEvent):
     The event contains the information about the web bundle contents. """
 
     requestId: Network.RequestId  # deprecated
-    urls: str  # deprecated
+    urls: list[str]  # deprecated
 
 
 class SubresourceWebBundleMetadataError(CDPEvent):
@@ -381,4 +381,4 @@ class ReportingApiReportUpdated(CDPEvent):
 class ReportingApiEndpointsChangedForOrigin(CDPEvent):
 
     origin: str  # deprecated
-    endpoints: Network.ReportingApiEndpoint
+    endpoints: list[Network.ReportingApiEndpoint]

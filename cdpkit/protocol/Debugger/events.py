@@ -31,10 +31,10 @@ class BreakpointResolved(CDPEvent):
 class Paused(CDPEvent):
     """ Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria. """
 
-    callFrames: Debugger.CallFrame  # deprecated
+    callFrames: list[Debugger.CallFrame]  # deprecated
     reason: Literal['ambiguous', 'assert', 'CSPViolation', 'debugCommand', 'DOM', 'EventListener', 'exception', 'instrumentation', 'OOM', 'other', 'promiseRejection', 'XHR', 'step']  # deprecated
     data: JSON_DICT | None = None  # deprecated
-    hitBreakpoints: str | None = None  # deprecated
+    hitBreakpoints: list[str] | None = None  # deprecated
     asyncStackTrace: Runtime.StackTrace | None = None  # deprecated
     asyncStackTraceId: Runtime.StackTraceId | None = None  # experimental deprecated
     asyncCallStackTraceId: Runtime.StackTraceId | None = None  # experimental deprecated
@@ -91,6 +91,6 @@ class ScriptParsed(CDPEvent):
     stackTrace: Runtime.StackTrace | None = None  # experimental deprecated
     codeOffset: int | None = None  # experimental deprecated
     scriptLanguage: Debugger.ScriptLanguage | None = None  # experimental deprecated
-    debugSymbols: Debugger.DebugSymbols | None = None  # experimental deprecated
+    debugSymbols: list[Debugger.DebugSymbols] | None = None  # experimental deprecated
     embedderName: str | None = None  # experimental deprecated
-    resolvedBreakpoints: Debugger.ResolvedBreakpoint | None = None  # experimental deprecated
+    resolvedBreakpoints: list[Debugger.ResolvedBreakpoint] | None = None  # experimental deprecated

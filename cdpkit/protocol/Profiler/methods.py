@@ -30,7 +30,7 @@ class Enable(CDPMethod[None]):
 
 class GetBestEffortCoverageOutput(OutputModel):
 
-    result: Profiler.ScriptCoverage  # deprecated
+    result: list[Profiler.ScriptCoverage]  # deprecated
 
 
 class GetBestEffortCoverage(CDPMethod[GetBestEffortCoverageOutput]):  # deprecated
@@ -125,7 +125,7 @@ class StopPreciseCoverage(CDPMethod[None]):  # deprecated
 
 class TakePreciseCoverageOutput(OutputModel):
 
-    result: Profiler.ScriptCoverage  # deprecated
+    result: list[Profiler.ScriptCoverage]  # deprecated
     timestamp: float  # deprecated
 
 

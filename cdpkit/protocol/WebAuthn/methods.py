@@ -190,7 +190,7 @@ class GetCredentialsInput(InputModel):
 
 class GetCredentialsOutput(OutputModel):
 
-    credentials: WebAuthn.Credential
+    credentials: list[WebAuthn.Credential]
 
 
 class GetCredentials(CDPMethod[GetCredentialsOutput]):  # deprecated

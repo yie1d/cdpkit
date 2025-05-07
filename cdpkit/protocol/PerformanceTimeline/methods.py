@@ -16,7 +16,7 @@ from cdpkit.common import CDPMethod, InputModel
 
 class EnableInput(InputModel):
 
-    eventTypes: str  # deprecated
+    eventTypes: list[str]  # deprecated
 
 
 class Enable(CDPMethod[None]):  # deprecated
@@ -30,7 +30,7 @@ class Enable(CDPMethod[None]):  # deprecated
         self,
         /,
         *,
-        event_types: str
+        event_types: list[str]
     ):
         super().__init__(
             eventTypes=event_types

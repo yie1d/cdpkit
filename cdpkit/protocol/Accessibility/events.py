@@ -26,4 +26,4 @@ class LoadComplete(CDPEvent):
 class NodesUpdated(CDPEvent):
     """ The nodesUpdated event is sent every time a previously requested node has changed the in tree. """
 
-    nodes: Accessibility.AXNode  # deprecated
+    nodes: list[Accessibility.AXNode]  # deprecated

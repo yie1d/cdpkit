@@ -21,7 +21,7 @@ class SinksUpdated(CDPEvent):
     """ This is fired whenever the list of available sinks changes. A sink is a
     device or a software surface that you can cast to. """
 
-    sinks: Cast.Sink
+    sinks: list[Cast.Sink]
 
 
 class IssueUpdated(CDPEvent):

@@ -73,7 +73,7 @@ class SetTimeDomain(CDPMethod[None]):  # experimental deprecated
 
 class GetMetricsOutput(OutputModel):
 
-    metrics: Performance.Metric  # deprecated
+    metrics: list[Performance.Metric]  # deprecated
 
 
 class GetMetrics(CDPMethod[GetMetricsOutput]):  # deprecated

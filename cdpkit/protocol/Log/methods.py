@@ -40,7 +40,7 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class StartViolationsReportInput(InputModel):
 
-    config: Log.ViolationSetting  # deprecated
+    config: list[Log.ViolationSetting]  # deprecated
 
 
 class StartViolationsReport(CDPMethod[None]):  # deprecated
@@ -53,7 +53,7 @@ class StartViolationsReport(CDPMethod[None]):  # deprecated
         self,
         /,
         *,
-        config: Log.ViolationSetting
+        config: list[Log.ViolationSetting]
     ):
         super().__init__(
             config=config

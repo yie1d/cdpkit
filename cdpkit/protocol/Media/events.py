@@ -21,7 +21,7 @@ class PlayerPropertiesChanged(CDPEvent):
     remove player properties. A null propValue indicates removal. """
 
     playerId: Media.PlayerId
-    properties: Media.PlayerProperty
+    properties: list[Media.PlayerProperty]
 
 
 class PlayerEventsAdded(CDPEvent):
@@ -29,21 +29,21 @@ class PlayerEventsAdded(CDPEvent):
     congestion. If batched, events must ALWAYS be in chronological order. """
 
     playerId: Media.PlayerId
-    events: Media.PlayerEvent
+    events: list[Media.PlayerEvent]
 
 
 class PlayerMessagesLogged(CDPEvent):
     """ Send a list of any messages that need to be delivered. """
 
     playerId: Media.PlayerId
-    messages: Media.PlayerMessage
+    messages: list[Media.PlayerMessage]
 
 
 class PlayerErrorsRaised(CDPEvent):
     """ Send a list of any errors that need to be delivered. """
 
     playerId: Media.PlayerId
-    errors: Media.PlayerError
+    errors: list[Media.PlayerError]
 
 
 class PlayersCreated(CDPEvent):
@@ -51,4 +51,4 @@ class PlayersCreated(CDPEvent):
     a list of active players. If an agent is restored, it will receive the full
     list of player ids and all events again. """
 
-    players: Media.PlayerId
+    players: list[Media.PlayerId]

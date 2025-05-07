@@ -34,7 +34,7 @@ class ConsoleAPICalled(CDPEvent):
     """ Issued when console API was called. """
 
     type: Literal['log', 'debug', 'info', 'error', 'warning', 'dir', 'dirxml', 'table', 'trace', 'clear', 'startGroup', 'startGroupCollapsed', 'endGroup', 'assert', 'profile', 'profileEnd', 'count', 'timeEnd']  # deprecated
-    args: Runtime.RemoteObject  # deprecated
+    args: list[Runtime.RemoteObject]  # deprecated
     executionContextId: Runtime.ExecutionContextId  # deprecated
     timestamp: Runtime.Timestamp  # deprecated
     stackTrace: Runtime.StackTrace | None = None  # deprecated

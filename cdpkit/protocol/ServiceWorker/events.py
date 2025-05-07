@@ -23,9 +23,9 @@ class WorkerErrorReported(CDPEvent):
 
 class WorkerRegistrationUpdated(CDPEvent):
 
-    registrations: ServiceWorker.ServiceWorkerRegistration
+    registrations: list[ServiceWorker.ServiceWorkerRegistration]
 
 
 class WorkerVersionUpdated(CDPEvent):
 
-    versions: ServiceWorker.ServiceWorkerVersion
+    versions: list[ServiceWorker.ServiceWorkerVersion]

@@ -67,7 +67,7 @@ class CollectClassNamesInput(InputModel):
 
 class CollectClassNamesOutput(OutputModel):
 
-    classNames: str  # deprecated
+    classNames: list[str]  # deprecated
 
 
 class CollectClassNames(CDPMethod[CollectClassNamesOutput]):  # deprecated
@@ -135,7 +135,7 @@ class Enable(CDPMethod[None]):  # deprecated
 class ForcePseudoStateInput(InputModel):
 
     nodeId: DOM.NodeId  # deprecated
-    forcedPseudoClasses: str  # deprecated
+    forcedPseudoClasses: list[str]  # deprecated
 
 
 class ForcePseudoState(CDPMethod[None]):  # deprecated
@@ -150,7 +150,7 @@ class ForcePseudoState(CDPMethod[None]):  # deprecated
         /,
         *,
         node_id: DOM.NodeId,
-        forced_pseudo_classes: str
+        forced_pseudo_classes: list[str]
     ):
         super().__init__(
             nodeId=node_id,
@@ -190,7 +190,7 @@ class GetBackgroundColorsInput(InputModel):
 
 class GetBackgroundColorsOutput(OutputModel):
 
-    backgroundColors: str | None = None  # deprecated
+    backgroundColors: list[str] | None = None  # deprecated
     computedFontSize: str | None = None  # deprecated
     computedFontWeight: str | None = None  # deprecated
 
@@ -218,7 +218,7 @@ class GetComputedStyleForNodeInput(InputModel):
 
 class GetComputedStyleForNodeOutput(OutputModel):
 
-    computedStyle: CSS.CSSComputedStyleProperty  # deprecated
+    computedStyle: list[CSS.CSSComputedStyleProperty]  # deprecated
 
 
 class GetComputedStyleForNode(CDPMethod[GetComputedStyleForNodeOutput]):  # deprecated
@@ -240,7 +240,7 @@ class GetComputedStyleForNode(CDPMethod[GetComputedStyleForNodeOutput]):  # depr
 
 class ResolveValuesInput(InputModel):
 
-    values: str  # deprecated
+    values: list[str]  # deprecated
     nodeId: DOM.NodeId  # deprecated
     propertyName: str | None = None  # deprecated
     pseudoType: DOM.PseudoType | None = None  # deprecated
@@ -249,7 +249,7 @@ class ResolveValuesInput(InputModel):
 
 class ResolveValuesOutput(OutputModel):
 
-    results: str
+    results: list[str]
 
 
 class ResolveValues(CDPMethod[ResolveValuesOutput]):  # experimental deprecated
@@ -270,7 +270,7 @@ class ResolveValues(CDPMethod[ResolveValuesOutput]):  # experimental deprecated
         self,
         /,
         *,
-        values: str,
+        values: list[str],
         node_id: DOM.NodeId,
         property_name: str | None = None,
         pseudo_type: DOM.PseudoType | None = None,
@@ -293,7 +293,7 @@ class GetLonghandPropertiesInput(InputModel):
 
 class GetLonghandPropertiesOutput(OutputModel):
 
-    longhandProperties: CSS.CSSProperty
+    longhandProperties: list[CSS.CSSProperty]
 
 
 class GetLonghandProperties(CDPMethod[GetLonghandPropertiesOutput]):  # experimental
@@ -350,9 +350,9 @@ class GetAnimatedStylesForNodeInput(InputModel):
 
 class GetAnimatedStylesForNodeOutput(OutputModel):
 
-    animationStyles: CSS.CSSAnimationStyle | None = None  # deprecated
+    animationStyles: list[CSS.CSSAnimationStyle] | None = None  # deprecated
     transitionsStyle: CSS.CSSStyle | None = None  # deprecated
-    inherited: CSS.InheritedAnimatedStyleEntry | None = None  # deprecated
+    inherited: list[CSS.InheritedAnimatedStyleEntry] | None = None  # deprecated
 
 
 class GetAnimatedStylesForNode(CDPMethod[GetAnimatedStylesForNodeOutput]):  # experimental deprecated
@@ -382,18 +382,18 @@ class GetMatchedStylesForNodeOutput(OutputModel):
 
     inlineStyle: CSS.CSSStyle | None = None  # deprecated
     attributesStyle: CSS.CSSStyle | None = None  # deprecated
-    matchedCSSRules: CSS.RuleMatch | None = None  # deprecated
-    pseudoElements: CSS.PseudoElementMatches | None = None  # deprecated
-    inherited: CSS.InheritedStyleEntry | None = None  # deprecated
-    inheritedPseudoElements: CSS.InheritedPseudoElementMatches | None = None  # deprecated
-    cssKeyframesRules: CSS.CSSKeyframesRule | None = None  # deprecated
-    cssPositionTryRules: CSS.CSSPositionTryRule | None = None  # deprecated
+    matchedCSSRules: list[CSS.RuleMatch] | None = None  # deprecated
+    pseudoElements: list[CSS.PseudoElementMatches] | None = None  # deprecated
+    inherited: list[CSS.InheritedStyleEntry] | None = None  # deprecated
+    inheritedPseudoElements: list[CSS.InheritedPseudoElementMatches] | None = None  # deprecated
+    cssKeyframesRules: list[CSS.CSSKeyframesRule] | None = None  # deprecated
+    cssPositionTryRules: list[CSS.CSSPositionTryRule] | None = None  # deprecated
     activePositionFallbackIndex: int | None = None  # deprecated
-    cssPropertyRules: CSS.CSSPropertyRule | None = None  # deprecated
-    cssPropertyRegistrations: CSS.CSSPropertyRegistration | None = None  # deprecated
+    cssPropertyRules: list[CSS.CSSPropertyRule] | None = None  # deprecated
+    cssPropertyRegistrations: list[CSS.CSSPropertyRegistration] | None = None  # deprecated
     cssFontPaletteValuesRule: CSS.CSSFontPaletteValuesRule | None = None  # deprecated
     parentLayoutNodeId: DOM.NodeId | None = None  # experimental deprecated
-    cssFunctionRules: CSS.CSSFunctionRule | None = None  # experimental deprecated
+    cssFunctionRules: list[CSS.CSSFunctionRule] | None = None  # experimental deprecated
 
 
 class GetMatchedStylesForNode(CDPMethod[GetMatchedStylesForNodeOutput]):  # deprecated
@@ -415,7 +415,7 @@ class GetMatchedStylesForNode(CDPMethod[GetMatchedStylesForNodeOutput]):  # depr
 
 class GetMediaQueriesOutput(OutputModel):
 
-    medias: CSS.CSSMedia
+    medias: list[CSS.CSSMedia]
 
 
 class GetMediaQueries(CDPMethod[GetMediaQueriesOutput]):  # deprecated
@@ -432,7 +432,7 @@ class GetPlatformFontsForNodeInput(InputModel):
 
 class GetPlatformFontsForNodeOutput(OutputModel):
 
-    fonts: CSS.PlatformFontUsage  # deprecated
+    fonts: list[CSS.PlatformFontUsage]  # deprecated
 
 
 class GetPlatformFontsForNode(CDPMethod[GetPlatformFontsForNodeOutput]):  # deprecated
@@ -518,7 +518,7 @@ class GetLocationForSelectorInput(InputModel):
 
 class GetLocationForSelectorOutput(OutputModel):
 
-    ranges: CSS.SourceRange
+    ranges: list[CSS.SourceRange]
 
 
 class GetLocationForSelector(CDPMethod[GetLocationForSelectorOutput]):  # experimental deprecated
@@ -570,7 +570,7 @@ class TrackComputedStyleUpdatesForNode(CDPMethod[None]):  # experimental depreca
 
 class TrackComputedStyleUpdatesInput(InputModel):
 
-    propertiesToTrack: CSS.CSSComputedStyleProperty
+    propertiesToTrack: list[CSS.CSSComputedStyleProperty]
 
 
 class TrackComputedStyleUpdates(CDPMethod[None]):  # experimental deprecated
@@ -588,7 +588,7 @@ class TrackComputedStyleUpdates(CDPMethod[None]):  # experimental deprecated
         self,
         /,
         *,
-        properties_to_track: CSS.CSSComputedStyleProperty
+        properties_to_track: list[CSS.CSSComputedStyleProperty]
     ):
         super().__init__(
             propertiesToTrack=properties_to_track
@@ -597,7 +597,7 @@ class TrackComputedStyleUpdates(CDPMethod[None]):  # experimental deprecated
 
 class TakeComputedStyleUpdatesOutput(OutputModel):
 
-    nodeIds: DOM.NodeId  # deprecated
+    nodeIds: list[DOM.NodeId]  # deprecated
 
 
 class TakeComputedStyleUpdates(CDPMethod[TakeComputedStyleUpdatesOutput]):  # experimental deprecated
@@ -899,13 +899,13 @@ class SetStyleSheetText(CDPMethod[SetStyleSheetTextOutput]):  # deprecated
 
 class SetStyleTextsInput(InputModel):
 
-    edits: CSS.StyleDeclarationEdit
+    edits: list[CSS.StyleDeclarationEdit]
     nodeForPropertySyntaxValidation: DOM.NodeId | None = None  # experimental deprecated
 
 
 class SetStyleTextsOutput(OutputModel):
 
-    styles: CSS.CSSStyle  # deprecated
+    styles: list[CSS.CSSStyle]  # deprecated
 
 
 class SetStyleTexts(CDPMethod[SetStyleTextsOutput]):  # deprecated
@@ -918,7 +918,7 @@ class SetStyleTexts(CDPMethod[SetStyleTextsOutput]):  # deprecated
         self,
         /,
         *,
-        edits: CSS.StyleDeclarationEdit,
+        edits: list[CSS.StyleDeclarationEdit],
         node_for_property_syntax_validation: DOM.NodeId | None = None
     ):
         super().__init__(
@@ -936,7 +936,7 @@ class StartRuleUsageTracking(CDPMethod[None]):  # deprecated
 
 class StopRuleUsageTrackingOutput(OutputModel):
 
-    ruleUsage: CSS.RuleUsage
+    ruleUsage: list[CSS.RuleUsage]
 
 
 class StopRuleUsageTracking(CDPMethod[StopRuleUsageTrackingOutput]):  # deprecated
@@ -949,7 +949,7 @@ class StopRuleUsageTracking(CDPMethod[StopRuleUsageTrackingOutput]):  # deprecat
 
 class TakeCoverageDeltaOutput(OutputModel):
 
-    coverage: CSS.RuleUsage
+    coverage: list[CSS.RuleUsage]
     timestamp: float  # deprecated
 
 

@@ -28,7 +28,7 @@ class DataCollected(CDPEvent):
     """ Contains a bucket of collected trace events. When tracing is stopped collected events will be
     sent as a sequence of dataCollected events followed by tracingComplete event. """
 
-    value: JSON_DICT
+    value: list[JSON_DICT]
 
 
 class TracingComplete(CDPEvent):

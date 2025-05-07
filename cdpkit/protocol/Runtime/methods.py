@@ -58,7 +58,7 @@ class CallFunctionOnInput(InputModel):
 
     functionDeclaration: str  # deprecated
     objectId: Runtime.RemoteObjectId | None = None  # deprecated
-    arguments: Runtime.CallArgument | None = None  # deprecated
+    arguments: list[Runtime.CallArgument] | None = None  # deprecated
     silent: bool | None = None  # deprecated
     returnByValue: bool | None = None  # deprecated
     generatePreview: bool | None = None  # experimental deprecated
@@ -90,7 +90,7 @@ class CallFunctionOn(CDPMethod[CallFunctionOnOutput]):  # deprecated
         *,
         function_declaration: str,
         object_id: Runtime.RemoteObjectId | None = None,
-        arguments: Runtime.CallArgument | None = None,
+        arguments: list[Runtime.CallArgument] | None = None,
         silent: bool | None = None,
         return_by_value: bool | None = None,
         generate_preview: bool | None = None,
@@ -291,9 +291,9 @@ class GetPropertiesInput(InputModel):
 
 class GetPropertiesOutput(OutputModel):
 
-    result: Runtime.PropertyDescriptor  # deprecated
-    internalProperties: Runtime.InternalPropertyDescriptor | None = None  # deprecated
-    privateProperties: Runtime.PrivatePropertyDescriptor | None = None  # experimental deprecated
+    result: list[Runtime.PropertyDescriptor]  # deprecated
+    internalProperties: list[Runtime.InternalPropertyDescriptor] | None = None  # deprecated
+    privateProperties: list[Runtime.PrivatePropertyDescriptor] | None = None  # experimental deprecated
     exceptionDetails: Runtime.ExceptionDetails | None = None  # deprecated
 
 
@@ -330,7 +330,7 @@ class GlobalLexicalScopeNamesInput(InputModel):
 
 class GlobalLexicalScopeNamesOutput(OutputModel):
 
-    names: str
+    names: list[str]
 
 
 class GlobalLexicalScopeNames(CDPMethod[GlobalLexicalScopeNamesOutput]):  # deprecated

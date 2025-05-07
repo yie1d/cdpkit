@@ -68,7 +68,7 @@ class DispatchKeyEventInput(InputModel):
     isKeypad: bool | None = None  # deprecated
     isSystemKey: bool | None = None  # deprecated
     location: int | None = None  # deprecated
-    commands: str | None = None  # experimental deprecated
+    commands: list[str] | None = None  # experimental deprecated
 
 
 class DispatchKeyEvent(CDPMethod[None]):  # deprecated
@@ -95,7 +95,7 @@ class DispatchKeyEvent(CDPMethod[None]):  # deprecated
         is_keypad: bool | None = None,
         is_system_key: bool | None = None,
         location: int | None = None,
-        commands: str | None = None
+        commands: list[str] | None = None
     ):
         super().__init__(
             type=type_,
@@ -245,7 +245,7 @@ class DispatchMouseEvent(CDPMethod[None]):  # deprecated
 class DispatchTouchEventInput(InputModel):
 
     type: Literal['touchStart', 'touchEnd', 'touchMove', 'touchCancel']  # deprecated
-    touchPoints: Input.TouchPoint  # deprecated
+    touchPoints: list[Input.TouchPoint]  # deprecated
     modifiers: int | None = None  # deprecated
     timestamp: Input.TimeSinceEpoch | None = None  # deprecated
 
@@ -261,7 +261,7 @@ class DispatchTouchEvent(CDPMethod[None]):  # deprecated
         /,
         *,
         type_: Literal['touchStart', 'touchEnd', 'touchMove', 'touchCancel'],
-        touch_points: Input.TouchPoint,
+        touch_points: list[Input.TouchPoint],
         modifiers: int | None = None,
         timestamp: Input.TimeSinceEpoch | None = None
     ):

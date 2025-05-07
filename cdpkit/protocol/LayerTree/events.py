@@ -25,4 +25,4 @@ class LayerPainted(CDPEvent):
 
 class LayerTreeDidChange(CDPEvent):
 
-    layers: LayerTree.Layer | None = None  # deprecated
+    layers: list[LayerTree.Layer] | None = None  # deprecated

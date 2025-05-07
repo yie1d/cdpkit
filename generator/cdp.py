@@ -107,6 +107,8 @@ class CDPProperty(CDPCommonObject, CDPItem):
             _type = f'Literal[{", ".join([f"\'{_}\'" for _ in self.enum])}]'
         elif self.items:
             _type = self.items.get_py_type(domain_obj, ref_imports_set)
+            if self.type == 'array':
+                _type = f'list[{_type}]'
         else:
             _type = self.get_py_type(domain_obj, ref_imports_set)
 

@@ -74,7 +74,7 @@ class GetHighlightObjectForTest(CDPMethod[GetHighlightObjectForTestOutput]):  # 
 
 class GetGridHighlightObjectsForTestInput(InputModel):
 
-    nodeIds: DOM.NodeId  # deprecated
+    nodeIds: list[DOM.NodeId]  # deprecated
 
 
 class GetGridHighlightObjectsForTestOutput(OutputModel):
@@ -92,7 +92,7 @@ class GetGridHighlightObjectsForTest(CDPMethod[GetGridHighlightObjectsForTestOut
         self,
         /,
         *,
-        node_ids: DOM.NodeId
+        node_ids: list[DOM.NodeId]
     ):
         super().__init__(
             nodeIds=node_ids
@@ -411,7 +411,7 @@ class SetShowFPSCounter(CDPMethod[None]):  # deprecated
 
 class SetShowGridOverlaysInput(InputModel):
 
-    gridNodeHighlightConfigs: Overlay.GridNodeHighlightConfig  # deprecated
+    gridNodeHighlightConfigs: list[Overlay.GridNodeHighlightConfig]  # deprecated
 
 
 class SetShowGridOverlays(CDPMethod[None]):  # deprecated
@@ -424,7 +424,7 @@ class SetShowGridOverlays(CDPMethod[None]):  # deprecated
         self,
         /,
         *,
-        grid_node_highlight_configs: Overlay.GridNodeHighlightConfig
+        grid_node_highlight_configs: list[Overlay.GridNodeHighlightConfig]
     ):
         super().__init__(
             gridNodeHighlightConfigs=grid_node_highlight_configs
@@ -433,7 +433,7 @@ class SetShowGridOverlays(CDPMethod[None]):  # deprecated
 
 class SetShowFlexOverlaysInput(InputModel):
 
-    flexNodeHighlightConfigs: Overlay.FlexNodeHighlightConfig  # deprecated
+    flexNodeHighlightConfigs: list[Overlay.FlexNodeHighlightConfig]  # deprecated
 
 
 class SetShowFlexOverlays(CDPMethod[None]):
@@ -445,7 +445,7 @@ class SetShowFlexOverlays(CDPMethod[None]):
         self,
         /,
         *,
-        flex_node_highlight_configs: Overlay.FlexNodeHighlightConfig
+        flex_node_highlight_configs: list[Overlay.FlexNodeHighlightConfig]
     ):
         super().__init__(
             flexNodeHighlightConfigs=flex_node_highlight_configs
@@ -454,7 +454,7 @@ class SetShowFlexOverlays(CDPMethod[None]):
 
 class SetShowScrollSnapOverlaysInput(InputModel):
 
-    scrollSnapHighlightConfigs: Overlay.ScrollSnapHighlightConfig  # deprecated
+    scrollSnapHighlightConfigs: list[Overlay.ScrollSnapHighlightConfig]  # deprecated
 
 
 class SetShowScrollSnapOverlays(CDPMethod[None]):
@@ -466,7 +466,7 @@ class SetShowScrollSnapOverlays(CDPMethod[None]):
         self,
         /,
         *,
-        scroll_snap_highlight_configs: Overlay.ScrollSnapHighlightConfig
+        scroll_snap_highlight_configs: list[Overlay.ScrollSnapHighlightConfig]
     ):
         super().__init__(
             scrollSnapHighlightConfigs=scroll_snap_highlight_configs
@@ -475,7 +475,7 @@ class SetShowScrollSnapOverlays(CDPMethod[None]):
 
 class SetShowContainerQueryOverlaysInput(InputModel):
 
-    containerQueryHighlightConfigs: Overlay.ContainerQueryHighlightConfig  # deprecated
+    containerQueryHighlightConfigs: list[Overlay.ContainerQueryHighlightConfig]  # deprecated
 
 
 class SetShowContainerQueryOverlays(CDPMethod[None]):
@@ -487,7 +487,7 @@ class SetShowContainerQueryOverlays(CDPMethod[None]):
         self,
         /,
         *,
-        container_query_highlight_configs: Overlay.ContainerQueryHighlightConfig
+        container_query_highlight_configs: list[Overlay.ContainerQueryHighlightConfig]
     ):
         super().__init__(
             containerQueryHighlightConfigs=container_query_highlight_configs
@@ -650,7 +650,7 @@ class SetShowHinge(CDPMethod[None]):  # deprecated
 
 class SetShowIsolatedElementsInput(InputModel):
 
-    isolatedElementHighlightConfigs: Overlay.IsolatedElementHighlightConfig  # deprecated
+    isolatedElementHighlightConfigs: list[Overlay.IsolatedElementHighlightConfig]  # deprecated
 
 
 class SetShowIsolatedElements(CDPMethod[None]):  # deprecated
@@ -663,7 +663,7 @@ class SetShowIsolatedElements(CDPMethod[None]):  # deprecated
         self,
         /,
         *,
-        isolated_element_highlight_configs: Overlay.IsolatedElementHighlightConfig
+        isolated_element_highlight_configs: list[Overlay.IsolatedElementHighlightConfig]
     ):
         super().__init__(
             isolatedElementHighlightConfigs=isolated_element_highlight_configs

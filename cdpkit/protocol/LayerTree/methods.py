@@ -24,8 +24,8 @@ class CompositingReasonsInput(InputModel):
 
 class CompositingReasonsOutput(OutputModel):
 
-    compositingReasons: str  # deprecated
-    compositingReasonIds: str  # deprecated
+    compositingReasons: list[str]  # deprecated
+    compositingReasonIds: list[str]  # deprecated
 
 
 class CompositingReasons(CDPMethod[CompositingReasonsOutput]):  # deprecated
@@ -61,7 +61,7 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class LoadSnapshotInput(InputModel):
 
-    tiles: LayerTree.PictureTile  # deprecated
+    tiles: list[LayerTree.PictureTile]  # deprecated
 
 
 class LoadSnapshotOutput(OutputModel):
@@ -79,7 +79,7 @@ class LoadSnapshot(CDPMethod[LoadSnapshotOutput]):  # deprecated
         self,
         /,
         *,
-        tiles: LayerTree.PictureTile
+        tiles: list[LayerTree.PictureTile]
     ):
         super().__init__(
             tiles=tiles
@@ -123,7 +123,7 @@ class ProfileSnapshotInput(InputModel):
 
 class ProfileSnapshotOutput(OutputModel):
 
-    timings: LayerTree.PaintProfile  # deprecated
+    timings: list[LayerTree.PaintProfile]  # deprecated
 
 
 class ProfileSnapshot(CDPMethod[ProfileSnapshotOutput]):
@@ -213,7 +213,7 @@ class SnapshotCommandLogInput(InputModel):
 
 class SnapshotCommandLogOutput(OutputModel):
 
-    commandLog: JSON_DICT  # deprecated
+    commandLog: list[JSON_DICT]  # deprecated
 
 
 class SnapshotCommandLog(CDPMethod[SnapshotCommandLogOutput]):  # deprecated

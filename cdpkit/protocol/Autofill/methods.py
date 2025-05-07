@@ -49,7 +49,7 @@ class Trigger(CDPMethod[None]):  # deprecated
 
 class SetAddressesInput(InputModel):
 
-    addresses: Autofill.Address
+    addresses: list[Autofill.Address]
 
 
 class SetAddresses(CDPMethod[None]):  # deprecated
@@ -62,7 +62,7 @@ class SetAddresses(CDPMethod[None]):  # deprecated
         self,
         /,
         *,
-        addresses: Autofill.Address
+        addresses: list[Autofill.Address]
     ):
         super().__init__(
             addresses=addresses

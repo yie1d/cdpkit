@@ -23,7 +23,7 @@ from cdpkit.protocol._types import (
 
 class SetAcceptedEncodingsInput(InputModel):
 
-    encodings: Network.ContentEncoding  # deprecated
+    encodings: list[Network.ContentEncoding]  # deprecated
 
 
 class SetAcceptedEncodings(CDPMethod[None]):  # experimental deprecated
@@ -36,7 +36,7 @@ class SetAcceptedEncodings(CDPMethod[None]):  # experimental deprecated
         self,
         /,
         *,
-        encodings: Network.ContentEncoding
+        encodings: list[Network.ContentEncoding]
     ):
         super().__init__(
             encodings=encodings
@@ -261,7 +261,7 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class GetAllCookiesOutput(OutputModel):
 
-    cookies: Network.Cookie  # deprecated
+    cookies: list[Network.Cookie]  # deprecated
 
 
 class GetAllCookies(CDPMethod[GetAllCookiesOutput]):  # deprecated
@@ -280,7 +280,7 @@ class GetCertificateInput(InputModel):
 
 class GetCertificateOutput(OutputModel):
 
-    tableNames: str
+    tableNames: list[str]
 
 
 class GetCertificate(CDPMethod[GetCertificateOutput]):  # experimental deprecated
@@ -302,12 +302,12 @@ class GetCertificate(CDPMethod[GetCertificateOutput]):  # experimental deprecate
 
 class GetCookiesInput(InputModel):
 
-    urls: str | None = None  # deprecated
+    urls: list[str] | None = None  # deprecated
 
 
 class GetCookiesOutput(OutputModel):
 
-    cookies: Network.Cookie  # deprecated
+    cookies: list[Network.Cookie]  # deprecated
 
 
 class GetCookies(CDPMethod[GetCookiesOutput]):  # deprecated
@@ -321,7 +321,7 @@ class GetCookies(CDPMethod[GetCookiesOutput]):  # deprecated
         self,
         /,
         *,
-        urls: str | None = None
+        urls: list[str] | None = None
     ):
         super().__init__(
             urls=urls
@@ -475,7 +475,7 @@ class SearchInResponseBodyInput(InputModel):
 
 class SearchInResponseBodyOutput(OutputModel):
 
-    result: Debugger.SearchMatch  # deprecated
+    result: list[Debugger.SearchMatch]  # deprecated
 
 
 class SearchInResponseBody(CDPMethod[SearchInResponseBodyOutput]):  # experimental deprecated
@@ -503,7 +503,7 @@ class SearchInResponseBody(CDPMethod[SearchInResponseBodyOutput]):  # experiment
 
 class SetBlockedURLsInput(InputModel):
 
-    urls: str  # deprecated
+    urls: list[str]  # deprecated
 
 
 class SetBlockedURLs(CDPMethod[None]):  # experimental deprecated
@@ -516,7 +516,7 @@ class SetBlockedURLs(CDPMethod[None]):  # experimental deprecated
         self,
         /,
         *,
-        urls: str
+        urls: list[str]
     ):
         super().__init__(
             urls=urls
@@ -635,7 +635,7 @@ class SetCookie(CDPMethod[SetCookieOutput]):  # deprecated
 
 class SetCookiesInput(InputModel):
 
-    cookies: Network.CookieParam  # deprecated
+    cookies: list[Network.CookieParam]  # deprecated
 
 
 class SetCookies(CDPMethod[None]):  # deprecated
@@ -648,7 +648,7 @@ class SetCookies(CDPMethod[None]):  # deprecated
         self,
         /,
         *,
-        cookies: Network.CookieParam
+        cookies: list[Network.CookieParam]
     ):
         super().__init__(
             cookies=cookies
@@ -701,7 +701,7 @@ class SetAttachDebugStack(CDPMethod[None]):  # experimental deprecated
 
 class SetRequestInterceptionInput(InputModel):
 
-    patterns: Network.RequestPattern  # deprecated
+    patterns: list[Network.RequestPattern]  # deprecated
 
 
 class SetRequestInterception(CDPMethod[None]):  # experimental deprecated
@@ -715,7 +715,7 @@ class SetRequestInterception(CDPMethod[None]):  # experimental deprecated
         self,
         /,
         *,
-        patterns: Network.RequestPattern
+        patterns: list[Network.RequestPattern]
     ):
         super().__init__(
             patterns=patterns

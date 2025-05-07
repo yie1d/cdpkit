@@ -98,7 +98,7 @@ class CheckContrast(CDPMethod[None]):  # deprecated
 
 class CheckFormsIssuesOutput(OutputModel):
 
-    formIssues: Audits.GenericIssueDetails
+    formIssues: list[Audits.GenericIssueDetails]
 
 
 class CheckFormsIssues(CDPMethod[CheckFormsIssuesOutput]):  # deprecated

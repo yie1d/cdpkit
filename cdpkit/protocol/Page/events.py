@@ -197,7 +197,7 @@ class BackForwardCacheNotUsed(CDPEvent):
 
     loaderId: Network.LoaderId  # deprecated
     frameId: Page.FrameId  # deprecated
-    notRestoredExplanations: Page.BackForwardCacheNotRestoredExplanation  # deprecated
+    notRestoredExplanations: list[Page.BackForwardCacheNotRestoredExplanation]  # deprecated
     notRestoredExplanationsTree: Page.BackForwardCacheNotRestoredExplanationTree | None = None  # deprecated
 
 
@@ -234,7 +234,7 @@ class WindowOpen(CDPEvent):
 
     url: str  # deprecated
     windowName: str  # deprecated
-    windowFeatures: str  # deprecated
+    windowFeatures: list[str]  # deprecated
     userGesture: bool  # deprecated
 
 

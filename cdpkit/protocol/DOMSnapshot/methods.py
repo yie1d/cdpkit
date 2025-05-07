@@ -32,7 +32,7 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class GetSnapshotInput(InputModel):
 
-    computedStyleWhitelist: str  # deprecated
+    computedStyleWhitelist: list[str]  # deprecated
     includeEventListeners: bool | None = None  # deprecated
     includePaintOrder: bool | None = None  # deprecated
     includeUserAgentShadowTree: bool | None = None  # deprecated
@@ -40,9 +40,9 @@ class GetSnapshotInput(InputModel):
 
 class GetSnapshotOutput(OutputModel):
 
-    domNodes: DOMSnapshot.DOMNode  # deprecated
-    layoutTreeNodes: DOMSnapshot.LayoutTreeNode  # deprecated
-    computedStyles: DOMSnapshot.ComputedStyle  # deprecated
+    domNodes: list[DOMSnapshot.DOMNode]  # deprecated
+    layoutTreeNodes: list[DOMSnapshot.LayoutTreeNode]  # deprecated
+    computedStyles: list[DOMSnapshot.ComputedStyle]  # deprecated
 
 
 class GetSnapshot(CDPMethod[GetSnapshotOutput]):  # deprecated
@@ -58,7 +58,7 @@ class GetSnapshot(CDPMethod[GetSnapshotOutput]):  # deprecated
         self,
         /,
         *,
-        computed_style_whitelist: str,
+        computed_style_whitelist: list[str],
         include_event_listeners: bool | None = None,
         include_paint_order: bool | None = None,
         include_user_agent_shadow_tree: bool | None = None
@@ -73,7 +73,7 @@ class GetSnapshot(CDPMethod[GetSnapshotOutput]):  # deprecated
 
 class CaptureSnapshotInput(InputModel):
 
-    computedStyles: str  # deprecated
+    computedStyles: list[str]  # deprecated
     includePaintOrder: bool | None = None  # deprecated
     includeDOMRects: bool | None = None  # deprecated
     includeBlendedBackgroundColors: bool | None = None  # experimental deprecated
@@ -82,8 +82,8 @@ class CaptureSnapshotInput(InputModel):
 
 class CaptureSnapshotOutput(OutputModel):
 
-    documents: DOMSnapshot.DocumentSnapshot  # deprecated
-    strings: str  # deprecated
+    documents: list[DOMSnapshot.DocumentSnapshot]  # deprecated
+    strings: list[str]  # deprecated
 
 
 class CaptureSnapshot(CDPMethod[CaptureSnapshotOutput]):  # deprecated
@@ -99,7 +99,7 @@ class CaptureSnapshot(CDPMethod[CaptureSnapshotOutput]):  # deprecated
         self,
         /,
         *,
-        computed_styles: str,
+        computed_styles: list[str],
         include_paint_order: bool | None = None,
         include_dom_rects: bool | None = None,
         include_blended_background_colors: bool | None = None,

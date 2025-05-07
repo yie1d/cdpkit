@@ -103,7 +103,7 @@ class GetCookiesInput(InputModel):
 
 class GetCookiesOutput(OutputModel):
 
-    cookies: Network.Cookie  # deprecated
+    cookies: list[Network.Cookie]  # deprecated
 
 
 class GetCookies(CDPMethod[GetCookiesOutput]):  # deprecated
@@ -125,7 +125,7 @@ class GetCookies(CDPMethod[GetCookiesOutput]):  # deprecated
 
 class SetCookiesInput(InputModel):
 
-    cookies: Network.CookieParam  # deprecated
+    cookies: list[Network.CookieParam]  # deprecated
     browserContextId: Browser.BrowserContextID | None = None  # deprecated
 
 
@@ -139,7 +139,7 @@ class SetCookies(CDPMethod[None]):  # deprecated
         self,
         /,
         *,
-        cookies: Network.CookieParam,
+        cookies: list[Network.CookieParam],
         browser_context_id: Browser.BrowserContextID | None = None
     ):
         super().__init__(
@@ -180,7 +180,7 @@ class GetUsageAndQuotaOutput(OutputModel):
     usage: float  # deprecated
     quota: float  # deprecated
     overrideActive: bool  # deprecated
-    usageBreakdown: Storage.UsageForType  # deprecated
+    usageBreakdown: list[Storage.UsageForType]  # deprecated
 
 
 class GetUsageAndQuota(CDPMethod[GetUsageAndQuotaOutput]):  # deprecated
@@ -403,7 +403,7 @@ class UntrackIndexedDBForStorageKey(CDPMethod[None]):  # deprecated
 
 class GetTrustTokensOutput(OutputModel):
 
-    tokens: Storage.TrustTokens
+    tokens: list[Storage.TrustTokens]
 
 
 class GetTrustTokens(CDPMethod[GetTrustTokensOutput]):  # experimental deprecated
@@ -551,7 +551,7 @@ class GetSharedStorageEntriesInput(InputModel):
 
 class GetSharedStorageEntriesOutput(OutputModel):
 
-    entries: Storage.SharedStorageEntry
+    entries: list[Storage.SharedStorageEntry]
 
 
 class GetSharedStorageEntries(CDPMethod[GetSharedStorageEntriesOutput]):  # experimental deprecated
@@ -742,7 +742,7 @@ class DeleteStorageBucket(CDPMethod[None]):  # experimental deprecated
 
 class RunBounceTrackingMitigationsOutput(OutputModel):
 
-    deletedSites: str
+    deletedSites: list[str]
 
 
 class RunBounceTrackingMitigations(CDPMethod[RunBounceTrackingMitigationsOutput]):  # experimental deprecated
@@ -811,7 +811,7 @@ class SendPendingAttributionReports(CDPMethod[SendPendingAttributionReportsOutpu
 
 class GetRelatedWebsiteSetsOutput(OutputModel):
 
-    sets: Storage.RelatedWebsiteSet
+    sets: list[Storage.RelatedWebsiteSet]
 
 
 class GetRelatedWebsiteSets(CDPMethod[GetRelatedWebsiteSetsOutput]):  # experimental deprecated
@@ -825,12 +825,12 @@ class GetRelatedWebsiteSets(CDPMethod[GetRelatedWebsiteSetsOutput]):  # experime
 class GetAffectedUrlsForThirdPartyCookieMetadataInput(InputModel):
 
     firstPartyUrl: str  # deprecated
-    thirdPartyUrls: str  # deprecated
+    thirdPartyUrls: list[str]  # deprecated
 
 
 class GetAffectedUrlsForThirdPartyCookieMetadataOutput(OutputModel):
 
-    matchedUrls: str  # deprecated
+    matchedUrls: list[str]  # deprecated
 
 
 class GetAffectedUrlsForThirdPartyCookieMetadata(CDPMethod[GetAffectedUrlsForThirdPartyCookieMetadataOutput]):  # experimental deprecated
@@ -846,7 +846,7 @@ class GetAffectedUrlsForThirdPartyCookieMetadata(CDPMethod[GetAffectedUrlsForThi
         /,
         *,
         first_party_url: str,
-        third_party_urls: str
+        third_party_urls: list[str]
     ):
         super().__init__(
             firstPartyUrl=first_party_url,
@@ -858,7 +858,7 @@ class SetProtectedAudienceKAnonymityInput(InputModel):
 
     owner: str
     name: str
-    hashes: str
+    hashes: list[str]
 
 
 class SetProtectedAudienceKAnonymity(CDPMethod[None]):
@@ -872,7 +872,7 @@ class SetProtectedAudienceKAnonymity(CDPMethod[None]):
         *,
         owner: str,
         name: str,
-        hashes: str
+        hashes: list[str]
     ):
         super().__init__(
             owner=owner,

@@ -32,7 +32,7 @@ class GetDOMCounters(CDPMethod[GetDOMCountersOutput]):  # deprecated
 
 class GetDOMCountersForLeakDetectionOutput(OutputModel):
 
-    counters: Memory.DOMCounter  # deprecated
+    counters: list[Memory.DOMCounter]  # deprecated
 
 
 class GetDOMCountersForLeakDetection(CDPMethod[GetDOMCountersForLeakDetectionOutput]):  # deprecated

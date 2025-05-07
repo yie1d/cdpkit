@@ -58,7 +58,7 @@ class GetDOMStorageItemsInput(InputModel):
 
 class GetDOMStorageItemsOutput(OutputModel):
 
-    entries: DOMStorage.Item
+    entries: list[DOMStorage.Item]
 
 
 class GetDOMStorageItems(CDPMethod[GetDOMStorageItemsOutput]):

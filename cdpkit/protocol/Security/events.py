@@ -38,6 +38,6 @@ class SecurityStateChanged(CDPEvent):
 
     securityState: Security.SecurityState  # deprecated
     schemeIsCryptographic: bool  # deprecated
-    explanations: Security.SecurityStateExplanation  # deprecated
+    explanations: list[Security.SecurityStateExplanation]  # deprecated
     insecureContentStatus: Security.InsecureContentStatus  # deprecated
     summary: str | None = None  # deprecated

@@ -280,7 +280,7 @@ class GetAppManifestInput(InputModel):
 class GetAppManifestOutput(OutputModel):
 
     url: str  # deprecated
-    errors: Page.AppManifestError
+    errors: list[Page.AppManifestError]
     data: str | None = None  # deprecated
     parsed: Page.AppManifestParsedProperties | None = None  # experimental deprecated
     manifest: Page.WebAppManifest  # experimental
@@ -309,7 +309,7 @@ class GetAppManifest(CDPMethod[GetAppManifestOutput]):  # deprecated
 
 class GetInstallabilityErrorsOutput(OutputModel):
 
-    installabilityErrors: Page.InstallabilityError
+    installabilityErrors: list[Page.InstallabilityError]
 
 
 class GetInstallabilityErrors(CDPMethod[GetInstallabilityErrorsOutput]):  # experimental
@@ -351,7 +351,7 @@ class GetAdScriptAncestryIdsInput(InputModel):
 
 class GetAdScriptAncestryIdsOutput(OutputModel):
 
-    adScriptAncestryIds: Page.AdScriptId  # deprecated
+    adScriptAncestryIds: list[Page.AdScriptId]  # deprecated
 
 
 class GetAdScriptAncestryIds(CDPMethod[GetAdScriptAncestryIdsOutput]):  # experimental
@@ -402,7 +402,7 @@ class GetLayoutMetrics(CDPMethod[GetLayoutMetricsOutput]):  # deprecated
 class GetNavigationHistoryOutput(OutputModel):
 
     currentIndex: int  # deprecated
-    entries: Page.NavigationEntry  # deprecated
+    entries: list[Page.NavigationEntry]  # deprecated
 
 
 class GetNavigationHistory(CDPMethod[GetNavigationHistoryOutput]):  # deprecated
@@ -731,7 +731,7 @@ class SearchInResourceInput(InputModel):
 
 class SearchInResourceOutput(OutputModel):
 
-    result: Debugger.SearchMatch  # deprecated
+    result: list[Debugger.SearchMatch]  # deprecated
 
 
 class SearchInResource(CDPMethod[SearchInResourceOutput]):  # experimental deprecated
@@ -810,7 +810,7 @@ class GetPermissionsPolicyStateInput(InputModel):
 
 class GetPermissionsPolicyStateOutput(OutputModel):
 
-    states: Page.PermissionsPolicyFeatureState
+    states: list[Page.PermissionsPolicyFeatureState]
 
 
 class GetPermissionsPolicyState(CDPMethod[GetPermissionsPolicyStateOutput]):  # experimental deprecated
@@ -837,7 +837,7 @@ class GetOriginTrialsInput(InputModel):
 
 class GetOriginTrialsOutput(OutputModel):
 
-    originTrials: Page.OriginTrial
+    originTrials: list[Page.OriginTrial]
 
 
 class GetOriginTrials(CDPMethod[GetOriginTrialsOutput]):  # experimental deprecated
@@ -945,7 +945,7 @@ class SetDeviceOrientationOverride(CDPMethod[None]):  # experimental deprecated
 class SetFontFamiliesInput(InputModel):
 
     fontFamilies: Page.FontFamilies  # deprecated
-    forScripts: Page.ScriptFontFamilies | None = None  # deprecated
+    forScripts: list[Page.ScriptFontFamilies] | None = None  # deprecated
 
 
 class SetFontFamilies(CDPMethod[None]):  # experimental deprecated
@@ -959,7 +959,7 @@ class SetFontFamilies(CDPMethod[None]):  # experimental deprecated
         /,
         *,
         font_families: Page.FontFamilies,
-        for_scripts: Page.ScriptFontFamilies | None = None
+        for_scripts: list[Page.ScriptFontFamilies] | None = None
     ):
         super().__init__(
             fontFamilies=font_families,
@@ -1203,7 +1203,7 @@ class StopScreencast(CDPMethod[None]):  # experimental deprecated
 
 class ProduceCompilationCacheInput(InputModel):
 
-    scripts: Page.CompilationCacheParams
+    scripts: list[Page.CompilationCacheParams]
 
 
 class ProduceCompilationCache(CDPMethod[None]):  # experimental deprecated
@@ -1221,7 +1221,7 @@ class ProduceCompilationCache(CDPMethod[None]):  # experimental deprecated
         self,
         /,
         *,
-        scripts: Page.CompilationCacheParams
+        scripts: list[Page.CompilationCacheParams]
     ):
         super().__init__(
             scripts=scripts

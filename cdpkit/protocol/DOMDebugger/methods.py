@@ -28,7 +28,7 @@ class GetEventListenersInput(InputModel):
 
 class GetEventListenersOutput(OutputModel):
 
-    listeners: DOMDebugger.EventListener  # deprecated
+    listeners: list[DOMDebugger.EventListener]  # deprecated
 
 
 class GetEventListeners(CDPMethod[GetEventListenersOutput]):  # deprecated
@@ -148,7 +148,7 @@ class RemoveXHRBreakpoint(CDPMethod[None]):  # deprecated
 
 class SetBreakOnCSPViolationInput(InputModel):
 
-    violationTypes: DOMDebugger.CSPViolationType  # deprecated
+    violationTypes: list[DOMDebugger.CSPViolationType]  # deprecated
 
 
 class SetBreakOnCSPViolation(CDPMethod[None]):  # experimental deprecated
@@ -161,7 +161,7 @@ class SetBreakOnCSPViolation(CDPMethod[None]):  # experimental deprecated
         self,
         /,
         *,
-        violation_types: DOMDebugger.CSPViolationType
+        violation_types: list[DOMDebugger.CSPViolationType]
     ):
         super().__init__(
             violationTypes=violation_types

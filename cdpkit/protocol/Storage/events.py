@@ -86,7 +86,7 @@ class InterestGroupAuctionNetworkRequestCreated(CDPEvent):
 
     type: Storage.InterestGroupAuctionFetchType
     requestId: Network.RequestId
-    auctions: Storage.InterestGroupAuctionId  # deprecated
+    auctions: list[Storage.InterestGroupAuctionId]  # deprecated
 
 
 class SharedStorageAccessed(CDPEvent):

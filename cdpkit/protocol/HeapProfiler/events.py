@@ -21,7 +21,7 @@ class AddHeapSnapshotChunk(CDPEvent):
 class HeapStatsUpdate(CDPEvent):
     """ If heap objects tracking has been started then backend may send update for one or more fragments """
 
-    statsUpdate: int  # deprecated
+    statsUpdate: list[int]  # deprecated
 
 
 class LastSeenObjectId(CDPEvent):

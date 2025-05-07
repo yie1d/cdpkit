@@ -148,7 +148,7 @@ class RequestDataInput(InputModel):
 
 class RequestDataOutput(OutputModel):
 
-    objectStoreDataEntries: IndexedDB.DataEntry  # deprecated
+    objectStoreDataEntries: list[IndexedDB.DataEntry]  # deprecated
     hasMore: bool  # deprecated
 
 
@@ -270,7 +270,7 @@ class RequestDatabaseNamesInput(InputModel):
 
 class RequestDatabaseNamesOutput(OutputModel):
 
-    databaseNames: str  # deprecated
+    databaseNames: list[str]  # deprecated
 
 
 class RequestDatabaseNames(CDPMethod[RequestDatabaseNamesOutput]):  # deprecated

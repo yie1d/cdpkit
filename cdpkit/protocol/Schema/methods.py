@@ -18,7 +18,7 @@ from cdpkit.protocol._types import (
 
 class GetDomainsOutput(OutputModel):
 
-    domains: Schema.Domain  # deprecated
+    domains: list[Schema.Domain]  # deprecated
 
 
 class GetDomains(CDPMethod[GetDomainsOutput]):  # deprecated

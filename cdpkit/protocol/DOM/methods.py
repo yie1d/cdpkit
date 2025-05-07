@@ -33,7 +33,7 @@ class CollectClassNamesFromSubtreeInput(InputModel):
 
 class CollectClassNamesFromSubtreeOutput(OutputModel):
 
-    classNames: str  # deprecated
+    classNames: list[str]  # deprecated
 
 
 class CollectClassNamesFromSubtree(CDPMethod[CollectClassNamesFromSubtreeOutput]):  # experimental deprecated
@@ -247,7 +247,7 @@ class GetAttributesInput(InputModel):
 
 class GetAttributesOutput(OutputModel):
 
-    attributes: str  # deprecated
+    attributes: list[str]  # deprecated
 
 
 class GetAttributes(CDPMethod[GetAttributesOutput]):  # deprecated
@@ -309,7 +309,7 @@ class GetContentQuadsInput(InputModel):
 
 class GetContentQuadsOutput(OutputModel):
 
-    quads: DOM.Quad  # deprecated
+    quads: list[DOM.Quad]  # deprecated
 
 
 class GetContentQuads(CDPMethod[GetContentQuadsOutput]):  # experimental deprecated
@@ -373,7 +373,7 @@ class GetFlattenedDocumentInput(InputModel):
 
 class GetFlattenedDocumentOutput(OutputModel):
 
-    nodes: DOM.Node  # deprecated
+    nodes: list[DOM.Node]  # deprecated
 
 
 class GetFlattenedDocument(CDPMethod[GetFlattenedDocumentOutput]):  # deprecated
@@ -400,13 +400,13 @@ class GetFlattenedDocument(CDPMethod[GetFlattenedDocumentOutput]):  # deprecated
 class GetNodesForSubtreeByStyleInput(InputModel):
 
     nodeId: DOM.NodeId  # deprecated
-    computedStyles: DOM.CSSComputedStyleProperty  # deprecated
+    computedStyles: list[DOM.CSSComputedStyleProperty]  # deprecated
     pierce: bool | None = None  # deprecated
 
 
 class GetNodesForSubtreeByStyleOutput(OutputModel):
 
-    nodeIds: DOM.NodeId  # deprecated
+    nodeIds: list[DOM.NodeId]  # deprecated
 
 
 class GetNodesForSubtreeByStyle(CDPMethod[GetNodesForSubtreeByStyleOutput]):  # experimental deprecated
@@ -420,7 +420,7 @@ class GetNodesForSubtreeByStyle(CDPMethod[GetNodesForSubtreeByStyleOutput]):  # 
         /,
         *,
         node_id: DOM.NodeId,
-        computed_styles: DOM.CSSComputedStyleProperty,
+        computed_styles: list[DOM.CSSComputedStyleProperty],
         pierce: bool | None = None
     ):
         super().__init__(
@@ -538,7 +538,7 @@ class GetSearchResultsInput(InputModel):
 
 class GetSearchResultsOutput(OutputModel):
 
-    nodeIds: DOM.NodeId  # deprecated
+    nodeIds: list[DOM.NodeId]  # deprecated
 
 
 class GetSearchResults(CDPMethod[GetSearchResultsOutput]):  # experimental deprecated
@@ -685,12 +685,12 @@ class PushNodeByPathToFrontend(CDPMethod[PushNodeByPathToFrontendOutput]):  # ex
 
 class PushNodesByBackendIdsToFrontendInput(InputModel):
 
-    backendNodeIds: DOM.BackendNodeId  # deprecated
+    backendNodeIds: list[DOM.BackendNodeId]  # deprecated
 
 
 class PushNodesByBackendIdsToFrontendOutput(OutputModel):
 
-    nodeIds: DOM.NodeId  # deprecated
+    nodeIds: list[DOM.NodeId]  # deprecated
 
 
 class PushNodesByBackendIdsToFrontend(CDPMethod[PushNodesByBackendIdsToFrontendOutput]):  # experimental deprecated
@@ -703,7 +703,7 @@ class PushNodesByBackendIdsToFrontend(CDPMethod[PushNodesByBackendIdsToFrontendO
         self,
         /,
         *,
-        backend_node_ids: DOM.BackendNodeId
+        backend_node_ids: list[DOM.BackendNodeId]
     ):
         super().__init__(
             backendNodeIds=backend_node_ids
@@ -748,7 +748,7 @@ class QuerySelectorAllInput(InputModel):
 
 class QuerySelectorAllOutput(OutputModel):
 
-    nodeIds: DOM.NodeId  # deprecated
+    nodeIds: list[DOM.NodeId]  # deprecated
 
 
 class QuerySelectorAll(CDPMethod[QuerySelectorAllOutput]):  # deprecated
@@ -772,7 +772,7 @@ class QuerySelectorAll(CDPMethod[QuerySelectorAllOutput]):  # deprecated
 
 class GetTopLayerElementsOutput(OutputModel):
 
-    nodeIds: DOM.NodeId  # deprecated
+    nodeIds: list[DOM.NodeId]  # deprecated
 
 
 class GetTopLayerElements(CDPMethod[GetTopLayerElementsOutput]):  # experimental deprecated
@@ -1022,7 +1022,7 @@ class SetAttributesAsText(CDPMethod[None]):  # deprecated
 
 class SetFileInputFilesInput(InputModel):
 
-    files: str  # deprecated
+    files: list[str]  # deprecated
     nodeId: DOM.NodeId | None = None  # deprecated
     backendNodeId: DOM.BackendNodeId | None = None  # deprecated
     objectId: Runtime.RemoteObjectId | None = None  # deprecated
@@ -1038,7 +1038,7 @@ class SetFileInputFiles(CDPMethod[None]):  # deprecated
         self,
         /,
         *,
-        files: str,
+        files: list[str],
         node_id: DOM.NodeId | None = None,
         backend_node_id: DOM.BackendNodeId | None = None,
         object_id: Runtime.RemoteObjectId | None = None
@@ -1130,7 +1130,7 @@ class GetFileInfo(CDPMethod[GetFileInfoOutput]):  # experimental deprecated
 
 class GetDetachedDomNodesOutput(OutputModel):
 
-    detachedNodes: DOM.DetachedElementInfo  # deprecated
+    detachedNodes: list[DOM.DetachedElementInfo]  # deprecated
 
 
 class GetDetachedDomNodes(CDPMethod[GetDetachedDomNodesOutput]):  # experimental deprecated
@@ -1328,7 +1328,7 @@ class GetQueryingDescendantsForContainerInput(InputModel):
 
 class GetQueryingDescendantsForContainerOutput(OutputModel):
 
-    nodeIds: DOM.NodeId  # deprecated
+    nodeIds: list[DOM.NodeId]  # deprecated
 
 
 class GetQueryingDescendantsForContainer(CDPMethod[GetQueryingDescendantsForContainerOutput]):  # experimental deprecated

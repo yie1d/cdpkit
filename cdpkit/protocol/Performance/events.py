@@ -19,5 +19,5 @@ from cdpkit.protocol._types import (
 class Metrics(CDPEvent):
     """ Current values of the metrics. """
 
-    metrics: Performance.Metric  # deprecated
+    metrics: list[Performance.Metric]  # deprecated
     title: str  # deprecated

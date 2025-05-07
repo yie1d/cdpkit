@@ -60,7 +60,7 @@ class GetFeatureState(CDPMethod[GetFeatureStateOutput]):  # deprecated
 
 class GetProcessInfoOutput(OutputModel):
 
-    processInfo: SystemInfo.ProcessInfo  # deprecated
+    processInfo: list[SystemInfo.ProcessInfo]  # deprecated
 
 
 class GetProcessInfo(CDPMethod[GetProcessInfoOutput]):  # deprecated

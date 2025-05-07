@@ -33,7 +33,11 @@ class GenerateContext:
         if self.ref_imports_set is None:
             return set()
         else:
-            for _key in ['']:
+            delete_keys = ['']
+            if not self.domain.types:
+                delete_keys.append(self.domain.domain)
+
+            for _key in delete_keys:
                 try:
                     self.ref_imports_set.remove(_key)
                 except KeyError:
@@ -318,14 +322,15 @@ def generate_domain_types(file_path: Path, context: GenerateContext) -> None:
         context.ref_imports_set.add(generate_types_obj.class_name)
         context.add_files_all('types', domain_type.id)
 
-    with file_path.open('w', encoding='utf-8') as f:
-        f.write(make_module(
-            domain=context.domain.domain,
-            description=context.domain.description,
-            ref_imports=make_ref_imports(context.get_imports()),
-            main_code='\n'.join(types_code_list),
-            hints='Types'
-        ))
+    if types_code_list:
+        with file_path.open('w', encoding='utf-8') as f:
+            f.write(make_module(
+                domain=context.domain.domain,
+                description=context.domain.description,
+                ref_imports=make_ref_imports(context.get_imports()),
+                main_code='\n'.join(types_code_list),
+                hints='Types'
+            ))
 
 
 def generate_domain_events(file_path: Path, context: GenerateContext) -> None:

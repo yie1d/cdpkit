@@ -1,6 +1,7 @@
 import inspect
 from pathlib import Path
 from typing import Any, Generic, TypeVar
+from cdpkit.logger import logger
 
 from pydantic import BaseModel, ConfigDict
 
@@ -73,6 +74,7 @@ class CDPMethod(Generic[RESULT_TYPE]):
         return self._command
 
     async def parse_response(self, response: JSON_DICT) -> RESULT_TYPE:
+        logger.info(f'Parsing response for command: {response}')
         if self.OUTPUT_VALIDATOR is None:
             return None
         else:

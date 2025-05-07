@@ -27,7 +27,7 @@ class Disable(CDPMethod[None]):  # deprecated
 
 class EnableInput(InputModel):
 
-    patterns: Fetch.RequestPattern | None = None  # deprecated
+    patterns: list[Fetch.RequestPattern] | None = None  # deprecated
     handleAuthRequests: bool | None = None  # deprecated
 
 
@@ -42,7 +42,7 @@ class Enable(CDPMethod[None]):  # deprecated
         self,
         /,
         *,
-        patterns: Fetch.RequestPattern | None = None,
+        patterns: list[Fetch.RequestPattern] | None = None,
         handle_auth_requests: bool | None = None
     ):
         super().__init__(
@@ -80,7 +80,7 @@ class FulfillRequestInput(InputModel):
 
     requestId: Fetch.RequestId  # deprecated
     responseCode: int  # deprecated
-    responseHeaders: Fetch.HeaderEntry | None = None  # deprecated
+    responseHeaders: list[Fetch.HeaderEntry] | None = None  # deprecated
     binaryResponseHeaders: str | None = None  # deprecated
     body: str | None = None  # deprecated
     responsePhrase: str | None = None  # deprecated
@@ -98,7 +98,7 @@ class FulfillRequest(CDPMethod[None]):  # deprecated
         *,
         request_id: Fetch.RequestId,
         response_code: int,
-        response_headers: Fetch.HeaderEntry | None = None,
+        response_headers: list[Fetch.HeaderEntry] | None = None,
         binary_response_headers: str | None = None,
         body: str | None = None,
         response_phrase: str | None = None
@@ -119,7 +119,7 @@ class ContinueRequestInput(InputModel):
     url: str | None = None  # deprecated
     method: str | None = None  # deprecated
     postData: str | None = None  # deprecated
-    headers: Fetch.HeaderEntry | None = None  # deprecated
+    headers: list[Fetch.HeaderEntry] | None = None  # deprecated
     interceptResponse: bool | None = None  # experimental deprecated
 
 
@@ -137,7 +137,7 @@ class ContinueRequest(CDPMethod[None]):  # deprecated
         url: str | None = None,
         method: str | None = None,
         post_data: str | None = None,
-        headers: Fetch.HeaderEntry | None = None,
+        headers: list[Fetch.HeaderEntry] | None = None,
         intercept_response: bool | None = None
     ):
         super().__init__(
@@ -180,7 +180,7 @@ class ContinueResponseInput(InputModel):
     requestId: Fetch.RequestId  # deprecated
     responseCode: int | None = None  # deprecated
     responsePhrase: str | None = None  # deprecated
-    responseHeaders: Fetch.HeaderEntry | None = None  # deprecated
+    responseHeaders: list[Fetch.HeaderEntry] | None = None  # deprecated
     binaryResponseHeaders: str | None = None  # deprecated
 
 
@@ -199,7 +199,7 @@ class ContinueResponse(CDPMethod[None]):  # experimental deprecated
         request_id: Fetch.RequestId,
         response_code: int | None = None,
         response_phrase: str | None = None,
-        response_headers: Fetch.HeaderEntry | None = None,
+        response_headers: list[Fetch.HeaderEntry] | None = None,
         binary_response_headers: str | None = None
     ):
         super().__init__(

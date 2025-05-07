@@ -52,7 +52,7 @@ class SetPermission(CDPMethod[None]):  # experimental deprecated
 
 class GrantPermissionsInput(InputModel):
 
-    permissions: Browser.PermissionType
+    permissions: list[Browser.PermissionType]
     origin: str | None = None  # deprecated
     browserContextId: Browser.BrowserContextID | None = None  # deprecated
 
@@ -67,7 +67,7 @@ class GrantPermissions(CDPMethod[None]):  # experimental deprecated
         self,
         /,
         *,
-        permissions: Browser.PermissionType,
+        permissions: list[Browser.PermissionType],
         origin: str | None = None,
         browser_context_id: Browser.BrowserContextID | None = None
     ):
@@ -195,7 +195,7 @@ class GetVersion(CDPMethod[GetVersionOutput]):  # deprecated
 
 class GetBrowserCommandLineOutput(OutputModel):
 
-    arguments: str  # deprecated
+    arguments: list[str]  # deprecated
 
 
 class GetBrowserCommandLine(CDPMethod[GetBrowserCommandLineOutput]):  # experimental deprecated
@@ -214,7 +214,7 @@ class GetHistogramsInput(InputModel):
 
 class GetHistogramsOutput(OutputModel):
 
-    histograms: Browser.Histogram  # deprecated
+    histograms: list[Browser.Histogram]  # deprecated
 
 
 class GetHistograms(CDPMethod[GetHistogramsOutput]):  # experimental deprecated

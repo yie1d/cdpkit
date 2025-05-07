@@ -70,7 +70,7 @@ class DistributedNodesUpdated(CDPEvent):
     """ Called when distribution is changed. """
 
     insertionPointId: DOM.NodeId  # deprecated
-    distributedNodes: DOM.BackendNode  # deprecated
+    distributedNodes: list[DOM.BackendNode]  # deprecated
 
 
 class DocumentUpdated(CDPEvent):
@@ -82,7 +82,7 @@ class DocumentUpdated(CDPEvent):
 class InlineStyleInvalidated(CDPEvent):
     """ Fired when `Element`'s inline style is modified via a CSS property modification. """
 
-    nodeIds: DOM.NodeId  # deprecated
+    nodeIds: list[DOM.NodeId]  # deprecated
 
 
 class PseudoElementAdded(CDPEvent):
@@ -117,7 +117,7 @@ class SetChildNodes(CDPEvent):
     most of the calls requesting node ids. """
 
     parentId: DOM.NodeId  # deprecated
-    nodes: DOM.Node  # deprecated
+    nodes: list[DOM.Node]  # deprecated
 
 
 class ShadowRootPopped(CDPEvent):

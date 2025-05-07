@@ -44,7 +44,7 @@ class GetPartialAXTreeInput(InputModel):
 
 class GetPartialAXTreeOutput(OutputModel):
 
-    nodes: Accessibility.AXNode  # deprecated
+    nodes: list[Accessibility.AXNode]  # deprecated
 
 
 class GetPartialAXTree(CDPMethod[GetPartialAXTreeOutput]):  # experimental deprecated
@@ -78,7 +78,7 @@ class GetFullAXTreeInput(InputModel):
 
 class GetFullAXTreeOutput(OutputModel):
 
-    nodes: Accessibility.AXNode
+    nodes: list[Accessibility.AXNode]
 
 
 class GetFullAXTree(CDPMethod[GetFullAXTreeOutput]):  # experimental deprecated
@@ -137,7 +137,7 @@ class GetAXNodeAndAncestorsInput(InputModel):
 
 class GetAXNodeAndAncestorsOutput(OutputModel):
 
-    nodes: Accessibility.AXNode
+    nodes: list[Accessibility.AXNode]
 
 
 class GetAXNodeAndAncestors(CDPMethod[GetAXNodeAndAncestorsOutput]):  # experimental deprecated
@@ -170,7 +170,7 @@ class GetChildAXNodesInput(InputModel):
 
 class GetChildAXNodesOutput(OutputModel):
 
-    nodes: Accessibility.AXNode
+    nodes: list[Accessibility.AXNode]
 
 
 class GetChildAXNodes(CDPMethod[GetChildAXNodesOutput]):  # experimental deprecated
@@ -204,7 +204,7 @@ class QueryAXTreeInput(InputModel):
 
 class QueryAXTreeOutput(OutputModel):
 
-    nodes: Accessibility.AXNode  # deprecated
+    nodes: list[Accessibility.AXNode]  # deprecated
 
 
 class QueryAXTree(CDPMethod[QueryAXTreeOutput]):  # experimental deprecated

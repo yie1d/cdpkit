@@ -148,7 +148,7 @@ class CreateBrowserContextInput(InputModel):
     disposeOnDetach: bool | None = None  # experimental deprecated
     proxyServer: str | None = None  # experimental deprecated
     proxyBypassList: str | None = None  # experimental deprecated
-    originsWithUniversalNetworkAccess: str | None = None  # experimental deprecated
+    originsWithUniversalNetworkAccess: list[str] | None = None  # experimental deprecated
 
 
 class CreateBrowserContextOutput(OutputModel):
@@ -170,7 +170,7 @@ class CreateBrowserContext(CDPMethod[CreateBrowserContextOutput]):  # deprecated
         dispose_on_detach: bool | None = None,
         proxy_server: str | None = None,
         proxy_bypass_list: str | None = None,
-        origins_with_universal_network_access: str | None = None
+        origins_with_universal_network_access: list[str] | None = None
     ):
         super().__init__(
             disposeOnDetach=dispose_on_detach,
@@ -182,7 +182,7 @@ class CreateBrowserContext(CDPMethod[CreateBrowserContextOutput]):  # deprecated
 
 class GetBrowserContextsOutput(OutputModel):
 
-    browserContextIds: Browser.BrowserContextID  # deprecated
+    browserContextIds: list[Browser.BrowserContextID]  # deprecated
 
 
 class GetBrowserContexts(CDPMethod[GetBrowserContextsOutput]):  # deprecated
@@ -334,7 +334,7 @@ class GetTargetsInput(InputModel):
 
 class GetTargetsOutput(OutputModel):
 
-    targetInfos: Target.TargetInfo  # deprecated
+    targetInfos: list[Target.TargetInfo]  # deprecated
 
 
 class GetTargets(CDPMethod[GetTargetsOutput]):  # deprecated
@@ -482,7 +482,7 @@ class SetDiscoverTargets(CDPMethod[None]):  # deprecated
 
 class SetRemoteLocationsInput(InputModel):
 
-    locations: Target.RemoteLocation  # deprecated
+    locations: list[Target.RemoteLocation]  # deprecated
 
 
 class SetRemoteLocations(CDPMethod[None]):  # experimental deprecated
@@ -496,7 +496,7 @@ class SetRemoteLocations(CDPMethod[None]):  # experimental deprecated
         self,
         /,
         *,
-        locations: Target.RemoteLocation
+        locations: list[Target.RemoteLocation]
     ):
         super().__init__(
             locations=locations

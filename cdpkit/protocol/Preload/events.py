@@ -59,11 +59,11 @@ class PrerenderStatusUpdated(CDPEvent):
     status: Preload.PreloadingStatus
     prerenderStatus: Preload.PrerenderFinalStatus | None = None
     disallowedMojoInterface: str | None = None  # deprecated
-    mismatchedHeaders: Preload.PrerenderMismatchedHeaders | None = None
+    mismatchedHeaders: list[Preload.PrerenderMismatchedHeaders] | None = None
 
 
 class PreloadingAttemptSourcesUpdated(CDPEvent):
     """ Send a list of sources for all preloading attempts in a document. """
 
     loaderId: Network.LoaderId
-    preloadingAttemptSources: Preload.PreloadingAttemptSource
+    preloadingAttemptSources: list[Preload.PreloadingAttemptSource]

@@ -21,4 +21,4 @@ class DeviceRequestPrompted(CDPEvent):
     selectPrompt or cancelPrompt command. """
 
     id: DeviceAccess.RequestId
-    devices: DeviceAccess.PromptDevice
+    devices: list[DeviceAccess.PromptDevice]

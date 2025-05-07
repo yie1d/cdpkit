@@ -73,7 +73,7 @@ class RequestCacheNamesInput(InputModel):
 
 class RequestCacheNamesOutput(OutputModel):
 
-    caches: CacheStorage.Cache  # deprecated
+    caches: list[CacheStorage.Cache]  # deprecated
 
 
 class RequestCacheNames(CDPMethod[RequestCacheNamesOutput]):  # deprecated
@@ -101,7 +101,7 @@ class RequestCachedResponseInput(InputModel):
 
     cacheId: CacheStorage.CacheId  # deprecated
     requestURL: str  # deprecated
-    requestHeaders: CacheStorage.Header  # deprecated
+    requestHeaders: list[CacheStorage.Header]  # deprecated
 
 
 class RequestCachedResponseOutput(OutputModel):
@@ -121,7 +121,7 @@ class RequestCachedResponse(CDPMethod[RequestCachedResponseOutput]):  # deprecat
         *,
         cache_id: CacheStorage.CacheId,
         request_url: str,
-        request_headers: CacheStorage.Header
+        request_headers: list[CacheStorage.Header]
     ):
         super().__init__(
             cacheId=cache_id,
@@ -140,7 +140,7 @@ class RequestEntriesInput(InputModel):
 
 class RequestEntriesOutput(OutputModel):
 
-    cacheDataEntries: CacheStorage.DataEntry  # deprecated
+    cacheDataEntries: list[CacheStorage.DataEntry]  # deprecated
     returnCount: float  # deprecated
 
 

@@ -264,7 +264,7 @@ class ClearDevicePostureOverride(CDPMethod[None]):  # experimental deprecated
 
 class SetDisplayFeaturesOverrideInput(InputModel):
 
-    features: Emulation.DisplayFeature
+    features: list[Emulation.DisplayFeature]
 
 
 class SetDisplayFeaturesOverride(CDPMethod[None]):  # experimental deprecated
@@ -278,7 +278,7 @@ class SetDisplayFeaturesOverride(CDPMethod[None]):  # experimental deprecated
         self,
         /,
         *,
-        features: Emulation.DisplayFeature
+        features: list[Emulation.DisplayFeature]
     ):
         super().__init__(
             features=features
@@ -364,7 +364,7 @@ class SetEmitTouchEventsForMouse(CDPMethod[None]):  # experimental
 class SetEmulatedMediaInput(InputModel):
 
     media: str | None = None  # deprecated
-    features: Emulation.MediaFeature | None = None  # deprecated
+    features: list[Emulation.MediaFeature] | None = None  # deprecated
 
 
 class SetEmulatedMedia(CDPMethod[None]):  # deprecated
@@ -378,7 +378,7 @@ class SetEmulatedMedia(CDPMethod[None]):  # deprecated
         /,
         *,
         media: str | None = None,
-        features: Emulation.MediaFeature | None = None
+        features: list[Emulation.MediaFeature] | None = None
     ):
         super().__init__(
             media=media,
@@ -824,7 +824,7 @@ class SetVisibleSize(CDPMethod[None]):  # experimental deprecated
 
 class SetDisabledImageTypesInput(InputModel):
 
-    imageTypes: Emulation.DisabledImageType  # deprecated
+    imageTypes: list[Emulation.DisabledImageType]  # deprecated
 
 
 class SetDisabledImageTypes(CDPMethod[None]):  # experimental
@@ -836,7 +836,7 @@ class SetDisabledImageTypes(CDPMethod[None]):  # experimental
         self,
         /,
         *,
-        image_types: Emulation.DisabledImageType
+        image_types: list[Emulation.DisabledImageType]
     ):
         super().__init__(
             imageTypes=image_types

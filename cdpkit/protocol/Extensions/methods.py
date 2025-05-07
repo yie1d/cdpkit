@@ -75,7 +75,7 @@ class GetStorageItemsInput(InputModel):
 
     id: str  # deprecated
     storageArea: Extensions.StorageArea  # deprecated
-    keys: str | None = None  # deprecated
+    keys: list[str] | None = None  # deprecated
 
 
 class GetStorageItemsOutput(OutputModel):
@@ -96,7 +96,7 @@ class GetStorageItems(CDPMethod[GetStorageItemsOutput]):  # deprecated
         *,
         id_: str,
         storage_area: Extensions.StorageArea,
-        keys: str | None = None
+        keys: list[str] | None = None
     ):
         super().__init__(
             id=id_,
@@ -109,7 +109,7 @@ class RemoveStorageItemsInput(InputModel):
 
     id: str  # deprecated
     storageArea: Extensions.StorageArea  # deprecated
-    keys: str  # deprecated
+    keys: list[str]  # deprecated
 
 
 class RemoveStorageItems(CDPMethod[None]):  # deprecated
@@ -124,7 +124,7 @@ class RemoveStorageItems(CDPMethod[None]):  # deprecated
         *,
         id_: str,
         storage_area: Extensions.StorageArea,
-        keys: str
+        keys: list[str]
     ):
         super().__init__(
             id=id_,

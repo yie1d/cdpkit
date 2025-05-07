@@ -38,7 +38,7 @@ class RequestPaused(CDPEvent):
     responseErrorReason: Network.ErrorReason | None = None  # deprecated
     responseStatusCode: int | None = None  # deprecated
     responseStatusText: str | None = None  # deprecated
-    responseHeaders: Fetch.HeaderEntry | None = None  # deprecated
+    responseHeaders: list[Fetch.HeaderEntry] | None = None  # deprecated
     networkId: Network.RequestId | None = None  # deprecated
     redirectedRequestId: Fetch.RequestId | None = None  # experimental deprecated
 
