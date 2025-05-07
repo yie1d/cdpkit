@@ -10,3 +10,7 @@ class BaseCustomException(Exception):
 
 class GeneratorNameNotFound(BaseCustomException):
     ERROR_INFO = 'Generator name not found, must run generate_code.'
+
+
+class InvalidCallback(BaseCustomException):
+    ERROR_INFO = 'Invalid callback, must be callable.'
