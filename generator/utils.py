@@ -1,11 +1,11 @@
 import builtins
-import asyncio
-import aiohttp
 import json
 import re
 import textwrap
 from pathlib import Path
 from typing import Any
+
+import aiohttp
 
 
 async def request_protocol_json() -> tuple[str, list[dict[str, Any]]]:
