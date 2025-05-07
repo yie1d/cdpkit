@@ -23,3 +23,24 @@ class GattOperationReceived(CDPEvent):
 
     address: str
     type: BluetoothEmulation.GATTOperationType
+
+
+class CharacteristicOperationReceived(CDPEvent):
+    """ Event for when a characteristic operation of |type| to the characteristic
+    respresented by |characteristicId| happened. |data| and |writeType| is
+    expected to exist when |type| is write. """
+
+    characteristicId: str
+    type: BluetoothEmulation.CharacteristicOperationType
+    data: str | None = None
+    writeType: BluetoothEmulation.CharacteristicWriteType | None = None
+
+
+class DescriptorOperationReceived(CDPEvent):
+    """ Event for when a descriptor operation of |type| to the descriptor
+    respresented by |descriptorId| happened. |data| is expected to exist when
+    |type| is write. """
+
+    descriptorId: str
+    type: BluetoothEmulation.CharacteristicOperationType
+    data: str | None = None

@@ -261,16 +261,54 @@ class DirectTCPSocketChunkReceived(CDPEvent):
     timestamp: Network.MonotonicTime
 
 
-class DirectTCPSocketChunkError(CDPEvent):
-    """ Fired when there is an error
-    when writing to tcp direct socket stream.
-    For example, if user writes illegal type like string
-    instead of ArrayBuffer or ArrayBufferView.
-    There's no reporting for reading, because
-    we cannot know errors on the other side. """
+class DirectUDPSocketCreated(CDPEvent):
+    """ Fired upon direct_socket.UDPSocket creation. """
+
+    identifier: Network.RequestId
+    options: Network.DirectUDPSocketOptions
+    timestamp: Network.MonotonicTime
+    initiator: Network.Initiator | None = None
+
+
+class DirectUDPSocketOpened(CDPEvent):
+    """ Fired when direct_socket.UDPSocket connection is opened. """
+
+    identifier: Network.RequestId
+    localAddr: str
+    localPort: int  # deprecated
+    timestamp: Network.MonotonicTime
+    remoteAddr: str | None = None
+    remotePort: int | None = None  # deprecated
+
+
+class DirectUDPSocketAborted(CDPEvent):
+    """ Fired when direct_socket.UDPSocket is aborted. """
 
     identifier: Network.RequestId
     errorMessage: str
+    timestamp: Network.MonotonicTime
+
+
+class DirectUDPSocketClosed(CDPEvent):
+    """ Fired when direct_socket.UDPSocket is closed. """
+
+    identifier: Network.RequestId
+    timestamp: Network.MonotonicTime
+
+
+class DirectUDPSocketChunkSent(CDPEvent):
+    """ Fired when message is sent to udp direct socket stream. """
+
+    identifier: Network.RequestId
+    message: Network.DirectUDPMessage
+    timestamp: Network.MonotonicTime
+
+
+class DirectUDPSocketChunkReceived(CDPEvent):
+    """ Fired when message is received from udp direct socket stream. """
+
+    identifier: Network.RequestId
+    message: Network.DirectUDPMessage
     timestamp: Network.MonotonicTime
 
 

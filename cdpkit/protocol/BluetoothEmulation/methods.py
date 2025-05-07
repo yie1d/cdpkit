@@ -156,6 +156,76 @@ class SimulateGATTOperationResponse(CDPMethod[None]):  # deprecated
         )
 
 
+class SimulateCharacteristicOperationResponseInput(InputModel):
+
+    characteristicId: str
+    type: BluetoothEmulation.CharacteristicOperationType
+    code: int
+    data: str | None = None
+
+
+class SimulateCharacteristicOperationResponse(CDPMethod[None]):  # deprecated
+    """ Simulates the response from the characteristic with |characteristicId| for a
+    characteristic operation of |type|. The |code| value follows the Error
+    Codes from Bluetooth Core Specification Vol 3 Part F 3.4.1.1 Error Response.
+    The |data| is expected to exist when simulating a successful read operation
+    response. """
+
+    INPUT_VALIDATOR = SimulateCharacteristicOperationResponseInput
+    OUTPUT_VALIDATOR = None
+
+    def __init__(
+        self,
+        /,
+        *,
+        characteristic_id: str,
+        type_: BluetoothEmulation.CharacteristicOperationType,
+        code: int,
+        data: str | None = None
+    ):
+        super().__init__(
+            characteristicId=characteristic_id,
+            type=type_,
+            code=code,
+            data=data
+        )
+
+
+class SimulateDescriptorOperationResponseInput(InputModel):
+
+    descriptorId: str
+    type: BluetoothEmulation.DescriptorOperationType
+    code: int
+    data: str | None = None
+
+
+class SimulateDescriptorOperationResponse(CDPMethod[None]):  # deprecated
+    """ Simulates the response from the descriptor with |descriptorId| for a
+    descriptor operation of |type|. The |code| value follows the Error
+    Codes from Bluetooth Core Specification Vol 3 Part F 3.4.1.1 Error Response.
+    The |data| is expected to exist when simulating a successful read operation
+    response. """
+
+    INPUT_VALIDATOR = SimulateDescriptorOperationResponseInput
+    OUTPUT_VALIDATOR = None
+
+    def __init__(
+        self,
+        /,
+        *,
+        descriptor_id: str,
+        type_: BluetoothEmulation.DescriptorOperationType,
+        code: int,
+        data: str | None = None
+    ):
+        super().__init__(
+            descriptorId=descriptor_id,
+            type=type_,
+            code=code,
+            data=data
+        )
+
+
 class AddServiceInput(InputModel):
 
     address: str
@@ -315,4 +385,26 @@ class RemoveDescriptor(CDPMethod[None]):  # deprecated
     ):
         super().__init__(
             descriptorId=descriptor_id
+        )
+
+
+class SimulateGATTDisconnectionInput(InputModel):
+
+    address: str
+
+
+class SimulateGATTDisconnection(CDPMethod[None]):  # deprecated
+    """ Simulates a GATT disconnection from the peripheral with |address|. """
+
+    INPUT_VALIDATOR = SimulateGATTDisconnectionInput
+    OUTPUT_VALIDATOR = None
+
+    def __init__(
+        self,
+        /,
+        *,
+        address: str
+    ):
+        super().__init__(
+            address=address
         )

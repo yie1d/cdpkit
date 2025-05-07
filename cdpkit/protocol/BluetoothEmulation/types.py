@@ -13,7 +13,10 @@ from __future__ import annotations
 
 from cdpkit.protocol._types import (
     BluetoothEmulationCentralState,
+    BluetoothEmulationCharacteristicOperationType,
     BluetoothEmulationCharacteristicProperties,
+    BluetoothEmulationCharacteristicWriteType,
+    BluetoothEmulationDescriptorOperationType,
     BluetoothEmulationGATTOperationType,
     BluetoothEmulationManufacturerData,
     BluetoothEmulationScanEntry,
@@ -22,6 +25,9 @@ from cdpkit.protocol._types import (
 
 CentralState = BluetoothEmulationCentralState
 GATTOperationType = BluetoothEmulationGATTOperationType
+CharacteristicWriteType = BluetoothEmulationCharacteristicWriteType
+CharacteristicOperationType = BluetoothEmulationCharacteristicOperationType
+DescriptorOperationType = BluetoothEmulationDescriptorOperationType
 ManufacturerData = BluetoothEmulationManufacturerData
 ScanRecord = BluetoothEmulationScanRecord
 ScanEntry = BluetoothEmulationScanEntry

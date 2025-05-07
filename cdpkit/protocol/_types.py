@@ -1036,6 +1036,22 @@ class AuditsPropertyRuleIssueDetails(CDPObject):
     propertyValue: str | None = None  # deprecated
 
 
+class AuditsUserReidentificationIssueType(str, enum.Enum):
+
+    BLOCKEDFRAMENAVIGATION = "BlockedFrameNavigation"
+    BLOCKEDSUBRESOURCE = "BlockedSubresource"
+
+
+class AuditsUserReidentificationIssueDetails(CDPObject):
+    """ This issue warns about uses of APIs that may be considered misuse to
+    re-identify users. """
+
+    type: Audits.UserReidentificationIssueType
+
+    # Applies to BlockedFrameNavigation and BlockedSubresource issue types.
+    request: Audits.AffectedRequest | None = None  # deprecated
+
+
 class AuditsInspectorIssueCode(str, enum.Enum):
     """ A unique identifier for the type of issue. Each type may use one of the
     optional fields in InspectorIssueDetails to convey more specific
@@ -1065,6 +1081,7 @@ class AuditsInspectorIssueCode(str, enum.Enum):
     SHAREDDICTIONARYISSUE = "SharedDictionaryIssue"
     SELECTELEMENTACCESSIBILITYISSUE = "SelectElementAccessibilityIssue"
     SRIMESSAGESIGNATUREISSUE = "SRIMessageSignatureIssue"
+    USERREIDENTIFICATIONISSUE = "UserReidentificationIssue"
 
 
 class AuditsInspectorIssueDetails(CDPObject):
@@ -1119,6 +1136,8 @@ class AuditsInspectorIssueDetails(CDPObject):
     selectElementAccessibilityIssueDetails: Audits.SelectElementAccessibilityIssueDetails | None = None
 
     sriMessageSignatureIssueDetails: Audits.SRIMessageSignatureIssueDetails | None = None
+
+    userReidentificationIssueDetails: Audits.UserReidentificationIssueDetails | None = None
 
 
 """ A unique id for a DevTools inspector issue. Allows other entities (e.g.
@@ -3881,6 +3900,7 @@ class NetworkBlockedReason(str, enum.Enum):
     MIXED_CONTENT = "mixed-content"
     ORIGIN = "origin"
     INSPECTOR = "inspector"
+    INTEGRITY = "integrity"
     SUBRESOURCE_FILTER = "subresource-filter"
     CONTENT_TYPE = "content-type"
     COEP_FRAME_RESOURCE_NEEDS_COEP_HEADER = "coep-frame-resource-needs-coep-header"
@@ -4561,6 +4581,38 @@ class NetworkDirectTCPSocketOptions(CDPObject):
     dnsQueryType: Network.DirectSocketDnsQueryType | None = None
 
 
+class NetworkDirectUDPSocketOptions(CDPObject):
+
+    remoteAddr: str | None = None
+
+    # Unsigned int 16.
+    remotePort: int | None = None  # deprecated
+
+    localAddr: str | None = None
+
+    # Unsigned int 16.
+    localPort: int | None = None  # deprecated
+
+    dnsQueryType: Network.DirectSocketDnsQueryType | None = None
+
+    # Expected to be unsigned integer.
+    sendBufferSize: float | None = None  # deprecated
+
+    # Expected to be unsigned integer.
+    receiveBufferSize: float | None = None  # deprecated
+
+
+class NetworkDirectUDPMessage(CDPObject):
+
+    data: str
+
+    # Null for connected mode.
+    remoteAddr: str | None = None  # deprecated
+
+    # Null for connected mode. Expected to be unsigned integer.
+    remotePort: int | None = None  # deprecated
+
+
 class NetworkPrivateNetworkRequestPolicy(str, enum.Enum):
 
     ALLOW = "Allow"
@@ -5130,7 +5182,8 @@ class PageGatedAPIFeatures(str, enum.Enum):
 
 class PagePermissionsPolicyFeature(str, enum.Enum):
     """ All Permissions Policy features. This enum should match the one defined
-    in services/network/public/cpp/permissions_policy/permissions_policy_features.json5. """
+    in services/network/public/cpp/permissions_policy/permissions_policy_features.json5.
+    LINT.IfChange(PermissionsPolicyFeature) """
 
     ACCELEROMETER = "accelerometer"
     ALL_SCREENS_CAPTURE = "all-screens-capture"
@@ -5196,6 +5249,7 @@ class PagePermissionsPolicyFeature(str, enum.Enum):
     KEYBOARD_MAP = "keyboard-map"
     LANGUAGE_DETECTOR = "language-detector"
     LOCAL_FONTS = "local-fonts"
+    LOCAL_NETWORK_ACCESS = "local-network-access"
     MAGNETOMETER = "magnetometer"
     MEDIA_PLAYBACK_WHILE_NOT_VISIBLE = "media-playback-while-not-visible"
     MICROPHONE = "microphone"
@@ -5209,6 +5263,7 @@ class PagePermissionsPolicyFeature(str, enum.Enum):
     PRIVATE_STATE_TOKEN_REDEMPTION = "private-state-token-redemption"
     PUBLICKEY_CREDENTIALS_CREATE = "publickey-credentials-create"
     PUBLICKEY_CREDENTIALS_GET = "publickey-credentials-get"
+    RECORD_AD_AUCTION_EVENTS = "record-ad-auction-events"
     REWRITER = "rewriter"
     RUN_AD_AUCTION = "run-ad-auction"
     SCREEN_WAKE_LOCK = "screen-wake-lock"
@@ -6929,6 +6984,14 @@ class StorageAttributionReportingAggregatableResult(str, enum.Enum):
     EXCESSIVEREPORTS = "excessiveReports"
 
 
+class StorageAttributionReportingReportResult(str, enum.Enum):
+
+    SENT = "sent"
+    PROHIBITED = "prohibited"
+    FAILEDTOASSEMBLE = "failedToAssemble"
+    EXPIRED = "expired"
+
+
 class StorageRelatedWebsiteSet(CDPObject):
     """ A single Related Website Set object. """
 
@@ -7936,6 +7999,30 @@ class BluetoothEmulationGATTOperationType(str, enum.Enum):
     DISCOVERY = "discovery"
 
 
+class BluetoothEmulationCharacteristicWriteType(str, enum.Enum):
+    """ Indicates the various types of characteristic write. """
+
+    WRITE_DEFAULT_DEPRECATED = "write-default-deprecated"
+    WRITE_WITH_RESPONSE = "write-with-response"
+    WRITE_WITHOUT_RESPONSE = "write-without-response"
+
+
+class BluetoothEmulationCharacteristicOperationType(str, enum.Enum):
+    """ Indicates the various types of characteristic operation. """
+
+    READ = "read"
+    WRITE = "write"
+    SUBSCRIBE_TO_NOTIFICATIONS = "subscribe-to-notifications"
+    UNSUBSCRIBE_FROM_NOTIFICATIONS = "unsubscribe-from-notifications"
+
+
+class BluetoothEmulationDescriptorOperationType(str, enum.Enum):
+    """ Indicates the various types of descriptor operation. """
+
+    READ = "read"
+    WRITE = "write"
+
+
 class BluetoothEmulationManufacturerData(CDPObject):
     """ Stores the manufacturer data """
 
@@ -8702,6 +8789,8 @@ class Audits:
     StylesheetLoadingIssueDetails = AuditsStylesheetLoadingIssueDetails
     PropertyRuleIssueReason = AuditsPropertyRuleIssueReason
     PropertyRuleIssueDetails = AuditsPropertyRuleIssueDetails
+    UserReidentificationIssueType = AuditsUserReidentificationIssueType
+    UserReidentificationIssueDetails = AuditsUserReidentificationIssueDetails
     InspectorIssueCode = AuditsInspectorIssueCode
     InspectorIssueDetails = AuditsInspectorIssueDetails
     IssueId = AuditsIssueId
@@ -9006,6 +9095,8 @@ class Network:
     ContentEncoding = NetworkContentEncoding
     DirectSocketDnsQueryType = NetworkDirectSocketDnsQueryType
     DirectTCPSocketOptions = NetworkDirectTCPSocketOptions
+    DirectUDPSocketOptions = NetworkDirectUDPSocketOptions
+    DirectUDPMessage = NetworkDirectUDPMessage
     PrivateNetworkRequestPolicy = NetworkPrivateNetworkRequestPolicy
     IPAddressSpace = NetworkIPAddressSpace
     ConnectTiming = NetworkConnectTiming
@@ -9198,6 +9289,7 @@ class Storage:
     AttributionReportingTriggerRegistration = StorageAttributionReportingTriggerRegistration
     AttributionReportingEventLevelResult = StorageAttributionReportingEventLevelResult
     AttributionReportingAggregatableResult = StorageAttributionReportingAggregatableResult
+    AttributionReportingReportResult = StorageAttributionReportingReportResult
     RelatedWebsiteSet = StorageRelatedWebsiteSet
 
 
@@ -9326,6 +9418,9 @@ class BluetoothEmulation:
 
     CentralState = BluetoothEmulationCentralState
     GATTOperationType = BluetoothEmulationGATTOperationType
+    CharacteristicWriteType = BluetoothEmulationCharacteristicWriteType
+    CharacteristicOperationType = BluetoothEmulationCharacteristicOperationType
+    DescriptorOperationType = BluetoothEmulationDescriptorOperationType
     ManufacturerData = BluetoothEmulationManufacturerData
     ScanRecord = BluetoothEmulationScanRecord
     ScanEntry = BluetoothEmulationScanEntry

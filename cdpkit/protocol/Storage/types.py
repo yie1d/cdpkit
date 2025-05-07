@@ -27,6 +27,7 @@ from cdpkit.protocol._types import (
     StorageAttributionReportingFilterPair,
     StorageAttributionReportingNamedBudgetCandidate,
     StorageAttributionReportingNamedBudgetDef,
+    StorageAttributionReportingReportResult,
     StorageAttributionReportingSourceRegistration,
     StorageAttributionReportingSourceRegistrationResult,
     StorageAttributionReportingSourceRegistrationTimeConfig,
@@ -106,4 +107,5 @@ AttributionReportingNamedBudgetCandidate = StorageAttributionReportingNamedBudge
 AttributionReportingTriggerRegistration = StorageAttributionReportingTriggerRegistration
 AttributionReportingEventLevelResult = StorageAttributionReportingEventLevelResult
 AttributionReportingAggregatableResult = StorageAttributionReportingAggregatableResult
+AttributionReportingReportResult = StorageAttributionReportingReportResult
 RelatedWebsiteSet = StorageRelatedWebsiteSet

@@ -236,6 +236,7 @@ class EnableInput(InputModel):
     maxTotalBufferSize: int | None = None  # experimental deprecated
     maxResourceBufferSize: int | None = None  # experimental deprecated
     maxPostDataSize: int | None = None  # deprecated
+    reportDirectSocketTraffic: bool | None = None  # experimental deprecated
 
 
 class Enable(CDPMethod[None]):  # deprecated
@@ -250,12 +251,14 @@ class Enable(CDPMethod[None]):  # deprecated
         *,
         max_total_buffer_size: int | None = None,
         max_resource_buffer_size: int | None = None,
-        max_post_data_size: int | None = None
+        max_post_data_size: int | None = None,
+        report_direct_socket_traffic: bool | None = None
     ):
         super().__init__(
             maxTotalBufferSize=max_total_buffer_size,
             maxResourceBufferSize=max_resource_buffer_size,
-            maxPostDataSize=max_post_data_size
+            maxPostDataSize=max_post_data_size,
+            reportDirectSocketTraffic=report_direct_socket_traffic
         )
 
 

@@ -57,6 +57,8 @@ from .types import (
     SRIMessageSignatureIssueDetails,
     StylesheetLoadingIssueDetails,
     StyleSheetLoadingIssueReason,
+    UserReidentificationIssueDetails,
+    UserReidentificationIssueType,
 )
 
 __all__ = [
@@ -112,6 +114,8 @@ __all__ = [
     StylesheetLoadingIssueDetails,
     PropertyRuleIssueReason,
     PropertyRuleIssueDetails,
+    UserReidentificationIssueType,
+    UserReidentificationIssueDetails,
     InspectorIssueCode,
     InspectorIssueDetails,
     IssueId,

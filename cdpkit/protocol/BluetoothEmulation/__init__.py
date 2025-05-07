@@ -1,4 +1,4 @@
-from .events import GattOperationReceived
+from .events import CharacteristicOperationReceived, DescriptorOperationReceived, GattOperationReceived
 from .methods import (
     AddCharacteristic,
     AddDescriptor,
@@ -10,29 +10,50 @@ from .methods import (
     RemoveService,
     SetSimulatedCentralState,
     SimulateAdvertisement,
+    SimulateCharacteristicOperationResponse,
+    SimulateDescriptorOperationResponse,
+    SimulateGATTDisconnection,
     SimulateGATTOperationResponse,
     SimulatePreconnectedPeripheral,
 )
-from .types import CentralState, CharacteristicProperties, GATTOperationType, ManufacturerData, ScanEntry, ScanRecord
+from .types import (
+    CentralState,
+    CharacteristicOperationType,
+    CharacteristicProperties,
+    CharacteristicWriteType,
+    DescriptorOperationType,
+    GATTOperationType,
+    ManufacturerData,
+    ScanEntry,
+    ScanRecord,
+)
 
 __all__ = [
     CentralState,
     GATTOperationType,
+    CharacteristicWriteType,
+    CharacteristicOperationType,
+    DescriptorOperationType,
     ManufacturerData,
     ScanRecord,
     ScanEntry,
     CharacteristicProperties,
     GattOperationReceived,
+    CharacteristicOperationReceived,
+    DescriptorOperationReceived,
     Enable,
     SetSimulatedCentralState,
     Disable,
     SimulatePreconnectedPeripheral,
     SimulateAdvertisement,
     SimulateGATTOperationResponse,
+    SimulateCharacteristicOperationResponse,
+    SimulateDescriptorOperationResponse,
     AddService,
     RemoveService,
     AddCharacteristic,
     RemoveCharacteristic,
     AddDescriptor,
     RemoveDescriptor,
+    SimulateGATTDisconnection,
 ]

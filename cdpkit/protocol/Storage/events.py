@@ -123,3 +123,13 @@ class AttributionReportingTriggerRegistered(CDPEvent):
     registration: Storage.AttributionReportingTriggerRegistration
     eventLevel: Storage.AttributionReportingEventLevelResult
     aggregatable: Storage.AttributionReportingAggregatableResult
+
+
+class AttributionReportingReportSent(CDPEvent):
+
+    url: str
+    body: JSON_DICT
+    result: Storage.AttributionReportingReportResult
+    netError: int | None = None  # deprecated
+    netErrorName: str | None = None
+    httpStatusCode: int | None = None

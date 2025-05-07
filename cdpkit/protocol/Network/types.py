@@ -42,6 +42,8 @@ from cdpkit.protocol._types import (
     NetworkCrossOriginOpenerPolicyValue,
     NetworkDirectSocketDnsQueryType,
     NetworkDirectTCPSocketOptions,
+    NetworkDirectUDPMessage,
+    NetworkDirectUDPSocketOptions,
     NetworkErrorReason,
     NetworkExemptedSetCookieWithReason,
     NetworkHeaders,
@@ -141,6 +143,8 @@ SignedExchangeInfo = NetworkSignedExchangeInfo
 ContentEncoding = NetworkContentEncoding
 DirectSocketDnsQueryType = NetworkDirectSocketDnsQueryType
 DirectTCPSocketOptions = NetworkDirectTCPSocketOptions
+DirectUDPSocketOptions = NetworkDirectUDPSocketOptions
+DirectUDPMessage = NetworkDirectUDPMessage
 PrivateNetworkRequestPolicy = NetworkPrivateNetworkRequestPolicy
 IPAddressSpace = NetworkIPAddressSpace
 ConnectTiming = NetworkConnectTiming

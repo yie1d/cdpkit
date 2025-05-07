@@ -67,6 +67,8 @@ from cdpkit.protocol._types import (
     AuditsSRIMessageSignatureIssueDetails,
     AuditsStylesheetLoadingIssueDetails,
     AuditsStyleSheetLoadingIssueReason,
+    AuditsUserReidentificationIssueDetails,
+    AuditsUserReidentificationIssueType,
 )
 
 AffectedCookie = AuditsAffectedCookie
@@ -121,6 +123,8 @@ StyleSheetLoadingIssueReason = AuditsStyleSheetLoadingIssueReason
 StylesheetLoadingIssueDetails = AuditsStylesheetLoadingIssueDetails
 PropertyRuleIssueReason = AuditsPropertyRuleIssueReason
 PropertyRuleIssueDetails = AuditsPropertyRuleIssueDetails
+UserReidentificationIssueType = AuditsUserReidentificationIssueType
+UserReidentificationIssueDetails = AuditsUserReidentificationIssueDetails
 InspectorIssueCode = AuditsInspectorIssueCode
 InspectorIssueDetails = AuditsInspectorIssueDetails
 IssueId = AuditsIssueId
