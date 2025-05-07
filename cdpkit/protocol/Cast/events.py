@@ -11,10 +11,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/Cast/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     Cast,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class SinksUpdated(CDPEvent):

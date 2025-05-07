@@ -12,7 +12,7 @@ https://chromedevtools.github.io/devtools-protocol/tot/EventBreakpoints/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, InputModel
+from cdpkit.protocol.base import CDPMethod, InputModel
 
 
 class SetInstrumentationBreakpointInput(InputModel):

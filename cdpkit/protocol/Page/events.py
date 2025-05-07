@@ -12,13 +12,13 @@ from __future__ import annotations
 
 from typing import Literal
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     DOM,
     Network,
     Page,
     Runtime,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class DomContentEventFired(CDPEvent):

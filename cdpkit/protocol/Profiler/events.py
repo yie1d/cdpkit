@@ -10,11 +10,11 @@ https://chromedevtools.github.io/devtools-protocol/tot/Profiler/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     Debugger,
     Profiler,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class ConsoleProfileFinished(CDPEvent):

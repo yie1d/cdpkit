@@ -10,10 +10,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/Schema/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, OutputModel
 from cdpkit.protocol._types import (
     Schema,
 )
+from cdpkit.protocol.base import CDPMethod, OutputModel
 
 
 class GetDomainsOutput(OutputModel):

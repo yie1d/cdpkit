@@ -10,10 +10,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/Accessibility/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     Accessibility,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class LoadComplete(CDPEvent):

@@ -16,10 +16,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/DOM/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     DOM,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class AttributeModified(CDPEvent):

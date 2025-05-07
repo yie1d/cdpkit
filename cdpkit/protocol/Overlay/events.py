@@ -10,11 +10,11 @@ https://chromedevtools.github.io/devtools-protocol/tot/Overlay/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     DOM,
     Page,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class InspectNodeRequested(CDPEvent):

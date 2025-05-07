@@ -10,10 +10,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/Audits/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     Audits,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class IssueAdded(CDPEvent):

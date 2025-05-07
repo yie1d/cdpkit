@@ -16,10 +16,10 @@ from __future__ import annotations
 
 from typing import Literal
 
-from cdpkit.common import JSON_DICT, CDPEvent
 from cdpkit.protocol._types import (
     Runtime,
 )
+from cdpkit.protocol.base import JSON_DICT, CDPEvent
 
 
 class BindingCalled(CDPEvent):

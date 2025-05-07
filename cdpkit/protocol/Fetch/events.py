@@ -10,12 +10,12 @@ https://chromedevtools.github.io/devtools-protocol/tot/Fetch/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     Fetch,
     Network,
     Page,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class RequestPaused(CDPEvent):

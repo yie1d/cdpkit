@@ -10,7 +10,7 @@ https://chromedevtools.github.io/devtools-protocol/tot/Media/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod
+from cdpkit.protocol.base import CDPMethod
 
 
 class Enable(CDPMethod[None]):  # deprecated

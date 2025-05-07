@@ -10,7 +10,7 @@ https://chromedevtools.github.io/devtools-protocol/tot/Tethering/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, InputModel
+from cdpkit.protocol.base import CDPMethod, InputModel
 
 
 class BindInput(InputModel):

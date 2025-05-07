@@ -10,10 +10,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/Autofill/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     Autofill,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class AddressFormFilled(CDPEvent):

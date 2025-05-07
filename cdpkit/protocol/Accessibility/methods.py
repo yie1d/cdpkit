@@ -10,13 +10,13 @@ https://chromedevtools.github.io/devtools-protocol/tot/Accessibility/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, InputModel, OutputModel
 from cdpkit.protocol._types import (
     DOM,
     Accessibility,
     Page,
     Runtime,
 )
+from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
 class Disable(CDPMethod[None]):  # deprecated

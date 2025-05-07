@@ -10,10 +10,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/Input/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     Input,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class DragIntercepted(CDPEvent):

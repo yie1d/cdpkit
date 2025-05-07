@@ -10,7 +10,7 @@ from __future__ import annotations
 import enum
 from typing import Any, Literal
 
-from cdpkit.common import JSON_DICT, CDPObject
+from cdpkit.protocol.base import JSON_DICT, CDPObject
 
 """ Unique accessibility node identifier. """
 

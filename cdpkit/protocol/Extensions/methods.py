@@ -10,10 +10,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/Extensions/
 """
 from __future__ import annotations
 
-from cdpkit.common import JSON_DICT, CDPMethod, InputModel, OutputModel
 from cdpkit.protocol._types import (
     Extensions,
 )
+from cdpkit.protocol.base import JSON_DICT, CDPMethod, InputModel, OutputModel
 
 
 class LoadUnpackedInput(InputModel):

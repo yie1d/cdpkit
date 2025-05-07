@@ -10,12 +10,12 @@ https://chromedevtools.github.io/devtools-protocol/tot/Preload/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     Network,
     Page,
     Preload,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class RuleSetUpdated(CDPEvent):

@@ -11,7 +11,6 @@ https://chromedevtools.github.io/devtools-protocol/tot/Network/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, InputModel, OutputModel
 from cdpkit.protocol._types import (
     IO,
     Debugger,
@@ -19,6 +18,7 @@ from cdpkit.protocol._types import (
     Network,
     Page,
 )
+from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
 class SetAcceptedEncodingsInput(InputModel):

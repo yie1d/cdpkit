@@ -10,11 +10,11 @@ https://chromedevtools.github.io/devtools-protocol/tot/Tracing/
 """
 from __future__ import annotations
 
-from cdpkit.common import JSON_DICT, CDPEvent
 from cdpkit.protocol._types import (
     IO,
     Tracing,
 )
+from cdpkit.protocol.base import JSON_DICT, CDPEvent
 
 
 class BufferUsage(CDPEvent):

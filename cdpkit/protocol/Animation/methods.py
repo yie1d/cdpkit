@@ -10,10 +10,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/Animation/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, InputModel, OutputModel
 from cdpkit.protocol._types import (
     Runtime,
 )
+from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
 class Disable(CDPMethod[None]):  # deprecated

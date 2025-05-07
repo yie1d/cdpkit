@@ -10,10 +10,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/Console/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     Console,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class MessageAdded(CDPEvent):

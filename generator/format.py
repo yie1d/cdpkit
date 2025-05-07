@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import enum
 from typing import Any, Literal
-from cdpkit.common import CDPObject, InputModel, OutputModel, CDPEvent, CDPMethod, JSON_DICT
+from cdpkit.protocol.base import CDPObject, InputModel, OutputModel, CDPEvent, CDPMethod, JSON_DICT
 {ref_imports}
 
 {main_code}
@@ -30,7 +30,7 @@ from __future__ import annotations
 
 import enum
 from typing import Any, Literal
-from cdpkit.common import CDPObject, JSON_DICT
+from cdpkit.protocol.base import CDPObject, JSON_DICT
 
 {types_code}
 

@@ -422,7 +422,6 @@ def generate_domain(domain_dir_path: Path, domain: CDPDomain) -> None:
         init_content += f'from .{k} import (\n{v_list}\n)\n'
         all_imports += f'{v_list},\n'
 
-
     with domain_dir_path.joinpath('__init__.py').open('w', encoding='utf-8') as f:
         f.write(f'{init_content}\n__all__ = [\n{all_imports}]\n')
 

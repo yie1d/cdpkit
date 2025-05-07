@@ -13,11 +13,11 @@ from __future__ import annotations
 
 from typing import Literal
 
-from cdpkit.common import CDPMethod, InputModel, OutputModel
 from cdpkit.protocol._types import (
     Debugger,
     Runtime,
 )
+from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
 class ContinueToLocationInput(InputModel):

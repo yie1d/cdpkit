@@ -10,10 +10,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/Animation/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     Animation,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class AnimationCanceled(CDPEvent):

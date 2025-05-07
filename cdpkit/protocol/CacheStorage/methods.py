@@ -10,11 +10,11 @@ https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, InputModel, OutputModel
 from cdpkit.protocol._types import (
     CacheStorage,
     Storage,
 )
+from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
 class DeleteCacheInput(InputModel):

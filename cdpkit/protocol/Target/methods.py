@@ -10,11 +10,11 @@ https://chromedevtools.github.io/devtools-protocol/tot/Target/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, InputModel, OutputModel
 from cdpkit.protocol._types import (
     Browser,
     Target,
 )
+from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
 class ActivateTargetInput(InputModel):

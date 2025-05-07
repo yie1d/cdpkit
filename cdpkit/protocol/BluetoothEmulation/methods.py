@@ -11,10 +11,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/BluetoothEmulation/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, InputModel, OutputModel
 from cdpkit.protocol._types import (
     BluetoothEmulation,
 )
+from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
 class EnableInput(InputModel):

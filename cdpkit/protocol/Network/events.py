@@ -13,11 +13,11 @@ from __future__ import annotations
 
 from typing import Literal
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     Network,
     Page,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class DataReceived(CDPEvent):

@@ -11,10 +11,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/BluetoothEmulation/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     BluetoothEmulation,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class GattOperationReceived(CDPEvent):

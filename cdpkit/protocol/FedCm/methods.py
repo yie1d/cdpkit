@@ -10,10 +10,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/FedCm/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, InputModel
 from cdpkit.protocol._types import (
     FedCm,
 )
+from cdpkit.protocol.base import CDPMethod, InputModel
 
 
 class EnableInput(InputModel):

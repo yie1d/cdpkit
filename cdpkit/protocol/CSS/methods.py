@@ -15,12 +15,12 @@ https://chromedevtools.github.io/devtools-protocol/tot/CSS/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, InputModel, OutputModel
 from cdpkit.protocol._types import (
     CSS,
     DOM,
     Page,
 )
+from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
 class AddRuleInput(InputModel):

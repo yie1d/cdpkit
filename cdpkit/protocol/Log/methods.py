@@ -10,10 +10,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/Log/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, InputModel
 from cdpkit.protocol._types import (
     Log,
 )
+from cdpkit.protocol.base import CDPMethod, InputModel
 
 
 class Clear(CDPMethod[None]):  # deprecated

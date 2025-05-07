@@ -10,13 +10,13 @@ https://chromedevtools.github.io/devtools-protocol/tot/Storage/
 """
 from __future__ import annotations
 
-from cdpkit.common import JSON_DICT, CDPMethod, InputModel, OutputModel
 from cdpkit.protocol._types import (
     Browser,
     Network,
     Page,
     Storage,
 )
+from cdpkit.protocol.base import JSON_DICT, CDPMethod, InputModel, OutputModel
 
 
 class GetStorageKeyForFrameInput(InputModel):

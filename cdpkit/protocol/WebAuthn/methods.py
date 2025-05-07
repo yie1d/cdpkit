@@ -11,10 +11,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, InputModel, OutputModel
 from cdpkit.protocol._types import (
     WebAuthn,
 )
+from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
 class EnableInput(InputModel):

@@ -12,10 +12,10 @@ from __future__ import annotations
 
 from typing import Literal
 
-from cdpkit.common import CDPMethod, InputModel
 from cdpkit.protocol._types import (
     Input,
 )
+from cdpkit.protocol.base import CDPMethod, InputModel
 
 
 class DispatchDragEventInput(InputModel):

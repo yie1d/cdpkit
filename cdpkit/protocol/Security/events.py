@@ -10,10 +10,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/Security/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     Security,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class CertificateError(CDPEvent):

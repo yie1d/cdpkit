@@ -11,10 +11,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/WebAudio/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     WebAudio,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class ContextCreated(CDPEvent):

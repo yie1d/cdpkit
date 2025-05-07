@@ -10,13 +10,13 @@ https://chromedevtools.github.io/devtools-protocol/tot/Overlay/
 """
 from __future__ import annotations
 
-from cdpkit.common import JSON_DICT, CDPMethod, InputModel, OutputModel
 from cdpkit.protocol._types import (
     DOM,
     Overlay,
     Page,
     Runtime,
 )
+from cdpkit.protocol.base import JSON_DICT, CDPMethod, InputModel, OutputModel
 
 
 class Disable(CDPMethod[None]):  # deprecated

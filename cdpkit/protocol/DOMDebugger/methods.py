@@ -11,12 +11,12 @@ https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, InputModel, OutputModel
 from cdpkit.protocol._types import (
     DOM,
     DOMDebugger,
     Runtime,
 )
+from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
 class GetEventListenersInput(InputModel):

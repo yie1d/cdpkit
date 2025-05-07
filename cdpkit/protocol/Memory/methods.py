@@ -10,10 +10,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/Memory/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPMethod, InputModel, OutputModel
 from cdpkit.protocol._types import (
     Memory,
 )
+from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
 class GetDOMCountersOutput(OutputModel):

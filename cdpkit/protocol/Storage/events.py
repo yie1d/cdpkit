@@ -10,12 +10,12 @@ https://chromedevtools.github.io/devtools-protocol/tot/Storage/
 """
 from __future__ import annotations
 
-from cdpkit.common import JSON_DICT, CDPEvent
 from cdpkit.protocol._types import (
     Network,
     Page,
     Storage,
 )
+from cdpkit.protocol.base import JSON_DICT, CDPEvent
 
 
 class CacheStorageContentUpdated(CDPEvent):

@@ -10,10 +10,10 @@ https://chromedevtools.github.io/devtools-protocol/tot/DeviceAccess/
 """
 from __future__ import annotations
 
-from cdpkit.common import CDPEvent
 from cdpkit.protocol._types import (
     DeviceAccess,
 )
+from cdpkit.protocol.base import CDPEvent
 
 
 class DeviceRequestPrompted(CDPEvent):
