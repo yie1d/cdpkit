@@ -4,7 +4,7 @@ from typing import Any, Generic, TypeVar
 
 from pydantic import BaseModel, ConfigDict
 
-from cdpkit.connection import CDPSession
+from cdpkit.connection.session import CDPSession
 from cdpkit.logger import logger
 
 __all__ = [
