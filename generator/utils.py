@@ -47,19 +47,19 @@ def update_cdp_version(package_path: Path, protocol_version: str) -> None:
         file_content = '__version__ = "0.0.0"'
 
     try:
-        version = re.search(r'__version__ = [\'"](\d+\.\d+\.\d)[\'"]', file_content).group(1)
+        version = re.search(r'__version__ = [\'"](\d+\.\d+\.\d+)[\'"]', file_content).group(1)
     except AttributeError:
         version = '0.0.0'
 
-    major, minor, _ = version.split('.')
-    minor = int(minor) + 1
-    if minor >= 20:
-        major = str(int(major) + 1)
-        minor = 0
+    major, minor, patch = version.split('.')
+    patch = int(patch) + 1
+    if patch >= 20:
+        minor = str(int(minor) + 1)
+        patch = 0
     else:
-        minor = str(minor)
+        patch = str(patch)
 
-    file_content = f"""__version__ = '{major}.{minor}.0'\n__cdp_version__ = '{protocol_version}.0'\n"""
+    file_content = f"""__version__ = '{major}.{minor}.{patch}'\n__cdp_version__ = '{protocol_version}.0'\n"""
 
     with version_file.open('w') as f:
         f.write(file_content)
