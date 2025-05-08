@@ -162,9 +162,7 @@ class CDPSessionManager:
                 async with session.get(f'http://localhost:{self._connection_port}/json/version') as resp:
                     data = await resp.json()
                     return data['webSocketDebuggerUrl']
-        except aiohttp.ClientError as err:
-            raise Exception(f'Failed to get websocket address: {err}')
-        except KeyError as err:
+        except (aiohttp.ClientError, KeyError) as err:
             raise Exception(f'Failed to get websocket address: {err}')
 
     async def get_session(self, page_id: str = 'browser') -> CDPSession:
