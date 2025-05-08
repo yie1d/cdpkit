@@ -25,6 +25,11 @@ def write_cdp_protocol(dir_path: Path, protocol_domains_data: list[dict[str, Any
 
 
 async def main():
+    """
+
+    Just generate the code, and leave the rest to Ruff.  ^.^
+
+    """
     protocol_version, protocol_domains_data = await request_protocol_json()
 
     package_path = ROOT_PATH / 'cdpkit'
