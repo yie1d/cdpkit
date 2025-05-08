@@ -86,7 +86,7 @@ class CDPMethod[RESULT_TYPE]:
         Initialize a CDP method instance
 
         Args:
-            /: Indicates a parameter separator, and parameters after it can only be passed by keyword.
+            *_: Indicates that all positional parameters are ignored.
             **kwargs: Keyword arguments used to initialize the method's parameters.
         """
         if self.INPUT_VALIDATOR is None:
