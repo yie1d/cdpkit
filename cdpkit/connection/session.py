@@ -9,7 +9,7 @@ import websockets
 
 from cdpkit.connection.handler import CDPCommandsHandler, CDPEventsHandler
 from cdpkit.logger import logger
-from cdpkit.protocol.base import CDPMethod, RESULT_TYPE
+from cdpkit.protocol.base import RESULT_TYPE, CDPMethod
 
 
 def async_ensure_connection(func):

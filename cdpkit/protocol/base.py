@@ -12,7 +12,8 @@ __all__ = [
     'OutputModel',
     'CDPEvent',
     'CDPMethod',
-    'JSON_DICT'
+    'JSON_DICT',
+    'RESULT_TYPE'
 ]
 
 RESULT_TYPE = TypeVar('RESULT_TYPE')
