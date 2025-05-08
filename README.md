@@ -4,7 +4,7 @@ English  | [中文](doc/README_cn.md)
 
 ## Overview
 
-CDPKit is a toolkit for the Chrome DevTools Protocol (CDP). The protocol component of this project is built on [pydantic](https://github.com/pydantic/pydantic), supporting friendly code completion and parameter type checking. It also provides a connection module that enables CDP interactions via the remote-debugging-port.
+CDPKit is a toolkit for the Chrome DevTools Protocol (CDP). The protocol component of this project is built on [pydantic](https://github.com/pydantic/pydantic), supporting friendly code completion and parameter type checking. It also provides a connection module that enables CDP interactions via the `remote-debugging-port`.
 
 ## Key Features  
 - **Type Safety**: Leverages `pydantic` to automatically implement type checking for command inputs and outputs.
