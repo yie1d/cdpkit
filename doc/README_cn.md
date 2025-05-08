@@ -46,7 +46,7 @@ uv sync
 
 ```python
 import asyncio
-from cdpkit.connection.session import CDPSessionManager
+from cdpkit.connection import CDPSessionManager
 from cdpkit.protocol import Target
 
 
