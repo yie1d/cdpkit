@@ -133,6 +133,8 @@ class CDPType(CDPCommonObject):
     ) -> str:
         if self.items:
             _type = self.items.get_py_type(domain_obj, ref_imports_set)
+            if self.type == 'array':
+                _type = f'list[{_type}]'
         else:
             _type = CDPVariableType[self.type].value
         return _type

@@ -389,6 +389,7 @@ def generate_types_file(file_path: Path, has_types_domain: list[CDPDomain]) -> N
 
         domain_types_properties_list = []
         for _type in domain.types:
+
             generate_code += GenerateType(_type, domain_context).generate_code()
 
             domain_types_properties_list.append(indent(make_property(

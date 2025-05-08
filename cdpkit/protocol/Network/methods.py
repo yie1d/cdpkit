@@ -876,7 +876,7 @@ class SetCookieControlsInput(InputModel):
 
 class SetCookieControls(CDPMethod[None]):  # experimental deprecated
     """ Sets Controls for third-party cookie access
-    Page reload is required before the new cookie bahavior will be observed """
+    Page reload is required before the new cookie behavior will be observed """
 
     INPUT_VALIDATOR = SetCookieControlsInput
     OUTPUT_VALIDATOR = None

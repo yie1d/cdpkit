@@ -2467,7 +2467,7 @@ class DOMRGBA(CDPObject):
 
 """ An array of quad vertices, x immediately followed by y for each point, points clock-wise. """
 
-DOMQuad = float
+DOMQuad = list[float]
 
 
 class DOMBoxModel(CDPObject):
@@ -2730,7 +2730,7 @@ class DOMSnapshotNameValue(CDPObject):
 DOMSnapshotStringIndex = int
 """ Index of the string in the strings table. """
 
-DOMSnapshotArrayOfStrings = DOMSnapshotStringIndex
+DOMSnapshotArrayOfStrings = list[DOMSnapshotStringIndex]
 
 
 class DOMSnapshotRareStringData(CDPObject):
@@ -2753,7 +2753,7 @@ class DOMSnapshotRareIntegerData(CDPObject):
     value: list[int]
 
 
-DOMSnapshotRectangle = float
+DOMSnapshotRectangle = list[float]
 
 
 class DOMSnapshotDocumentSnapshot(CDPObject):
@@ -2932,7 +2932,7 @@ class DOMStorageStorageId(CDPObject):
 
 """ DOM Storage item. """
 
-DOMStorageItem = str
+DOMStorageItem = list[str]
 
 
 class EmulationSafeAreaInsets(CDPObject):
@@ -3470,7 +3470,7 @@ class LayerTreeLayer(CDPObject):
 
 """ Array of timings, one per paint step. """
 
-LayerTreePaintProfile = float
+LayerTreePaintProfile = list[float]
 
 
 class LogLogEntry(CDPObject):
@@ -7196,7 +7196,7 @@ If filter is not specified, the one assumed is
 [{type: "browser", exclude: true}, {type: "tab", exclude: true}, {}]
 (i.e. include everything but `browser` and `tab`). """
 
-TargetTargetFilter = TargetFilterEntry
+TargetTargetFilter = list[TargetFilterEntry]
 
 
 class TargetRemoteLocation(CDPObject):
