@@ -1,6 +1,6 @@
 [project]
 name = "cdpkits"
-version = "1.2.1"
+version = "1.2.2"
 description = "Chrome DevTools Protocol Toolkit in Python"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -36,19 +36,23 @@ build-backend = 'setuptools.build_meta'
 include = ['cdpkit*']
 exclude = ['tests*', 'config*', 'examples*', 'generator*']
 
-[tool.ruff.lint]
-preview = true
-select = ["E", "F", "W", "I", "UP"]
-exclude = ["tests", "tests/*", "demos/*"]
-
-[tool.ruff.format]
-preview = true
-quote-style = "single"
 
 [tool.ruff]
 line-length = 120
 target-version = "py313"
 
+[tool.ruff.format]
+preview = true
+quote-style = "single"
+
+[tool.ruff.lint]
+preview = true
+select = ["E", "F", "W", "I", "UP"]
+exclude = ["tests", "tests/*", "demos/*"]
+
+[tool.ruff.per-file-ignores]
+"cdpkit/protocol/_types.py" = ["E501"]
+"cdpkit/protocol/*/*.py" = ["E501"]
 
 [tool.pytest.ini_options]
 pythonpath = "."

@@ -17,7 +17,7 @@ from cdpkit.protocol.base import JSON_DICT, CDPObject
 AccessibilityAXNodeId = str
 
 
-class AccessibilityAXValueType(str, enum.Enum):
+class AccessibilityAXValueType(enum.StrEnum):
     """ Enum of possible property types. """
 
     BOOLEAN = "boolean"
@@ -39,7 +39,7 @@ class AccessibilityAXValueType(str, enum.Enum):
     VALUEUNDEFINED = "valueUndefined"
 
 
-class AccessibilityAXValueSourceType(str, enum.Enum):
+class AccessibilityAXValueSourceType(enum.StrEnum):
     """ Enum of possible property sources. """
 
     ATTRIBUTE = "attribute"
@@ -50,7 +50,7 @@ class AccessibilityAXValueSourceType(str, enum.Enum):
     RELATEDELEMENT = "relatedElement"
 
 
-class AccessibilityAXValueNativeSourceType(str, enum.Enum):
+class AccessibilityAXValueNativeSourceType(enum.StrEnum):
     """ Enum of possible native property sources (as a subtype of a particular AXValueSourceType). """
 
     DESCRIPTION = "description"
@@ -133,7 +133,7 @@ class AccessibilityAXValue(CDPObject):
     sources: list[Accessibility.AXValueSource] | None = None  # deprecated
 
 
-class AccessibilityAXPropertyName(str, enum.Enum):
+class AccessibilityAXPropertyName(enum.StrEnum):
     """ Values of AXProperty name:
     - from 'busy' to 'roledescription': states which apply to every AX node
     - from 'live' to 'root': attributes which apply to nodes in live regions
@@ -363,7 +363,7 @@ class AuditsAffectedFrame(CDPObject):
     frameId: Page.FrameId
 
 
-class AuditsCookieExclusionReason(str, enum.Enum):
+class AuditsCookieExclusionReason(enum.StrEnum):
 
     EXCLUDESAMESITEUNSPECIFIEDTREATEDASLAX = "ExcludeSameSiteUnspecifiedTreatedAsLax"
     EXCLUDESAMESITENONEINSECURE = "ExcludeSameSiteNoneInsecure"
@@ -378,7 +378,7 @@ class AuditsCookieExclusionReason(str, enum.Enum):
     EXCLUDESCHEMEMISMATCH = "ExcludeSchemeMismatch"
 
 
-class AuditsCookieWarningReason(str, enum.Enum):
+class AuditsCookieWarningReason(enum.StrEnum):
 
     WARNSAMESITEUNSPECIFIEDCROSSSITECONTEXT = "WarnSameSiteUnspecifiedCrossSiteContext"
     WARNSAMESITENONEINSECURE = "WarnSameSiteNoneInsecure"
@@ -396,13 +396,13 @@ class AuditsCookieWarningReason(str, enum.Enum):
     WARNTHIRDPARTYCOOKIEHEURISTIC = "WarnThirdPartyCookieHeuristic"
 
 
-class AuditsCookieOperation(str, enum.Enum):
+class AuditsCookieOperation(enum.StrEnum):
 
     SETCOOKIE = "SetCookie"
     READCOOKIE = "ReadCookie"
 
 
-class AuditsInsightType(str, enum.Enum):
+class AuditsInsightType(enum.StrEnum):
     """ Represents the category of insight that a cookie issue falls under. """
 
     GITHUBRESOURCE = "GitHubResource"
@@ -446,14 +446,14 @@ class AuditsCookieIssueDetails(CDPObject):
     insight: Audits.CookieIssueInsight | None = None  # deprecated
 
 
-class AuditsMixedContentResolutionStatus(str, enum.Enum):
+class AuditsMixedContentResolutionStatus(enum.StrEnum):
 
     MIXEDCONTENTBLOCKED = "MixedContentBlocked"
     MIXEDCONTENTAUTOMATICALLYUPGRADED = "MixedContentAutomaticallyUpgraded"
     MIXEDCONTENTWARNING = "MixedContentWarning"
 
 
-class AuditsMixedContentResourceType(str, enum.Enum):
+class AuditsMixedContentResourceType(enum.StrEnum):
 
     ATTRIBUTIONSRC = "AttributionSrc"
     AUDIO = "Audio"
@@ -507,7 +507,7 @@ class AuditsMixedContentIssueDetails(CDPObject):
     frame: Audits.AffectedFrame | None = None  # deprecated
 
 
-class AuditsBlockedByResponseReason(str, enum.Enum):
+class AuditsBlockedByResponseReason(enum.StrEnum):
     """ Enum indicating the reason a response has been blocked. These reasons are
     refinements of the net error BLOCKED_BY_RESPONSE. """
 
@@ -535,13 +535,13 @@ class AuditsBlockedByResponseIssueDetails(CDPObject):
     reason: Audits.BlockedByResponseReason
 
 
-class AuditsHeavyAdResolutionStatus(str, enum.Enum):
+class AuditsHeavyAdResolutionStatus(enum.StrEnum):
 
     HEAVYADBLOCKED = "HeavyAdBlocked"
     HEAVYADWARNING = "HeavyAdWarning"
 
 
-class AuditsHeavyAdReason(str, enum.Enum):
+class AuditsHeavyAdReason(enum.StrEnum):
 
     NETWORKTOTALLIMIT = "NetworkTotalLimit"
     CPUTOTALLIMIT = "CpuTotalLimit"
@@ -560,7 +560,7 @@ class AuditsHeavyAdIssueDetails(CDPObject):
     frame: Audits.AffectedFrame  # deprecated
 
 
-class AuditsContentSecurityPolicyViolationType(str, enum.Enum):
+class AuditsContentSecurityPolicyViolationType(enum.StrEnum):
 
     KINLINEVIOLATION = "kInlineViolation"
     KEVALVIOLATION = "kEvalViolation"
@@ -601,7 +601,7 @@ class AuditsContentSecurityPolicyIssueDetails(CDPObject):
     violatingNodeId: DOM.BackendNodeId | None = None
 
 
-class AuditsSharedArrayBufferIssueType(str, enum.Enum):
+class AuditsSharedArrayBufferIssueType(enum.StrEnum):
 
     TRANSFERISSUE = "TransferIssue"
     CREATIONISSUE = "CreationIssue"
@@ -654,7 +654,7 @@ class AuditsCorsIssueDetails(CDPObject):
     clientSecurityState: Network.ClientSecurityState | None = None
 
 
-class AuditsAttributionReportingIssueType(str, enum.Enum):
+class AuditsAttributionReportingIssueType(enum.StrEnum):
 
     PERMISSIONPOLICYDISABLED = "PermissionPolicyDisabled"
     UNTRUSTWORTHYREPORTINGORIGIN = "UntrustworthyReportingOrigin"
@@ -679,7 +679,7 @@ class AuditsAttributionReportingIssueType(str, enum.Enum):
     NAVIGATIONREGISTRATIONUNIQUESCOPEALREADYSET = "NavigationRegistrationUniqueScopeAlreadySet"
 
 
-class AuditsSharedDictionaryError(str, enum.Enum):
+class AuditsSharedDictionaryError(enum.StrEnum):
 
     USEERRORCROSSORIGINNOCORSREQUEST = "UseErrorCrossOriginNoCorsRequest"
     USEERRORDICTIONARYLOADFAILURE = "UseErrorDictionaryLoadFailure"
@@ -706,7 +706,7 @@ class AuditsSharedDictionaryError(str, enum.Enum):
     WRITEERRORUNSUPPORTEDTYPE = "WriteErrorUnsupportedType"
 
 
-class AuditsSRIMessageSignatureError(str, enum.Enum):
+class AuditsSRIMessageSignatureError(enum.StrEnum):
 
     MISSINGSIGNATUREHEADER = "MissingSignatureHeader"
     MISSINGSIGNATUREINPUTHEADER = "MissingSignatureInputHeader"
@@ -785,7 +785,7 @@ class AuditsSRIMessageSignatureIssueDetails(CDPObject):
     request: Audits.AffectedRequest
 
 
-class AuditsGenericIssueErrorType(str, enum.Enum):
+class AuditsGenericIssueErrorType(enum.StrEnum):
 
     FORMLABELFORNAMEERROR = "FormLabelForNameError"
     FORMDUPLICATEIDFORINPUTERROR = "FormDuplicateIdForInputError"
@@ -853,7 +853,7 @@ class AuditsCookieDeprecationMetadataIssueDetails(CDPObject):
     operation: Audits.CookieOperation
 
 
-class AuditsClientHintIssueReason(str, enum.Enum):
+class AuditsClientHintIssueReason(enum.StrEnum):
 
     METATAGALLOWLISTINVALIDORIGIN = "MetaTagAllowListInvalidOrigin"
     METATAGMODIFIEDHTML = "MetaTagModifiedHTML"
@@ -864,7 +864,7 @@ class AuditsFederatedAuthRequestIssueDetails(CDPObject):
     federatedAuthRequestIssueReason: Audits.FederatedAuthRequestIssueReason
 
 
-class AuditsFederatedAuthRequestIssueReason(str, enum.Enum):
+class AuditsFederatedAuthRequestIssueReason(enum.StrEnum):
     """ Represents the failure reason when a federated authentication reason fails.
     Should be updated alongside RequestIdTokenStatus in
     third_party/blink/public/mojom/devtools/inspector_issue.mojom to include
@@ -925,7 +925,7 @@ class AuditsFederatedAuthUserInfoRequestIssueDetails(CDPObject):
     federatedAuthUserInfoRequestIssueReason: Audits.FederatedAuthUserInfoRequestIssueReason
 
 
-class AuditsFederatedAuthUserInfoRequestIssueReason(str, enum.Enum):
+class AuditsFederatedAuthUserInfoRequestIssueReason(enum.StrEnum):
     """ Represents the failure reason when a getUserInfo() call fails.
     Should be updated alongside FederatedAuthUserInfoRequestResult in
     third_party/blink/public/mojom/devtools/inspector_issue.mojom. """
@@ -961,7 +961,7 @@ class AuditsFailedRequestInfo(CDPObject):
     requestId: Network.RequestId | None = None
 
 
-class AuditsPartitioningBlobURLInfo(str, enum.Enum):
+class AuditsPartitioningBlobURLInfo(enum.StrEnum):
 
     BLOCKEDCROSSPARTITIONFETCHING = "BlockedCrossPartitionFetching"
     ENFORCENOOPENERFORNAVIGATION = "EnforceNoopenerForNavigation"
@@ -976,7 +976,7 @@ class AuditsPartitioningBlobURLIssueDetails(CDPObject):
     partitioningBlobURLInfo: Audits.PartitioningBlobURLInfo  # deprecated
 
 
-class AuditsSelectElementAccessibilityIssueReason(str, enum.Enum):
+class AuditsSelectElementAccessibilityIssueReason(enum.StrEnum):
 
     DISALLOWEDSELECTCHILD = "DisallowedSelectChild"
     DISALLOWEDOPTGROUPCHILD = "DisallowedOptGroupChild"
@@ -995,7 +995,7 @@ class AuditsSelectElementAccessibilityIssueDetails(CDPObject):
     hasDisallowedAttributes: bool
 
 
-class AuditsStyleSheetLoadingIssueReason(str, enum.Enum):
+class AuditsStyleSheetLoadingIssueReason(enum.StrEnum):
 
     LATEIMPORTRULE = "LateImportRule"
     REQUESTFAILED = "RequestFailed"
@@ -1014,7 +1014,7 @@ class AuditsStylesheetLoadingIssueDetails(CDPObject):
     failedRequestInfo: Audits.FailedRequestInfo | None = None  # deprecated
 
 
-class AuditsPropertyRuleIssueReason(str, enum.Enum):
+class AuditsPropertyRuleIssueReason(enum.StrEnum):
 
     INVALIDSYNTAX = "InvalidSyntax"
     INVALIDINITIALVALUE = "InvalidInitialValue"
@@ -1036,7 +1036,7 @@ class AuditsPropertyRuleIssueDetails(CDPObject):
     propertyValue: str | None = None  # deprecated
 
 
-class AuditsUserReidentificationIssueType(str, enum.Enum):
+class AuditsUserReidentificationIssueType(enum.StrEnum):
 
     BLOCKEDFRAMENAVIGATION = "BlockedFrameNavigation"
     BLOCKEDSUBRESOURCE = "BlockedSubresource"
@@ -1052,7 +1052,7 @@ class AuditsUserReidentificationIssueDetails(CDPObject):
     request: Audits.AffectedRequest | None = None  # deprecated
 
 
-class AuditsInspectorIssueCode(str, enum.Enum):
+class AuditsInspectorIssueCode(enum.StrEnum):
     """ A unique identifier for the type of issue. Each type may use one of the
     optional fields in InspectorIssueDetails to convey more specific
     information about the kind of issue. """
@@ -1157,7 +1157,7 @@ class AuditsInspectorIssue(CDPObject):
     issueId: Audits.IssueId | None = None  # deprecated
 
 
-class ExtensionsStorageArea(str, enum.Enum):
+class ExtensionsStorageArea(enum.StrEnum):
     """ Storage areas. """
 
     SESSION = "session"
@@ -1218,7 +1218,7 @@ class AutofillAddressUI(CDPObject):
     addressFields: list[Autofill.AddressFields]  # deprecated
 
 
-class AutofillFillingStrategy(str, enum.Enum):
+class AutofillFillingStrategy(enum.StrEnum):
     """ Specified whether a filled field was done so by using the html autocomplete attribute or autofill heuristics. """
 
     AUTOCOMPLETEATTRIBUTE = "autocompleteAttribute"
@@ -1252,7 +1252,7 @@ class AutofillFilledField(CDPObject):
     fieldId: DOM.BackendNodeId  # deprecated
 
 
-class BackgroundServiceServiceName(str, enum.Enum):
+class BackgroundServiceServiceName(enum.StrEnum):
     """ The Background Service that will be associated with the commands/events.
     Every Background Service operates independently, but they share the same
     API. """
@@ -1305,7 +1305,7 @@ BrowserBrowserContextID = str
 BrowserWindowID = int
 
 
-class BrowserWindowState(str, enum.Enum):
+class BrowserWindowState(enum.StrEnum):
     """ The state of the browser window. """
 
     NORMAL = "normal"
@@ -1333,7 +1333,7 @@ class BrowserBounds(CDPObject):
     windowState: Browser.WindowState | None = None  # deprecated
 
 
-class BrowserPermissionType(str, enum.Enum):
+class BrowserPermissionType(enum.StrEnum):
 
     AR = "ar"
     AUDIOCAPTURE = "audioCapture"
@@ -1374,7 +1374,7 @@ class BrowserPermissionType(str, enum.Enum):
     WINDOWMANAGEMENT = "windowManagement"
 
 
-class BrowserPermissionSetting(str, enum.Enum):
+class BrowserPermissionSetting(enum.StrEnum):
 
     GRANTED = "granted"
     DENIED = "denied"
@@ -1404,7 +1404,7 @@ class BrowserPermissionDescriptor(CDPObject):
     panTiltZoom: bool | None = None  # deprecated
 
 
-class BrowserBrowserCommandId(str, enum.Enum):
+class BrowserBrowserCommandId(enum.StrEnum):
     """ Browser command ids used by executeBrowserCommand. """
 
     OPENTABSEARCH = "openTabSearch"
@@ -1441,7 +1441,7 @@ class BrowserHistogram(CDPObject):
     buckets: list[Browser.Bucket]  # deprecated
 
 
-class BrowserPrivacySandboxAPI(str, enum.Enum):
+class BrowserPrivacySandboxAPI(enum.StrEnum):
 
     BIDDINGANDAUCTIONSERVICES = "BiddingAndAuctionServices"
     TRUSTEDKEYVALUE = "TrustedKeyValue"
@@ -1450,7 +1450,7 @@ class BrowserPrivacySandboxAPI(str, enum.Enum):
 CSSStyleSheetId = str
 
 
-class CSSStyleSheetOrigin(str, enum.Enum):
+class CSSStyleSheetOrigin(enum.StrEnum):
     """ Stylesheet type: "injected" for stylesheets injected via extension, "user-agent" for user-agent
     stylesheets, "inspector" for stylesheets created by the inspector (i.e. those holding the "via
     inspector" rules), "regular" for regular stylesheets. """
@@ -1656,7 +1656,7 @@ class CSSCSSRule(CDPObject):
     startingStyles: list[CSS.CSSStartingStyle] | None = None  # experimental deprecated
 
 
-class CSSCSSRuleType(str, enum.Enum):
+class CSSCSSRuleType(enum.StrEnum):
     """ Enum indicating the type of a CSS rule, used to represent the order of a style rule's ancestors.
     This list only contains rule types that are collected during the ancestor rule collection. """
 
@@ -2160,7 +2160,7 @@ class CSSStyleDeclarationEdit(CDPObject):
 CacheStorageCacheId = str
 
 
-class CacheStorageCachedResponseType(str, enum.Enum):
+class CacheStorageCachedResponseType(enum.StrEnum):
     """ type of HTTP response cached """
 
     BASIC = "basic"
@@ -2263,7 +2263,7 @@ class DOMBackendNode(CDPObject):
     backendNodeId: DOM.BackendNodeId
 
 
-class DOMPseudoType(str, enum.Enum):
+class DOMPseudoType(enum.StrEnum):
     """ Pseudo element type. """
 
     FIRST_LINE = "first-line"
@@ -2304,7 +2304,7 @@ class DOMPseudoType(str, enum.Enum):
     PICKER = "picker"
 
 
-class DOMShadowRootType(str, enum.Enum):
+class DOMShadowRootType(enum.StrEnum):
     """ Shadow root type. """
 
     USER_AGENT = "user-agent"
@@ -2312,7 +2312,7 @@ class DOMShadowRootType(str, enum.Enum):
     CLOSED = "closed"
 
 
-class DOMCompatibilityMode(str, enum.Enum):
+class DOMCompatibilityMode(enum.StrEnum):
     """ Document compatibility mode. """
 
     QUIRKSMODE = "QuirksMode"
@@ -2320,7 +2320,7 @@ class DOMCompatibilityMode(str, enum.Enum):
     NOQUIRKSMODE = "NoQuirksMode"
 
 
-class DOMPhysicalAxes(str, enum.Enum):
+class DOMPhysicalAxes(enum.StrEnum):
     """ ContainerSelector physical axes """
 
     HORIZONTAL = "Horizontal"
@@ -2328,7 +2328,7 @@ class DOMPhysicalAxes(str, enum.Enum):
     BOTH = "Both"
 
 
-class DOMLogicalAxes(str, enum.Enum):
+class DOMLogicalAxes(enum.StrEnum):
     """ ContainerSelector logical axes """
 
     INLINE = "Inline"
@@ -2336,7 +2336,7 @@ class DOMLogicalAxes(str, enum.Enum):
     BOTH = "Both"
 
 
-class DOMScrollOrientation(str, enum.Enum):
+class DOMScrollOrientation(enum.StrEnum):
     """ Physical scroll orientation """
 
     HORIZONTAL = "horizontal"
@@ -2533,7 +2533,7 @@ class DOMCSSComputedStyleProperty(CDPObject):
     value: str  # deprecated
 
 
-class DOMDebuggerDOMBreakpointType(str, enum.Enum):
+class DOMDebuggerDOMBreakpointType(enum.StrEnum):
     """ DOM breakpoint type. """
 
     SUBTREE_MODIFIED = "subtree-modified"
@@ -2541,7 +2541,7 @@ class DOMDebuggerDOMBreakpointType(str, enum.Enum):
     NODE_REMOVED = "node-removed"
 
 
-class DOMDebuggerCSPViolationType(str, enum.Enum):
+class DOMDebuggerCSPViolationType(enum.StrEnum):
     """ CSP Violation type. """
 
     TRUSTEDTYPE_SINK_VIOLATION = "trustedtype-sink-violation"
@@ -2997,7 +2997,7 @@ class EmulationMediaFeature(CDPObject):
     value: str
 
 
-class EmulationVirtualTimePolicy(str, enum.Enum):
+class EmulationVirtualTimePolicy(enum.StrEnum):
     """ advance: If the scheduler runs out of immediate work, the virtual time base may fast forward to
     allow the next delayed task (if any) to run; pause: The virtual time base may not advance;
     pauseIfNetworkFetchesPending: The virtual time base may not advance if there are any pending
@@ -3043,7 +3043,7 @@ class EmulationUserAgentMetadata(CDPObject):
     wow64: bool | None = None
 
 
-class EmulationSensorType(str, enum.Enum):
+class EmulationSensorType(enum.StrEnum):
     """ Used to specify sensor types to emulate.
     See https://w3c.github.io/sensors/#automation for more information. """
 
@@ -3100,12 +3100,12 @@ class EmulationSensorReading(CDPObject):
     quaternion: Emulation.SensorReadingQuaternion | None = None
 
 
-class EmulationPressureSource(str, enum.Enum):
+class EmulationPressureSource(enum.StrEnum):
 
     CPU = "cpu"
 
 
-class EmulationPressureState(str, enum.Enum):
+class EmulationPressureState(enum.StrEnum):
 
     NOMINAL = "nominal"
     FAIR = "fair"
@@ -3118,7 +3118,7 @@ class EmulationPressureMetadata(CDPObject):
     available: bool | None = None
 
 
-class EmulationDisabledImageType(str, enum.Enum):
+class EmulationDisabledImageType(enum.StrEnum):
     """ Enum of image types that can be disabled. """
 
     AVIF = "avif"
@@ -3321,14 +3321,14 @@ class InputTouchPoint(CDPObject):
     id: float | None = None  # deprecated
 
 
-class InputGestureSourceType(str, enum.Enum):
+class InputGestureSourceType(enum.StrEnum):
 
     DEFAULT = "default"
     TOUCH = "touch"
     MOUSE = "mouse"
 
 
-class InputMouseButton(str, enum.Enum):
+class InputMouseButton(enum.StrEnum):
 
     NONE = "none"
     LEFT = "left"
@@ -3519,7 +3519,7 @@ class LogViolationSetting(CDPObject):
     threshold: float  # deprecated
 
 
-class MemoryPressureLevel(str, enum.Enum):
+class MemoryPressureLevel(enum.StrEnum):
     """ Memory pressure level. """
 
     MODERATE = "moderate"
@@ -3573,7 +3573,7 @@ class MemoryDOMCounter(CDPObject):
     count: int  # deprecated
 
 
-class NetworkResourceType(str, enum.Enum):
+class NetworkResourceType(enum.StrEnum):
     """ Resource type as it was perceived by the rendering engine. """
 
     DOCUMENT = "Document"
@@ -3609,7 +3609,7 @@ NetworkRequestId = str
 NetworkInterceptionId = str
 
 
-class NetworkErrorReason(str, enum.Enum):
+class NetworkErrorReason(enum.StrEnum):
     """ Network level fetch failure reason. """
 
     FAILED = "Failed"
@@ -3639,7 +3639,7 @@ NetworkMonotonicTime = float
 NetworkHeaders = JSON_DICT
 
 
-class NetworkConnectionType(str, enum.Enum):
+class NetworkConnectionType(enum.StrEnum):
     """ The underlying connection technology that the browser is supposedly using. """
 
     NONE = "none"
@@ -3653,7 +3653,7 @@ class NetworkConnectionType(str, enum.Enum):
     OTHER = "other"
 
 
-class NetworkCookieSameSite(str, enum.Enum):
+class NetworkCookieSameSite(enum.StrEnum):
     """ Represents the cookie's 'SameSite' status:
     https://tools.ietf.org/html/draft-west-first-party-cookies """
 
@@ -3662,7 +3662,7 @@ class NetworkCookieSameSite(str, enum.Enum):
     NONE_ = "None"
 
 
-class NetworkCookiePriority(str, enum.Enum):
+class NetworkCookiePriority(enum.StrEnum):
     """ Represents the cookie's 'Priority' status:
     https://tools.ietf.org/html/draft-west-cookie-priority-00 """
 
@@ -3671,7 +3671,7 @@ class NetworkCookiePriority(str, enum.Enum):
     HIGH = "High"
 
 
-class NetworkCookieSourceScheme(str, enum.Enum):
+class NetworkCookieSourceScheme(enum.StrEnum):
     """ Represents the source scheme of the origin that originally set the cookie.
     A value of "Unset" allows protocol clients to emulate legacy cookie scope for the scheme.
     This is a temporary ability and it will be removed in the future. """
@@ -3748,7 +3748,7 @@ class NetworkResourceTiming(CDPObject):
     receiveHeadersEnd: float  # deprecated
 
 
-class NetworkResourcePriority(str, enum.Enum):
+class NetworkResourcePriority(enum.StrEnum):
     """ Loading priority of a resource request. """
 
     VERYLOW = "VeryLow"
@@ -3884,7 +3884,7 @@ class NetworkSecurityDetails(CDPObject):
     encryptedClientHello: bool  # deprecated
 
 
-class NetworkCertificateTransparencyCompliance(str, enum.Enum):
+class NetworkCertificateTransparencyCompliance(enum.StrEnum):
     """ Whether the request complied with Certificate Transparency policy. """
 
     UNKNOWN = "unknown"
@@ -3892,7 +3892,7 @@ class NetworkCertificateTransparencyCompliance(str, enum.Enum):
     COMPLIANT = "compliant"
 
 
-class NetworkBlockedReason(str, enum.Enum):
+class NetworkBlockedReason(enum.StrEnum):
     """ The reason why request was blocked. """
 
     OTHER = "other"
@@ -3913,7 +3913,7 @@ class NetworkBlockedReason(str, enum.Enum):
     SRI_MESSAGE_SIGNATURE_MISMATCH = "sri-message-signature-mismatch"
 
 
-class NetworkCorsError(str, enum.Enum):
+class NetworkCorsError(enum.StrEnum):
     """ The reason why request was blocked. """
 
     DISALLOWEDBYMODE = "DisallowedByMode"
@@ -3960,7 +3960,7 @@ class NetworkCorsErrorStatus(CDPObject):
     failedParameter: str
 
 
-class NetworkServiceWorkerResponseSource(str, enum.Enum):
+class NetworkServiceWorkerResponseSource(enum.StrEnum):
     """ Source of serviceworker response. """
 
     CACHE_STORAGE = "cache-storage"
@@ -3983,14 +3983,14 @@ class NetworkTrustTokenParams(CDPObject):
     issuers: list[str] | None = None  # deprecated
 
 
-class NetworkTrustTokenOperationType(str, enum.Enum):
+class NetworkTrustTokenOperationType(enum.StrEnum):
 
     ISSUANCE = "Issuance"
     REDEMPTION = "Redemption"
     SIGNING = "Signing"
 
 
-class NetworkAlternateProtocolUsage(str, enum.Enum):
+class NetworkAlternateProtocolUsage(enum.StrEnum):
     """ The reason why Chrome uses a specific transport protocol for HTTP semantics. """
 
     ALTERNATIVEJOBWONWITHOUTRACE = "alternativeJobWonWithoutRace"
@@ -4003,7 +4003,7 @@ class NetworkAlternateProtocolUsage(str, enum.Enum):
     UNSPECIFIEDREASON = "unspecifiedReason"
 
 
-class NetworkServiceWorkerRouterSource(str, enum.Enum):
+class NetworkServiceWorkerRouterSource(enum.StrEnum):
     """ Source of service worker router. """
 
     NETWORK = "network"
@@ -4253,7 +4253,7 @@ class NetworkCookie(CDPObject):
     partitionKeyOpaque: bool | None = None  # experimental deprecated
 
 
-class NetworkSetCookieBlockedReason(str, enum.Enum):
+class NetworkSetCookieBlockedReason(enum.StrEnum):
     """ Types of reasons why a cookie may not be stored from a response. """
 
     SECUREONLY = "SecureOnly"
@@ -4280,7 +4280,7 @@ class NetworkSetCookieBlockedReason(str, enum.Enum):
     NOCOOKIECONTENT = "NoCookieContent"
 
 
-class NetworkCookieBlockedReason(str, enum.Enum):
+class NetworkCookieBlockedReason(enum.StrEnum):
     """ Types of reasons why a cookie may not be sent with a request. """
 
     SECUREONLY = "SecureOnly"
@@ -4304,7 +4304,7 @@ class NetworkCookieBlockedReason(str, enum.Enum):
     ANONYMOUSCONTEXT = "AnonymousContext"
 
 
-class NetworkCookieExemptionReason(str, enum.Enum):
+class NetworkCookieExemptionReason(enum.StrEnum):
     """ Types of reasons why a cookie should have been blocked by 3PCD but is exempted for the request. """
 
     NONE_ = "None"
@@ -4436,7 +4436,7 @@ class NetworkAuthChallengeResponse(CDPObject):
     password: str | None = None  # deprecated
 
 
-class NetworkInterceptionStage(str, enum.Enum):
+class NetworkInterceptionStage(enum.StrEnum):
     """ Stages of the interception to begin intercepting. Request will intercept before the request is
     sent. Response will intercept after the response is received. """
 
@@ -4509,7 +4509,7 @@ class NetworkSignedExchangeHeader(CDPObject):
     headerIntegrity: str  # deprecated
 
 
-class NetworkSignedExchangeErrorField(str, enum.Enum):
+class NetworkSignedExchangeErrorField(enum.StrEnum):
     """ Field type for a signed exchange related error. """
 
     SIGNATURESIG = "signatureSig"
@@ -4549,7 +4549,7 @@ class NetworkSignedExchangeInfo(CDPObject):
     errors: list[Network.SignedExchangeError] | None = None  # deprecated
 
 
-class NetworkContentEncoding(str, enum.Enum):
+class NetworkContentEncoding(enum.StrEnum):
     """ List of content encodings supported by the backend. """
 
     DEFLATE = "deflate"
@@ -4558,7 +4558,7 @@ class NetworkContentEncoding(str, enum.Enum):
     ZSTD = "zstd"
 
 
-class NetworkDirectSocketDnsQueryType(str, enum.Enum):
+class NetworkDirectSocketDnsQueryType(enum.StrEnum):
 
     IPV4 = "ipv4"
     IPV6 = "ipv6"
@@ -4613,7 +4613,7 @@ class NetworkDirectUDPMessage(CDPObject):
     remotePort: int | None = None  # deprecated
 
 
-class NetworkPrivateNetworkRequestPolicy(str, enum.Enum):
+class NetworkPrivateNetworkRequestPolicy(enum.StrEnum):
 
     ALLOW = "Allow"
     BLOCKFROMINSECURETOMOREPRIVATE = "BlockFromInsecureToMorePrivate"
@@ -4624,7 +4624,7 @@ class NetworkPrivateNetworkRequestPolicy(str, enum.Enum):
     PERMISSIONWARN = "PermissionWarn"
 
 
-class NetworkIPAddressSpace(str, enum.Enum):
+class NetworkIPAddressSpace(enum.StrEnum):
 
     LOCAL = "Local"
     PRIVATE = "Private"
@@ -4647,7 +4647,7 @@ class NetworkClientSecurityState(CDPObject):
     privateNetworkRequestPolicy: Network.PrivateNetworkRequestPolicy
 
 
-class NetworkCrossOriginOpenerPolicyValue(str, enum.Enum):
+class NetworkCrossOriginOpenerPolicyValue(enum.StrEnum):
 
     SAMEORIGIN = "SameOrigin"
     SAMEORIGINALLOWPOPUPS = "SameOriginAllowPopups"
@@ -4669,7 +4669,7 @@ class NetworkCrossOriginOpenerPolicyStatus(CDPObject):
     reportOnlyReportingEndpoint: str | None = None
 
 
-class NetworkCrossOriginEmbedderPolicyValue(str, enum.Enum):
+class NetworkCrossOriginEmbedderPolicyValue(enum.StrEnum):
 
     NONE_ = "None"
     CREDENTIALLESS = "Credentialless"
@@ -4687,7 +4687,7 @@ class NetworkCrossOriginEmbedderPolicyStatus(CDPObject):
     reportOnlyReportingEndpoint: str | None = None
 
 
-class NetworkContentSecurityPolicySource(str, enum.Enum):
+class NetworkContentSecurityPolicySource(enum.StrEnum):
 
     HTTP = "HTTP"
     META = "Meta"
@@ -4711,7 +4711,7 @@ class NetworkSecurityIsolationStatus(CDPObject):
     csp: list[Network.ContentSecurityPolicyStatus] | None = None
 
 
-class NetworkReportStatus(str, enum.Enum):
+class NetworkReportStatus(enum.StrEnum):
     """ The status of a Reporting API report. """
 
     QUEUED = "Queued"
@@ -4923,7 +4923,7 @@ class OverlayBoxStyle(CDPObject):
     hatchColor: DOM.RGBA | None = None  # deprecated
 
 
-class OverlayContrastAlgorithm(str, enum.Enum):
+class OverlayContrastAlgorithm(enum.StrEnum):
 
     AA = "aa"
     AAA = "aaa"
@@ -4991,7 +4991,7 @@ class OverlayHighlightConfig(CDPObject):
     containerQueryContainerHighlightConfig: Overlay.ContainerQueryContainerHighlightConfig | None = None  # deprecated
 
 
-class OverlayColorFormat(str, enum.Enum):
+class OverlayColorFormat(enum.StrEnum):
 
     RGB = "rgb"
     HSL = "hsl"
@@ -5107,7 +5107,7 @@ class OverlayIsolationModeHighlightConfig(CDPObject):
     maskColor: DOM.RGBA | None = None  # deprecated
 
 
-class OverlayInspectMode(str, enum.Enum):
+class OverlayInspectMode(enum.StrEnum):
 
     SEARCHFORNODE = "searchForNode"
     SEARCHFORUASHADOWDOM = "searchForUAShadowDOM"
@@ -5121,7 +5121,7 @@ class OverlayInspectMode(str, enum.Enum):
 PageFrameId = str
 
 
-class PageAdFrameType(str, enum.Enum):
+class PageAdFrameType(enum.StrEnum):
     """ Indicates whether a frame has been identified as an ad. """
 
     NONE = "none"
@@ -5129,7 +5129,7 @@ class PageAdFrameType(str, enum.Enum):
     ROOT = "root"
 
 
-class PageAdFrameExplanation(str, enum.Enum):
+class PageAdFrameExplanation(enum.StrEnum):
 
     PARENTISAD = "ParentIsAd"
     CREATEDBYADSCRIPT = "CreatedByAdScript"
@@ -5155,7 +5155,7 @@ class PageAdScriptId(CDPObject):
     debuggerId: Runtime.UniqueDebuggerId  # deprecated
 
 
-class PageSecureContextType(str, enum.Enum):
+class PageSecureContextType(enum.StrEnum):
     """ Indicates whether the frame is a secure context and why it is the case. """
 
     SECURE = "Secure"
@@ -5164,7 +5164,7 @@ class PageSecureContextType(str, enum.Enum):
     INSECUREANCESTOR = "InsecureAncestor"
 
 
-class PageCrossOriginIsolatedContextType(str, enum.Enum):
+class PageCrossOriginIsolatedContextType(enum.StrEnum):
     """ Indicates whether the frame is cross-origin isolated and why it is the case. """
 
     ISOLATED = "Isolated"
@@ -5172,7 +5172,7 @@ class PageCrossOriginIsolatedContextType(str, enum.Enum):
     NOTISOLATEDFEATUREDISABLED = "NotIsolatedFeatureDisabled"
 
 
-class PageGatedAPIFeatures(str, enum.Enum):
+class PageGatedAPIFeatures(enum.StrEnum):
 
     SHAREDARRAYBUFFERS = "SharedArrayBuffers"
     SHAREDARRAYBUFFERSTRANSFERALLOWED = "SharedArrayBuffersTransferAllowed"
@@ -5180,7 +5180,7 @@ class PageGatedAPIFeatures(str, enum.Enum):
     PERFORMANCEPROFILE = "PerformanceProfile"
 
 
-class PagePermissionsPolicyFeature(str, enum.Enum):
+class PagePermissionsPolicyFeature(enum.StrEnum):
     """ All Permissions Policy features. This enum should match the one defined
     in services/network/public/cpp/permissions_policy/permissions_policy_features.json5.
     LINT.IfChange(PermissionsPolicyFeature) """
@@ -5290,7 +5290,7 @@ class PagePermissionsPolicyFeature(str, enum.Enum):
     XR_SPATIAL_TRACKING = "xr-spatial-tracking"
 
 
-class PagePermissionsPolicyBlockReason(str, enum.Enum):
+class PagePermissionsPolicyBlockReason(enum.StrEnum):
     """ Reason for a permissions policy feature to be disabled. """
 
     HEADER = "Header"
@@ -5315,7 +5315,7 @@ class PagePermissionsPolicyFeatureState(CDPObject):
     locator: Page.PermissionsPolicyBlockLocator | None = None
 
 
-class PageOriginTrialTokenStatus(str, enum.Enum):
+class PageOriginTrialTokenStatus(enum.StrEnum):
     """ Origin Trial(https://www.chromium.org/blink/origin-trials) support.
     Status for an Origin Trial token. """
 
@@ -5333,7 +5333,7 @@ class PageOriginTrialTokenStatus(str, enum.Enum):
     UNKNOWNTRIAL = "UnknownTrial"
 
 
-class PageOriginTrialStatus(str, enum.Enum):
+class PageOriginTrialStatus(enum.StrEnum):
     """ Status for an Origin Trial. """
 
     ENABLED = "Enabled"
@@ -5342,7 +5342,7 @@ class PageOriginTrialStatus(str, enum.Enum):
     TRIALNOTALLOWED = "TrialNotAllowed"
 
 
-class PageOriginTrialUsageRestriction(str, enum.Enum):
+class PageOriginTrialUsageRestriction(enum.StrEnum):
 
     NONE_ = "None"
     SUBSET = "Subset"
@@ -5491,7 +5491,7 @@ class PageFrameTree(CDPObject):
 PageScriptIdentifier = str
 
 
-class PageTransitionType(str, enum.Enum):
+class PageTransitionType(enum.StrEnum):
     """ Transition type. """
 
     LINK = "link"
@@ -5553,7 +5553,7 @@ class PageScreencastFrameMetadata(CDPObject):
     timestamp: Network.TimeSinceEpoch | None = None  # deprecated
 
 
-class PageDialogType(str, enum.Enum):
+class PageDialogType(enum.StrEnum):
     """ Javascript dialog type. """
 
     ALERT = "alert"
@@ -5693,7 +5693,7 @@ class PageFontSizes(CDPObject):
     fixed: int | None = None  # deprecated
 
 
-class PageClientNavigationReason(str, enum.Enum):
+class PageClientNavigationReason(enum.StrEnum):
 
     ANCHORCLICK = "anchorClick"
     FORMSUBMISSIONGET = "formSubmissionGet"
@@ -5707,7 +5707,7 @@ class PageClientNavigationReason(str, enum.Enum):
     SCRIPTINITIATED = "scriptInitiated"
 
 
-class PageClientNavigationDisposition(str, enum.Enum):
+class PageClientNavigationDisposition(enum.StrEnum):
 
     CURRENTTAB = "currentTab"
     NEWTAB = "newTab"
@@ -5734,7 +5734,7 @@ class PageInstallabilityError(CDPObject):
     errorArguments: list[Page.InstallabilityErrorArgument]  # deprecated
 
 
-class PageReferrerPolicy(str, enum.Enum):
+class PageReferrerPolicy(enum.StrEnum):
     """ The referring-policy used for the navigation. """
 
     NOREFERRER = "noReferrer"
@@ -5907,7 +5907,7 @@ class PageWebAppManifest(CDPObject):
     themeColor: str | None = None
 
 
-class PageAutoResponseMode(str, enum.Enum):
+class PageAutoResponseMode(enum.StrEnum):
     """ Enum of possible auto-response for permission / prompt dialogs. """
 
     NONE = "none"
@@ -5916,14 +5916,14 @@ class PageAutoResponseMode(str, enum.Enum):
     AUTOOPTOUT = "autoOptOut"
 
 
-class PageNavigationType(str, enum.Enum):
+class PageNavigationType(enum.StrEnum):
     """ The type of a frameNavigated event. """
 
     NAVIGATION = "Navigation"
     BACKFORWARDCACHERESTORE = "BackForwardCacheRestore"
 
 
-class PageBackForwardCacheNotRestoredReason(str, enum.Enum):
+class PageBackForwardCacheNotRestoredReason(enum.StrEnum):
     """ List of not restored reasons for back-forward cache. """
 
     NOTPRIMARYMAINFRAME = "NotPrimaryMainFrame"
@@ -6070,7 +6070,7 @@ class PageBackForwardCacheNotRestoredReason(str, enum.Enum):
     CACHELIMITPRUNEDONCRITICALMEMORYPRESSURE = "CacheLimitPrunedOnCriticalMemoryPressure"
 
 
-class PageBackForwardCacheNotRestoredReasonType(str, enum.Enum):
+class PageBackForwardCacheNotRestoredReasonType(enum.StrEnum):
     """ Types of not restored reasons for back-forward cache. """
 
     SUPPORTPENDING = "SupportPending"
@@ -6197,7 +6197,7 @@ class PerformanceTimelineTimelineEvent(CDPObject):
 SecurityCertificateId = int
 
 
-class SecurityMixedContentType(str, enum.Enum):
+class SecurityMixedContentType(enum.StrEnum):
     """ A description of mixed content (HTTP resources on HTTPS pages), as defined by
     https://www.w3.org/TR/mixed-content/#categories """
 
@@ -6206,7 +6206,7 @@ class SecurityMixedContentType(str, enum.Enum):
     NONE = "none"
 
 
-class SecuritySecurityState(str, enum.Enum):
+class SecuritySecurityState(enum.StrEnum):
     """ The security level of a page or resource. """
 
     UNKNOWN = "unknown"
@@ -6275,7 +6275,7 @@ class SecurityCertificateSecurityState(CDPObject):
     obsoleteSslSignature: bool  # deprecated
 
 
-class SecuritySafetyTipStatus(str, enum.Enum):
+class SecuritySafetyTipStatus(enum.StrEnum):
 
     BADREPUTATION = "badReputation"
     LOOKALIKE = "lookalike"
@@ -6356,7 +6356,7 @@ class SecurityInsecureContentStatus(CDPObject):
     displayedInsecureContentStyle: Security.SecurityState  # deprecated
 
 
-class SecurityCertificateErrorAction(str, enum.Enum):
+class SecurityCertificateErrorAction(enum.StrEnum):
     """ The action to take when a certificate error occurs. continue will continue processing the
     request and cancel will cancel the request. """
 
@@ -6377,7 +6377,7 @@ class ServiceWorkerServiceWorkerRegistration(CDPObject):
     isDeleted: bool
 
 
-class ServiceWorkerServiceWorkerVersionRunningStatus(str, enum.Enum):
+class ServiceWorkerServiceWorkerVersionRunningStatus(enum.StrEnum):
 
     STOPPED = "stopped"
     STARTING = "starting"
@@ -6385,7 +6385,7 @@ class ServiceWorkerServiceWorkerVersionRunningStatus(str, enum.Enum):
     STOPPING = "stopping"
 
 
-class ServiceWorkerServiceWorkerVersionStatus(str, enum.Enum):
+class ServiceWorkerServiceWorkerVersionStatus(enum.StrEnum):
 
     NEW = "new"
     INSTALLING = "installing"
@@ -6440,7 +6440,7 @@ class ServiceWorkerServiceWorkerErrorMessage(CDPObject):
 StorageSerializedStorageKey = str
 
 
-class StorageStorageType(str, enum.Enum):
+class StorageStorageType(enum.StrEnum):
     """ Enum of possible storage types. """
 
     COOKIES = "cookies"
@@ -6482,7 +6482,7 @@ class StorageTrustTokens(CDPObject):
 StorageInterestGroupAuctionId = str
 
 
-class StorageInterestGroupAccessType(str, enum.Enum):
+class StorageInterestGroupAccessType(enum.StrEnum):
     """ Enum of interest group access types. """
 
     JOIN = "join"
@@ -6498,14 +6498,14 @@ class StorageInterestGroupAccessType(str, enum.Enum):
     CLEAR = "clear"
 
 
-class StorageInterestGroupAuctionEventType(str, enum.Enum):
+class StorageInterestGroupAuctionEventType(enum.StrEnum):
     """ Enum of auction events. """
 
     STARTED = "started"
     CONFIGRESOLVED = "configResolved"
 
 
-class StorageInterestGroupAuctionFetchType(str, enum.Enum):
+class StorageInterestGroupAuctionFetchType(enum.StrEnum):
     """ Enum of network fetches auctions can do. """
 
     BIDDERJS = "bidderJs"
@@ -6515,7 +6515,7 @@ class StorageInterestGroupAuctionFetchType(str, enum.Enum):
     SELLERTRUSTEDSIGNALS = "sellerTrustedSignals"
 
 
-class StorageSharedStorageAccessScope(str, enum.Enum):
+class StorageSharedStorageAccessScope(enum.StrEnum):
     """ Enum of shared storage access scopes. """
 
     WINDOW = "window"
@@ -6524,7 +6524,7 @@ class StorageSharedStorageAccessScope(str, enum.Enum):
     HEADER = "header"
 
 
-class StorageSharedStorageAccessMethod(str, enum.Enum):
+class StorageSharedStorageAccessMethod(enum.StrEnum):
     """ Enum of shared storage access methods. """
 
     ADDMODULE = "addModule"
@@ -6653,7 +6653,7 @@ class StorageSharedStorageAccessParams(CDPObject):
     batchSize: int | None = None  # deprecated
 
 
-class StorageStorageBucketsDurability(str, enum.Enum):
+class StorageStorageBucketsDurability(enum.StrEnum):
 
     RELAXED = "relaxed"
     STRICT = "strict"
@@ -6683,7 +6683,7 @@ class StorageStorageBucketInfo(CDPObject):
     durability: Storage.StorageBucketsDurability
 
 
-class StorageAttributionReportingSourceType(str, enum.Enum):
+class StorageAttributionReportingSourceType(enum.StrEnum):
 
     NAVIGATION = "navigation"
     EVENT = "event"
@@ -6742,7 +6742,7 @@ class StorageAttributionReportingTriggerSpec(CDPObject):
     eventReportWindows: Storage.AttributionReportingEventReportWindows
 
 
-class StorageAttributionReportingTriggerDataMatching(str, enum.Enum):
+class StorageAttributionReportingTriggerDataMatching(enum.StrEnum):
 
     EXACT = "exact"
     MODULUS = "modulus"
@@ -6834,7 +6834,7 @@ class StorageAttributionReportingSourceRegistration(CDPObject):
     eventLevelEpsilon: float
 
 
-class StorageAttributionReportingSourceRegistrationResult(str, enum.Enum):
+class StorageAttributionReportingSourceRegistrationResult(enum.StrEnum):
 
     SUCCESS = "success"
     INTERNALERROR = "internalError"
@@ -6854,7 +6854,7 @@ class StorageAttributionReportingSourceRegistrationResult(str, enum.Enum):
     DESTINATIONPERDAYREPORTINGLIMITREACHED = "destinationPerDayReportingLimitReached"
 
 
-class StorageAttributionReportingSourceRegistrationTimeConfig(str, enum.Enum):
+class StorageAttributionReportingSourceRegistrationTimeConfig(enum.StrEnum):
 
     INCLUDE = "include"
     EXCLUDE = "exclude"
@@ -6942,7 +6942,7 @@ class StorageAttributionReportingTriggerRegistration(CDPObject):
     namedBudgets: list[Storage.AttributionReportingNamedBudgetCandidate]
 
 
-class StorageAttributionReportingEventLevelResult(str, enum.Enum):
+class StorageAttributionReportingEventLevelResult(enum.StrEnum):
 
     SUCCESS = "success"
     SUCCESSDROPPEDLOWERPRIORITY = "successDroppedLowerPriority"
@@ -6965,7 +6965,7 @@ class StorageAttributionReportingEventLevelResult(str, enum.Enum):
     NOMATCHINGTRIGGERDATA = "noMatchingTriggerData"
 
 
-class StorageAttributionReportingAggregatableResult(str, enum.Enum):
+class StorageAttributionReportingAggregatableResult(enum.StrEnum):
 
     SUCCESS = "success"
     INTERNALERROR = "internalError"
@@ -6984,7 +6984,7 @@ class StorageAttributionReportingAggregatableResult(str, enum.Enum):
     EXCESSIVEREPORTS = "excessiveReports"
 
 
-class StorageAttributionReportingReportResult(str, enum.Enum):
+class StorageAttributionReportingReportResult(enum.StrEnum):
 
     SENT = "sent"
     PROHIBITED = "prohibited"
@@ -7073,7 +7073,7 @@ class SystemInfoVideoEncodeAcceleratorCapability(CDPObject):
     maxFramerateDenominator: int
 
 
-class SystemInfoSubsamplingFormat(str, enum.Enum):
+class SystemInfoSubsamplingFormat(enum.StrEnum):
     """ YUV subsampling type of the pixels of a given image. """
 
     YUV420 = "yuv420"
@@ -7081,7 +7081,7 @@ class SystemInfoSubsamplingFormat(str, enum.Enum):
     YUV444 = "yuv444"
 
 
-class SystemInfoImageType(str, enum.Enum):
+class SystemInfoImageType(enum.StrEnum):
     """ Image format of a given image. """
 
     JPEG = "jpeg"
@@ -7206,7 +7206,7 @@ class TargetRemoteLocation(CDPObject):
     port: int
 
 
-class TargetWindowState(str, enum.Enum):
+class TargetWindowState(enum.StrEnum):
     """ The state of the target window. """
 
     NORMAL = "normal"
@@ -7250,7 +7250,7 @@ class TracingTraceConfig(CDPObject):
     memoryDumpConfig: Tracing.MemoryDumpConfig | None = None  # experimental deprecated
 
 
-class TracingStreamFormat(str, enum.Enum):
+class TracingStreamFormat(enum.StrEnum):
     """ Data format of a trace. Can be either the legacy JSON format or the
     protocol buffer format. Note that the JSON format will be deprecated soon. """
 
@@ -7258,14 +7258,14 @@ class TracingStreamFormat(str, enum.Enum):
     PROTO = "proto"
 
 
-class TracingStreamCompression(str, enum.Enum):
+class TracingStreamCompression(enum.StrEnum):
     """ Compression type to use for traces returned via streams. """
 
     NONE = "none"
     GZIP = "gzip"
 
 
-class TracingMemoryDumpLevelOfDetail(str, enum.Enum):
+class TracingMemoryDumpLevelOfDetail(enum.StrEnum):
     """ Details exposed when memory request explicitly declared.
     Keep consistent with memory_dump_request_args.h and
     memory_instrumentation.mojom """
@@ -7275,7 +7275,7 @@ class TracingMemoryDumpLevelOfDetail(str, enum.Enum):
     DETAILED = "detailed"
 
 
-class TracingTracingBackend(str, enum.Enum):
+class TracingTracingBackend(enum.StrEnum):
     """ Backend type to use for tracing. `chrome` uses the Chrome-integrated
     tracing service and is supported on all platforms. `system` is only
     supported on Chrome OS and uses the Perfetto system tracing service.
@@ -7294,7 +7294,7 @@ a network request. """
 FetchRequestId = str
 
 
-class FetchRequestStage(str, enum.Enum):
+class FetchRequestStage(enum.StrEnum):
     """ Stages of the request to handle. Request will intercept before the request is
     sent. Response will intercept after the response is received (but before response
     body is received). """
@@ -7357,14 +7357,14 @@ class FetchAuthChallengeResponse(CDPObject):
 WebAudioGraphObjectId = str
 
 
-class WebAudioContextType(str, enum.Enum):
+class WebAudioContextType(enum.StrEnum):
     """ Enum of BaseAudioContext types """
 
     REALTIME = "realtime"
     OFFLINE = "offline"
 
 
-class WebAudioContextState(str, enum.Enum):
+class WebAudioContextState(enum.StrEnum):
     """ Enum of AudioContextState from the spec """
 
     SUSPENDED = "suspended"
@@ -7378,7 +7378,7 @@ class WebAudioContextState(str, enum.Enum):
 WebAudioNodeType = str
 
 
-class WebAudioChannelCountMode(str, enum.Enum):
+class WebAudioChannelCountMode(enum.StrEnum):
     """ Enum of AudioNode::ChannelCountMode from the spec """
 
     CLAMPED_MAX = "clamped-max"
@@ -7386,7 +7386,7 @@ class WebAudioChannelCountMode(str, enum.Enum):
     MAX_ = "max"
 
 
-class WebAudioChannelInterpretation(str, enum.Enum):
+class WebAudioChannelInterpretation(enum.StrEnum):
     """ Enum of AudioNode::ChannelInterpretation from the spec """
 
     DISCRETE = "discrete"
@@ -7398,7 +7398,7 @@ class WebAudioChannelInterpretation(str, enum.Enum):
 WebAudioParamType = str
 
 
-class WebAudioAutomationRate(str, enum.Enum):
+class WebAudioAutomationRate(enum.StrEnum):
     """ Enum of AudioParam::AutomationRate from the spec """
 
     A_RATE = "a-rate"
@@ -7493,19 +7493,19 @@ class WebAudioAudioParam(CDPObject):
 WebAuthnAuthenticatorId = str
 
 
-class WebAuthnAuthenticatorProtocol(str, enum.Enum):
+class WebAuthnAuthenticatorProtocol(enum.StrEnum):
 
     U2F = "u2f"
     CTAP2 = "ctap2"
 
 
-class WebAuthnCtap2Version(str, enum.Enum):
+class WebAuthnCtap2Version(enum.StrEnum):
 
     CTAP2_0 = "ctap2_0"
     CTAP2_1 = "ctap2_1"
 
 
-class WebAuthnAuthenticatorTransport(str, enum.Enum):
+class WebAuthnAuthenticatorTransport(enum.StrEnum):
 
     USB = "usb"
     NFC = "nfc"
@@ -7695,13 +7695,13 @@ class PreloadRuleSet(CDPObject):
     errorMessage: str | None = None  # deprecated
 
 
-class PreloadRuleSetErrorType(str, enum.Enum):
+class PreloadRuleSetErrorType(enum.StrEnum):
 
     SOURCEISNOTJSONOBJECT = "SourceIsNotJsonObject"
     INVALIDRULESSKIPPED = "InvalidRulesSkipped"
 
 
-class PreloadSpeculationAction(str, enum.Enum):
+class PreloadSpeculationAction(enum.StrEnum):
     """ The type of preloading attempted. It corresponds to
     mojom::SpeculationAction (although PrefetchWithSubresources is omitted as it
     isn't being used by clients). """
@@ -7710,7 +7710,7 @@ class PreloadSpeculationAction(str, enum.Enum):
     PRERENDER = "Prerender"
 
 
-class PreloadSpeculationTargetHint(str, enum.Enum):
+class PreloadSpeculationTargetHint(enum.StrEnum):
     """ Corresponds to mojom::SpeculationTargetHint.
     See https://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints """
 
@@ -7760,7 +7760,7 @@ CDP events for them are emitted separately but they share
 PreloadPreloadPipelineId = str
 
 
-class PreloadPrerenderFinalStatus(str, enum.Enum):
+class PreloadPrerenderFinalStatus(enum.StrEnum):
     """ List of FinalStatus reasons for Prerender2. """
 
     ACTIVATED = "Activated"
@@ -7839,7 +7839,7 @@ class PreloadPrerenderFinalStatus(str, enum.Enum):
     BROWSINGDATAREMOVED = "BrowsingDataRemoved"
 
 
-class PreloadPreloadingStatus(str, enum.Enum):
+class PreloadPreloadingStatus(enum.StrEnum):
     """ Preloading status values, see also PreloadingTriggeringOutcome. This
     status is shared by prefetchStatusUpdated and prerenderStatusUpdated. """
 
@@ -7851,7 +7851,7 @@ class PreloadPreloadingStatus(str, enum.Enum):
     NOTSUPPORTED = "NotSupported"
 
 
-class PreloadPrefetchStatus(str, enum.Enum):
+class PreloadPrefetchStatus(enum.StrEnum):
     """ TODO(https://crbug.com/1384419): revisit the list of PrefetchStatus and
     filter out the ones that aren't necessary to the developers. """
 
@@ -7901,7 +7901,7 @@ class PreloadPrerenderMismatchedHeaders(CDPObject):
     activationValue: str | None = None
 
 
-class FedCmLoginState(str, enum.Enum):
+class FedCmLoginState(enum.StrEnum):
     """ Whether this is a sign-up or sign-in action for this account, i.e.
     whether this account has ever been used to sign in to this RP before. """
 
@@ -7909,7 +7909,7 @@ class FedCmLoginState(str, enum.Enum):
     SIGNUP = "SignUp"
 
 
-class FedCmDialogType(str, enum.Enum):
+class FedCmDialogType(enum.StrEnum):
     """ The types of FedCM dialogs. """
 
     ACCOUNTCHOOSER = "AccountChooser"
@@ -7918,7 +7918,7 @@ class FedCmDialogType(str, enum.Enum):
     ERROR = "Error"
 
 
-class FedCmDialogButton(str, enum.Enum):
+class FedCmDialogButton(enum.StrEnum):
     """ The buttons on the FedCM dialog. """
 
     CONFIRMIDPLOGINCONTINUE = "ConfirmIdpLoginContinue"
@@ -7926,7 +7926,7 @@ class FedCmDialogButton(str, enum.Enum):
     ERRORMOREDETAILS = "ErrorMoreDetails"
 
 
-class FedCmAccountUrlType(str, enum.Enum):
+class FedCmAccountUrlType(enum.StrEnum):
     """ The URLs that each account has """
 
     TERMSOFSERVICE = "TermsOfService"
@@ -7977,14 +7977,14 @@ class PWAFileHandler(CDPObject):
     displayName: str
 
 
-class PWADisplayMode(str, enum.Enum):
+class PWADisplayMode(enum.StrEnum):
     """ If user prefers opening the app in browser or an app window. """
 
     STANDALONE = "standalone"
     BROWSER = "browser"
 
 
-class BluetoothEmulationCentralState(str, enum.Enum):
+class BluetoothEmulationCentralState(enum.StrEnum):
     """ Indicates the various states of Central. """
 
     ABSENT = "absent"
@@ -7992,14 +7992,14 @@ class BluetoothEmulationCentralState(str, enum.Enum):
     POWERED_ON = "powered-on"
 
 
-class BluetoothEmulationGATTOperationType(str, enum.Enum):
+class BluetoothEmulationGATTOperationType(enum.StrEnum):
     """ Indicates the various types of GATT event. """
 
     CONNECTION = "connection"
     DISCOVERY = "discovery"
 
 
-class BluetoothEmulationCharacteristicWriteType(str, enum.Enum):
+class BluetoothEmulationCharacteristicWriteType(enum.StrEnum):
     """ Indicates the various types of characteristic write. """
 
     WRITE_DEFAULT_DEPRECATED = "write-default-deprecated"
@@ -8007,7 +8007,7 @@ class BluetoothEmulationCharacteristicWriteType(str, enum.Enum):
     WRITE_WITHOUT_RESPONSE = "write-without-response"
 
 
-class BluetoothEmulationCharacteristicOperationType(str, enum.Enum):
+class BluetoothEmulationCharacteristicOperationType(enum.StrEnum):
     """ Indicates the various types of characteristic operation. """
 
     READ = "read"
@@ -8016,7 +8016,7 @@ class BluetoothEmulationCharacteristicOperationType(str, enum.Enum):
     UNSUBSCRIBE_FROM_NOTIFICATIONS = "unsubscribe-from-notifications"
 
 
-class BluetoothEmulationDescriptorOperationType(str, enum.Enum):
+class BluetoothEmulationDescriptorOperationType(enum.StrEnum):
     """ Indicates the various types of descriptor operation. """
 
     READ = "read"
@@ -8224,7 +8224,7 @@ class DebuggerWasmDisassemblyChunk(CDPObject):
     bytecodeOffsets: list[int]  # deprecated
 
 
-class DebuggerScriptLanguage(str, enum.Enum):
+class DebuggerScriptLanguage(enum.StrEnum):
     """ Enum of possible script languages. """
 
     JAVASCRIPT = "JavaScript"

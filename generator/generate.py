@@ -145,9 +145,17 @@ class GenerateType(CodeGenerator):
                 value=f'"{enum_item}"'
             )))
 
+        enum_item_type = CDPVariableType[self._type_obj.type]
+        if enum_item_type == CDPVariableType.string:
+            enum_parent = 'enum.StrEnum'
+        elif enum_item_type == CDPVariableType.integer:
+            enum_parent = 'enum.IntEnum'
+        else:
+            enum_parent = f'{enum_item_type.value}, enum.Enum'
+
         return make_class(
             class_name=self.class_name,
-            parent=f'{CDPVariableType[self._type_obj.type].value}, enum.Enum',
+            parent=enum_parent,
             description=self._type_obj.resolve_docstring(),
             properties='\n'.join(enum_properties_list),
         )

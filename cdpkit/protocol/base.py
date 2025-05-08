@@ -1,6 +1,6 @@
 import inspect
 from pathlib import Path
-from typing import Any, Generic, TypeVar
+from typing import Any, TypeVar
 
 from pydantic import BaseModel, ConfigDict
 
@@ -48,7 +48,7 @@ class CDPEvent(BaseModel):
     )
 
 
-class CDPMethod(Generic[RESULT_TYPE]):
+class CDPMethod[RESULT_TYPE]:
     INPUT_VALIDATOR: InputModel | None = None
     OUTPUT_VALIDATOR: OutputModel | None = None
 
