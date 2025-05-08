@@ -25,14 +25,26 @@ from generator.utils import indent, rename_camel2snake, rename_in_python
 
 @dataclass
 class GenerateContext:
+    """
+    Code generation context class.
+
+    Stores global information required during the generation process.
+    """
     domain: CDPDomain | None = None
     ref_imports_set: set[str] | None = None
     files_all: dict[str, list[str]] | None = None
 
     def get_imports(self) -> set[str]:
+        """
+        Get the set of class names to be imported (filter out invalid keys).
+
+        Returns:
+            set[str]: Processed set of referenced imports (set of class names as strings)
+        """
         if self.ref_imports_set is None:
             return set()
         else:
+            # Keys to be deleted
             delete_keys = ['']
             if not self.domain.types:
                 delete_keys.append(self.domain.domain)
@@ -44,11 +56,19 @@ class GenerateContext:
                     pass
             return self.ref_imports_set
 
-    def clear_ref(self):
+    def clear_ref(self) -> None:
+        """Clear the set of referenced imports (reset the context)."""
         if self.ref_imports_set is not None:
             self.ref_imports_set.clear()
 
-    def add_files_all(self, file_type: str, var_name: str):
+    def add_files_all(self, file_type: str, var_name: str) -> None:
+        """
+        Add a variable name to the file mapping.
+
+        Args:
+            file_type (str): File type (e.g., "types", "events")
+            var_name (str): Variable name to be added to the corresponding file type
+        """
         if self.files_all is None:
             return
 
@@ -56,6 +76,7 @@ class GenerateContext:
 
 
 class CodeGenerator:
+    """Base class for code generation, providing context management."""
     def __init__(
         self,
         context: GenerateContext
@@ -64,6 +85,7 @@ class CodeGenerator:
 
 
 class GenerateProperty(CodeGenerator):
+    """Property generator for handling code generation of CDPProperty objects."""
     def __init__(self, property_obj: CDPProperty, context: GenerateContext):
         super().__init__(context)
         self.property_obj = property_obj
@@ -77,33 +99,44 @@ class GenerateProperty(CodeGenerator):
 
     @property
     def snake_name(self) -> str:
+        """Get the property name in snake case (convert from camel case)."""
         if self._snake_name is None:
             self._snake_name = rename_camel2snake(self.property_obj.name)
         return self._snake_name
 
     @property
     def hint(self):
+        """Get the type hint string (including optional, enum, etc. modifiers)."""
         return self._hint
 
     @property
     def name(self) -> str:
+        """Get the property name."""
         if self._name is None:
             self._name = self.property_obj.name
         return self._name
 
     @property
     def default_value(self) -> str:
+        """Get the default value."""
         if self._default_value is None:
             self._default_value = self.property_obj.default_value
         return self._default_value
 
     @property
     def tips(self) -> str:
+        """Get the status tips (experimental/deprecated markers)."""
         if self._tips is None:
             self._tips = self.property_obj.tips()
         return self._tips
 
     def generate_simple_code(self) -> str:
+        """
+        Generate simple property code (without description).
+
+        Returns:
+            str: Generated property code string (e.g., "name: str | None = None  # tips")
+        """
         return make_property(
             name=self.name,
             hint=self.hint,
@@ -112,12 +145,19 @@ class GenerateProperty(CodeGenerator):
         )
 
     def generate_code(self) -> str:
+        """
+        Generate complete property code (including description and indentation).
+
+        Returns:
+            str: Generated property code with description and indentation
+        """
         _description = self.property_obj.textwrap_description(width=80, initial_indent='    # ')
 
         return _description + '\n' + indent(self.generate_simple_code()) + '\n'
 
 
 class GenerateType(CodeGenerator):
+    """Type generator for handling code generation of CDPType objects."""
     def __init__(
         self,
         type_obj: CDPType,
@@ -131,12 +171,24 @@ class GenerateType(CodeGenerator):
         self.class_name = f'{context.domain.domain}{type_obj.id}'
 
     def generate_simple_code(self) -> str:
+        """
+        Generate simple type code (for basic types).
+
+        Returns:
+            str: Generated type code string (including docstring and property)
+        """
         return self._type_obj.resolve_docstring(0) + '\n' + make_property(
             name=self.class_name,
             value=self._type_obj.hint_type(self._context.domain, self._context.ref_imports_set).replace('.', '')
         ) + '\n'
 
     def generate_type_enum_code(self) -> str:
+        """
+        Generate enum type code (for CDPType with enum).
+
+        Returns:
+            str: Generated enum class code
+        """
         enum_properties_list = []
 
         for enum_item in self._type_obj.enum:
@@ -163,6 +215,12 @@ class GenerateType(CodeGenerator):
         )
 
     def generate_object_code(self) -> str:
+        """
+        Generate object type code (for CDPType with properties).
+
+        Returns:
+            str: Generated object class code (inheriting from CDPObject)
+        """
         properties_code_list = []
 
         for _property in self._type_obj.properties:
@@ -176,6 +234,15 @@ class GenerateType(CodeGenerator):
         )
 
     def generate_code(self, just_import: bool = False) -> str:
+        """
+        Generate type code (select the generation method based on the type).
+
+        Args:
+            just_import (bool, optional): Whether to generate only import code (default: False)
+
+        Returns:
+            str: Generated type code (enum class, object class, or simple type)
+        """
         logger.debug(f'Generating types for {self._context.domain.domain}')
 
         if self._just_import or just_import:
@@ -193,6 +260,7 @@ class GenerateType(CodeGenerator):
 
 
 class CommandInput:
+    """Command input model generator for handling command parameters."""
     def __init__(self, command_generator_obj: 'GenerateCommand'):
         self._command_generator_obj = command_generator_obj
 
@@ -206,23 +274,27 @@ class CommandInput:
 
     @property
     def properties(self) -> str:
+        """Get the property code of the input model (with indentation)."""
         if self._properties_list:
             return ' ' * 4 + f'\n{" " * 4}'.join(self._properties_list)
         return ''
 
     @property
     def init_input_properties(self) -> str:
+        """Get the parameter code of the input model's initialization method (with indentation)."""
         if self._init_input_properties_list:
             return ' ' * 4 * 2 + f',\n{" " * 4 * 2}'.join(self._init_input_properties_list)
         return ''
 
     @property
     def init_super_use_properties(self) -> str:
+        """Get the parameter code of the parent class's initialization method (with indentation)."""
         if self._init_super_use_properties_list:
             return ' ' * 4 * 3 + f',\n{" " * 4 * 3}'.join(self._init_super_use_properties_list)
         return ''
 
     def _init(self):
+        """Initialize parameter processing (parse command parameters and generate code)."""
         if not self._command_generator_obj._command_obj.parameters:
             return
 
@@ -248,11 +320,20 @@ class CommandInput:
 
 
 class GenerateCommand(CodeGenerator):
+    """Command generator for handling code generation of CDPCommand objects."""
     def __init__(self, command_obj: CDPCommand, context: GenerateContext):
         super().__init__(context)
         self._command_obj = command_obj
 
     def generate_output(self) -> tuple[str, str]:
+        """
+        Generate the command output model code.
+
+        Returns:
+            tuple[str, str]:
+                Output class name and generated code (tuple, the first element is the class name, the second is the
+                 code string)
+        """
         if self._command_obj.returns is None:
             return 'None', ''
 
@@ -276,6 +357,12 @@ class GenerateCommand(CodeGenerator):
         return output_class, code
 
     def generate_code(self) -> str:
+        """
+        Generate complete command code (input model, output model, command class).
+
+        Returns:
+            str: Generated command code string (including input, output models, and command class)
+        """
         input_obj = CommandInput(self)
 
         output_class, output_code = self.generate_output()
@@ -296,11 +383,18 @@ class GenerateCommand(CodeGenerator):
 
 
 class GenerateEvent(CodeGenerator):
+    """Event generator for handling code generation of CDPEvent objects."""
     def __init__(self, event_obj: CDPEvent, context: GenerateContext):
         super().__init__(context)
         self._event_obj = event_obj
 
     def generate_code(self) -> str:
+        """
+        Generate event class code (including parameter properties).
+
+        Returns:
+            str: Generated event class code string (inheriting from CDPEvent)
+        """
         properties_code_list = []
 
         if self._event_obj.parameters:
@@ -319,6 +413,13 @@ class GenerateEvent(CodeGenerator):
 
 
 def generate_domain_types(file_path: Path, context: GenerateContext) -> None:
+    """
+    Generate the domain type code file.
+
+    Args:
+        file_path (Path): Output file path
+        context (GenerateContext): Code generation context object
+    """
     types_code_list = []
     for domain_type in context.domain.types:
         generate_types_obj = GenerateType(
@@ -344,6 +445,13 @@ def generate_domain_types(file_path: Path, context: GenerateContext) -> None:
 
 
 def generate_domain_events(file_path: Path, context: GenerateContext) -> None:
+    """
+    Generate the domain event code file.
+
+    Args:
+        file_path (Path): Output file path
+        context (GenerateContext): Code generation context object
+    """
     event_code = ''
 
     for domain_event in context.domain.events:
@@ -362,6 +470,13 @@ def generate_domain_events(file_path: Path, context: GenerateContext) -> None:
 
 
 def generate_commands_code(file_path: Path, context: GenerateContext) -> None:
+    """
+    Generate the domain command code file.
+
+    Args:
+        file_path (Path): Output file path
+        context (GenerateContext): Code generation context object
+    """
     commands_code = ''
 
     for domain_command in context.domain.commands:
@@ -380,7 +495,13 @@ def generate_commands_code(file_path: Path, context: GenerateContext) -> None:
 
 
 def generate_types_file(file_path: Path, has_types_domain: list[CDPDomain]) -> None:
-    """写入所有CDPDomain的类型到文件"""
+    """
+    Generate the global types file (including types from all domains).
+
+    Args:
+        file_path (Path): Output file path
+        has_types_domain (list[CDPDomain]): List of domains containing types
+    """
     types_for_class = ''
     generate_code = ''
 
@@ -410,6 +531,13 @@ def generate_types_file(file_path: Path, has_types_domain: list[CDPDomain]) -> N
 
 
 def generate_domain(domain_dir_path: Path, domain: CDPDomain) -> None:
+    """
+    Generate all code files for a single domain (types, events, commands).
+
+    Args:
+        domain_dir_path (Path): Domain directory path
+        domain (CDPDomain): Domain object
+    """
     domain_dir_path.mkdir(exist_ok=True)
     context = GenerateContext(domain=domain, ref_imports_set=set(), files_all=defaultdict(list))
 
@@ -438,15 +566,19 @@ def generate_domain(domain_dir_path: Path, domain: CDPDomain) -> None:
 
 
 def generate_to_dir(top_domain: CDPTopDomain, output_dir: Path):
-    """写入所有CDPDomain文件到文件夹路径"""
+    """
+    Generate code for all domains to the output directory.
+
+    Args:
+        top_domain (CDPTopDomain): Top-level domain object (containing all CDP domains)
+        output_dir (Path): Output directory path
+    """
     has_types_domain = []
 
     for domain in top_domain.domains:
-        # domain.to_file(output_dir / f'{domain.domain}.py')
         generate_domain(output_dir / f'{domain.domain}', domain)
 
         if domain.types:
             has_types_domain.append(domain)
 
-    # 统一写入types到同一文件，防止互相导入
-    generate_types_file(output_dir / '_types.py', has_types_domain)
+    generate_types_file(output_dir / '_types.py', has_types_domain)  # Generate the global types file

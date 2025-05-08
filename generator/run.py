@@ -10,6 +10,14 @@ ROOT_PATH = Path(__file__).parent.parent.resolve()
 
 
 def write_cdp_protocol(dir_path: Path, protocol_domains_data: list[dict[str, Any]]) -> None:
+    """
+    Write the CDP protocol data to the specified directory.
+
+    Args:
+        dir_path (Path): The path of the target directory.
+        protocol_domains_data (list[dict[str, Any]]):
+            A list of protocol domain data, where each element is a dictionary containing protocol domain information.
+    """
     dir_path.mkdir(parents=True, exist_ok=True)
 
     top_domain = CDPTopDomain(domains=protocol_domains_data)

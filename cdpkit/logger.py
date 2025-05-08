@@ -1,5 +1,5 @@
 import sys
-from enum import Enum
+from enum import IntEnum
 
 from loguru import logger as _loguru_logger
 
@@ -8,7 +8,8 @@ __all__ = [
 ]
 
 
-class LogLevel(int, Enum):
+class LogLevel(IntEnum):
+    """Log level enumeration class, inherits from IntEnum"""
     TRACE: int = 5
     DEBUG: int = 10
     INFO: int = 20
@@ -21,11 +22,11 @@ class LogLevel(int, Enum):
 def set_logger(
     print_level: str | LogLevel = LogLevel.SUCCESS,
 ):
-    """Sets up the logger and returns it.
+    """Configure and return a logger instance
 
     Args:
-        print_level (str | LogLevel): Log level to use. Defaults to
-         LogLevel.INFO.
+        print_level (str | LogLevel, optional):
+            Log level to use. Defaults to LogLevel.INFO.
 
     Returns:
         loguru._logger.Logger: Configured logger instance.

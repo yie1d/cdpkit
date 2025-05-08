@@ -21,6 +21,11 @@ JSON_DICT = dict[str, Any]
 
 
 class CDPObject(BaseModel):
+    """
+    Base class for CDP objects
+
+    The base class for all CDP-related objects, configured in strict mode to forbid extra fields.
+    """
     model_config = ConfigDict(
         strict=True,
         extra='forbid'
@@ -28,6 +33,11 @@ class CDPObject(BaseModel):
 
 
 class InputModel(BaseModel):
+    """
+    Base class for input models
+
+    The base class for input models used to validate input data, configured in strict mode to ignore extra fields.
+    """
     model_config = ConfigDict(
         strict=True,
         extra='ignore'
@@ -35,6 +45,11 @@ class InputModel(BaseModel):
 
 
 class OutputModel(BaseModel):
+    """
+    Base class for output models
+
+    The base class for output models used to validate output data, configured in strict mode to ignore extra fields.
+    """
     model_config = ConfigDict(
         strict=True,
         extra='ignore'
@@ -42,6 +57,11 @@ class OutputModel(BaseModel):
 
 
 class CDPEvent(BaseModel):
+    """
+    Base class for CDP events
+
+    The base class for all CDP events, configured in strict mode to forbid extra fields.
+    """
     model_config = ConfigDict(
         strict=True,
         extra='forbid'
@@ -49,10 +69,26 @@ class CDPEvent(BaseModel):
 
 
 class CDPMethod[RESULT_TYPE]:
+    """
+    CDP method class
+
+    Represents a method in the CDP protocol, containing input and output validators and command generation logic.
+
+    Attributes:
+        INPUT_VALIDATOR (InputModel | None): Input validator model
+        OUTPUT_VALIDATOR (OutputModel | None): Output validator model
+    """
     INPUT_VALIDATOR: InputModel | None = None
     OUTPUT_VALIDATOR: OutputModel | None = None
 
-    def __init__(self, /, *_, **kwargs):
+    def __init__(self, *_, **kwargs):
+        """
+        Initialize a CDP method instance
+
+        Args:
+            /: Indicates a parameter separator, and parameters after it can only be passed by keyword.
+            **kwargs: Keyword arguments used to initialize the method's parameters.
+        """
         if self.INPUT_VALIDATOR is None:
             self._params = kwargs
         else:
@@ -62,6 +98,12 @@ class CDPMethod[RESULT_TYPE]:
 
     @property
     def command(self):
+        """
+        Get the command dictionary of the CDP method
+
+        Returns:
+            JSON_DICT: A dictionary containing the method name and parameters.
+        """
         if self._command is None:
             # /fake/dir/cdpkit/Target/methods.py -> Target
             domain_name = Path(inspect.getfile(self.__class__)).parent.name
@@ -76,6 +118,15 @@ class CDPMethod[RESULT_TYPE]:
         return self._command
 
     async def parse_response(self, response: str) -> RESULT_TYPE:
+        """
+        Parse the response of the CDP method
+
+        Args:
+            response (str): The response string.
+
+        Returns:
+            RESULT_TYPE: The parsed response result.
+        """
         logger.info(f'Parsing response for command: {response}')
         if self.OUTPUT_VALIDATOR is None:
             return None

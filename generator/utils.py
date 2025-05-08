@@ -9,7 +9,14 @@ import aiohttp
 
 
 async def request_protocol_json() -> tuple[str, list[dict[str, Any]]]:
-    """请求获取最新的版本号及domain内容"""
+    """
+    Request to obtain the latest version number and domain content.
+
+    Returns:
+        tuple[str, list[dict[str, Any]]]:
+            A tuple containing the protocol version number as a string and a list of dictionaries
+            containing protocol domain information.
+    """
     protocol_version = None
     browser_protocol_domains = []
 
@@ -26,9 +33,7 @@ async def request_protocol_json() -> tuple[str, list[dict[str, Any]]]:
                     if protocol_version is None:
                         _version = protocol_data['version']
                         protocol_version = f'{_version["major"]}.{_version["minor"]}'
-    except aiohttp.ClientError as err:
-        raise Exception(f'Failed to get websocket address: {err}')
-    except KeyError as err:
+    except (aiohttp.ClientError, KeyError) as err:
         raise Exception(f'Failed to get websocket address: {err}')
 
     return protocol_version, browser_protocol_domains
@@ -36,7 +41,11 @@ async def request_protocol_json() -> tuple[str, list[dict[str, Any]]]:
 
 def update_cdp_version(package_path: Path, protocol_version: str) -> None:
     """
-    更新cdp版本号
+    Update the CDP version number.
+
+    Args:
+        package_path (Path): The path of the package.
+        protocol_version (str): The protocol version number.
     """
     version_file = package_path / '__init__.py'
 
@@ -66,15 +75,43 @@ def update_cdp_version(package_path: Path, protocol_version: str) -> None:
 
 
 def indent(text: str, by: int = 4) -> str:
+    """
+    Indent the text.
+
+    Args:
+        text (str): The text to be indented.
+        by (int, optional): The number of spaces for indentation, default is 4.
+
+    Returns:
+        str: The indented text.
+    """
     return textwrap.indent(text=text, prefix=' ' * by)
 
 
 def resolve_docstring(docs: str, by: int = 4) -> str:
+    """
+    Resolve the docstring and indent it.
+
+    Args:
+        docs (str): The docstring.
+        by (int, optional): The number of spaces for indentation, default is 4.
+
+    Returns:
+        str: The resolved and indented docstring.
+    """
     return indent(f'""" {docs} """\n', by=by)
 
 
 def is_builtin(name: str) -> bool:
-    """判断是否是builtin名"""
+    """
+    Check if the name is a built-in name.
+
+    Args:
+        name (str): The name to be checked.
+
+    Returns:
+        bool: True if it is a built-in name, otherwise False.
+    """
     try:
         getattr(builtins, name)
         return True
@@ -82,23 +119,49 @@ def is_builtin(name: str) -> bool:
         return False
 
 
-def rename_in_python(word: str) -> str:
-    word = word.replace("-", "_")
+def rename_in_python(name: str) -> str:
+    """
+    Replace hyphens in the string with underscores and handle built-in function name conflicts.
 
-    if is_builtin(word):
-        return f'{word}_'
-    return word
+    Args:
+        name (str): The string to be processed.
+
+    Returns:
+        str: The processed string.
+    """
+    name = name.replace("-", "_")
+
+    if is_builtin(name):
+        return f'{name}_'
+    return name
 
 
-def rename_camel2snake(word: str):
-    """将驼峰命名改为下划线命名, 并防止内置函数名"""
-    word = re.sub(r"([A-Z]+)([A-Z][a-z])", r'\1_\2', word)
-    word = re.sub(r"([a-z\d])([A-Z])", r'\1_\2', word)
+def rename_camel2snake(name: str):
+    """
+    Convert camel case naming to underscore naming and prevent built-in function name conflicts.
 
-    return rename_in_python(word).lower()
+    Args:
+        name (str): The camel case naming string to be converted.
+
+    Returns:
+        str: The converted underscore naming string.
+    """
+    name = re.sub(r"([A-Z]+)([A-Z][a-z])", r'\1_\2', name)
+    name = re.sub(r"([a-z\d])([A-Z])", r'\1_\2', name)
+
+    return rename_in_python(name).lower()
 
 
 def parse_ref(ref: str) -> tuple[str, str]:
+    """
+    Parse the reference string.
+
+    Args:
+        ref (str): The reference string.
+
+    Returns:
+        tuple[str, str]: A tuple containing the module name and the reference name.
+    """
     if '.' in ref:
         module_name, ref = ref.split('.')
     else:
@@ -107,6 +170,16 @@ def parse_ref(ref: str) -> tuple[str, str]:
 
 
 def fill_ref(ref: str, module_name: str):
+    """
+    Fill the reference string.
+
+    Args:
+        ref (str): The reference string.
+        module_name (str): The module name.
+
+    Returns:
+        str: The filled reference string.
+    """
     _module, _ref = parse_ref(ref)
     if _module:
         return ref
