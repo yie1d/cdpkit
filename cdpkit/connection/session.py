@@ -66,7 +66,7 @@ class CDPSession:
         try:
             await self.ws_connection.send(json.dumps(command))
             response: str = await asyncio.wait_for(future, timeout)
-            return response
+            return await method_command.parse_response(response)
         except TimeoutError as exc:
             self._command_handler.remove_pending_command(_id)
             raise exc
