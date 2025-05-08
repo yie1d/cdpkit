@@ -58,15 +58,15 @@ class CDPSession:
             return False
 
     @async_ensure_connection
-    async def execute(self, method_command: CDPMethod[RESULT_TYPE], timeout: int = 10) -> RESULT_TYPE:
+    async def execute(self, cdp_method: CDPMethod[RESULT_TYPE], timeout: int = 10) -> RESULT_TYPE:
         _id, future = self._command_handler.create_command_future()
-        command = method_command.command
+        command = cdp_method.command
         command['id'] = _id
 
         try:
             await self.ws_connection.send(json.dumps(command))
             response: str = await asyncio.wait_for(future, timeout)
-            return await method_command.parse_response(response)
+            return await cdp_method.parse_response(response)
         except TimeoutError as exc:
             self._command_handler.remove_pending_command(_id)
             raise exc

@@ -1,3 +1,6 @@
-from .session import CDPSessionManager
+from .session import CDPSession, CDPSessionManager
 
-__all__ = ['CDPSessionManager']
+__all__ = [
+    'CDPSessionManager',
+    'CDPSession',
+]
