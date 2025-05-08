@@ -4,7 +4,6 @@ from typing import Any, Generic, TypeVar
 
 from pydantic import BaseModel, ConfigDict
 
-from cdpkit.connection.session import CDPSession
 from cdpkit.logger import logger
 
 __all__ = [
@@ -74,10 +73,6 @@ class CDPMethod(Generic[RESULT_TYPE]):
                 'params': self._params,
             }
         return self._command
-
-    async def execute_by(self, session: CDPSession) -> RESULT_TYPE:
-        resp = await session.execute_command(self.command)
-        return await self.parse_response(resp)
 
     async def parse_response(self, response: str) -> RESULT_TYPE:
         logger.info(f'Parsing response for command: {response}')

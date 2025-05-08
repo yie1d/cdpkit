@@ -54,7 +54,7 @@ async def main():
     session_manager = CDPSessionManager(connection_port=9222)
     cdp_session = await session_manager.get_session()
 
-    target_resp = await Target.GetTargets().execute_by(cdp_session)
+    target_resp = await cdp_session.execute(Target.GetTargets())
 
     for target_info in target_resp.targetInfos:
         print(target_info.model_dump())

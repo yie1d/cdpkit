@@ -9,6 +9,7 @@ import websockets
 
 from cdpkit.connection.handler import CDPCommandsHandler, CDPEventsHandler
 from cdpkit.logger import logger
+from cdpkit.protocol.base import CDPMethod, RESULT_TYPE
 
 
 def async_ensure_connection(func):
@@ -57,8 +58,9 @@ class CDPSession:
             return False
 
     @async_ensure_connection
-    async def execute_command(self, command: dict[str, Any], timeout: int = 10) -> str:
+    async def execute(self, method_command: CDPMethod[RESULT_TYPE], timeout: int = 10) -> RESULT_TYPE:
         _id, future = self._command_handler.create_command_future()
+        command = method_command.command
         command['id'] = _id
 
         try:

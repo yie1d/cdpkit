@@ -51,7 +51,7 @@ def update_cdp_version(package_path: Path, protocol_version: str) -> None:
     except AttributeError:
         version = '0.0.0'
 
-    major, minor, patch = version.split('.')
+    major, minor, _ = version.split('.')
     minor = int(minor) + 1
     if minor >= 20:
         major = str(int(major) + 1)
@@ -59,7 +59,7 @@ def update_cdp_version(package_path: Path, protocol_version: str) -> None:
     else:
         minor = str(minor)
 
-    file_content = f"""__version__ = '{major}.{minor}.{patch}'\n__cdp_version__ = '{protocol_version}.0'\n"""
+    file_content = f"""__version__ = '{major}.{minor}.0'\n__cdp_version__ = '{protocol_version}.0'\n"""
 
     with version_file.open('w') as f:
         f.write(file_content)
