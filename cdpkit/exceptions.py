@@ -27,3 +27,11 @@ class GeneratorNameNotFound(BaseCustomException):
 
 class InvalidCallback(BaseCustomException):
     ERROR_INFO = 'Invalid callback, must be callable.'
+
+
+class ExecutableNotFoundError(BaseCustomException):
+    ERROR_INFO = 'Executable path not found, please check the settings.'
+
+
+class PageNotFoundError(BaseCustomException):
+    ERROR_INFO = 'Page not found.'

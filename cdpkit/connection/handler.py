@@ -38,7 +38,7 @@ class CDPEventsHandler:
         # 用于记录event对应的callback_id
         self._events_callbacks: dict[str, list[int]] = defaultdict(list)
 
-    def register_callback(
+    async def register_callback(
         self, event_name: str, callback: Callable, temporary: bool = False
     ) -> int:
         if not callable(callback):
@@ -55,7 +55,7 @@ class CDPEventsHandler:
 
         return self._callback_id
 
-    def remove_callback(self, callback_id: int) -> bool:
+    async def remove_callback(self, callback_id: int) -> bool:
         if callback_id not in self._pending_events:
             logger.warning(f'No pending message can be resolved for id {callback_id}')
             return False
@@ -66,7 +66,7 @@ class CDPEventsHandler:
 
         return True
 
-    def clear_callbacks(self):
+    async def clear_callbacks(self):
         self._pending_events.clear()
         self._events_callbacks.clear()
 
@@ -98,4 +98,4 @@ class CDPEventsHandler:
                 logger.error(f'Error processing callback {event_name} {event_data}: {exc}')
 
         for callback_id in callbacks_to_remove:
-            self.remove_callback(callback_id)
+            await self.remove_callback(callback_id)
