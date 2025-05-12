@@ -1,6 +1,4 @@
-import inspect
-from pathlib import Path
-from typing import Any, TypeVar
+from typing import Any, ClassVar, TypeVar
 
 from pydantic import BaseModel, ConfigDict
 
@@ -18,6 +16,14 @@ __all__ = [
 
 RESULT_TYPE = TypeVar('RESULT_TYPE')
 JSON_DICT = dict[str, Any]
+
+
+def gen_command_name(class_obj: object, remove_suffix: str) -> str:
+    # ActivateTarget -> activateTarget
+    method_name = class_obj.__name__
+    method_name = f'{method_name[0].lower()}{method_name[1:]}'
+
+    return f"{class_obj.__module__.removesuffix(remove_suffix).split('.')[-1]}.{method_name}"
 
 
 class CDPObject(BaseModel):
@@ -67,6 +73,13 @@ class CDPEvent(BaseModel):
         extra='forbid'
     )
 
+    event_name: str = ClassVar[str]
+
+    @classmethod
+    def __pydantic_init_subclass__(cls, **kwargs):
+        super().__pydantic_init_subclass__(**kwargs)
+        cls.event_name = gen_command_name(cls, remove_suffix='.events')
+
 
 class CDPMethod[RESULT_TYPE]:
     """
@@ -105,14 +118,8 @@ class CDPMethod[RESULT_TYPE]:
             JSON_DICT: A dictionary containing the method name and parameters.
         """
         if self._command is None:
-            # /fake/dir/cdpkit/Target/methods.py -> Target
-            domain_name = Path(inspect.getfile(self.__class__)).parent.name
-            # ActivateTarget -> activateTarget
-            method_name = self.__class__.__name__
-            method_name = f'{method_name[0].lower()}{method_name[1:]}'
-
             self._command = {
-                'method': f'{domain_name}.{method_name}',
+                'method': gen_command_name(self.__class__, remove_suffix='.methods'),
                 'params': self._params,
             }
         return self._command
