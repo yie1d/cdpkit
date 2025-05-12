@@ -9,7 +9,7 @@ import websockets
 
 from cdpkit.connection.handler import CDPCommandsHandler, CDPEventsHandler
 from cdpkit.logger import logger
-from cdpkit.protocol.base import RESULT_TYPE, CDPMethod
+from cdpkit.protocol import RESULT_TYPE, CDPMethod, Target
 
 
 def async_ensure_connection(func):
@@ -21,14 +21,29 @@ def async_ensure_connection(func):
 
 
 class CDPSession:
-    def __init__(self, ws_address: str):
-        logger.info(f'ws_address: {ws_address}')
-        self._ws_address = ws_address
+    def __init__(self, connection_port: int, target_id: Target.TargetID):
+        self._connection_port = connection_port
+        self._target_id = target_id
 
         self._receive_task: asyncio.Task | None = None
         self._ws_connection: websockets.ClientConnection | None = None
         self._command_handler = CDPCommandsHandler()
-        self._event_handler = CDPEventsHandler()
+        self.event_handler = CDPEventsHandler()
+
+    async def _parse_ws_address(self) -> str:
+        if self._target_id == 'browser':
+            return await self.get_browser_ws_address()
+        else:
+            return f'ws://localhost:{self._connection_port}/devtools/page/{self._target_id}'
+
+    async def get_browser_ws_address(self) -> str:
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.get(f'http://localhost:{self._connection_port}/json/version') as resp:
+                    data = await resp.json()
+                    return data['webSocketDebuggerUrl']
+        except (aiohttp.ClientError, KeyError) as err:
+            raise Exception(f'Failed to get websocket address: {err}')
 
     async def _ensure_active_connection(self) -> None:
         if self._ws_connection is None:
@@ -41,11 +56,13 @@ class CDPSession:
         return self._ws_connection
 
     async def establish_new_connection(self) -> None:
+        ws_address = await self._parse_ws_address()
+        logger.debug(f'ws_address: {ws_address}')
         self._ws_connection = await websockets.connect(
-            self._ws_address,
+            ws_address,
             max_size=1024 * 1024 * 10  # 10MB
         )
-        logger.info(f'start get page events: {self._ws_address}')
+        logger.info(f'start get page events: {ws_address}')
         self._receive_task = asyncio.create_task(self._receive_events())
 
     @async_ensure_connection
@@ -71,10 +88,10 @@ class CDPSession:
             self._command_handler.remove_pending_command(_id)
             raise exc
         except websockets.ConnectionClosed as exc:
-            await self._cleanup()
+            await self.close()
             raise exc
 
-    async def _cleanup(self) -> None:
+    async def close(self) -> None:
         if self._ws_connection:
             await self._ws_connection.close()
         self._ws_connection = None
@@ -131,12 +148,12 @@ class CDPSession:
         logger.info(f'Processing event message: {message}')
 
         if 'method' in message:
-            await self._event_handler.process_event(message)
+            await self.event_handler.process_event(message)
         else:
             logger.warning('unknown event')
 
     def __str__(self) -> str:
-        return f'CDPSession(address={self._ws_address})'
+        return f'CDPSession(connection_port={self._connection_port}, target_id={self._target_id})'
 
     def __repr__(self) -> str:
         return str(self)
@@ -148,31 +165,22 @@ class CDPSessionManager:
         connection_port: int
     ):
         self._connection_port = connection_port
-        self._connection_session = {}
+        self._connection_session: dict[str, CDPSession] = {}
 
-    async def _parse_ws_address(self, page_id: str) -> str:
-        if page_id == 'browser':
-            return await self.get_browser_ws_address()
+    async def remove_session(self, page_id: str = 'browser') -> None:
+        if page_id in self._connection_session:
+            await self._connection_session[page_id].close()
+            del self._connection_session[page_id]
+
+    def get_session(self, target_id: Target.TargetID = 'browser') -> CDPSession:
+        if target_id not in self._connection_session:
+            cdp_session = CDPSession(
+                connection_port=self._connection_port,
+                target_id=target_id,
+            )
+            self._connection_session[target_id] = cdp_session
         else:
-            return f'ws://localhost:{self._connection_port}/devtools/page/{page_id}'
-
-    async def get_browser_ws_address(self) -> str:
-        try:
-            async with aiohttp.ClientSession() as session:
-                async with session.get(f'http://localhost:{self._connection_port}/json/version') as resp:
-                    data = await resp.json()
-                    return data['webSocketDebuggerUrl']
-        except (aiohttp.ClientError, KeyError) as err:
-            raise Exception(f'Failed to get websocket address: {err}')
-
-    async def get_session(self, page_id: str = 'browser') -> CDPSession:
-        if page_id not in self._connection_session:
-            ws_address = await self._parse_ws_address(page_id)
-            cdp_session = CDPSession(ws_address)
-            await cdp_session.establish_new_connection()
-            self._connection_session[page_id] = cdp_session
-        else:
-            cdp_session = self._connection_session[page_id]
+            cdp_session = self._connection_session[target_id]
 
         return cdp_session
 
