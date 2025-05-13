@@ -9,9 +9,9 @@ import aiohttp
 import websockets
 
 from cdpkit.connection.handler import CDPCommandsHandler, CDPEventsHandler
-from cdpkit.logger import logger
-from cdpkit.protocol import RESULT_TYPE, CDPMethod, CDPEvent, Target
 from cdpkit.exceptions import CallbackParameterError
+from cdpkit.logger import logger
+from cdpkit.protocol import RESULT_TYPE, CDPEvent, CDPMethod, Target
 
 
 def async_ensure_connection(func):
@@ -203,7 +203,7 @@ class CDPSessionExecutor:
         Examples:
             async def _on_target_created(event_data: Target.TargetCreated):
                 ...
-            
+
             await session.on(event=TargetCreated, callback=_on_target_created)
         """
         sig = inspect.signature(callback)

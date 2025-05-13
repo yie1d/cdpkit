@@ -36,5 +36,6 @@ class ExecutableNotFoundError(BaseCustomException):
 class PageNotFoundError(BaseCustomException):
     ERROR_INFO = 'Page not found.'
 
+
 class CallbackParameterError(BaseCustomException):
     ERROR_INFO = 'Callback parameter error.'

@@ -82,7 +82,6 @@ class CDPEvent(BaseModel):
     The base class for all CDP events, configured in strict mode to forbid extra fields.
     """
     model_config = ConfigDict(
-        strict=True,
         extra='forbid'
     )
 

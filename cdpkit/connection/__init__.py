@@ -1,4 +1,4 @@
-from .session import CDPSession, CDPSessionManager, CDPSessionExecutor
+from .session import CDPSession, CDPSessionExecutor, CDPSessionManager
 
 __all__ = [
     'CDPSessionManager',
