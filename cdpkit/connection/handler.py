@@ -4,6 +4,7 @@ from collections.abc import Callable
 
 from cdpkit.exceptions import InvalidCallback
 from cdpkit.logger import logger
+from cdpkit.protocol import CDPEvent
 
 
 class CDPCommandsHandler:
@@ -39,7 +40,7 @@ class CDPEventsHandler:
         self._events_callbacks: dict[str, list[int]] = defaultdict(list)
 
     async def register_callback(
-        self, event_name: str, callback: Callable, temporary: bool = False
+        self, event: type[CDPEvent], callback: Callable, temporary: bool = False
     ) -> int:
         if not callable(callback):
             logger.error('Callback must be callable function.')
@@ -47,11 +48,12 @@ class CDPEventsHandler:
 
         self._callback_id += 1
         self._pending_events[self._callback_id] = {
-            'event': event_name,
+            'event': event.event_name,
             'callback': callback,
+            'callback_event': event,
             'temporary': temporary
         }
-        self._events_callbacks[event_name].append(self._callback_id)
+        self._events_callbacks[event.event_name].append(self._callback_id)
 
         return self._callback_id
 
@@ -91,9 +93,9 @@ class CDPEventsHandler:
 
             try:
                 if asyncio.iscoroutinefunction(callback_func):
-                    await callback_func(event_data)
+                    await callback_func(event_data=callback_info['callback_event'].model_validate(event_data['params']))
                 else:
-                    callback_func(event_data)
+                    callback_func(event_data=callback_info['callback_event'].model_validate(event_data['params']))
             except Exception as exc:
                 logger.error(f'Error processing callback {event_name} {event_data}: {exc}')
 

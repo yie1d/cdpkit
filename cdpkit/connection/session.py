@@ -1,5 +1,6 @@
 import asyncio
 import functools
+import inspect
 import json
 from collections.abc import AsyncIterable
 from typing import Any
@@ -9,7 +10,8 @@ import websockets
 
 from cdpkit.connection.handler import CDPCommandsHandler, CDPEventsHandler
 from cdpkit.logger import logger
-from cdpkit.protocol import RESULT_TYPE, CDPMethod, Target
+from cdpkit.protocol import RESULT_TYPE, CDPMethod, CDPEvent, Target
+from cdpkit.exceptions import CallbackParameterError
 
 
 def async_ensure_connection(func):
@@ -189,3 +191,35 @@ class CDPSessionManager:
 
     def __repr__(self) -> str:
         return str(self)
+
+
+class CDPSessionExecutor:
+    def __init__(self, session: CDPSession | None = None) -> None:
+        self._session = session
+
+    async def on(self, event: type[CDPEvent], callback: callable, temporary: bool = False) -> int:
+        """
+
+        Examples:
+            async def _on_target_created(event_data: Target.TargetCreated):
+                ...
+            
+            await session.on(event=TargetCreated, callback=_on_target_created)
+        """
+        sig = inspect.signature(callback)
+        if 'event_data' not in sig.parameters:
+            raise CallbackParameterError('Required parameter "event_data" not found in callback function')
+        if issubclass(sig.parameters["event_data"].annotation, event) is False:
+            raise CallbackParameterError(
+                f"Parameter 'event_data' type mismatch. "
+                f"Expected {event.__name__}, but got {sig.parameters['event_data'].annotation.__name__}."
+            )
+        return await self._session.event_handler.register_callback(
+            event, callback, temporary
+        )
+
+    async def execute_method(self, cdp_method: CDPMethod[RESULT_TYPE], timeout: int = 60) -> RESULT_TYPE:
+        return await self._session.execute(
+            cdp_method,
+            timeout
+        )

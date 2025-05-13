@@ -19,6 +19,19 @@ JSON_DICT = dict[str, Any]
 
 
 def gen_command_name(class_obj: object, remove_suffix: str) -> str:
+    """Generate a DevTools protocol command name from a class object.
+
+    Converts the class name to camelCase and combines it with the module name
+    to form a command name in the format "moduleName.methodName".
+    Example: Class 'ActivateTarget' in module 'network' becomes 'network.activateTarget'.
+
+    Args:
+        class_obj (str): The class object from which to generate the command name.
+        remove_suffix (str): A suffix string to remove from the module name.
+
+    Returns:
+        str: The generated command name as a string in the format "module.method".
+    """
     # ActivateTarget -> activateTarget
     method_name = class_obj.__name__
     method_name = f'{method_name[0].lower()}{method_name[1:]}'
