@@ -81,7 +81,7 @@ class CodeGenerator:
         self,
         context: GenerateContext
     ) -> None:
-        self._context = context
+        self.context = context
 
 
 class GenerateProperty(CodeGenerator):
@@ -91,7 +91,7 @@ class GenerateProperty(CodeGenerator):
         self.property_obj = property_obj
 
         # if property is optional, default_value will be created
-        self._hint: str = self.property_obj.hint_type(self._context.domain, self._context.ref_imports_set)
+        self._hint: str = self.property_obj.hint_type(self.context.domain, self.context.ref_imports_set)
         self._name: str | None = None
         self._default_value: str | None = None
         self._tips: str | None = None
@@ -179,7 +179,7 @@ class GenerateType(CodeGenerator):
         """
         return self._type_obj.resolve_docstring(0) + '\n' + make_property(
             name=self.class_name,
-            value=self._type_obj.hint_type(self._context.domain, self._context.ref_imports_set).replace('.', '')
+            value=self._type_obj.hint_type(self.context.domain, self.context.ref_imports_set).replace('.', '')
         ) + '\n'
 
     def generate_type_enum_code(self) -> str:
@@ -224,7 +224,7 @@ class GenerateType(CodeGenerator):
         properties_code_list = []
 
         for _property in self._type_obj.properties:
-            properties_code_list.append(GenerateProperty(_property, self._context).generate_code())
+            properties_code_list.append(GenerateProperty(_property, self.context).generate_code())
 
         return make_class(
             class_name=self.class_name,
@@ -243,7 +243,7 @@ class GenerateType(CodeGenerator):
         Returns:
             str: Generated type code (enum class, object class, or simple type)
         """
-        logger.debug(f'Generating types for {self._context.domain.domain}')
+        logger.debug(f'Generating types for {self.context.domain.domain}')
 
         if self._just_import or just_import:
             return make_property(
@@ -295,13 +295,13 @@ class CommandInput:
 
     def _init(self):
         """Initialize parameter processing (parse command parameters and generate code)."""
-        if not self._command_generator_obj._command_obj.parameters:
+        if not self._command_generator_obj.command_obj.parameters:
             return
 
-        self.input_class = f'{self._command_generator_obj._command_obj.class_name}Input'
+        self.input_class = f'{self._command_generator_obj.command_obj.class_name}Input'
 
-        for _parameter in self._command_generator_obj._command_obj.parameters:
-            parameter_obj = GenerateProperty(_parameter, self._command_generator_obj._context)
+        for _parameter in self._command_generator_obj.command_obj.parameters:
+            parameter_obj = GenerateProperty(_parameter, self._command_generator_obj.context)
             self._properties_list.append(parameter_obj.generate_simple_code())
             self._init_input_properties_list.append(make_property(
                 name=parameter_obj.snake_name,
@@ -323,7 +323,7 @@ class GenerateCommand(CodeGenerator):
     """Command generator for handling code generation of CDPCommand objects."""
     def __init__(self, command_obj: CDPCommand, context: GenerateContext):
         super().__init__(context)
-        self._command_obj = command_obj
+        self.command_obj = command_obj
 
     def generate_output(self) -> tuple[str, str]:
         """
@@ -334,19 +334,19 @@ class GenerateCommand(CodeGenerator):
                 Output class name and generated code (tuple, the first element is the class name, the second is the
                  code string)
         """
-        if self._command_obj.returns is None:
+        if self.command_obj.returns is None:
             return 'None', ''
 
-        if len(self._command_obj.returns) == 0:
+        if len(self.command_obj.returns) == 0:
             code = ''
             output_class = 'None'
         else:
-            output_class = f'{self._command_obj.class_name}Output'
+            output_class = f'{self.command_obj.class_name}Output'
 
             output_model_properties_list = []
 
-            for _return in self._command_obj.returns:
-                _return_obj = GenerateProperty(property_obj=_return, context=self._context)
+            for _return in self.command_obj.returns:
+                _return_obj = GenerateProperty(property_obj=_return, context=self.context)
                 output_model_properties_list.append(indent(_return_obj.generate_simple_code()))
 
             code = make_class(
@@ -373,10 +373,10 @@ class GenerateCommand(CodeGenerator):
         functions_code = make_methods_init(input_obj.init_input_properties, input_obj.init_super_use_properties)
 
         return f'{input_obj.code}\n\n{output_code}\n\n' + make_class(
-            class_name=self._command_obj.class_name,
+            class_name=self.command_obj.class_name,
             parent=f'CDPMethod[{output_class}]',
-            tips=self._command_obj.tips(),
-            description=self._command_obj.resolve_docstring(),
+            tips=self.command_obj.tips(),
+            description=self.command_obj.resolve_docstring(),
             properties=properties_code,
             functions=functions_code
         )
@@ -399,7 +399,7 @@ class GenerateEvent(CodeGenerator):
 
         if self._event_obj.parameters:
             for _parameter in self._event_obj.parameters:
-                parameter_obj = GenerateProperty(_parameter, self._context)
+                parameter_obj = GenerateProperty(_parameter, self.context)
                 properties_code_list.append(indent(parameter_obj.generate_simple_code()))
         else:
             properties_code_list.append(indent('...'))

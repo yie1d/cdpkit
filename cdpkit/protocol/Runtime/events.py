@@ -65,7 +65,7 @@ class ExecutionContextDestroyed(CDPEvent):
     """ Issued when execution context is destroyed. """
 
     executionContextId: Runtime.ExecutionContextId  # deprecated
-    executionContextUniqueId: str  # experimental deprecated
+    executionContextUniqueId: str | None = None  # experimental deprecated
 
 
 class ExecutionContextsCleared(CDPEvent):

@@ -95,7 +95,7 @@ class RequestWillBeSent(CDPEvent):
     timestamp: Network.MonotonicTime  # deprecated
     wallTime: Network.TimeSinceEpoch  # deprecated
     initiator: Network.Initiator  # deprecated
-    redirectHasExtraInfo: bool  # experimental deprecated
+    redirectHasExtraInfo: bool | None = None  # experimental deprecated
     redirectResponse: Network.Response | None = None  # deprecated
     type: Network.ResourceType | None = None  # deprecated
     frameId: Page.FrameId | None = None  # deprecated
@@ -125,7 +125,7 @@ class ResponseReceived(CDPEvent):
     timestamp: Network.MonotonicTime  # deprecated
     type: Network.ResourceType  # deprecated
     response: Network.Response  # deprecated
-    hasExtraInfo: bool  # experimental deprecated
+    hasExtraInfo: bool | None = None  # experimental deprecated
     frameId: Page.FrameId | None = None  # deprecated
 
 
@@ -321,7 +321,7 @@ class RequestWillBeSentExtraInfo(CDPEvent):
     requestId: Network.RequestId  # deprecated
     associatedCookies: list[Network.AssociatedCookie]  # deprecated
     headers: Network.Headers  # deprecated
-    connectTiming: Network.ConnectTiming  # experimental deprecated
+    connectTiming: Network.ConnectTiming | None = None  # experimental deprecated
     clientSecurityState: Network.ClientSecurityState | None = None  # deprecated
     siteHasCookieInOtherPartition: bool | None = None  # deprecated
 

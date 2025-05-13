@@ -29,7 +29,7 @@ class DomContentEventFired(CDPEvent):
 class FileChooserOpened(CDPEvent):
     """ Emitted only when `page.interceptFileChooser` is enabled. """
 
-    frameId: Page.FrameId  # experimental deprecated
+    frameId: Page.FrameId | None = None  # experimental deprecated
     mode: Literal['selectSingle', 'selectMultiple']  # deprecated
     backendNodeId: DOM.BackendNodeId | None = None  # experimental deprecated
 
@@ -52,7 +52,7 @@ class FrameDetached(CDPEvent):
     """ Fired when frame has been detached from its parent. """
 
     frameId: Page.FrameId  # deprecated
-    reason: Literal['remove', 'swap']  # experimental
+    reason: Literal['remove', 'swap'] | None = None  # experimental
 
 
 class FrameSubtreeWillBeDetached(CDPEvent):
@@ -66,7 +66,7 @@ class FrameNavigated(CDPEvent):
     """ Fired once navigation of the frame has completed. Frame is now associated with the new loader. """
 
     frame: Page.Frame  # deprecated
-    type: Page.NavigationType  # experimental
+    type: Page.NavigationType | None = None  # experimental
 
 
 class DocumentOpened(CDPEvent):
@@ -162,7 +162,7 @@ class JavascriptDialogClosed(CDPEvent):
     """ Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been
     closed. """
 
-    frameId: Page.FrameId  # experimental deprecated
+    frameId: Page.FrameId | None = None  # experimental deprecated
     result: bool  # deprecated
     userInput: str  # deprecated
 
@@ -172,7 +172,7 @@ class JavascriptDialogOpening(CDPEvent):
     open. """
 
     url: str  # deprecated
-    frameId: Page.FrameId  # experimental deprecated
+    frameId: Page.FrameId | None = None  # experimental deprecated
     message: str  # deprecated
     type: Page.DialogType  # deprecated
     hasBrowserHandler: bool  # deprecated

@@ -276,7 +276,7 @@ class GetAppManifestOutput(OutputModel):
     errors: list[Page.AppManifestError]
     data: str | None = None  # deprecated
     parsed: Page.AppManifestParsedProperties | None = None  # experimental deprecated
-    manifest: Page.WebAppManifest  # experimental
+    manifest: Page.WebAppManifest | None = None  # experimental
 
 
 class GetAppManifest(CDPMethod[GetAppManifestOutput]):  # deprecated

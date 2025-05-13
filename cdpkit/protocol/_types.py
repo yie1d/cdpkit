@@ -3712,16 +3712,16 @@ class NetworkResourceTiming(CDPObject):
     sslEnd: float  # deprecated
 
     # Started running ServiceWorker.
-    workerStart: float  # experimental deprecated
+    workerStart: float | None = None  # experimental deprecated
 
     # Finished Starting ServiceWorker.
-    workerReady: float  # experimental deprecated
+    workerReady: float | None = None  # experimental deprecated
 
     # Started fetch event.
-    workerFetchStart: float  # experimental deprecated
+    workerFetchStart: float | None = None  # experimental deprecated
 
     # Settled fetch event respondWith promise.
-    workerRespondWithSettled: float  # experimental deprecated
+    workerRespondWithSettled: float | None = None  # experimental deprecated
 
     # Started ServiceWorker static routing source evaluation.
     workerRouterEvaluationStart: float | None = None  # experimental deprecated
@@ -3736,13 +3736,13 @@ class NetworkResourceTiming(CDPObject):
     sendEnd: float  # deprecated
 
     # Time the server started pushing request.
-    pushStart: float  # experimental deprecated
+    pushStart: float | None = None  # experimental deprecated
 
     # Time the server finished pushing request.
-    pushEnd: float  # experimental deprecated
+    pushEnd: float | None = None  # experimental deprecated
 
     # Started receiving response headers.
-    receiveHeadersStart: float  # experimental deprecated
+    receiveHeadersStart: float | None = None  # experimental deprecated
 
     # Finished receiving response headers.
     receiveHeadersEnd: float  # deprecated
@@ -4235,16 +4235,16 @@ class NetworkCookie(CDPObject):
     sameSite: Network.CookieSameSite | None = None  # deprecated
 
     # Cookie Priority
-    priority: Network.CookiePriority  # experimental deprecated
+    priority: Network.CookiePriority | None = None  # experimental deprecated
 
     # True if cookie is SameParty.
-    sameParty: bool  # experimental deprecated
+    sameParty: bool | None = None  # experimental deprecated
 
     # Cookie source scheme type.
-    sourceScheme: Network.CookieSourceScheme  # experimental deprecated
+    sourceScheme: Network.CookieSourceScheme | None = None  # experimental deprecated
 
     # Cookie source port. Valid values are {-1, [1, 65535]}, -1 indicates anunspecified port. An unspecified port value allows protocol clients to emulatelegacy cookie scope for the port. This is a temporary ability and it will beremoved in the future.
-    sourcePort: int  # experimental deprecated
+    sourcePort: int | None = None  # experimental deprecated
 
     # Cookie partition key.
     partitionKey: Network.CookiePartitionKey | None = None  # experimental deprecated
@@ -5411,7 +5411,7 @@ class PageFrame(CDPObject):
     urlFragment: str | None = None  # experimental deprecated
 
     # Frame document's registered domain, taking the public suffixes list intoaccount. Extracted from the Frame's url. Example URLs:http://www.google.com/file.html -> "google.com"http://a.b.co.uk/file.html      -> "b.co.uk"
-    domainAndRegistry: str  # experimental deprecated
+    domainAndRegistry: str | None = None  # experimental deprecated
 
     # Frame document's security origin.
     securityOrigin: str  # deprecated
@@ -5429,13 +5429,13 @@ class PageFrame(CDPObject):
     adFrameStatus: Page.AdFrameStatus | None = None  # experimental deprecated
 
     # Indicates whether the main document is a secure context and explains whythat is the case.
-    secureContextType: Page.SecureContextType  # experimental deprecated
+    secureContextType: Page.SecureContextType | None = None  # experimental deprecated
 
     # Indicates whether this is a cross origin isolated context.
-    crossOriginIsolatedContextType: Page.CrossOriginIsolatedContextType  # experimental deprecated
+    crossOriginIsolatedContextType: Page.CrossOriginIsolatedContextType | None = None  # experimental deprecated
 
     # Indicated which gated APIs / features are available.
-    gatedAPIFeatures: list[Page.GatedAPIFeatures]  # experimental deprecated
+    gatedAPIFeatures: list[Page.GatedAPIFeatures] | None = None  # experimental deprecated
 
 
 class PageFrameResource(CDPObject):
@@ -7168,7 +7168,7 @@ class TargetTargetInfo(CDPObject):
     openerId: Target.TargetID | None = None  # deprecated
 
     # Whether the target has access to the originating window.
-    canAccessOpener: bool  # experimental deprecated
+    canAccessOpener: bool | None = None  # experimental deprecated
 
     # Frame id of originating window (is only set if target has an opener).
     openerFrameId: Page.FrameId | None = None  # experimental deprecated
@@ -8604,7 +8604,7 @@ class RuntimeExecutionContextDescription(CDPObject):
     name: str  # deprecated
 
     # A system-unique execution context identifier. Unlike the id, this isunique across multiple processes, so can be reliably used to identify specificcontext while backend performs a cross-process navigation.
-    uniqueId: str  # experimental deprecated
+    uniqueId: str | None = None  # experimental deprecated
 
     # Embedder-specific auxiliary data likely matching {isDefault: boolean,type: 'default'|'isolated'|'worker', frameId: string}
     auxData: JSON_DICT | None = None  # deprecated

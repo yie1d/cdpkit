@@ -58,7 +58,7 @@ class EnableInput(InputModel):
 
 class EnableOutput(OutputModel):
 
-    debuggerId: Runtime.UniqueDebuggerId  # experimental deprecated
+    debuggerId: Runtime.UniqueDebuggerId | None = None  # experimental deprecated
 
 
 class Enable(CDPMethod[EnableOutput]):  # deprecated
@@ -752,7 +752,7 @@ class SetScriptSourceOutput(OutputModel):
     stackChanged: bool | None = None  # deprecated
     asyncStackTrace: Runtime.StackTrace | None = None  # deprecated
     asyncStackTraceId: Runtime.StackTraceId | None = None  # deprecated
-    status: Literal['Ok', 'CompileError', 'BlockedByActiveGenerator', 'BlockedByActiveFunction', 'BlockedByTopLevelEsModuleChange']  # experimental deprecated
+    status: Literal['Ok', 'CompileError', 'BlockedByActiveGenerator', 'BlockedByActiveFunction', 'BlockedByTopLevelEsModuleChange'] | None = None  # experimental deprecated
     exceptionDetails: Runtime.ExceptionDetails | None = None  # deprecated
 
 

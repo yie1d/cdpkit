@@ -191,7 +191,7 @@ class CDPProperty(CDPCommonObject, CDPItem):
         else:
             _type = self.get_py_type(domain_obj, ref_imports_set)
 
-        if self.optional:
+        if self.optional or self.experimental:
             if _type != 'Any':  # Avoid redundant "Any | None"
                 _type += ' | None'
             self.default_value = 'None'
