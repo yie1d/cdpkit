@@ -187,8 +187,13 @@ class CDPSessionManager:
 
 
 class CDPSessionExecutor:
-    def __init__(self, session: CDPSession | None = None) -> None:
+    def __init__(
+        self,
+        session: CDPSession | None = None,
+        session_manager: CDPSessionManager | None = None
+    ) -> None:
         self._session = session
+        self._session_manager = session_manager
 
     async def on(self, event: type[CDPEvent], callback: callable, temporary: bool = False) -> int:
         """
