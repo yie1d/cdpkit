@@ -3,7 +3,7 @@ import functools
 import inspect
 import json
 from collections.abc import AsyncIterable
-from typing import Any
+from typing import Any, TypeVar, ParamSpec, Callable, Awaitable
 
 import aiohttp
 import websockets
@@ -13,13 +13,6 @@ from cdpkit.exceptions import CallbackParameterError
 from cdpkit.logger import logger
 from cdpkit.protocol import RESULT_TYPE, CDPEvent, CDPMethod, Target
 
-
-def async_ensure_connection(func):
-    @functools.wraps(func)
-    async def wrapper(self: 'CDPSession', *args, **kwargs):
-        await self._ensure_active_connection()
-        return await func(self, *args, **kwargs)
-    return wrapper
 
 
 class CDPSession:
@@ -67,8 +60,9 @@ class CDPSession:
         logger.info(f'start get page events: {ws_address}')
         self._receive_task = asyncio.create_task(self._receive_events())
 
-    @async_ensure_connection
     async def ping(self) -> bool:
+        await self._ensure_active_connection()
+
         try:
             await self.ws_connection.ping()
             return True
@@ -76,8 +70,9 @@ class CDPSession:
             logger.warning(f'Failed to ping: {exc}')
             return False
 
-    @async_ensure_connection
     async def execute(self, cdp_method: CDPMethod[RESULT_TYPE], timeout: int = 10) -> RESULT_TYPE:
+        await self._ensure_active_connection()
+
         _id, future = self._command_handler.create_command_future()
         command = cdp_method.command
         command['id'] = _id
