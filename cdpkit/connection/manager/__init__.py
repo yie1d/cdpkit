@@ -1,2 +1,2 @@
-from .commands import CommandsManager
-from .events import EventsManager
+from .commands import CommandsManager as CommandsManager
+from .events import EventsManager as EventsManager
