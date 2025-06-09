@@ -85,12 +85,10 @@ class CDPEvent(BaseModel):
         extra='forbid'
     )
 
-    event_name: str = ClassVar[str]
-
     @classmethod
     def __pydantic_init_subclass__(cls, **kwargs):
         super().__pydantic_init_subclass__(**kwargs)
-        cls.event_name = gen_command_name(cls, remove_suffix='.events')
+        cls.EVENT_NAME = gen_command_name(cls, remove_suffix='.events')
 
 
 class CDPMethod[RESULT_TYPE]:

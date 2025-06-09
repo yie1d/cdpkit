@@ -7,30 +7,7 @@ from cdpkit.logger import logger
 from cdpkit.protocol import CDPEvent
 
 
-class CDPCommandsHandler:
-    def __init__(self):
-        self._pending_commands: dict[int, asyncio.Future] = {}
-        self._command_id: int = 0
-
-    def create_command_future(self) -> tuple[int, asyncio.Future]:
-        self._command_id += 1
-        future = asyncio.Future()
-        self._pending_commands[self._command_id] = future
-        return self._command_id, future
-
-    def remove_pending_command(self, response_id: int):
-        if response_id in self._pending_commands:
-            del self._pending_commands[response_id]
-
-    def resolve_command(self, response_id: int, result: str):
-        if response_id in self._pending_commands:
-            self._pending_commands[response_id].set_result(result)
-            del self._pending_commands[response_id]
-        else:
-            logger.warning(f'No pending message can be resolve for id {response_id}')
-
-
-class CDPEventsHandler:
+class EventsManager:
     def __init__(self):
         # 用于记录挂起的callback_id及对应的callback_info
         self._pending_events: dict[int, dict] = {}
@@ -48,12 +25,12 @@ class CDPEventsHandler:
 
         self._callback_id += 1
         self._pending_events[self._callback_id] = {
-            'event': event.event_name,
+            'event': event.EVENT_NAME,
             'callback': callback,
             'callback_event': event,
             'temporary': temporary
         }
-        self._events_callbacks[event.event_name].append(self._callback_id)
+        self._events_callbacks[event.EVENT_NAME].append(self._callback_id)
 
         return self._callback_id
 

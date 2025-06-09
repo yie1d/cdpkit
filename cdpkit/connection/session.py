@@ -7,7 +7,7 @@ from typing import Any
 import aiohttp
 import websockets
 
-from cdpkit.connection.handler import CDPCommandsHandler, CDPEventsHandler
+from cdpkit.connection.manager import CommandsManager, EventsManager
 from cdpkit.exception import CallbackParameterError
 from cdpkit.logger import logger
 from cdpkit.protocol import RESULT_TYPE, CDPEvent, CDPMethod, Target
@@ -20,8 +20,8 @@ class CDPSession:
 
         self._receive_task: asyncio.Task | None = None
         self._ws_connection: websockets.ClientConnection | None = None
-        self._command_handler = CDPCommandsHandler()
-        self.event_handler = CDPEventsHandler()
+        self._commands_manager = CommandsManager()
+        self.events_manager = EventsManager()
 
     async def _parse_ws_address(self) -> str:
         if self._target_id == 'browser':
@@ -71,7 +71,7 @@ class CDPSession:
     async def execute(self, cdp_method: CDPMethod[RESULT_TYPE], timeout: int = 10) -> RESULT_TYPE:
         await self._ensure_active_connection()
 
-        _id, future = self._command_handler.create_command_future()
+        _id, future = self._commands_manager.create_command_future()
         command = cdp_method.command
         command['id'] = _id
 
@@ -80,7 +80,7 @@ class CDPSession:
             response: str = await asyncio.wait_for(future, timeout)
             return await cdp_method.parse_response(response)
         except TimeoutError as exc:
-            self._command_handler.remove_pending_command(_id)
+            self._commands_manager.remove_pending_command(_id)
             raise exc
         except websockets.ConnectionClosed as exc:
             await self.close()
@@ -135,7 +135,7 @@ class CDPSession:
     async def _handle_command_message(self, message: dict[str, Any]) -> None:
         logger.debug(f'Processing command response: {message["id"]}')
         if 'result' in message:
-            self._command_handler.resolve_command(message['id'], json.dumps(message['result']))
+            self._commands_manager.resolve_command(message['id'], json.dumps(message['result']))
         else:
             logger.error(f'Failed to resolve command response: {message}')
 
@@ -143,7 +143,7 @@ class CDPSession:
         logger.info(f'Processing event message: {message}')
 
         if 'method' in message:
-            await self.event_handler.process_event(message)
+            await self.events_manager.process_event(message)
         else:
             logger.warning('unknown event')
 
@@ -212,7 +212,7 @@ class CDPSessionExecutor:
                 f"Parameter 'event_data' type mismatch. "
                 f"Expected {event.__name__}, but got {sig.parameters['event_data'].annotation.__name__}."
             )
-        return await self._session.event_handler.register_callback(
+        return await self._session.events_manager.register_callback(
             event, callback, temporary
         )
 
