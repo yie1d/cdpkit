@@ -2,7 +2,7 @@ import asyncio
 from collections import defaultdict
 from collections.abc import Callable
 
-from cdpkit.exceptions import InvalidCallback
+from cdpkit.exception import InvalidCallback
 from cdpkit.logger import logger
 from cdpkit.protocol import CDPEvent
 

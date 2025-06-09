@@ -8,7 +8,7 @@ import aiohttp
 import websockets
 
 from cdpkit.connection.handler import CDPCommandsHandler, CDPEventsHandler
-from cdpkit.exceptions import CallbackParameterError
+from cdpkit.exception import CallbackParameterError
 from cdpkit.logger import logger
 from cdpkit.protocol import RESULT_TYPE, CDPEvent, CDPMethod, Target
 
