@@ -134,7 +134,7 @@ class SetCookies(CDPMethod[None]):  # deprecated
     def __init__(
         self,
         *,
-        cookies: list[Network.CookieParam],
+        cookies: list[Network.CookieParam | dict],
         browser_context_id: Browser.BrowserContextID | None = None
     ):
         super().__init__(

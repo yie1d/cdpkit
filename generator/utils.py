@@ -184,3 +184,21 @@ def fill_ref(ref: str, module_name: str):
     if _module:
         return ref
     return f'{module_name}.{_ref}'
+
+
+def convert_to_command_input_hint_type(hint: str, types_obj: set) -> str:
+    """
+    Converts a type hint from 'list[Type]' to 'list[Type | dict]' if the type is found in `types_obj`.
+
+    Args:
+        hint (str): The original type hint string, e.g. 'list[MyType]'.
+        types_obj (set): A set of valid types that can be converted.
+
+    Returns:
+        str: The modified type hint if conversion is applicable; otherwise, returns the original hint.
+    """
+    type_obj = re.search(r'list\[(.*?)]', hint)
+    if type_obj is None or type_obj.group(1).replace('.', '') not in types_obj:
+        return hint
+
+    return f'list[{type_obj.group(1)} | dict]'

@@ -34,7 +34,6 @@ from cdpkit.protocol._types import (
     StorageAttributionReportingSourceType,
     StorageAttributionReportingTriggerDataMatching,
     StorageAttributionReportingTriggerRegistration,
-    StorageAttributionReportingTriggerSpec,
     StorageAttributionScopesData,
     StorageInterestGroupAccessType,
     StorageInterestGroupAuctionEventType,
@@ -89,7 +88,6 @@ AttributionReportingFilterConfig = StorageAttributionReportingFilterConfig
 AttributionReportingFilterPair = StorageAttributionReportingFilterPair
 AttributionReportingAggregationKeysEntry = StorageAttributionReportingAggregationKeysEntry
 AttributionReportingEventReportWindows = StorageAttributionReportingEventReportWindows
-AttributionReportingTriggerSpec = StorageAttributionReportingTriggerSpec
 AttributionReportingTriggerDataMatching = StorageAttributionReportingTriggerDataMatching
 AttributionReportingAggregatableDebugReportingData = StorageAttributionReportingAggregatableDebugReportingData
 AttributionReportingAggregatableDebugReportingConfig = StorageAttributionReportingAggregatableDebugReportingConfig

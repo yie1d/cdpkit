@@ -534,7 +534,7 @@ class SetBlackboxedRanges(CDPMethod[None]):  # experimental deprecated
         self,
         *,
         script_id: Runtime.ScriptId,
-        positions: list[Debugger.ScriptPosition]
+        positions: list[Debugger.ScriptPosition | dict]
     ):
         super().__init__(
             scriptId=script_id,
@@ -852,7 +852,7 @@ class StepInto(CDPMethod[None]):  # deprecated
         self,
         *,
         break_on_async_call: bool | None = None,
-        skip_list: list[Debugger.LocationRange] | None = None
+        skip_list: list[Debugger.LocationRange | dict] = None
     ):
         super().__init__(
             breakOnAsyncCall=break_on_async_call,
@@ -881,7 +881,7 @@ class StepOver(CDPMethod[None]):  # deprecated
     def __init__(
         self,
         *,
-        skip_list: list[Debugger.LocationRange] | None = None
+        skip_list: list[Debugger.LocationRange | dict] = None
     ):
         super().__init__(
             skipList=skip_list

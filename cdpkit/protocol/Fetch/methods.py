@@ -41,7 +41,7 @@ class Enable(CDPMethod[None]):  # deprecated
     def __init__(
         self,
         *,
-        patterns: list[Fetch.RequestPattern] | None = None,
+        patterns: list[Fetch.RequestPattern | dict] = None,
         handle_auth_requests: bool | None = None
     ):
         super().__init__(
@@ -95,7 +95,7 @@ class FulfillRequest(CDPMethod[None]):  # deprecated
         *,
         request_id: Fetch.RequestId,
         response_code: int,
-        response_headers: list[Fetch.HeaderEntry] | None = None,
+        response_headers: list[Fetch.HeaderEntry | dict] = None,
         binary_response_headers: str | None = None,
         body: str | None = None,
         response_phrase: str | None = None
@@ -133,7 +133,7 @@ class ContinueRequest(CDPMethod[None]):  # deprecated
         url: str | None = None,
         method: str | None = None,
         post_data: str | None = None,
-        headers: list[Fetch.HeaderEntry] | None = None,
+        headers: list[Fetch.HeaderEntry | dict] = None,
         intercept_response: bool | None = None
     ):
         super().__init__(
@@ -193,7 +193,7 @@ class ContinueResponse(CDPMethod[None]):  # experimental deprecated
         request_id: Fetch.RequestId,
         response_code: int | None = None,
         response_phrase: str | None = None,
-        response_headers: list[Fetch.HeaderEntry] | None = None,
+        response_headers: list[Fetch.HeaderEntry | dict] = None,
         binary_response_headers: str | None = None
     ):
         super().__init__(

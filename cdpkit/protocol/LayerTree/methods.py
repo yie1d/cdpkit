@@ -77,7 +77,7 @@ class LoadSnapshot(CDPMethod[LoadSnapshotOutput]):  # deprecated
     def __init__(
         self,
         *,
-        tiles: list[LayerTree.PictureTile]
+        tiles: list[LayerTree.PictureTile | dict]
     ):
         super().__init__(
             tiles=tiles

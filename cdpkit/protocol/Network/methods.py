@@ -633,7 +633,7 @@ class SetCookies(CDPMethod[None]):  # deprecated
     def __init__(
         self,
         *,
-        cookies: list[Network.CookieParam]
+        cookies: list[Network.CookieParam | dict]
     ):
         super().__init__(
             cookies=cookies
@@ -697,7 +697,7 @@ class SetRequestInterception(CDPMethod[None]):  # experimental deprecated
     def __init__(
         self,
         *,
-        patterns: list[Network.RequestPattern]
+        patterns: list[Network.RequestPattern | dict]
     ):
         super().__init__(
             patterns=patterns

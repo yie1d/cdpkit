@@ -20,7 +20,9 @@ from generator.format import (
     make_property,
     make_ref_imports,
 )
-from generator.utils import indent, rename_camel2snake, rename_in_python
+from generator.utils import convert_to_command_input_hint_type, indent, rename_camel2snake, rename_in_python
+
+ALL_TYPES_OBJ = set()
 
 
 @dataclass
@@ -221,10 +223,15 @@ class GenerateType(CodeGenerator):
         Returns:
             str: Generated object class code (inheriting from CDPObject)
         """
+        global ALL_TYPES_OBJ
+
         properties_code_list = []
 
         for _property in self._type_obj.properties:
             properties_code_list.append(GenerateProperty(_property, self.context).generate_code())
+
+        # for generate method type hint
+        ALL_TYPES_OBJ.add(self.class_name)
 
         return make_class(
             class_name=self.class_name,
@@ -305,7 +312,7 @@ class CommandInput:
             self._properties_list.append(parameter_obj.generate_simple_code())
             self._init_input_properties_list.append(make_property(
                 name=parameter_obj.snake_name,
-                hint=parameter_obj.hint,
+                hint=convert_to_command_input_hint_type(parameter_obj.hint, ALL_TYPES_OBJ),
                 value=parameter_obj.default_value
             ))
             self._init_super_use_properties_list.append(make_property(
@@ -494,32 +501,34 @@ def generate_commands_code(file_path: Path, context: GenerateContext) -> None:
         ))
 
 
-def generate_types_file(file_path: Path, has_types_domain: list[CDPDomain]) -> None:
+def generate_types_file(file_path: Path, all_domains: list[CDPDomain]) -> None:
     """
     Generate the global types file (including types from all domains).
 
     Args:
         file_path (Path): Output file path
-        has_types_domain (list[CDPDomain]): List of domains containing types
+        all_domains (list[CDPDomain]): List of domains containing types
     """
     types_for_class = ''
     generate_code = ''
 
-    for domain in has_types_domain:
-        domain_context = GenerateContext(domain)
+    for cur_domain in all_domains:
+        if not cur_domain.types:
+            continue
+        domain_context = GenerateContext(cur_domain)
 
         domain_types_properties_list = []
-        for _type in domain.types:
+        for _type in cur_domain.types:
 
             generate_code += GenerateType(_type, domain_context).generate_code()
 
             domain_types_properties_list.append(indent(make_property(
                 name=_type.id,
-                value=f'{domain.domain}{_type.id}'
+                value=f'{cur_domain.domain}{_type.id}'
             )))
 
         types_for_class += make_class(
-            class_name=domain.domain,
+            class_name=cur_domain.domain,
             properties='\n'.join(domain_types_properties_list)
         )
 
@@ -573,12 +582,7 @@ def generate_to_dir(top_domain: CDPTopDomain, output_dir: Path):
         top_domain (CDPTopDomain): Top-level domain object (containing all CDP domains)
         output_dir (Path): Output directory path
     """
-    has_types_domain = []
+    generate_types_file(output_dir / '_types.py', top_domain.domains)  # Generate the global types file
 
     for domain in top_domain.domains:
         generate_domain(output_dir / f'{domain.domain}', domain)
-
-        if domain.types:
-            has_types_domain.append(domain)
-
-    generate_types_file(output_dir / '_types.py', has_types_domain)  # Generate the global types file

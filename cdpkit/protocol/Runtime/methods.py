@@ -88,7 +88,7 @@ class CallFunctionOn(CDPMethod[CallFunctionOnOutput]):  # deprecated
         *,
         function_declaration: str,
         object_id: Runtime.RemoteObjectId | None = None,
-        arguments: list[Runtime.CallArgument] | None = None,
+        arguments: list[Runtime.CallArgument | dict] = None,
         silent: bool | None = None,
         return_by_value: bool | None = None,
         generate_preview: bool | None = None,

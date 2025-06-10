@@ -34,3 +34,4 @@ class DownloadProgress(CDPEvent):
     totalBytes: float  # deprecated
     receivedBytes: float  # deprecated
     state: Literal['inProgress', 'completed', 'canceled']  # deprecated
+    filePath: str | None = None  # experimental deprecated

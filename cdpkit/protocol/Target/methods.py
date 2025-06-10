@@ -481,7 +481,7 @@ class SetRemoteLocations(CDPMethod[None]):  # experimental deprecated
     def __init__(
         self,
         *,
-        locations: list[Target.RemoteLocation]
+        locations: list[Target.RemoteLocation | dict]
     ):
         super().__init__(
             locations=locations

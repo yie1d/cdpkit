@@ -336,20 +336,20 @@ class GetAppId(CDPMethod[GetAppIdOutput]):  # experimental deprecated
     OUTPUT_VALIDATOR = GetAppIdOutput
 
 
-class GetAdScriptAncestryIdsInput(InputModel):
+class GetAdScriptAncestryInput(InputModel):
 
     frameId: Page.FrameId
 
 
-class GetAdScriptAncestryIdsOutput(OutputModel):
+class GetAdScriptAncestryOutput(OutputModel):
 
-    adScriptAncestryIds: list[Page.AdScriptId]  # deprecated
+    adScriptAncestry: Page.AdScriptAncestry | None = None  # deprecated
 
 
-class GetAdScriptAncestryIds(CDPMethod[GetAdScriptAncestryIdsOutput]):  # experimental
+class GetAdScriptAncestry(CDPMethod[GetAdScriptAncestryOutput]):  # experimental
 
-    INPUT_VALIDATOR = GetAdScriptAncestryIdsInput
-    OUTPUT_VALIDATOR = GetAdScriptAncestryIdsOutput
+    INPUT_VALIDATOR = GetAdScriptAncestryInput
+    OUTPUT_VALIDATOR = GetAdScriptAncestryOutput
 
     def __init__(
         self,
@@ -933,7 +933,7 @@ class SetFontFamilies(CDPMethod[None]):  # experimental deprecated
         self,
         *,
         font_families: Page.FontFamilies,
-        for_scripts: list[Page.ScriptFontFamilies] | None = None
+        for_scripts: list[Page.ScriptFontFamilies | dict] = None
     ):
         super().__init__(
             fontFamilies=font_families,
@@ -1186,7 +1186,7 @@ class ProduceCompilationCache(CDPMethod[None]):  # experimental deprecated
     def __init__(
         self,
         *,
-        scripts: list[Page.CompilationCacheParams]
+        scripts: list[Page.CompilationCacheParams | dict]
     ):
         super().__init__(
             scripts=scripts

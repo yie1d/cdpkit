@@ -410,7 +410,7 @@ class SetShowGridOverlays(CDPMethod[None]):  # deprecated
     def __init__(
         self,
         *,
-        grid_node_highlight_configs: list[Overlay.GridNodeHighlightConfig]
+        grid_node_highlight_configs: list[Overlay.GridNodeHighlightConfig | dict]
     ):
         super().__init__(
             gridNodeHighlightConfigs=grid_node_highlight_configs
@@ -430,7 +430,7 @@ class SetShowFlexOverlays(CDPMethod[None]):
     def __init__(
         self,
         *,
-        flex_node_highlight_configs: list[Overlay.FlexNodeHighlightConfig]
+        flex_node_highlight_configs: list[Overlay.FlexNodeHighlightConfig | dict]
     ):
         super().__init__(
             flexNodeHighlightConfigs=flex_node_highlight_configs
@@ -450,7 +450,7 @@ class SetShowScrollSnapOverlays(CDPMethod[None]):
     def __init__(
         self,
         *,
-        scroll_snap_highlight_configs: list[Overlay.ScrollSnapHighlightConfig]
+        scroll_snap_highlight_configs: list[Overlay.ScrollSnapHighlightConfig | dict]
     ):
         super().__init__(
             scrollSnapHighlightConfigs=scroll_snap_highlight_configs
@@ -470,7 +470,7 @@ class SetShowContainerQueryOverlays(CDPMethod[None]):
     def __init__(
         self,
         *,
-        container_query_highlight_configs: list[Overlay.ContainerQueryHighlightConfig]
+        container_query_highlight_configs: list[Overlay.ContainerQueryHighlightConfig | dict]
     ):
         super().__init__(
             containerQueryHighlightConfigs=container_query_highlight_configs
@@ -638,7 +638,7 @@ class SetShowIsolatedElements(CDPMethod[None]):  # deprecated
     def __init__(
         self,
         *,
-        isolated_element_highlight_configs: list[Overlay.IsolatedElementHighlightConfig]
+        isolated_element_highlight_configs: list[Overlay.IsolatedElementHighlightConfig | dict]
     ):
         super().__init__(
             isolatedElementHighlightConfigs=isolated_element_highlight_configs
