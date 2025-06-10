@@ -1,14 +1,23 @@
 import asyncio
 import inspect
 import json
-from collections.abc import AsyncIterable
+from collections.abc import AsyncIterable, Callable
+from contextlib import suppress
 from typing import Any
 
 import aiohttp
 import websockets
+from websockets.asyncio.client import ClientConnection
+from websockets.protocol import State
 
 from cdpkit.connection.manager import CommandsManager, EventsManager
-from cdpkit.exception import CallbackParameterError
+from cdpkit.exception import (
+    CallbackParameterError,
+    CommandExecutionTimeout,
+    InvalidResponse,
+    NetworkError,
+    WebSocketConnectionClosed,
+)
 from cdpkit.logger import logger
 from cdpkit.protocol import RESULT_TYPE, CDPEvent, CDPMethod, Target
 
@@ -19,9 +28,9 @@ class CDPSession:
         self._target_id = target_id
 
         self._receive_task: asyncio.Task | None = None
-        self._ws_connection: websockets.ClientConnection | None = None
+        self._ws_connection: ClientConnection | None = None
         self._commands_manager = CommandsManager()
-        self.events_manager = EventsManager()
+        self._events_manager = EventsManager()
 
     async def _parse_ws_address(self) -> str:
         if self._target_id == 'browser':
@@ -35,18 +44,14 @@ class CDPSession:
                 async with session.get(f'http://localhost:{self._connection_port}/json/version') as resp:
                     data = await resp.json()
                     return data['webSocketDebuggerUrl']
-        except (aiohttp.ClientError, KeyError) as err:
-            raise Exception(f'Failed to get websocket address: {err}')
+        except (aiohttp.ClientError, KeyError) as exc:
+            raise NetworkError(f'Failed to get websocket address: {exc}')
+        except KeyError as exc:
+            raise InvalidResponse(f'Failed to get browser ws address: {exc}')
 
     async def _ensure_active_connection(self) -> None:
-        if self._ws_connection is None:
+        if self._ws_connection is None or self._ws_connection.state is State.CLOSED:
             await self.establish_new_connection()
-
-    @property
-    def ws_connection(self) -> websockets.ClientConnection:
-        if self._ws_connection is None:
-            raise Exception("Websocket connection was not established")
-        return self._ws_connection
 
     async def establish_new_connection(self) -> None:
         ws_address = await self._parse_ws_address()
@@ -61,12 +66,10 @@ class CDPSession:
     async def ping(self) -> bool:
         await self._ensure_active_connection()
 
-        try:
-            await self.ws_connection.ping()
+        with suppress():
+            await self._ws_connection.ping()
             return True
-        except Exception as exc:
-            logger.warning(f'Failed to ping: {exc}')
-            return False
+        return False
 
     async def execute(self, cdp_method: CDPMethod[RESULT_TYPE], timeout: int = 10) -> RESULT_TYPE:
         await self._ensure_active_connection()
@@ -76,19 +79,23 @@ class CDPSession:
         command['id'] = _id
 
         try:
-            await self.ws_connection.send(json.dumps(command))
+            await self._ws_connection.send(json.dumps(command))
             response: str = await asyncio.wait_for(future, timeout)
             return await cdp_method.parse_response(response)
-        except TimeoutError as exc:
+        except TimeoutError:
             self._commands_manager.remove_pending_command(_id)
-            raise exc
-        except websockets.ConnectionClosed as exc:
+            raise CommandExecutionTimeout()
+        except websockets.ConnectionClosed:
             await self.close()
-            raise exc
+            raise WebSocketConnectionClosed()
 
     async def close(self) -> None:
+        await self.clear_callbacks()
+
         if self._ws_connection:
-            await self._ws_connection.close()
+            with suppress(websockets.ConnectionClosed):
+                await self._ws_connection.close()
+
         self._ws_connection = None
 
         if self._receive_task and not self._receive_task.done():
@@ -97,8 +104,8 @@ class CDPSession:
         logger.info('Connection resources cleaned up')
 
     async def _incoming_messages(self) -> AsyncIterable[websockets.Data]:
-        while True:
-            yield await self.ws_connection.recv()
+        while self._ws_connection.state is not State.CLOSED:
+            yield await self._ws_connection.recv()
 
     async def _receive_events(self) -> None:
         try:
@@ -108,7 +115,7 @@ class CDPSession:
             logger.info(f'Connection closed gracefully: {exc}')
         except Exception as exc:
             logger.error(f'Unexpected error in event loop: {exc}')
-            raise
+            raise exc
 
     async def _process_single_message(self, raw_message: str) -> None:
         message = await self._parse_message(raw_message)
@@ -143,7 +150,7 @@ class CDPSession:
         logger.info(f'Processing event message: {message}')
 
         if 'method' in message:
-            await self.events_manager.process_event(message)
+            await self._events_manager.process_event(message)
         else:
             logger.warning('unknown event')
 
@@ -152,6 +159,19 @@ class CDPSession:
 
     def __repr__(self) -> str:
         return str(self)
+
+    async def register_callback(self, event: type[CDPEvent], callback: Callable, temporary: bool = False) -> int:
+        return await self._events_manager.register_callback(
+            event=event,
+            callback=callback,
+            temporary=temporary
+        )
+
+    async def remove_callback(self, callback_id: int) -> bool:
+        return await self._events_manager.remove_callback(callback_id)
+
+    async def clear_callbacks(self):
+        await self._events_manager.clear_callbacks()
 
 
 class CDPSessionManager:
@@ -212,7 +232,7 @@ class CDPSessionExecutor:
                 f"Parameter 'event_data' type mismatch. "
                 f"Expected {event.__name__}, but got {sig.parameters['event_data'].annotation.__name__}."
             )
-        return await self._session.events_manager.register_callback(
+        return await self._session.register_callback(
             event, callback, temporary
         )
 
