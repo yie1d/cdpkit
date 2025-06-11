@@ -395,6 +395,27 @@ class SetEmulatedVisionDeficiency(CDPMethod[None]):  # deprecated
         )
 
 
+class SetEmulatedOSTextScaleInput(InputModel):
+
+    scale: float | None = None
+
+
+class SetEmulatedOSTextScale(CDPMethod[None]):  # deprecated
+    """ Emulates the given OS text scale. """
+
+    INPUT_VALIDATOR = SetEmulatedOSTextScaleInput
+    OUTPUT_VALIDATOR = None
+
+    def __init__(
+        self,
+        *,
+        scale: float | None = None
+    ):
+        super().__init__(
+            scale=scale
+        )
+
+
 class SetGeolocationOverrideInput(InputModel):
 
     latitude: float | None = None  # deprecated
@@ -553,7 +574,8 @@ class SetPressureStateOverrideInput(InputModel):
 
 
 class SetPressureStateOverride(CDPMethod[None]):  # experimental deprecated
-    """ Provides a given pressure state that will be processed and eventually be
+    """ TODO: OBSOLETE: To remove when setPressureDataOverride is merged.
+    Provides a given pressure state that will be processed and eventually be
     delivered to PressureObserver users. |source| must have been previously
     overridden by setPressureSourceOverrideEnabled. """
 
@@ -569,6 +591,35 @@ class SetPressureStateOverride(CDPMethod[None]):  # experimental deprecated
         super().__init__(
             source=source,
             state=state
+        )
+
+
+class SetPressureDataOverrideInput(InputModel):
+
+    source: Emulation.PressureSource
+    state: Emulation.PressureState
+    ownContributionEstimate: float | None = None
+
+
+class SetPressureDataOverride(CDPMethod[None]):  # experimental deprecated
+    """ Provides a given pressure data set that will be processed and eventually be
+    delivered to PressureObserver users. |source| must have been previously
+    overridden by setPressureSourceOverrideEnabled. """
+
+    INPUT_VALIDATOR = SetPressureDataOverrideInput
+    OUTPUT_VALIDATOR = None
+
+    def __init__(
+        self,
+        *,
+        source: Emulation.PressureSource,
+        state: Emulation.PressureState,
+        own_contribution_estimate: float | None = None
+    ):
+        super().__init__(
+            source=source,
+            state=state,
+            ownContributionEstimate=own_contribution_estimate
         )
 
 

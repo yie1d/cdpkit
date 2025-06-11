@@ -1,4 +1,4 @@
-from .browser import ExecutableNotFoundError, NoSuchElement, PageNotFoundError
+from .browser import BrowserLaunchError, ExecutableNotFoundError, NoSuchElement, NoValidTabError, TabNotFoundError
 from .connection import (
     CallbackParameterError,
     CommandExecutionTimeout,
@@ -15,9 +15,11 @@ __all__ = [
     'InvalidCallback',
     'NetworkError',
     'NoSuchElement',
-    'PageNotFoundError',
+    'TabNotFoundError',
     'CallbackParameterError',
     'InvalidResponse',
     'CommandExecutionTimeout',
     'WebSocketConnectionClosed',
+    'BrowserLaunchError',
+    'NoValidTabError'
 ]

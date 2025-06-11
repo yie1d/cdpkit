@@ -14,6 +14,7 @@ from cdpkit.protocol._types import (
     PageAdFrameExplanation,
     PageAdFrameStatus,
     PageAdFrameType,
+    PageAdScriptAncestry,
     PageAdScriptId,
     PageAppManifestError,
     PageAppManifestParsedProperties,
@@ -78,6 +79,7 @@ AdFrameType = PageAdFrameType
 AdFrameExplanation = PageAdFrameExplanation
 AdFrameStatus = PageAdFrameStatus
 AdScriptId = PageAdScriptId
+AdScriptAncestry = PageAdScriptAncestry
 SecureContextType = PageSecureContextType
 CrossOriginIsolatedContextType = PageCrossOriginIsolatedContextType
 GatedAPIFeatures = PageGatedAPIFeatures

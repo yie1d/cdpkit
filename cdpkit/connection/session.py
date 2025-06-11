@@ -187,7 +187,7 @@ class CDPSessionManager:
             await self._connection_session[page_id].close()
             del self._connection_session[page_id]
 
-    def get_session(self, target_id: Target.TargetID = 'browser') -> CDPSession:
+    async def get_session(self, target_id: Target.TargetID = 'browser') -> CDPSession:
         if target_id not in self._connection_session:
             cdp_session = CDPSession(
                 connection_port=self._connection_port,

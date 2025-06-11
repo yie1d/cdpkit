@@ -764,7 +764,7 @@ class GetTopLayerElements(CDPMethod[GetTopLayerElementsOutput]):  # experimental
 class GetElementByRelationInput(InputModel):
 
     nodeId: DOM.NodeId  # deprecated
-    relation: Literal['PopoverTarget', 'InterestTarget']  # deprecated
+    relation: Literal['PopoverTarget', 'InterestTarget', 'CommandFor']  # deprecated
 
 
 class GetElementByRelationOutput(OutputModel):
@@ -782,7 +782,7 @@ class GetElementByRelation(CDPMethod[GetElementByRelationOutput]):  # experiment
         self,
         *,
         node_id: DOM.NodeId,
-        relation: Literal['PopoverTarget', 'InterestTarget']
+        relation: Literal['PopoverTarget', 'InterestTarget', 'CommandFor']
     ):
         super().__init__(
             nodeId=node_id,

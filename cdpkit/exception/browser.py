@@ -9,5 +9,13 @@ class NoSuchElement(CustomException):
     ERROR_INFO = 'No such element.'
 
 
-class PageNotFoundError(CustomException):
-    ERROR_INFO = 'Page not found.'
+class TabNotFoundError(CustomException):
+    ERROR_INFO = 'Tab not found.'
+
+
+class BrowserLaunchError(CustomException):
+    ERROR_INFO = 'Browser launch error.'
+
+
+class NoValidTabError(CustomException):
+    ERROR_INFO = 'No valid tab available.'

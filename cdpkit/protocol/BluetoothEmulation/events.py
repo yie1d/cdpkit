@@ -42,5 +42,5 @@ class DescriptorOperationReceived(CDPEvent):
     |type| is write. """
 
     descriptorId: str
-    type: BluetoothEmulation.CharacteristicOperationType
+    type: BluetoothEmulation.DescriptorOperationType
     data: str | None = None
