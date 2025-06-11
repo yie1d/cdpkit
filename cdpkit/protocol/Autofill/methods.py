@@ -60,7 +60,7 @@ class SetAddresses(CDPMethod[None]):  # deprecated
     def __init__(
         self,
         *,
-        addresses: list[Autofill.Address | dict]
+        addresses: list[Autofill.Address]
     ):
         super().__init__(
             addresses=addresses

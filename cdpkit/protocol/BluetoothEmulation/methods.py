@@ -89,7 +89,7 @@ class SimulatePreconnectedPeripheral(CDPMethod[None]):  # deprecated
         *,
         address: str,
         name: str,
-        manufacturer_data: list[BluetoothEmulation.ManufacturerData | dict],
+        manufacturer_data: list[BluetoothEmulation.ManufacturerData],
         known_service_uuids: list[str]
     ):
         super().__init__(

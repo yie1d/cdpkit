@@ -14,7 +14,6 @@ from cdpkit.protocol._types import (
     Network,
     Page,
     Storage,
-    Target,
 )
 from cdpkit.protocol.base import JSON_DICT, CDPEvent
 
@@ -101,19 +100,6 @@ class SharedStorageAccessed(CDPEvent):
     ownerOrigin: str  # deprecated
     ownerSite: str  # deprecated
     params: Storage.SharedStorageAccessParams  # deprecated
-
-
-class SharedStorageWorkletOperationExecutionFinished(CDPEvent):
-    """ A shared storage run or selectURL operation finished its execution.
-    The following parameters are included in all events. """
-
-    finishedTime: Network.TimeSinceEpoch  # deprecated
-    executionTime: int  # deprecated
-    method: Storage.SharedStorageAccessMethod  # deprecated
-    operationId: str  # deprecated
-    workletTargetId: Target.TargetID  # deprecated
-    mainFrameId: Page.FrameId  # deprecated
-    ownerOrigin: str  # deprecated
 
 
 class StorageBucketCreatedOrUpdated(CDPEvent):

@@ -270,7 +270,7 @@ class SetDisplayFeaturesOverride(CDPMethod[None]):  # experimental deprecated
     def __init__(
         self,
         *,
-        features: list[Emulation.DisplayFeature | dict]
+        features: list[Emulation.DisplayFeature]
     ):
         super().__init__(
             features=features
@@ -366,7 +366,7 @@ class SetEmulatedMedia(CDPMethod[None]):  # deprecated
         self,
         *,
         media: str | None = None,
-        features: list[Emulation.MediaFeature | dict] = None
+        features: list[Emulation.MediaFeature] | None = None
     ):
         super().__init__(
             media=media,
@@ -392,27 +392,6 @@ class SetEmulatedVisionDeficiency(CDPMethod[None]):  # deprecated
     ):
         super().__init__(
             type=type_
-        )
-
-
-class SetEmulatedOSTextScaleInput(InputModel):
-
-    scale: float | None = None
-
-
-class SetEmulatedOSTextScale(CDPMethod[None]):  # deprecated
-    """ Emulates the given OS text scale. """
-
-    INPUT_VALIDATOR = SetEmulatedOSTextScaleInput
-    OUTPUT_VALIDATOR = None
-
-    def __init__(
-        self,
-        *,
-        scale: float | None = None
-    ):
-        super().__init__(
-            scale=scale
         )
 
 
@@ -574,8 +553,7 @@ class SetPressureStateOverrideInput(InputModel):
 
 
 class SetPressureStateOverride(CDPMethod[None]):  # experimental deprecated
-    """ TODO: OBSOLETE: To remove when setPressureDataOverride is merged.
-    Provides a given pressure state that will be processed and eventually be
+    """ Provides a given pressure state that will be processed and eventually be
     delivered to PressureObserver users. |source| must have been previously
     overridden by setPressureSourceOverrideEnabled. """
 
@@ -591,35 +569,6 @@ class SetPressureStateOverride(CDPMethod[None]):  # experimental deprecated
         super().__init__(
             source=source,
             state=state
-        )
-
-
-class SetPressureDataOverrideInput(InputModel):
-
-    source: Emulation.PressureSource
-    state: Emulation.PressureState
-    ownContributionEstimate: float | None = None
-
-
-class SetPressureDataOverride(CDPMethod[None]):  # experimental deprecated
-    """ Provides a given pressure data set that will be processed and eventually be
-    delivered to PressureObserver users. |source| must have been previously
-    overridden by setPressureSourceOverrideEnabled. """
-
-    INPUT_VALIDATOR = SetPressureDataOverrideInput
-    OUTPUT_VALIDATOR = None
-
-    def __init__(
-        self,
-        *,
-        source: Emulation.PressureSource,
-        state: Emulation.PressureState,
-        own_contribution_estimate: float | None = None
-    ):
-        super().__init__(
-            source=source,
-            state=state,
-            ownContributionEstimate=own_contribution_estimate
         )
 
 

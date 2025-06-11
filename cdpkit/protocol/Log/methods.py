@@ -52,7 +52,7 @@ class StartViolationsReport(CDPMethod[None]):  # deprecated
     def __init__(
         self,
         *,
-        config: list[Log.ViolationSetting | dict]
+        config: list[Log.ViolationSetting]
     ):
         super().__init__(
             config=config

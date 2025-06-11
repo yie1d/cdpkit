@@ -255,7 +255,7 @@ class DispatchTouchEvent(CDPMethod[None]):  # deprecated
         self,
         *,
         type_: Literal['touchStart', 'touchEnd', 'touchMove', 'touchCancel'],
-        touch_points: list[Input.TouchPoint | dict],
+        touch_points: list[Input.TouchPoint],
         modifiers: int | None = None,
         timestamp: Input.TimeSinceEpoch | None = None
     ):

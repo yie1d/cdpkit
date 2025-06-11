@@ -407,7 +407,7 @@ class GetNodesForSubtreeByStyle(CDPMethod[GetNodesForSubtreeByStyleOutput]):  # 
         self,
         *,
         node_id: DOM.NodeId,
-        computed_styles: list[DOM.CSSComputedStyleProperty | dict],
+        computed_styles: list[DOM.CSSComputedStyleProperty],
         pierce: bool | None = None
     ):
         super().__init__(
@@ -764,7 +764,7 @@ class GetTopLayerElements(CDPMethod[GetTopLayerElementsOutput]):  # experimental
 class GetElementByRelationInput(InputModel):
 
     nodeId: DOM.NodeId  # deprecated
-    relation: Literal['PopoverTarget', 'InterestTarget', 'CommandFor']  # deprecated
+    relation: Literal['PopoverTarget', 'InterestTarget']  # deprecated
 
 
 class GetElementByRelationOutput(OutputModel):
@@ -782,7 +782,7 @@ class GetElementByRelation(CDPMethod[GetElementByRelationOutput]):  # experiment
         self,
         *,
         node_id: DOM.NodeId,
-        relation: Literal['PopoverTarget', 'InterestTarget', 'CommandFor']
+        relation: Literal['PopoverTarget', 'InterestTarget']
     ):
         super().__init__(
             nodeId=node_id,

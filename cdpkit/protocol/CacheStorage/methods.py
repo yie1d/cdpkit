@@ -117,7 +117,7 @@ class RequestCachedResponse(CDPMethod[RequestCachedResponseOutput]):  # deprecat
         *,
         cache_id: CacheStorage.CacheId,
         request_url: str,
-        request_headers: list[CacheStorage.Header | dict]
+        request_headers: list[CacheStorage.Header]
     ):
         super().__init__(
             cacheId=cache_id,

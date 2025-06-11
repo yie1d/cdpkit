@@ -570,7 +570,7 @@ class TrackComputedStyleUpdates(CDPMethod[None]):  # experimental deprecated
     def __init__(
         self,
         *,
-        properties_to_track: list[CSS.CSSComputedStyleProperty | dict]
+        properties_to_track: list[CSS.CSSComputedStyleProperty]
     ):
         super().__init__(
             propertiesToTrack=properties_to_track
@@ -890,7 +890,7 @@ class SetStyleTexts(CDPMethod[SetStyleTextsOutput]):  # deprecated
     def __init__(
         self,
         *,
-        edits: list[CSS.StyleDeclarationEdit | dict],
+        edits: list[CSS.StyleDeclarationEdit],
         node_for_property_syntax_validation: DOM.NodeId | None = None
     ):
         super().__init__(

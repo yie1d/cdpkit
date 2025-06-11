@@ -2296,14 +2296,12 @@ class DOMPseudoType(enum.StrEnum):
     VIEW_TRANSITION = "view-transition"
     VIEW_TRANSITION_GROUP = "view-transition-group"
     VIEW_TRANSITION_IMAGE_PAIR = "view-transition-image-pair"
-    VIEW_TRANSITION_GROUP_CHILDREN = "view-transition-group-children"
     VIEW_TRANSITION_OLD = "view-transition-old"
     VIEW_TRANSITION_NEW = "view-transition-new"
     PLACEHOLDER = "placeholder"
     FILE_SELECTOR_BUTTON = "file-selector-button"
     DETAILS_CONTENT = "details-content"
     PICKER = "picker"
-    PERMISSION_ICON = "permission-icon"
 
 
 class DOMShadowRootType(enum.StrEnum):
@@ -3595,7 +3593,6 @@ class NetworkResourceType(enum.StrEnum):
     PING = "Ping"
     CSPVIOLATIONREPORT = "CSPViolationReport"
     PREFLIGHT = "Preflight"
-    FEDCM = "FedCM"
     OTHER = "Other"
 
 
@@ -5148,26 +5145,14 @@ class PageAdFrameStatus(CDPObject):
 
 
 class PageAdScriptId(CDPObject):
-    """ Identifies the script which caused a script or frame to be labelled as an
-    ad. """
+    """ Identifies the bottom-most script which caused the frame to be labelled
+    as an ad. """
 
-    # Script Id of the script which caused a script or frame to be labelled asan ad.
+    # Script Id of the bottom-most script which caused the frame to be labelledas an ad.
     scriptId: Runtime.ScriptId  # deprecated
 
-    # Id of scriptId's debugger.
+    # Id of adScriptId's debugger.
     debuggerId: Runtime.UniqueDebuggerId  # deprecated
-
-
-class PageAdScriptAncestry(CDPObject):
-    """ Encapsulates the script ancestry and the root script filterlist rule that
-    caused the frame to be labelled as an ad. Only created when `ancestryChain`
-    is not empty. """
-
-    # A chain of `AdScriptId`s representing the ancestry of an ad script thatled to the creation of a frame. The chain is ordered from the script itself(lower level) up to its root ancestor that was flagged by filterlist.
-    ancestryChain: list[Page.AdScriptId]  # deprecated
-
-    # The filterlist rule that caused the root (last) script in `ancestryChain`to be ad-tagged. Only populated if the rule is available.
-    rootScriptFilterlistRule: str | None = None  # deprecated
 
 
 class PageSecureContextType(enum.StrEnum):
@@ -5269,7 +5254,6 @@ class PagePermissionsPolicyFeature(enum.StrEnum):
     MEDIA_PLAYBACK_WHILE_NOT_VISIBLE = "media-playback-while-not-visible"
     MICROPHONE = "microphone"
     MIDI = "midi"
-    ON_DEVICE_SPEECH_RECOGNITION = "on-device-speech-recognition"
     OTP_CREDENTIALS = "otp-credentials"
     PAYMENT = "payment"
     PICTURE_IN_PICTURE = "picture-in-picture"
@@ -6632,9 +6616,6 @@ class StorageSharedStorageAccessParams(CDPObject):
     # Name of the registered operation to be run. Present only forSharedStorageAccessMethods: run and selectURL.
     operationName: str | None = None  # deprecated
 
-    # ID of the operation call. Present only for SharedStorageAccessMethods: runand selectURL.
-    operationId: str | None = None  # deprecated
-
     # Whether or not to keep the worket alive for future run or selectURL calls.Present only for SharedStorageAccessMethods: run and selectURL.
     keepAlive: bool | None = None  # deprecated
 
@@ -6659,11 +6640,8 @@ class StorageSharedStorageAccessParams(CDPObject):
     # Whether or not to set an entry for a key if that key is already present.Present only for SharedStorageAccessMethod: set.
     ignoreIfPresent: bool | None = None  # deprecated
 
-    # A number denoting the (0-based) order of the worklet's creation relativeto all other shared storage worklets created by documents using the currentstorage partition. Present only for SharedStorageAccessMethods: addModule,createWorklet.
-    workletOrdinal: int | None = None  # deprecated
-
-    # Hex representation of the DevTools token used as the TargetID for theassociated shared storage worklet. Present only for SharedStorageAccessMethods:addModule, createWorklet, run, selectURL, and any otherSharedStorageAccessMethod when the SharedStorageAccessScope issharedStorageWorklet.
-    workletTargetId: Target.TargetID | None = None  # deprecated
+    # If the method is called on a worklet, or as part of a worklet script, itwill have an ID for the associated worklet. Present only forSharedStorageAccessMethods: addModule, createWorklet, run, selectURL, and anyother SharedStorageAccessMethod when the SharedStorageAccessScope is worklet.
+    workletId: str | None = None  # deprecated
 
     # Name of the lock to be acquired, if present. Optionally present only forSharedStorageAccessMethods: batchUpdate, set, append, delete, and clear.
     withLock: str | None = None  # deprecated
@@ -6756,6 +6734,14 @@ class StorageAttributionReportingEventReportWindows(CDPObject):
     ends: list[int]  # deprecated
 
 
+class StorageAttributionReportingTriggerSpec(CDPObject):
+
+    # number instead of integer because not all uint32 can be represented by int
+    triggerData: list[float]  # deprecated
+
+    eventReportWindows: Storage.AttributionReportingEventReportWindows
+
+
 class StorageAttributionReportingTriggerDataMatching(enum.StrEnum):
 
     EXACT = "exact"
@@ -6808,10 +6794,7 @@ class StorageAttributionReportingSourceRegistration(CDPObject):
     # duration in seconds
     expiry: int  # deprecated
 
-    # number instead of integer because not all uint32 can be represented by int
-    triggerData: list[float]  # deprecated
-
-    eventReportWindows: Storage.AttributionReportingEventReportWindows
+    triggerSpecs: list[Storage.AttributionReportingTriggerSpec]
 
     # duration in seconds
     aggregatableReportWindow: int  # deprecated
@@ -7239,7 +7222,7 @@ TracingMemoryDumpConfig = JSON_DICT
 
 class TracingTraceConfig(CDPObject):
 
-    # Controls how the trace buffer stores data. The default is`recordUntilFull`.
+    # Controls how the trace buffer stores data.
     recordMode: Literal['recordUntilFull', 'recordContinuously', 'recordAsMuchAsPossible', 'echoToConsole'] | None = None  # experimental deprecated
 
     # Size of the trace buffer in kilobytes. If not specified or zero is passed,a default value of 200 MB would be used.
@@ -7786,6 +7769,7 @@ class PreloadPrerenderFinalStatus(enum.StrEnum):
     INVALIDSCHEMEREDIRECT = "InvalidSchemeRedirect"
     INVALIDSCHEMENAVIGATION = "InvalidSchemeNavigation"
     NAVIGATIONREQUESTBLOCKEDBYCSP = "NavigationRequestBlockedByCsp"
+    MAINFRAMENAVIGATION = "MainFrameNavigation"
     MOJOBINDERPOLICY = "MojoBinderPolicy"
     RENDERERPROCESSCRASHED = "RendererProcessCrashed"
     RENDERERPROCESSKILLED = "RendererProcessKilled"
@@ -9163,7 +9147,6 @@ class Page:
     AdFrameExplanation = PageAdFrameExplanation
     AdFrameStatus = PageAdFrameStatus
     AdScriptId = PageAdScriptId
-    AdScriptAncestry = PageAdScriptAncestry
     SecureContextType = PageSecureContextType
     CrossOriginIsolatedContextType = PageCrossOriginIsolatedContextType
     GatedAPIFeatures = PageGatedAPIFeatures
@@ -9288,6 +9271,7 @@ class Storage:
     AttributionReportingFilterPair = StorageAttributionReportingFilterPair
     AttributionReportingAggregationKeysEntry = StorageAttributionReportingAggregationKeysEntry
     AttributionReportingEventReportWindows = StorageAttributionReportingEventReportWindows
+    AttributionReportingTriggerSpec = StorageAttributionReportingTriggerSpec
     AttributionReportingTriggerDataMatching = StorageAttributionReportingTriggerDataMatching
     AttributionReportingAggregatableDebugReportingData = StorageAttributionReportingAggregatableDebugReportingData
     AttributionReportingAggregatableDebugReportingConfig = StorageAttributionReportingAggregatableDebugReportingConfig
