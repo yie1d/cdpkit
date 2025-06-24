@@ -147,3 +147,12 @@ class AttributionReportingReportSent(CDPEvent):
     netError: int | None = None  # deprecated
     netErrorName: str | None = None
     httpStatusCode: int | None = None
+
+
+class AttributionReportingVerboseDebugReportSent(CDPEvent):
+
+    url: str
+    body: list[JSON_DICT] | None = None
+    netError: int | None = None
+    netErrorName: str | None = None
+    httpStatusCode: int | None = None

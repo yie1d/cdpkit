@@ -227,7 +227,8 @@ class CDPSessionExecutor:
         sig = inspect.signature(callback)
         if 'event_data' not in sig.parameters:
             raise CallbackParameterError('Required parameter "event_data" not found in callback function')
-        if issubclass(sig.parameters["event_data"].annotation, event) is False:
+
+        if not issubclass(sig.parameters["event_data"].annotation, event):
             raise CallbackParameterError(
                 f"Parameter 'event_data' type mismatch. "
                 f"Expected {event.__name__}, but got {sig.parameters['event_data'].annotation.__name__}."

@@ -19,3 +19,7 @@ class BrowserLaunchError(CustomException):
 
 class NoValidTabError(CustomException):
     ERROR_INFO = 'No valid tab available.'
+
+
+class ElementNotFileInput(CustomException):
+    ERROR_INFO = 'Element is not a file input.'

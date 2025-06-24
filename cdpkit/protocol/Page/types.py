@@ -18,7 +18,6 @@ from cdpkit.protocol._types import (
     PageAdScriptId,
     PageAppManifestError,
     PageAppManifestParsedProperties,
-    PageAutoResponseMode,
     PageBackForwardCacheBlockingDetails,
     PageBackForwardCacheNotRestoredExplanation,
     PageBackForwardCacheNotRestoredExplanationTree,
@@ -128,7 +127,6 @@ Screenshot = PageScreenshot
 ShareTarget = PageShareTarget
 Shortcut = PageShortcut
 WebAppManifest = PageWebAppManifest
-AutoResponseMode = PageAutoResponseMode
 NavigationType = PageNavigationType
 BackForwardCacheNotRestoredReason = PageBackForwardCacheNotRestoredReason
 BackForwardCacheNotRestoredReasonType = PageBackForwardCacheNotRestoredReasonType

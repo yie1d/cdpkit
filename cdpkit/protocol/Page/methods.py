@@ -1227,7 +1227,7 @@ class ClearCompilationCache(CDPMethod[None]):  # experimental deprecated
 
 class SetSPCTransactionModeInput(InputModel):
 
-    mode: Page.AutoResponseMode
+    mode: Literal['none', 'autoAccept', 'autoChooseToAuthAnotherWay', 'autoReject', 'autoOptOut']
 
 
 class SetSPCTransactionMode(CDPMethod[None]):  # experimental deprecated
@@ -1240,7 +1240,7 @@ class SetSPCTransactionMode(CDPMethod[None]):  # experimental deprecated
     def __init__(
         self,
         *,
-        mode: Page.AutoResponseMode
+        mode: Literal['none', 'autoAccept', 'autoChooseToAuthAnotherWay', 'autoReject', 'autoOptOut']
     ):
         super().__init__(
             mode=mode
@@ -1249,7 +1249,7 @@ class SetSPCTransactionMode(CDPMethod[None]):  # experimental deprecated
 
 class SetRPHRegistrationModeInput(InputModel):
 
-    mode: Page.AutoResponseMode
+    mode: Literal['none', 'autoAccept', 'autoReject']
 
 
 class SetRPHRegistrationMode(CDPMethod[None]):  # experimental deprecated
@@ -1262,7 +1262,7 @@ class SetRPHRegistrationMode(CDPMethod[None]):  # experimental deprecated
     def __init__(
         self,
         *,
-        mode: Page.AutoResponseMode
+        mode: Literal['none', 'autoAccept', 'autoReject']
     ):
         super().__init__(
             mode=mode

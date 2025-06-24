@@ -3044,6 +3044,9 @@ class EmulationUserAgentMetadata(CDPObject):
 
     wow64: bool | None = None
 
+    # Used to specify User Agent form-factor values. Seehttps://wicg.github.io/ua-client-hints/#sec-ch-ua-form-factors
+    formFactors: list[str] | None = None  # deprecated
+
 
 class EmulationSensorType(enum.StrEnum):
     """ Used to specify sensor types to emulate.
@@ -4542,6 +4545,9 @@ class NetworkSignedExchangeInfo(CDPObject):
     # The outer response of signed HTTP exchange which was received fromnetwork.
     outerResponse: Network.Response  # deprecated
 
+    # Whether network response for the signed exchange was accompanied by extraheaders.
+    hasExtraInfo: bool  # deprecated
+
     # Information about the signed exchange header.
     header: Network.SignedExchangeHeader | None = None  # deprecated
 
@@ -5263,6 +5269,7 @@ class PagePermissionsPolicyFeature(enum.StrEnum):
     JOIN_AD_INTEREST_GROUP = "join-ad-interest-group"
     KEYBOARD_MAP = "keyboard-map"
     LANGUAGE_DETECTOR = "language-detector"
+    LANGUAGE_MODEL = "language-model"
     LOCAL_FONTS = "local-fonts"
     LOCAL_NETWORK_ACCESS = "local-network-access"
     MAGNETOMETER = "magnetometer"
@@ -5921,15 +5928,6 @@ class PageWebAppManifest(CDPObject):
     startUrl: str | None = None
 
     themeColor: str | None = None
-
-
-class PageAutoResponseMode(enum.StrEnum):
-    """ Enum of possible auto-response for permission / prompt dialogs. """
-
-    NONE = "none"
-    AUTOACCEPT = "autoAccept"
-    AUTOREJECT = "autoReject"
-    AUTOOPTOUT = "autoOptOut"
 
 
 class PageNavigationType(enum.StrEnum):
@@ -9212,7 +9210,6 @@ class Page:
     ShareTarget = PageShareTarget
     Shortcut = PageShortcut
     WebAppManifest = PageWebAppManifest
-    AutoResponseMode = PageAutoResponseMode
     NavigationType = PageNavigationType
     BackForwardCacheNotRestoredReason = PageBackForwardCacheNotRestoredReason
     BackForwardCacheNotRestoredReasonType = PageBackForwardCacheNotRestoredReasonType
