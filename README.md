@@ -51,7 +51,7 @@ from cdpkit.protocol import Target
 
 
 async def main():
-    session_manager = CDPSessionManager(connection_port=9222)
+    session_manager = CDPSessionManager(ws_endpoint='localhost:9222')
     cdp_session = await session_manager.get_session()
 
     target_resp = await cdp_session.execute(Target.GetTargets())

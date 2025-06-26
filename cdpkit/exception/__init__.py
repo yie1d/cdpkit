@@ -1,4 +1,5 @@
 from .browser import (
+    ArgumentAlreadyExistsInOptions,
     BrowserLaunchError,
     ElementNotFileInput,
     ExecutableNotFoundError,
@@ -29,5 +30,6 @@ __all__ = [
     'WebSocketConnectionClosed',
     'BrowserLaunchError',
     'NoValidTabError',
-    'ElementNotFileInput'
+    'ElementNotFileInput',
+    'ArgumentAlreadyExistsInOptions'
 ]

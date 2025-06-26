@@ -7,6 +7,7 @@ from typing import Any
 
 import aiohttp
 import websockets
+from pydantic import BaseModel, PrivateAttr
 from websockets.asyncio.client import ClientConnection
 from websockets.protocol import State
 
@@ -22,26 +23,25 @@ from cdpkit.logger import logger
 from cdpkit.protocol import RESULT_TYPE, CDPEvent, CDPMethod, Target
 
 
-class CDPSession:
-    def __init__(self, connection_port: int, target_id: Target.TargetID):
-        self._connection_port = connection_port
-        self._target_id = target_id
+class CDPSession(BaseModel):
+    ws_endpoint: str
+    target_id: Target.TargetID
 
-        self._receive_task: asyncio.Task | None = None
-        self._ws_connection: ClientConnection | None = None
-        self._commands_manager = CommandsManager()
-        self._events_manager = EventsManager()
+    _receive_task: asyncio.Task | None = PrivateAttr()
+    _ws_connection: ClientConnection | None = PrivateAttr()
+    _commands_manager: CommandsManager = PrivateAttr(default=CommandsManager())
+    _events_manager: EventsManager = PrivateAttr(default=EventsManager())
 
     async def _parse_ws_address(self) -> str:
-        if self._target_id == 'browser':
+        if self.target_id == 'browser':
             return await self.get_browser_ws_address()
         else:
-            return f'ws://localhost:{self._connection_port}/devtools/page/{self._target_id}'
+            return f'ws://{self.ws_endpoint}/devtools/page/{self.target_id}'
 
     async def get_browser_ws_address(self) -> str:
         try:
             async with aiohttp.ClientSession() as session:
-                async with session.get(f'http://localhost:{self._connection_port}/json/version') as resp:
+                async with session.get(f'http://{self.ws_endpoint}/json/version') as resp:
                     data = await resp.json()
                     return data['webSocketDebuggerUrl']
         except (aiohttp.ClientError, KeyError) as exc:
@@ -56,6 +56,7 @@ class CDPSession:
     async def establish_new_connection(self) -> None:
         ws_address = await self._parse_ws_address()
         logger.debug(f'ws_address: {ws_address}')
+
         self._ws_connection = await websockets.connect(
             ws_address,
             max_size=1024 * 1024 * 10  # 10MB
@@ -155,10 +156,10 @@ class CDPSession:
             logger.warning('unknown event')
 
     def __str__(self) -> str:
-        return f'CDPSession(connection_port={self._connection_port}, target_id={self._target_id})'
+        return f'CDPSession(ws_endpoint={self.ws_endpoint}, target_id={self.target_id})'
 
     def __repr__(self) -> str:
-        return str(self)
+        return self.__str__()
 
     async def register_callback(self, event: type[CDPEvent], callback: Callable, temporary: bool = False) -> int:
         return await self._events_manager.register_callback(
@@ -174,23 +175,20 @@ class CDPSession:
         await self._events_manager.clear_callbacks()
 
 
-class CDPSessionManager:
-    def __init__(
-        self,
-        connection_port: int
-    ):
-        self._connection_port = connection_port
-        self._connection_session: dict[str, CDPSession] = {}
+class CDPSessionManager(BaseModel):
+    ws_endpoint: str
 
-    async def remove_session(self, page_id: str = 'browser') -> None:
-        if page_id in self._connection_session:
-            await self._connection_session[page_id].close()
-            del self._connection_session[page_id]
+    _connection_session: dict[str, CDPSession] = PrivateAttr(default_factory=dict)
+
+    async def remove_session(self, target_id: Target.TargetID = 'browser') -> None:
+        if target_id in self._connection_session:
+            await self._connection_session[target_id].close()
+            del self._connection_session[target_id]
 
     async def get_session(self, target_id: Target.TargetID = 'browser') -> CDPSession:
         if target_id not in self._connection_session:
             cdp_session = CDPSession(
-                connection_port=self._connection_port,
+                ws_endpoint=self.ws_endpoint,
                 target_id=target_id,
             )
             self._connection_session[target_id] = cdp_session
@@ -200,20 +198,15 @@ class CDPSessionManager:
         return cdp_session
 
     def __str__(self):
-        return f'CDPSessionManager(port={self._connection_port})'
+        return f'CDPSessionManager(ws_endpoint={self.ws_endpoint})'
 
     def __repr__(self) -> str:
         return str(self)
 
 
-class CDPSessionExecutor:
-    def __init__(
-        self,
-        session: CDPSession | None = None,
-        session_manager: CDPSessionManager | None = None
-    ) -> None:
-        self._session = session
-        self._session_manager = session_manager
+class CDPSessionExecutor(BaseModel):
+    session: CDPSession | None = None
+    session_manager: CDPSessionManager | None = None
 
     async def on(self, event: type[CDPEvent], callback: callable, temporary: bool = False) -> int:
         """
@@ -233,12 +226,12 @@ class CDPSessionExecutor:
                 f"Parameter 'event_data' type mismatch. "
                 f"Expected {event.__name__}, but got {sig.parameters['event_data'].annotation.__name__}."
             )
-        return await self._session.register_callback(
+        return await self.session.register_callback(
             event, callback, temporary
         )
 
     async def execute_method(self, cdp_method: CDPMethod[RESULT_TYPE], timeout: int = 60) -> RESULT_TYPE:
-        return await self._session.execute(
+        return await self.session.execute(
             cdp_method,
             timeout
         )

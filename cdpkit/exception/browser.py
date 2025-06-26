@@ -23,3 +23,7 @@ class NoValidTabError(CustomException):
 
 class ElementNotFileInput(CustomException):
     ERROR_INFO = 'Element is not a file input.'
+
+
+class ArgumentAlreadyExistsInOptions(CustomException):
+    ERROR_INFO = 'Argument already exists in options.'

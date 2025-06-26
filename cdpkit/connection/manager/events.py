@@ -2,19 +2,18 @@ import asyncio
 from collections import defaultdict
 from collections.abc import Callable
 
+from pydantic import BaseModel, PrivateAttr
+
 from cdpkit.exception import InvalidCallback
 from cdpkit.logger import logger
 from cdpkit.protocol import CDPEvent
 
 
-class EventsManager:
-    def __init__(self):
-        # 用于记录挂起的callback_id及对应的callback_info
-        self._pending_events: dict[int, dict] = {}
-        self._callback_id = 0
+class EventsManager(BaseModel):
+    _pending_events: dict[int, dict] = PrivateAttr(default_factory=dict)
+    _callback_id: int = PrivateAttr(default=0)
 
-        # 用于记录event对应的callback_id
-        self._events_callbacks: dict[str, list[int]] = defaultdict(list)
+    _events_callbacks: dict[str, list[int]] = PrivateAttr(default=defaultdict(list))
 
     async def register_callback(
         self, event: type[CDPEvent], callback: Callable, temporary: bool = False
