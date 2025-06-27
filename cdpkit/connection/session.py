@@ -27,8 +27,8 @@ class CDPSession(BaseModel):
     ws_endpoint: str
     target_id: Target.TargetID
 
-    _receive_task: asyncio.Task | None = PrivateAttr()
-    _ws_connection: ClientConnection | None = PrivateAttr()
+    _receive_task: asyncio.Task | None = PrivateAttr(default=None)
+    _ws_connection: ClientConnection | None = PrivateAttr(default=None)
     _commands_manager: CommandsManager = PrivateAttr(default=CommandsManager())
     _events_manager: EventsManager = PrivateAttr(default=EventsManager())
 
