@@ -46,7 +46,6 @@ class CDPObject(BaseModel):
     The base class for all CDP-related objects, configured in strict mode to forbid extra fields.
     """
     model_config = ConfigDict(
-        strict=True,
         extra='forbid'
     )
 
@@ -58,7 +57,6 @@ class InputModel(BaseModel):
     The base class for input models used to validate input data, configured in strict mode to ignore extra fields.
     """
     model_config = ConfigDict(
-        strict=True,
         extra='ignore'
     )
 
@@ -70,7 +68,6 @@ class OutputModel(BaseModel):
     The base class for output models used to validate output data, configured in strict mode to ignore extra fields.
     """
     model_config = ConfigDict(
-        strict=True,
         extra='ignore'
     )
 
