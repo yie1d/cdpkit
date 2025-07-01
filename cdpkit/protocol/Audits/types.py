@@ -31,6 +31,8 @@ from cdpkit.protocol._types import (
     AuditsCookieWarningReason,
     AuditsCorsIssueDetails,
     AuditsDeprecationIssueDetails,
+    AuditsElementAccessibilityIssueDetails,
+    AuditsElementAccessibilityIssueReason,
     AuditsFailedRequestInfo,
     AuditsFederatedAuthRequestIssueDetails,
     AuditsFederatedAuthRequestIssueReason,
@@ -56,8 +58,6 @@ from cdpkit.protocol._types import (
     AuditsPropertyRuleIssueDetails,
     AuditsPropertyRuleIssueReason,
     AuditsQuirksModeIssueDetails,
-    AuditsSelectElementAccessibilityIssueDetails,
-    AuditsSelectElementAccessibilityIssueReason,
     AuditsSharedArrayBufferIssueDetails,
     AuditsSharedArrayBufferIssueType,
     AuditsSharedDictionaryError,
@@ -117,8 +117,8 @@ ClientHintIssueDetails = AuditsClientHintIssueDetails
 FailedRequestInfo = AuditsFailedRequestInfo
 PartitioningBlobURLInfo = AuditsPartitioningBlobURLInfo
 PartitioningBlobURLIssueDetails = AuditsPartitioningBlobURLIssueDetails
-SelectElementAccessibilityIssueReason = AuditsSelectElementAccessibilityIssueReason
-SelectElementAccessibilityIssueDetails = AuditsSelectElementAccessibilityIssueDetails
+ElementAccessibilityIssueReason = AuditsElementAccessibilityIssueReason
+ElementAccessibilityIssueDetails = AuditsElementAccessibilityIssueDetails
 StyleSheetLoadingIssueReason = AuditsStyleSheetLoadingIssueReason
 StylesheetLoadingIssueDetails = AuditsStylesheetLoadingIssueDetails
 PropertyRuleIssueReason = AuditsPropertyRuleIssueReason

@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any
 
 import aiohttp
+import toml
 
 
 async def request_protocol_json() -> tuple[str, list[dict[str, Any]]]:
@@ -39,6 +40,17 @@ async def request_protocol_json() -> tuple[str, list[dict[str, Any]]]:
     return protocol_version, browser_protocol_domains
 
 
+def update_version(version: str) -> str:
+    major, minor, patch = version.split('.')
+    patch = int(patch) + 1
+    if patch >= 20:
+        minor = str(int(minor) + 1)
+        patch = 0
+    else:
+        patch = str(patch)
+    return f'{major}.{minor}.{patch}'
+
+
 def update_cdp_version(package_path: Path, protocol_version: str) -> None:
     """
     Update the CDP version number.
@@ -60,15 +72,7 @@ def update_cdp_version(package_path: Path, protocol_version: str) -> None:
     except AttributeError:
         version = '0.0.0'
 
-    major, minor, patch = version.split('.')
-    patch = int(patch) + 1
-    if patch >= 20:
-        minor = str(int(minor) + 1)
-        patch = 0
-    else:
-        patch = str(patch)
-
-    file_content = f"""__version__ = '{major}.{minor}.{patch}'\n__cdp_version__ = '{protocol_version}.0'\n"""
+    file_content = f"""__version__ = '{update_version(version)}'\n__cdp_version__ = '{protocol_version}.0'\n"""
 
     with version_file.open('w') as f:
         f.write(file_content)
@@ -184,3 +188,12 @@ def fill_ref(ref: str, module_name: str):
     if _module:
         return ref
     return f'{module_name}.{_ref}'
+
+
+def update_pyproject_version(toml_path: Path):
+    content = toml.load(toml_path)
+
+    content['project']['version'] = update_version(content['project']['version'])
+
+    with open(toml_path, 'w') as f:
+        toml.dump(content, f)

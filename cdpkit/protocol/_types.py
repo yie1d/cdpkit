@@ -976,21 +976,22 @@ class AuditsPartitioningBlobURLIssueDetails(CDPObject):
     partitioningBlobURLInfo: Audits.PartitioningBlobURLInfo  # deprecated
 
 
-class AuditsSelectElementAccessibilityIssueReason(enum.StrEnum):
+class AuditsElementAccessibilityIssueReason(enum.StrEnum):
 
     DISALLOWEDSELECTCHILD = "DisallowedSelectChild"
     DISALLOWEDOPTGROUPCHILD = "DisallowedOptGroupChild"
     NONPHRASINGCONTENTOPTIONCHILD = "NonPhrasingContentOptionChild"
     INTERACTIVECONTENTOPTIONCHILD = "InteractiveContentOptionChild"
     INTERACTIVECONTENTLEGENDCHILD = "InteractiveContentLegendChild"
+    INTERACTIVECONTENTSUMMARYDESCENDANT = "InteractiveContentSummaryDescendant"
 
 
-class AuditsSelectElementAccessibilityIssueDetails(CDPObject):
-    """ This issue warns about errors in the select element content model. """
+class AuditsElementAccessibilityIssueDetails(CDPObject):
+    """ This issue warns about errors in the select or summary element content model. """
 
     nodeId: DOM.BackendNodeId
 
-    selectElementAccessibilityIssueReason: Audits.SelectElementAccessibilityIssueReason
+    elementAccessibilityIssueReason: Audits.ElementAccessibilityIssueReason
 
     hasDisallowedAttributes: bool
 
@@ -1079,7 +1080,7 @@ class AuditsInspectorIssueCode(enum.StrEnum):
     FEDERATEDAUTHUSERINFOREQUESTISSUE = "FederatedAuthUserInfoRequestIssue"
     PROPERTYRULEISSUE = "PropertyRuleIssue"
     SHAREDDICTIONARYISSUE = "SharedDictionaryIssue"
-    SELECTELEMENTACCESSIBILITYISSUE = "SelectElementAccessibilityIssue"
+    ELEMENTACCESSIBILITYISSUE = "ElementAccessibilityIssue"
     SRIMESSAGESIGNATUREISSUE = "SRIMessageSignatureIssue"
     USERREIDENTIFICATIONISSUE = "UserReidentificationIssue"
 
@@ -1133,7 +1134,7 @@ class AuditsInspectorIssueDetails(CDPObject):
 
     sharedDictionaryIssueDetails: Audits.SharedDictionaryIssueDetails | None = None
 
-    selectElementAccessibilityIssueDetails: Audits.SelectElementAccessibilityIssueDetails | None = None
+    elementAccessibilityIssueDetails: Audits.ElementAccessibilityIssueDetails | None = None
 
     sriMessageSignatureIssueDetails: Audits.SRIMessageSignatureIssueDetails | None = None
 
@@ -4635,7 +4636,7 @@ class NetworkPrivateNetworkRequestPolicy(enum.StrEnum):
 
 class NetworkIPAddressSpace(enum.StrEnum):
 
-    LOCAL = "Local"
+    LOOPBACK = "Loopback"
     PRIVATE = "Private"
     PUBLIC = "Public"
     UNKNOWN = "Unknown"
@@ -6020,6 +6021,7 @@ class PageBackForwardCacheNotRestoredReason(enum.StrEnum):
     BROADCASTCHANNEL = "BroadcastChannel"
     WEBXR = "WebXR"
     SHAREDWORKER = "SharedWorker"
+    SHAREDWORKERMESSAGE = "SharedWorkerMessage"
     WEBLOCKS = "WebLocks"
     WEBHID = "WebHID"
     WEBSHARE = "WebShare"
@@ -8797,8 +8799,8 @@ class Audits:
     FailedRequestInfo = AuditsFailedRequestInfo
     PartitioningBlobURLInfo = AuditsPartitioningBlobURLInfo
     PartitioningBlobURLIssueDetails = AuditsPartitioningBlobURLIssueDetails
-    SelectElementAccessibilityIssueReason = AuditsSelectElementAccessibilityIssueReason
-    SelectElementAccessibilityIssueDetails = AuditsSelectElementAccessibilityIssueDetails
+    ElementAccessibilityIssueReason = AuditsElementAccessibilityIssueReason
+    ElementAccessibilityIssueDetails = AuditsElementAccessibilityIssueDetails
     StyleSheetLoadingIssueReason = AuditsStyleSheetLoadingIssueReason
     StylesheetLoadingIssueDetails = AuditsStylesheetLoadingIssueDetails
     PropertyRuleIssueReason = AuditsPropertyRuleIssueReason

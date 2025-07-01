@@ -4,7 +4,7 @@ from typing import Any
 
 from generator.cdp import CDPTopDomain
 from generator.generate import generate_to_dir
-from generator.utils import request_protocol_json, update_cdp_version
+from generator.utils import request_protocol_json, update_cdp_version, update_pyproject_version
 
 ROOT_PATH = Path(__file__).parent.parent.resolve()
 
@@ -35,6 +35,7 @@ async def main():
     package_path = ROOT_PATH / 'cdpkit'
 
     update_cdp_version(package_path, protocol_version)
+    update_pyproject_version(package_path.parent.joinpath('pyproject.toml'))
     write_cdp_protocol(package_path / 'protocol', protocol_domains_data)
 
 

@@ -27,3 +27,7 @@ class ElementNotFileInput(CustomException):
 
 class ArgumentAlreadyExistsInOptions(CustomException):
     ERROR_INFO = 'Argument already exists in options.'
+
+
+class ParamsMustSpecified(CustomException):
+    ERROR_INFO = 'Params must specified.'

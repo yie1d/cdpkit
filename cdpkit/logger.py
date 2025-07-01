@@ -10,13 +10,13 @@ __all__ = [
 
 class LogLevel(IntEnum):
     """Log level enumeration class, inherits from IntEnum"""
-    TRACE: int = 5
-    DEBUG: int = 10
-    INFO: int = 20
-    SUCCESS: int = 25
-    WARNING: int = 30
-    ERROR: int = 40
-    CRITICAL: int = 50
+    TRACE = 5
+    DEBUG = 10
+    INFO = 20
+    SUCCESS = 25
+    WARNING = 30
+    ERROR = 40
+    CRITICAL = 50
 
 
 def set_logger(
@@ -54,4 +54,4 @@ def set_logger(
     return _loguru_logger
 
 
-logger = set_logger(LogLevel.TRACE)
+logger = set_logger(LogLevel.CRITICAL)

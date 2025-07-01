@@ -5,6 +5,7 @@ from .browser import (
     ExecutableNotFoundError,
     NoSuchElement,
     NoValidTabError,
+    ParamsMustSpecified,
     TabNotFoundError,
 )
 from .connection import (
@@ -31,5 +32,6 @@ __all__ = [
     'BrowserLaunchError',
     'NoValidTabError',
     'ElementNotFileInput',
-    'ArgumentAlreadyExistsInOptions'
+    'ArgumentAlreadyExistsInOptions',
+    'ParamsMustSpecified'
 ]

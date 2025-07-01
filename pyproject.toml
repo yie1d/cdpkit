@@ -4,38 +4,20 @@ version = "1.2.9"
 description = "Chrome DevTools Protocol Toolkit in Python"
 readme = "README.md"
 requires-python = ">=3.11"
-classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "Intended Audience :: Developers",
-    "Operating System :: POSIX :: Linux",
-    "Operating System :: MacOS :: MacOS X",
-    "Operating System :: Microsoft :: Windows",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
-    "Topic :: Software Development :: Libraries",
-    "Topic :: Software Development :: Libraries :: Python Modules",
-]
-dependencies = [
-    "aiohttp>=3.11.18",
-    "loguru>=0.7.3",
-    "pydantic>=2.11.3",
-    "websockets>=15.0.1",
-]
+classifiers = [ "Development Status :: 5 - Production/Stable", "Intended Audience :: Developers", "Operating System :: POSIX :: Linux", "Operating System :: MacOS :: MacOS X", "Operating System :: Microsoft :: Windows", "Programming Language :: Python", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.11", "Programming Language :: Python :: 3.12", "Programming Language :: Python :: 3.13", "Programming Language :: Python :: 3.14", "Topic :: Software Development :: Libraries", "Topic :: Software Development :: Libraries :: Python Modules",]
+dependencies = [ "aiohttp>=3.11.18", "loguru>=0.7.3", "pydantic>=2.11.3", "websockets>=15.0.1",]
+
+[dependency-groups]
+gen = [ "toml>=0.10.2",]
+ruff = [ "pytest-cov>=6.1.0", "ruff>=0.11.2",]
+test = [ "pytest>=8.3.5",]
+
 [project.urls]
-"Homepage" = "https://github.com/yie1d/cdpkit"
+Homepage = "https://github.com/yie1d/cdpkit"
 
 [tool.uv]
-build-constraint-dependencies = ["setuptools"]
-build-backend = 'setuptools.build_meta'
-
-[tool.setuptools.packages.find]
-include = ['cdpkit*']
-exclude = ['tests*', 'config*', 'examples*', 'generator*']
-
+build-constraint-dependencies = [ "setuptools",]
+build-backend = "setuptools.build_meta"
 
 [tool.ruff]
 line-length = 120
@@ -47,22 +29,17 @@ quote-style = "single"
 
 [tool.ruff.lint]
 preview = true
-select = ["E", "F", "W", "I", "UP"]
-exclude = ["tests", "tests/*", "demos/*"]
+select = [ "E", "F", "W", "I", "UP",]
+exclude = [ "tests", "tests/*", "demos/*",]
 
 [tool.ruff.per-file-ignores]
-"cdpkit/protocol/_types.py" = ["E501"]
-"cdpkit/protocol/*/*.py" = ["E501"]
+"cdpkit/protocol/_types.py" = [ "E501",]
+"cdpkit/protocol/*/*.py" = [ "E501",]
 
 [tool.pytest.ini_options]
 pythonpath = "."
 addopts = "-p no:warnings"
 
-[dependency-groups]
-ruff = [
-    "pytest-cov>=6.1.0",
-    "ruff>=0.11.2",
-]
-test = [
-    "pytest>=8.3.5",
-]
+[tool.setuptools.packages.find]
+include = [ "cdpkit*",]
+exclude = [ "tests*", "config*", "examples*", "generator*",]

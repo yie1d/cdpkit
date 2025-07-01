@@ -78,6 +78,7 @@ class CDPSession(BaseModel):
         _id, future = self._commands_manager.create_command_future()
         command = cdp_method.command
         command['id'] = _id
+        logger.info(f'execute command: {command}')
 
         try:
             await self._ws_connection.send(json.dumps(command))
