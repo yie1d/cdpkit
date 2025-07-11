@@ -336,6 +336,33 @@ class SetWindowBounds(CDPMethod[None]):  # experimental deprecated
         )
 
 
+class SetContentsSizeInput(InputModel):
+
+    windowId: Browser.WindowID  # deprecated
+    width: int | None = None  # deprecated
+    height: int | None = None  # deprecated
+
+
+class SetContentsSize(CDPMethod[None]):  # experimental deprecated
+    """ Set size of the browser contents resizing browser window as necessary. """
+
+    INPUT_VALIDATOR = SetContentsSizeInput
+    OUTPUT_VALIDATOR = None
+
+    def __init__(
+        self,
+        *,
+        window_id: Browser.WindowID,
+        width: int | None = None,
+        height: int | None = None
+    ):
+        super().__init__(
+            windowId=window_id,
+            width=width,
+            height=height
+        )
+
+
 class SetDockTileInput(InputModel):
 
     badgeLabel: str | None = None

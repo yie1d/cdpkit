@@ -5122,7 +5122,6 @@ class OverlayInspectMode(enum.StrEnum):
     SEARCHFORNODE = "searchForNode"
     SEARCHFORUASHADOWDOM = "searchForUAShadowDOM"
     CAPTUREAREASCREENSHOT = "captureAreaScreenshot"
-    SHOWDISTANCES = "showDistances"
     NONE = "none"
 
 
@@ -5210,6 +5209,7 @@ class PagePermissionsPolicyFeature(enum.StrEnum):
     ACCELEROMETER = "accelerometer"
     ALL_SCREENS_CAPTURE = "all-screens-capture"
     AMBIENT_LIGHT_SENSOR = "ambient-light-sensor"
+    ARIA_NOTIFY = "aria-notify"
     ATTRIBUTION_REPORTING = "attribution-reporting"
     AUTOPLAY = "autoplay"
     BLUETOOTH = "bluetooth"

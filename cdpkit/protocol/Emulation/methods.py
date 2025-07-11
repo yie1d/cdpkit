@@ -865,6 +865,27 @@ class SetDisabledImageTypes(CDPMethod[None]):  # experimental
         )
 
 
+class SetDataSaverOverrideInput(InputModel):
+
+    dataSaverEnabled: bool | None = None  # deprecated
+
+
+class SetDataSaverOverride(CDPMethod[None]):  # experimental deprecated
+    """ Override the value of navigator.connection.saveData """
+
+    INPUT_VALIDATOR = SetDataSaverOverrideInput
+    OUTPUT_VALIDATOR = None
+
+    def __init__(
+        self,
+        *,
+        data_saver_enabled: bool | None = None
+    ):
+        super().__init__(
+            dataSaverEnabled=data_saver_enabled
+        )
+
+
 class SetHardwareConcurrencyOverrideInput(InputModel):
 
     hardwareConcurrency: int  # deprecated

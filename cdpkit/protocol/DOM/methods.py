@@ -460,6 +460,7 @@ class GetOuterHTMLInput(InputModel):
     nodeId: DOM.NodeId | None = None  # deprecated
     backendNodeId: DOM.BackendNodeId | None = None  # deprecated
     objectId: Runtime.RemoteObjectId | None = None  # deprecated
+    includeShadowDOM: bool | None = None  # experimental deprecated
 
 
 class GetOuterHTMLOutput(OutputModel):
@@ -478,12 +479,14 @@ class GetOuterHTML(CDPMethod[GetOuterHTMLOutput]):  # deprecated
         *,
         node_id: DOM.NodeId | None = None,
         backend_node_id: DOM.BackendNodeId | None = None,
-        object_id: Runtime.RemoteObjectId | None = None
+        object_id: Runtime.RemoteObjectId | None = None,
+        include_shadow_dom: bool | None = None
     ):
         super().__init__(
             nodeId=node_id,
             backendNodeId=backend_node_id,
-            objectId=object_id
+            objectId=object_id,
+            includeShadowDOM=include_shadow_dom
         )
 
 

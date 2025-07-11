@@ -109,26 +109,6 @@ class Enable(CDPMethod[None]):
     OUTPUT_VALIDATOR = None
 
 
-class InspectWorkerInput(InputModel):
-
-    versionId: str
-
-
-class InspectWorker(CDPMethod[None]):
-
-    INPUT_VALIDATOR = InspectWorkerInput
-    OUTPUT_VALIDATOR = None
-
-    def __init__(
-        self,
-        *,
-        version_id: str
-    ):
-        super().__init__(
-            versionId=version_id
-        )
-
-
 class SetForceUpdateOnPageLoadInput(InputModel):
 
     forceUpdateOnPageLoad: bool
