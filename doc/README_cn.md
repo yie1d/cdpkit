@@ -43,7 +43,7 @@ uv sync
 ```
 
 ## 基础用法
-
+### 快速开始
 ```python
 import asyncio
 from cdpkit.connection import CDPSessionManager
@@ -51,9 +51,11 @@ from cdpkit.protocol import Target
 
 
 async def main():
+    # 连接到当前已启动的浏览器（调试端口为9222）
     session_manager = CDPSessionManager(ws_endpoint='localhost:9222')
     cdp_session = await session_manager.get_session()
-
+    
+    # 获取所有已经打开的targets信息
     target_resp = await cdp_session.execute(Target.GetTargets())
 
     for target_info in target_resp.targetInfos:
@@ -64,3 +66,67 @@ async def main():
 asyncio.run(main())
 
 ```
+### 使用`CDPSessionExecutor`
+
+```python
+import asyncio
+from cdpkit.connection import CDPSessionManager, CDPSessionExecutor
+from cdpkit.protocol import Target, Page
+
+
+async def on_dialog_open(event_data: Page.JavascriptDialogOpening):
+    """
+    alert弹窗的回调函数
+
+    Args:
+        event_data (Page.JavascriptDialogOpening): 该参数必须存在于回调函数中，类型为实际事件
+
+    Returns:
+
+    """
+    print(event_data.message)
+
+async def main():
+    session_manager = CDPSessionManager(ws_endpoint='localhost:9225')
+    browser_session = await session_manager.get_session()
+
+
+    # 执行命令
+    target_resp = await browser_session.execute(Target.GetTargets(filter_=[{
+        'type': 'page',
+        'exclude': False
+    }]))
+
+    target_id = None
+    for target_info in target_resp.targetInfos:
+        if not target_info.url.startswith('devtools://') and not target_info.url.startswith('chrome-extension://'):
+            target_id = target_info.targetId
+            break
+
+    if not target_id:
+        raise Exception('No target found')
+
+    # 获取指定target会话
+    cdp_session = await session_manager.get_session(target_id=target_id)
+    session_executor = CDPSessionExecutor(session=cdp_session, session_manager=session_manager)
+
+    # 通过CDPSessionExecutor执行
+    # 启用页面事件
+    await session_executor.execute_method(Page.Enable())
+
+    # 监听事件
+    await session_executor.on(
+        event=Page.JavascriptDialogOpening,
+        callback=on_dialog_open
+    )
+
+    # 可以在浏览器的控制台手动执行 alert('test Page.JavascriptDialogOpening event') 查看监听效果
+    await asyncio.sleep(500)
+
+
+
+asyncio.run(main())
+```
+
+### 更多用法
+可以参考[webauto](https://github.com/yie1d/webauto.git) - 一个基于`CDPKit`的浏览器自动化工具（开发中。。。）

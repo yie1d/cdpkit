@@ -43,7 +43,7 @@ uv sync
 ```
 
 ## Basic Usage
-
+### Quick Start
 ```python
 import asyncio
 from cdpkit.connection import CDPSessionManager
@@ -51,9 +51,11 @@ from cdpkit.protocol import Target
 
 
 async def main():
+    # Connect to the currently running browser (debug port 9222)
     session_manager = CDPSessionManager(ws_endpoint='localhost:9222')
     cdp_session = await session_manager.get_session()
-
+    
+    # Get information on all currently open targets.
     target_resp = await cdp_session.execute(Target.GetTargets())
 
     for target_info in target_resp.targetInfos:
@@ -64,3 +66,68 @@ async def main():
 asyncio.run(main())
 
 ```
+### Use `CDPSessionExecutor`
+
+```python
+import asyncio
+from cdpkit.connection import CDPSessionManager, CDPSessionExecutor
+from cdpkit.protocol import Target, Page
+
+
+async def on_dialog_open(event_data: Page.JavascriptDialogOpening):
+    """
+    Callback function for the alert dialog
+
+    Args:
+        event_data (Page.JavascriptDialogOpening): 
+            This parameter must be present in the callback function and must be of the actual event type.
+
+    Returns:
+
+    """
+    print(event_data.message)
+
+async def main():
+    session_manager = CDPSessionManager(ws_endpoint='localhost:9225')
+    browser_session = await session_manager.get_session()
+
+
+    # execute command
+    target_resp = await browser_session.execute(Target.GetTargets(filter_=[{
+        'type': 'page',
+        'exclude': False
+    }]))
+
+    target_id = None
+    for target_info in target_resp.targetInfos:
+        if not target_info.url.startswith('devtools://') and not target_info.url.startswith('chrome-extension://'):
+            target_id = target_info.targetId
+            break
+
+    if not target_id:
+        raise Exception('No target found')
+
+    # Retrieve the specified target session
+    cdp_session = await session_manager.get_session(target_id=target_id)
+    session_executor = CDPSessionExecutor(session=cdp_session, session_manager=session_manager)
+
+    # execute by CDPSessionExecutor
+    # Enable page events
+    await session_executor.execute_method(Page.Enable())
+
+    # Listen for events
+    await session_executor.on(
+        event=Page.JavascriptDialogOpening,
+        callback=on_dialog_open
+    )
+
+    # You can manually run alert('test Page.JavascriptDialogOpening event') in the browser's console to see the listener in action.
+    await asyncio.sleep(500)
+
+
+
+asyncio.run(main())
+```
+
+### More usage
+You can refer to [webauto](https://github.com/yie1d/webauto.git) — a browser-automation tool based on `CDPKit` (work in progress).
