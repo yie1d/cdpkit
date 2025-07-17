@@ -1,4 +1,6 @@
 import asyncio
+import json
+from typing import Any
 
 from pydantic import BaseModel, PrivateAttr
 
@@ -19,9 +21,10 @@ class CommandsManager(BaseModel):
         if response_id in self._pending_commands:
             del self._pending_commands[response_id]
 
-    def resolve_command(self, response_id: int, result: str):
+    def resolve_command(self, message: dict[str, Any]):
+        response_id = message.get('id')
         if response_id in self._pending_commands:
-            self._pending_commands[response_id].set_result(result)
+            self._pending_commands[response_id].set_result(json.dumps(message))
             del self._pending_commands[response_id]
         else:
             logger.warning(f'No pending message can be resolve for id {response_id}')

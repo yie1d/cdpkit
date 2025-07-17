@@ -15,6 +15,7 @@ from websockets.protocol import State
 from cdpkit.connection.manager import CommandsManager, EventsManager
 from cdpkit.exception import (
     CallbackParameterError,
+    CommandExecutionError,
     CommandExecutionTimeout,
     InvalidResponse,
     NetworkError,
@@ -84,7 +85,10 @@ class CDPSession(BaseModel):
         try:
             await self._ws_connection.send(json.dumps(command))
             response: str = await asyncio.wait_for(future, timeout)
-            return await cdp_method.parse_response(response)
+            resp_json = json.loads(response)
+            if 'error' in resp_json:
+                raise CommandExecutionError(f'Command {command} execution failed: {resp_json["error"]}')
+            return await cdp_method.parse_response(json.dumps(resp_json['result']))
         except TimeoutError:
             self._commands_manager.remove_pending_command(_id)
             raise CommandExecutionTimeout()
@@ -144,11 +148,8 @@ class CDPSession(BaseModel):
 
     async def _handle_command_message(self, message: dict[str, Any]) -> None:
         logger.info(f'Processing command response: {message["id"]}')
-        if 'result' in message:
-            self._commands_manager.resolve_command(message['id'], json.dumps(message['result']))
-        else:
-            logger.error(f'Failed to resolve command response: {message}')
-            raise Exception
+
+        self._commands_manager.resolve_command(message)
 
     async def _handle_event_message(self, message: dict[str, Any]) -> None:
         logger.info(f'Processing event message: {message}')

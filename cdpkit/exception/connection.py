@@ -21,5 +21,9 @@ class CommandExecutionTimeout(CustomException):
     ERROR_INFO = 'The command execution timed out.'
 
 
+class CommandExecutionError(CustomException):
+    ERROR_INFO = 'The command execution error.'
+
+
 class WebSocketConnectionClosed(CustomException):
     ERROR_INFO = 'The WebSocket connection is closed'

@@ -11,6 +11,7 @@ from .browser import (
 )
 from .connection import (
     CallbackParameterError,
+    CommandExecutionError,
     CommandExecutionTimeout,
     InvalidCallback,
     InvalidResponse,
@@ -35,5 +36,6 @@ __all__ = [
     'ElementNotFileInput',
     'ArgumentAlreadyExistsInOptions',
     'ParamsMustSpecified',
-    'ScriptRunError'
+    'ScriptRunError',
+    'CommandExecutionError'
 ]
