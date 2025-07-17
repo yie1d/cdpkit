@@ -79,7 +79,7 @@ async def on_dialog_open(event_data: Page.JavascriptDialogOpening):
     alert弹窗的回调函数
 
     Args:
-        event_data (Page.JavascriptDialogOpening): 该参数必须存在于回调函数中，类型为实际事件
+        event_data (Page.JavascriptDialogOpening): 如果设置了event_data参数，则作为接收事件的参数，必须与实际事件类型一致
 
     Returns:
 

@@ -80,7 +80,8 @@ async def on_dialog_open(event_data: Page.JavascriptDialogOpening):
 
     Args:
         event_data (Page.JavascriptDialogOpening): 
-            This parameter must be present in the callback function and must be of the actual event type.
+            If the event_data parameter is provided, 
+            it must be used as the parameter for receiving the event and must match the actual event type.
 
     Returns:
 
