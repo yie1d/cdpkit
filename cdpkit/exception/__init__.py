@@ -6,6 +6,7 @@ from .browser import (
     NoSuchElement,
     NoValidTabError,
     ParamsMustSpecified,
+    ScriptRunError,
     TabNotFoundError,
 )
 from .connection import (
@@ -33,5 +34,6 @@ __all__ = [
     'NoValidTabError',
     'ElementNotFileInput',
     'ArgumentAlreadyExistsInOptions',
-    'ParamsMustSpecified'
+    'ParamsMustSpecified',
+    'ScriptRunError'
 ]

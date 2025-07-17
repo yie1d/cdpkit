@@ -31,3 +31,7 @@ class ArgumentAlreadyExistsInOptions(CustomException):
 
 class ParamsMustSpecified(CustomException):
     ERROR_INFO = 'Params must specified.'
+
+
+class ScriptRunError(CustomException):
+    ERROR_INFO = 'Script run error.'

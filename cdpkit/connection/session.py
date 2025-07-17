@@ -1,6 +1,7 @@
 import asyncio
 import inspect
 import json
+import re
 from collections.abc import AsyncIterable, Callable
 from contextlib import suppress
 from typing import Any
@@ -72,7 +73,7 @@ class CDPSession(BaseModel):
             return True
         return False
 
-    async def execute(self, cdp_method: CDPMethod[RESULT_TYPE], timeout: int = 10) -> RESULT_TYPE:
+    async def execute(self, cdp_method: CDPMethod[RESULT_TYPE], timeout: int = 3) -> RESULT_TYPE:
         await self._ensure_active_connection()
 
         _id, future = self._commands_manager.create_command_future()
@@ -142,11 +143,12 @@ class CDPSession(BaseModel):
             return None
 
     async def _handle_command_message(self, message: dict[str, Any]) -> None:
-        logger.debug(f'Processing command response: {message["id"]}')
+        logger.info(f'Processing command response: {message["id"]}')
         if 'result' in message:
             self._commands_manager.resolve_command(message['id'], json.dumps(message['result']))
         else:
             logger.error(f'Failed to resolve command response: {message}')
+            raise Exception
 
     async def _handle_event_message(self, message: dict[str, Any]) -> None:
         logger.info(f'Processing event message: {message}')
@@ -219,14 +221,26 @@ class CDPSessionExecutor(BaseModel):
             await session.on(event=TargetCreated, callback=_on_target_created)
         """
         sig = inspect.signature(callback)
-        if 'event_data' not in sig.parameters:
-            raise CallbackParameterError('Required parameter "event_data" not found in callback function')
+        if 'event_data' in sig.parameters:
+            # raise CallbackParameterError('Required parameter "event_data" not found in callback function')
+            event_data_type = sig.parameters["event_data"].annotation
 
-        if not issubclass(sig.parameters["event_data"].annotation, event):
-            raise CallbackParameterError(
-                f"Parameter 'event_data' type mismatch. "
-                f"Expected {event.__name__}, but got {sig.parameters['event_data'].annotation.__name__}."
-            )
+            event_name = re.sub(
+                    r'(?<=\.)([a-z])',
+                    lambda m: m.group(1).upper(),
+                    event.EVENT_NAME
+                )
+            if isinstance(event_data_type, str):
+                if not (event_data_type == event_name):
+                    raise CallbackParameterError(
+                        f"Parameter 'event_data' type mismatch. "
+                        f"Expected {event_name}, but got {event_data_type}."
+                    )
+            elif not issubclass(event_data_type, event):
+                raise CallbackParameterError(
+                    f"Parameter 'event_data' type mismatch. "
+                    f"Expected {event_name}, but got {event_data_type.__name__}."
+                )
         return await self.session.register_callback(
             event, callback, temporary
         )

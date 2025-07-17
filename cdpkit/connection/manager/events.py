@@ -1,6 +1,8 @@
 import asyncio
+import inspect
 from collections import defaultdict
 from collections.abc import Callable
+from functools import partial
 
 from pydantic import BaseModel, PrivateAttr
 
@@ -50,7 +52,7 @@ class EventsManager(BaseModel):
 
     async def process_event(self, event_data: dict):
         event_name = event_data.get('method')
-        logger.debug(f'Processing event: {event_name}')
+        logger.info(f'Processing event: {event_name}')
 
         await self._trigger_callbacks(event_name, event_data)
 
@@ -67,11 +69,16 @@ class EventsManager(BaseModel):
 
             callback_func = callback_info['callback']
 
+            sig = inspect.signature(callback_func)
+            if 'event_data' in sig.parameters:
+                event_data = callback_info['callback_event'].model_validate(event_data['params'])
+                callback_func = partial(callback_func, event_data=event_data)
+
             try:
                 if asyncio.iscoroutinefunction(callback_func):
-                    await callback_func(event_data=callback_info['callback_event'].model_validate(event_data['params']))
+                    await callback_func()
                 else:
-                    callback_func(event_data=callback_info['callback_event'].model_validate(event_data['params']))
+                    callback_func()
             except Exception as exc:
                 logger.error(f'Error processing callback {event_name} {event_data}: {exc}')
 
