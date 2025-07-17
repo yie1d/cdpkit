@@ -31,7 +31,7 @@ class AddScriptToEvaluateOnLoadInput(InputModel):
 
 class AddScriptToEvaluateOnLoadOutput(OutputModel):
 
-    identifier: Page.ScriptIdentifier  # deprecated
+    identifier: Page.ScriptIdentifier
 
 
 class AddScriptToEvaluateOnLoad(CDPMethod[AddScriptToEvaluateOnLoadOutput]):  # experimental deprecated
@@ -53,17 +53,17 @@ class AddScriptToEvaluateOnLoad(CDPMethod[AddScriptToEvaluateOnLoadOutput]):  # 
 class AddScriptToEvaluateOnNewDocumentInput(InputModel):
 
     source: str
-    worldName: str | None = None  # experimental deprecated
-    includeCommandLineAPI: bool | None = None  # experimental deprecated
-    runImmediately: bool | None = None  # experimental deprecated
+    worldName: str | None = None  # experimental
+    includeCommandLineAPI: bool | None = None  # experimental
+    runImmediately: bool | None = None  # experimental
 
 
 class AddScriptToEvaluateOnNewDocumentOutput(OutputModel):
 
-    identifier: Page.ScriptIdentifier  # deprecated
+    identifier: Page.ScriptIdentifier
 
 
-class AddScriptToEvaluateOnNewDocument(CDPMethod[AddScriptToEvaluateOnNewDocumentOutput]):  # deprecated
+class AddScriptToEvaluateOnNewDocument(CDPMethod[AddScriptToEvaluateOnNewDocumentOutput]):
     """ Evaluates given script in every frame upon creation (before loading frame's scripts). """
 
     INPUT_VALIDATOR = AddScriptToEvaluateOnNewDocumentInput
@@ -85,7 +85,7 @@ class AddScriptToEvaluateOnNewDocument(CDPMethod[AddScriptToEvaluateOnNewDocumen
         )
 
 
-class BringToFront(CDPMethod[None]):  # deprecated
+class BringToFront(CDPMethod[None]):
     """ Brings page to front (activates tab). """
 
     INPUT_VALIDATOR = None
@@ -94,20 +94,20 @@ class BringToFront(CDPMethod[None]):  # deprecated
 
 class CaptureScreenshotInput(InputModel):
 
-    format: Literal['jpeg', 'png', 'webp'] | None = None  # deprecated
-    quality: int | None = None  # deprecated
-    clip: Page.Viewport | None = None  # deprecated
-    fromSurface: bool | None = None  # experimental deprecated
-    captureBeyondViewport: bool | None = None  # experimental deprecated
-    optimizeForSpeed: bool | None = None  # experimental deprecated
+    format: Literal['jpeg', 'png', 'webp'] | None = None
+    quality: int | None = None
+    clip: Page.Viewport | None = None
+    fromSurface: bool | None = None  # experimental
+    captureBeyondViewport: bool | None = None  # experimental
+    optimizeForSpeed: bool | None = None  # experimental
 
 
 class CaptureScreenshotOutput(OutputModel):
 
-    data: str  # deprecated
+    data: str
 
 
-class CaptureScreenshot(CDPMethod[CaptureScreenshotOutput]):  # deprecated
+class CaptureScreenshot(CDPMethod[CaptureScreenshotOutput]):
     """ Capture page screenshot. """
 
     INPUT_VALIDATOR = CaptureScreenshotInput
@@ -135,15 +135,15 @@ class CaptureScreenshot(CDPMethod[CaptureScreenshotOutput]):  # deprecated
 
 class CaptureSnapshotInput(InputModel):
 
-    format: Literal['mhtml'] | None = None  # deprecated
+    format: Literal['mhtml'] | None = None
 
 
 class CaptureSnapshotOutput(OutputModel):
 
-    data: str  # deprecated
+    data: str
 
 
-class CaptureSnapshot(CDPMethod[CaptureSnapshotOutput]):  # experimental deprecated
+class CaptureSnapshot(CDPMethod[CaptureSnapshotOutput]):  # experimental
     """ Returns a snapshot of the page as a string. For MHTML format, the serialization includes
     iframes, shadow DOM, external resources, and element-inline styles. """
 
@@ -183,17 +183,17 @@ class ClearGeolocationOverride(CDPMethod[None]):  # deprecated
 
 class CreateIsolatedWorldInput(InputModel):
 
-    frameId: Page.FrameId  # deprecated
-    worldName: str | None = None  # deprecated
-    grantUniveralAccess: bool | None = None  # deprecated
+    frameId: Page.FrameId
+    worldName: str | None = None
+    grantUniveralAccess: bool | None = None
 
 
 class CreateIsolatedWorldOutput(OutputModel):
 
-    executionContextId: Runtime.ExecutionContextId  # deprecated
+    executionContextId: Runtime.ExecutionContextId
 
 
-class CreateIsolatedWorld(CDPMethod[CreateIsolatedWorldOutput]):  # deprecated
+class CreateIsolatedWorld(CDPMethod[CreateIsolatedWorldOutput]):
     """ Creates an isolated world for the given frame. """
 
     INPUT_VALIDATOR = CreateIsolatedWorldInput
@@ -215,8 +215,8 @@ class CreateIsolatedWorld(CDPMethod[CreateIsolatedWorldOutput]):  # deprecated
 
 class DeleteCookieInput(InputModel):
 
-    cookieName: str  # deprecated
-    url: str  # deprecated
+    cookieName: str
+    url: str
 
 
 class DeleteCookie(CDPMethod[None]):  # experimental deprecated
@@ -237,7 +237,7 @@ class DeleteCookie(CDPMethod[None]):  # experimental deprecated
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables page domain notifications. """
 
     INPUT_VALIDATOR = None
@@ -246,10 +246,10 @@ class Disable(CDPMethod[None]):  # deprecated
 
 class EnableInput(InputModel):
 
-    enableFileChooserOpenedEvent: bool | None = None  # experimental deprecated
+    enableFileChooserOpenedEvent: bool | None = None  # experimental
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables page domain notifications. """
 
     INPUT_VALIDATOR = EnableInput
@@ -272,14 +272,14 @@ class GetAppManifestInput(InputModel):
 
 class GetAppManifestOutput(OutputModel):
 
-    url: str  # deprecated
+    url: str
     errors: list[Page.AppManifestError]
-    data: str | None = None  # deprecated
+    data: str | None = None
     parsed: Page.AppManifestParsedProperties | None = None  # experimental deprecated
     manifest: Page.WebAppManifest | None = None  # experimental
 
 
-class GetAppManifest(CDPMethod[GetAppManifestOutput]):  # deprecated
+class GetAppManifest(CDPMethod[GetAppManifestOutput]):
     """ Gets the processed manifest for this current document.
       This API always waits for the manifest to be loaded.
       If manifestId is provided, and it does not match the manifest of the
@@ -324,11 +324,11 @@ class GetManifestIcons(CDPMethod[GetManifestIconsOutput]):  # experimental depre
 
 class GetAppIdOutput(OutputModel):
 
-    appId: str | None = None  # deprecated
-    recommendedId: str | None = None  # deprecated
+    appId: str | None = None
+    recommendedId: str | None = None
 
 
-class GetAppId(CDPMethod[GetAppIdOutput]):  # experimental deprecated
+class GetAppId(CDPMethod[GetAppIdOutput]):  # experimental
     """ Returns the unique (PWA) app id.
     Only returns values if the feature flag 'WebAppEnableManifestId' is enabled """
 
@@ -343,7 +343,7 @@ class GetAdScriptAncestryInput(InputModel):
 
 class GetAdScriptAncestryOutput(OutputModel):
 
-    adScriptAncestry: Page.AdScriptAncestry | None = None  # deprecated
+    adScriptAncestry: Page.AdScriptAncestry | None = None
 
 
 class GetAdScriptAncestry(CDPMethod[GetAdScriptAncestryOutput]):  # experimental
@@ -363,10 +363,10 @@ class GetAdScriptAncestry(CDPMethod[GetAdScriptAncestryOutput]):  # experimental
 
 class GetFrameTreeOutput(OutputModel):
 
-    frameTree: Page.FrameTree  # deprecated
+    frameTree: Page.FrameTree
 
 
-class GetFrameTree(CDPMethod[GetFrameTreeOutput]):  # deprecated
+class GetFrameTree(CDPMethod[GetFrameTreeOutput]):
     """ Returns present frame tree structure. """
 
     INPUT_VALIDATOR = None
@@ -378,12 +378,12 @@ class GetLayoutMetricsOutput(OutputModel):
     layoutViewport: Page.LayoutViewport  # deprecated
     visualViewport: Page.VisualViewport  # deprecated
     contentSize: DOM.Rect  # deprecated
-    cssLayoutViewport: Page.LayoutViewport  # deprecated
-    cssVisualViewport: Page.VisualViewport  # deprecated
-    cssContentSize: DOM.Rect  # deprecated
+    cssLayoutViewport: Page.LayoutViewport
+    cssVisualViewport: Page.VisualViewport
+    cssContentSize: DOM.Rect
 
 
-class GetLayoutMetrics(CDPMethod[GetLayoutMetricsOutput]):  # deprecated
+class GetLayoutMetrics(CDPMethod[GetLayoutMetricsOutput]):
     """ Returns metrics relating to the layouting of the page, such as viewport bounds/scale. """
 
     INPUT_VALIDATOR = None
@@ -392,18 +392,18 @@ class GetLayoutMetrics(CDPMethod[GetLayoutMetricsOutput]):  # deprecated
 
 class GetNavigationHistoryOutput(OutputModel):
 
-    currentIndex: int  # deprecated
-    entries: list[Page.NavigationEntry]  # deprecated
+    currentIndex: int
+    entries: list[Page.NavigationEntry]
 
 
-class GetNavigationHistory(CDPMethod[GetNavigationHistoryOutput]):  # deprecated
+class GetNavigationHistory(CDPMethod[GetNavigationHistoryOutput]):
     """ Returns navigation history for the current page. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = GetNavigationHistoryOutput
 
 
-class ResetNavigationHistory(CDPMethod[None]):  # deprecated
+class ResetNavigationHistory(CDPMethod[None]):
     """ Resets navigation history for the current page. """
 
     INPUT_VALIDATOR = None
@@ -412,17 +412,17 @@ class ResetNavigationHistory(CDPMethod[None]):  # deprecated
 
 class GetResourceContentInput(InputModel):
 
-    frameId: Page.FrameId  # deprecated
-    url: str  # deprecated
+    frameId: Page.FrameId
+    url: str
 
 
 class GetResourceContentOutput(OutputModel):
 
-    content: str  # deprecated
-    base64Encoded: bool  # deprecated
+    content: str
+    base64Encoded: bool
 
 
-class GetResourceContent(CDPMethod[GetResourceContentOutput]):  # experimental deprecated
+class GetResourceContent(CDPMethod[GetResourceContentOutput]):  # experimental
     """ Returns content of the given resource. """
 
     INPUT_VALIDATOR = GetResourceContentInput
@@ -442,10 +442,10 @@ class GetResourceContent(CDPMethod[GetResourceContentOutput]):  # experimental d
 
 class GetResourceTreeOutput(OutputModel):
 
-    frameTree: Page.FrameResourceTree  # deprecated
+    frameTree: Page.FrameResourceTree
 
 
-class GetResourceTree(CDPMethod[GetResourceTreeOutput]):  # experimental deprecated
+class GetResourceTree(CDPMethod[GetResourceTreeOutput]):  # experimental
     """ Returns present frame / resource tree structure. """
 
     INPUT_VALIDATOR = None
@@ -454,11 +454,11 @@ class GetResourceTree(CDPMethod[GetResourceTreeOutput]):  # experimental depreca
 
 class HandleJavaScriptDialogInput(InputModel):
 
-    accept: bool  # deprecated
-    promptText: str | None = None  # deprecated
+    accept: bool
+    promptText: str | None = None
 
 
-class HandleJavaScriptDialog(CDPMethod[None]):  # deprecated
+class HandleJavaScriptDialog(CDPMethod[None]):
     """ Accepts or dismisses a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload). """
 
     INPUT_VALIDATOR = HandleJavaScriptDialogInput
@@ -478,21 +478,21 @@ class HandleJavaScriptDialog(CDPMethod[None]):  # deprecated
 
 class NavigateInput(InputModel):
 
-    url: str  # deprecated
-    referrer: str | None = None  # deprecated
-    transitionType: Page.TransitionType | None = None  # deprecated
-    frameId: Page.FrameId | None = None  # deprecated
-    referrerPolicy: Page.ReferrerPolicy | None = None  # experimental deprecated
+    url: str
+    referrer: str | None = None
+    transitionType: Page.TransitionType | None = None
+    frameId: Page.FrameId | None = None
+    referrerPolicy: Page.ReferrerPolicy | None = None  # experimental
 
 
 class NavigateOutput(OutputModel):
 
-    frameId: Page.FrameId  # deprecated
-    loaderId: Network.LoaderId | None = None  # deprecated
-    errorText: str | None = None  # deprecated
+    frameId: Page.FrameId
+    loaderId: Network.LoaderId | None = None
+    errorText: str | None = None
 
 
-class Navigate(CDPMethod[NavigateOutput]):  # deprecated
+class Navigate(CDPMethod[NavigateOutput]):
     """ Navigates current page to the given URL. """
 
     INPUT_VALIDATOR = NavigateInput
@@ -518,10 +518,10 @@ class Navigate(CDPMethod[NavigateOutput]):  # deprecated
 
 class NavigateToHistoryEntryInput(InputModel):
 
-    entryId: int  # deprecated
+    entryId: int
 
 
-class NavigateToHistoryEntry(CDPMethod[None]):  # deprecated
+class NavigateToHistoryEntry(CDPMethod[None]):
     """ Navigates current page to the given history entry. """
 
     INPUT_VALIDATOR = NavigateToHistoryEntryInput
@@ -539,32 +539,32 @@ class NavigateToHistoryEntry(CDPMethod[None]):  # deprecated
 
 class PrintToPDFInput(InputModel):
 
-    landscape: bool | None = None  # deprecated
-    displayHeaderFooter: bool | None = None  # deprecated
-    printBackground: bool | None = None  # deprecated
-    scale: float | None = None  # deprecated
-    paperWidth: float | None = None  # deprecated
-    paperHeight: float | None = None  # deprecated
-    marginTop: float | None = None  # deprecated
-    marginBottom: float | None = None  # deprecated
-    marginLeft: float | None = None  # deprecated
-    marginRight: float | None = None  # deprecated
-    pageRanges: str | None = None  # deprecated
-    headerTemplate: str | None = None  # deprecated
-    footerTemplate: str | None = None  # deprecated
-    preferCSSPageSize: bool | None = None  # deprecated
-    transferMode: Literal['ReturnAsBase64', 'ReturnAsStream'] | None = None  # experimental deprecated
-    generateTaggedPDF: bool | None = None  # experimental deprecated
-    generateDocumentOutline: bool | None = None  # experimental deprecated
+    landscape: bool | None = None
+    displayHeaderFooter: bool | None = None
+    printBackground: bool | None = None
+    scale: float | None = None
+    paperWidth: float | None = None
+    paperHeight: float | None = None
+    marginTop: float | None = None
+    marginBottom: float | None = None
+    marginLeft: float | None = None
+    marginRight: float | None = None
+    pageRanges: str | None = None
+    headerTemplate: str | None = None
+    footerTemplate: str | None = None
+    preferCSSPageSize: bool | None = None
+    transferMode: Literal['ReturnAsBase64', 'ReturnAsStream'] | None = None  # experimental
+    generateTaggedPDF: bool | None = None  # experimental
+    generateDocumentOutline: bool | None = None  # experimental
 
 
 class PrintToPDFOutput(OutputModel):
 
-    data: str  # deprecated
-    stream: IO.StreamHandle | None = None  # experimental deprecated
+    data: str
+    stream: IO.StreamHandle | None = None  # experimental
 
 
-class PrintToPDF(CDPMethod[PrintToPDFOutput]):  # deprecated
+class PrintToPDF(CDPMethod[PrintToPDFOutput]):
     """ Print page as PDF. """
 
     INPUT_VALIDATOR = PrintToPDFInput
@@ -614,12 +614,12 @@ class PrintToPDF(CDPMethod[PrintToPDFOutput]):  # deprecated
 
 class ReloadInput(InputModel):
 
-    ignoreCache: bool | None = None  # deprecated
-    scriptToEvaluateOnLoad: str | None = None  # deprecated
-    loaderId: Network.LoaderId | None = None  # experimental deprecated
+    ignoreCache: bool | None = None
+    scriptToEvaluateOnLoad: str | None = None
+    loaderId: Network.LoaderId | None = None  # experimental
 
 
-class Reload(CDPMethod[None]):  # deprecated
+class Reload(CDPMethod[None]):
     """ Reloads given page optionally ignoring the cache. """
 
     INPUT_VALIDATOR = ReloadInput
@@ -665,7 +665,7 @@ class RemoveScriptToEvaluateOnNewDocumentInput(InputModel):
     identifier: Page.ScriptIdentifier
 
 
-class RemoveScriptToEvaluateOnNewDocument(CDPMethod[None]):  # deprecated
+class RemoveScriptToEvaluateOnNewDocument(CDPMethod[None]):
     """ Removes given script from the list. """
 
     INPUT_VALIDATOR = RemoveScriptToEvaluateOnNewDocumentInput
@@ -683,10 +683,10 @@ class RemoveScriptToEvaluateOnNewDocument(CDPMethod[None]):  # deprecated
 
 class ScreencastFrameAckInput(InputModel):
 
-    sessionId: int  # deprecated
+    sessionId: int
 
 
-class ScreencastFrameAck(CDPMethod[None]):  # experimental deprecated
+class ScreencastFrameAck(CDPMethod[None]):  # experimental
     """ Acknowledges that a screencast frame has been received by the frontend. """
 
     INPUT_VALIDATOR = ScreencastFrameAckInput
@@ -704,19 +704,19 @@ class ScreencastFrameAck(CDPMethod[None]):  # experimental deprecated
 
 class SearchInResourceInput(InputModel):
 
-    frameId: Page.FrameId  # deprecated
-    url: str  # deprecated
-    query: str  # deprecated
-    caseSensitive: bool | None = None  # deprecated
-    isRegex: bool | None = None  # deprecated
+    frameId: Page.FrameId
+    url: str
+    query: str
+    caseSensitive: bool | None = None
+    isRegex: bool | None = None
 
 
 class SearchInResourceOutput(OutputModel):
 
-    result: list[Debugger.SearchMatch]  # deprecated
+    result: list[Debugger.SearchMatch]
 
 
-class SearchInResource(CDPMethod[SearchInResourceOutput]):  # experimental deprecated
+class SearchInResource(CDPMethod[SearchInResourceOutput]):  # experimental
     """ Searches for given string in resource content. """
 
     INPUT_VALIDATOR = SearchInResourceInput
@@ -742,10 +742,10 @@ class SearchInResource(CDPMethod[SearchInResourceOutput]):  # experimental depre
 
 class SetAdBlockingEnabledInput(InputModel):
 
-    enabled: bool  # deprecated
+    enabled: bool
 
 
-class SetAdBlockingEnabled(CDPMethod[None]):  # experimental deprecated
+class SetAdBlockingEnabled(CDPMethod[None]):  # experimental
     """ Enable Chrome's experimental ad filter on all sites. """
 
     INPUT_VALIDATOR = SetAdBlockingEnabledInput
@@ -763,10 +763,10 @@ class SetAdBlockingEnabled(CDPMethod[None]):  # experimental deprecated
 
 class SetBypassCSPInput(InputModel):
 
-    enabled: bool  # deprecated
+    enabled: bool
 
 
-class SetBypassCSP(CDPMethod[None]):  # deprecated
+class SetBypassCSP(CDPMethod[None]):
     """ Enable page Content Security Policy by-passing. """
 
     INPUT_VALIDATOR = SetBypassCSPInput
@@ -792,7 +792,7 @@ class GetPermissionsPolicyStateOutput(OutputModel):
     states: list[Page.PermissionsPolicyFeatureState]
 
 
-class GetPermissionsPolicyState(CDPMethod[GetPermissionsPolicyStateOutput]):  # experimental deprecated
+class GetPermissionsPolicyState(CDPMethod[GetPermissionsPolicyStateOutput]):  # experimental
     """ Get Permissions Policy state on given frame. """
 
     INPUT_VALIDATOR = GetPermissionsPolicyStateInput
@@ -818,7 +818,7 @@ class GetOriginTrialsOutput(OutputModel):
     originTrials: list[Page.OriginTrial]
 
 
-class GetOriginTrials(CDPMethod[GetOriginTrialsOutput]):  # experimental deprecated
+class GetOriginTrials(CDPMethod[GetOriginTrialsOutput]):  # experimental
     """ Get Origin Trials on given frame. """
 
     INPUT_VALIDATOR = GetOriginTrialsInput
@@ -836,18 +836,18 @@ class GetOriginTrials(CDPMethod[GetOriginTrialsOutput]):  # experimental depreca
 
 class SetDeviceMetricsOverrideInput(InputModel):
 
-    width: int  # deprecated
-    height: int  # deprecated
-    deviceScaleFactor: float  # deprecated
-    mobile: bool  # deprecated
-    scale: float | None = None  # deprecated
-    screenWidth: int | None = None  # deprecated
-    screenHeight: int | None = None  # deprecated
-    positionX: int | None = None  # deprecated
-    positionY: int | None = None  # deprecated
-    dontSetVisibleSize: bool | None = None  # deprecated
-    screenOrientation: Emulation.ScreenOrientation | None = None  # deprecated
-    viewport: Page.Viewport | None = None  # deprecated
+    width: int
+    height: int
+    deviceScaleFactor: float
+    mobile: bool
+    scale: float | None = None
+    screenWidth: int | None = None
+    screenHeight: int | None = None
+    positionX: int | None = None
+    positionY: int | None = None
+    dontSetVisibleSize: bool | None = None
+    screenOrientation: Emulation.ScreenOrientation | None = None
+    viewport: Page.Viewport | None = None
 
 
 class SetDeviceMetricsOverride(CDPMethod[None]):  # experimental deprecated
@@ -892,9 +892,9 @@ class SetDeviceMetricsOverride(CDPMethod[None]):  # experimental deprecated
 
 class SetDeviceOrientationOverrideInput(InputModel):
 
-    alpha: float  # deprecated
-    beta: float  # deprecated
-    gamma: float  # deprecated
+    alpha: float
+    beta: float
+    gamma: float
 
 
 class SetDeviceOrientationOverride(CDPMethod[None]):  # experimental deprecated
@@ -919,11 +919,11 @@ class SetDeviceOrientationOverride(CDPMethod[None]):  # experimental deprecated
 
 class SetFontFamiliesInput(InputModel):
 
-    fontFamilies: Page.FontFamilies  # deprecated
-    forScripts: list[Page.ScriptFontFamilies] | None = None  # deprecated
+    fontFamilies: Page.FontFamilies
+    forScripts: list[Page.ScriptFontFamilies] | None = None
 
 
-class SetFontFamilies(CDPMethod[None]):  # experimental deprecated
+class SetFontFamilies(CDPMethod[None]):  # experimental
     """ Set generic font families. """
 
     INPUT_VALIDATOR = SetFontFamiliesInput
@@ -943,10 +943,10 @@ class SetFontFamilies(CDPMethod[None]):  # experimental deprecated
 
 class SetFontSizesInput(InputModel):
 
-    fontSizes: Page.FontSizes  # deprecated
+    fontSizes: Page.FontSizes
 
 
-class SetFontSizes(CDPMethod[None]):  # experimental deprecated
+class SetFontSizes(CDPMethod[None]):  # experimental
     """ Set default font sizes. """
 
     INPUT_VALIDATOR = SetFontSizesInput
@@ -964,11 +964,11 @@ class SetFontSizes(CDPMethod[None]):  # experimental deprecated
 
 class SetDocumentContentInput(InputModel):
 
-    frameId: Page.FrameId  # deprecated
-    html: str  # deprecated
+    frameId: Page.FrameId
+    html: str
 
 
-class SetDocumentContent(CDPMethod[None]):  # deprecated
+class SetDocumentContent(CDPMethod[None]):
     """ Sets given markup as the document's HTML. """
 
     INPUT_VALIDATOR = SetDocumentContentInput
@@ -988,8 +988,8 @@ class SetDocumentContent(CDPMethod[None]):  # deprecated
 
 class SetDownloadBehaviorInput(InputModel):
 
-    behavior: Literal['deny', 'allow', 'default']  # deprecated
-    downloadPath: str | None = None  # deprecated
+    behavior: Literal['deny', 'allow', 'default']
+    downloadPath: str | None = None
 
 
 class SetDownloadBehavior(CDPMethod[None]):  # experimental deprecated
@@ -1012,9 +1012,9 @@ class SetDownloadBehavior(CDPMethod[None]):  # experimental deprecated
 
 class SetGeolocationOverrideInput(InputModel):
 
-    latitude: float | None = None  # deprecated
-    longitude: float | None = None  # deprecated
-    accuracy: float | None = None  # deprecated
+    latitude: float | None = None
+    longitude: float | None = None
+    accuracy: float | None = None
 
 
 class SetGeolocationOverride(CDPMethod[None]):  # deprecated
@@ -1040,10 +1040,10 @@ class SetGeolocationOverride(CDPMethod[None]):  # deprecated
 
 class SetLifecycleEventsEnabledInput(InputModel):
 
-    enabled: bool  # deprecated
+    enabled: bool
 
 
-class SetLifecycleEventsEnabled(CDPMethod[None]):  # deprecated
+class SetLifecycleEventsEnabled(CDPMethod[None]):
     """ Controls whether page will emit lifecycle events. """
 
     INPUT_VALIDATOR = SetLifecycleEventsEnabledInput
@@ -1061,8 +1061,8 @@ class SetLifecycleEventsEnabled(CDPMethod[None]):  # deprecated
 
 class SetTouchEmulationEnabledInput(InputModel):
 
-    enabled: bool  # deprecated
-    configuration: Literal['mobile', 'desktop'] | None = None  # deprecated
+    enabled: bool
+    configuration: Literal['mobile', 'desktop'] | None = None
 
 
 class SetTouchEmulationEnabled(CDPMethod[None]):  # experimental deprecated
@@ -1085,14 +1085,14 @@ class SetTouchEmulationEnabled(CDPMethod[None]):  # experimental deprecated
 
 class StartScreencastInput(InputModel):
 
-    format: Literal['jpeg', 'png'] | None = None  # deprecated
-    quality: int | None = None  # deprecated
-    maxWidth: int | None = None  # deprecated
-    maxHeight: int | None = None  # deprecated
-    everyNthFrame: int | None = None  # deprecated
+    format: Literal['jpeg', 'png'] | None = None
+    quality: int | None = None
+    maxWidth: int | None = None
+    maxHeight: int | None = None
+    everyNthFrame: int | None = None
 
 
-class StartScreencast(CDPMethod[None]):  # experimental deprecated
+class StartScreencast(CDPMethod[None]):  # experimental
     """ Starts sending each frame using the `screencastFrame` event. """
 
     INPUT_VALIDATOR = StartScreencastInput
@@ -1116,21 +1116,21 @@ class StartScreencast(CDPMethod[None]):  # experimental deprecated
         )
 
 
-class StopLoading(CDPMethod[None]):  # deprecated
+class StopLoading(CDPMethod[None]):
     """ Force the page stop all navigations and pending resource fetches. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Crash(CDPMethod[None]):  # experimental deprecated
+class Crash(CDPMethod[None]):  # experimental
     """ Crashes renderer on the IO thread, generates minidumps. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Close(CDPMethod[None]):  # deprecated
+class Close(CDPMethod[None]):
     """ Tries to close page, running its beforeunload hooks, if any. """
 
     INPUT_VALIDATOR = None
@@ -1139,10 +1139,10 @@ class Close(CDPMethod[None]):  # deprecated
 
 class SetWebLifecycleStateInput(InputModel):
 
-    state: Literal['frozen', 'active']  # deprecated
+    state: Literal['frozen', 'active']
 
 
-class SetWebLifecycleState(CDPMethod[None]):  # experimental deprecated
+class SetWebLifecycleState(CDPMethod[None]):  # experimental
     """ Tries to update the web lifecycle state of the page.
     It will transition the page to the given state according to:
     https://github.com/WICG/web-lifecycle/ """
@@ -1160,7 +1160,7 @@ class SetWebLifecycleState(CDPMethod[None]):  # experimental deprecated
         )
 
 
-class StopScreencast(CDPMethod[None]):  # experimental deprecated
+class StopScreencast(CDPMethod[None]):  # experimental
     """ Stops sending each frame in the `screencastFrame`. """
 
     INPUT_VALIDATOR = None
@@ -1172,7 +1172,7 @@ class ProduceCompilationCacheInput(InputModel):
     scripts: list[Page.CompilationCacheParams]
 
 
-class ProduceCompilationCache(CDPMethod[None]):  # experimental deprecated
+class ProduceCompilationCache(CDPMethod[None]):  # experimental
     """ Requests backend to produce compilation cache for the specified scripts.
     `scripts` are appended to the list of scripts for which the cache
     would be produced. The list may be reset during page navigation.
@@ -1196,10 +1196,10 @@ class ProduceCompilationCache(CDPMethod[None]):  # experimental deprecated
 class AddCompilationCacheInput(InputModel):
 
     url: str
-    data: str  # deprecated
+    data: str
 
 
-class AddCompilationCache(CDPMethod[None]):  # experimental deprecated
+class AddCompilationCache(CDPMethod[None]):  # experimental
     """ Seeds compilation cache for given url. Compilation cache does not survive
     cross-process navigation. """
 
@@ -1218,7 +1218,7 @@ class AddCompilationCache(CDPMethod[None]):  # experimental deprecated
         )
 
 
-class ClearCompilationCache(CDPMethod[None]):  # experimental deprecated
+class ClearCompilationCache(CDPMethod[None]):  # experimental
     """ Clears seeded compilation cache. """
 
     INPUT_VALIDATOR = None
@@ -1230,7 +1230,7 @@ class SetSPCTransactionModeInput(InputModel):
     mode: Literal['none', 'autoAccept', 'autoChooseToAuthAnotherWay', 'autoReject', 'autoOptOut']
 
 
-class SetSPCTransactionMode(CDPMethod[None]):  # experimental deprecated
+class SetSPCTransactionMode(CDPMethod[None]):  # experimental
     """ Sets the Secure Payment Confirmation transaction mode.
     https://w3c.github.io/secure-payment-confirmation/#sctn-automation-set-spc-transaction-mode """
 
@@ -1252,7 +1252,7 @@ class SetRPHRegistrationModeInput(InputModel):
     mode: Literal['none', 'autoAccept', 'autoReject']
 
 
-class SetRPHRegistrationMode(CDPMethod[None]):  # experimental deprecated
+class SetRPHRegistrationMode(CDPMethod[None]):  # experimental
     """ Extensions for Custom Handlers API:
     https://html.spec.whatwg.org/multipage/system-state.html#rph-automation """
 
@@ -1271,11 +1271,11 @@ class SetRPHRegistrationMode(CDPMethod[None]):  # experimental deprecated
 
 class GenerateTestReportInput(InputModel):
 
-    message: str  # deprecated
-    group: str | None = None  # deprecated
+    message: str
+    group: str | None = None
 
 
-class GenerateTestReport(CDPMethod[None]):  # experimental deprecated
+class GenerateTestReport(CDPMethod[None]):  # experimental
     """ Generates a report for testing. """
 
     INPUT_VALIDATOR = GenerateTestReportInput
@@ -1293,7 +1293,7 @@ class GenerateTestReport(CDPMethod[None]):  # experimental deprecated
         )
 
 
-class WaitForDebugger(CDPMethod[None]):  # experimental deprecated
+class WaitForDebugger(CDPMethod[None]):  # experimental
     """ Pauses page execution. Can be resumed using generic Runtime.runIfWaitingForDebugger. """
 
     INPUT_VALIDATOR = None
@@ -1303,10 +1303,10 @@ class WaitForDebugger(CDPMethod[None]):  # experimental deprecated
 class SetInterceptFileChooserDialogInput(InputModel):
 
     enabled: bool
-    cancel: bool | None = None  # experimental deprecated
+    cancel: bool | None = None  # experimental
 
 
-class SetInterceptFileChooserDialog(CDPMethod[None]):  # deprecated
+class SetInterceptFileChooserDialog(CDPMethod[None]):
     """ Intercept file chooser requests and transfer control to protocol clients.
     When file chooser interception is enabled, native file chooser dialog is not shown.
     Instead, a protocol event `Page.fileChooserOpened` is emitted. """
@@ -1331,7 +1331,7 @@ class SetPrerenderingAllowedInput(InputModel):
     isAllowed: bool
 
 
-class SetPrerenderingAllowed(CDPMethod[None]):  # experimental deprecated
+class SetPrerenderingAllowed(CDPMethod[None]):  # experimental
     """ Enable/disable prerendering manually.
 
     This command is a short-term solution for https://crbug.com/1440085.

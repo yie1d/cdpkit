@@ -69,68 +69,68 @@ class AccessibilityAXValueSource(CDPObject):
     """ A single source for a computed AX property. """
 
     # What type of source this is.
-    type: Accessibility.AXValueSourceType  # deprecated
+    type: Accessibility.AXValueSourceType
 
     # The value of this property source.
-    value: Accessibility.AXValue | None = None  # deprecated
+    value: Accessibility.AXValue | None = None
 
     # The name of the relevant attribute, if any.
-    attribute: str | None = None  # deprecated
+    attribute: str | None = None
 
     # The value of the relevant attribute, if any.
-    attributeValue: Accessibility.AXValue | None = None  # deprecated
+    attributeValue: Accessibility.AXValue | None = None
 
     # Whether this source is superseded by a higher priority source.
-    superseded: bool | None = None  # deprecated
+    superseded: bool | None = None
 
     # The native markup source for this value, e.g. a `<label>` element.
-    nativeSource: Accessibility.AXValueNativeSourceType | None = None  # deprecated
+    nativeSource: Accessibility.AXValueNativeSourceType | None = None
 
     # The value, such as a node or node list, of the native source.
-    nativeSourceValue: Accessibility.AXValue | None = None  # deprecated
+    nativeSourceValue: Accessibility.AXValue | None = None
 
     # Whether the value for this property is invalid.
-    invalid: bool | None = None  # deprecated
+    invalid: bool | None = None
 
     # Reason for the value being invalid, if it is.
-    invalidReason: str | None = None  # deprecated
+    invalidReason: str | None = None
 
 
 class AccessibilityAXRelatedNode(CDPObject):
 
     # The BackendNodeId of the related DOM node.
-    backendDOMNodeId: DOM.BackendNodeId  # deprecated
+    backendDOMNodeId: DOM.BackendNodeId
 
     # The IDRef value provided, if any.
-    idref: str | None = None  # deprecated
+    idref: str | None = None
 
     # The text alternative of this node in the current context.
-    text: str | None = None  # deprecated
+    text: str | None = None
 
 
 class AccessibilityAXProperty(CDPObject):
 
     # The name of this property.
-    name: Accessibility.AXPropertyName  # deprecated
+    name: Accessibility.AXPropertyName
 
     # The value of this property.
-    value: Accessibility.AXValue  # deprecated
+    value: Accessibility.AXValue
 
 
 class AccessibilityAXValue(CDPObject):
     """ A single computed AX property. """
 
     # The type of this value.
-    type: Accessibility.AXValueType  # deprecated
+    type: Accessibility.AXValueType
 
     # The computed value of this property.
-    value: Any = None  # deprecated
+    value: Any = None
 
     # One or more related nodes, if applicable.
-    relatedNodes: list[Accessibility.AXRelatedNode] | None = None  # deprecated
+    relatedNodes: list[Accessibility.AXRelatedNode] | None = None
 
     # The sources which contributed to the computation of this property.
-    sources: list[Accessibility.AXValueSource] | None = None  # deprecated
+    sources: list[Accessibility.AXValueSource] | None = None
 
 
 class AccessibilityAXPropertyName(enum.StrEnum):
@@ -188,160 +188,160 @@ class AccessibilityAXNode(CDPObject):
     """ A node in the accessibility tree. """
 
     # Unique identifier for this node.
-    nodeId: Accessibility.AXNodeId  # deprecated
+    nodeId: Accessibility.AXNodeId
 
     # Whether this node is ignored for accessibility
-    ignored: bool  # deprecated
+    ignored: bool
 
     # Collection of reasons why this node is hidden.
-    ignoredReasons: list[Accessibility.AXProperty] | None = None  # deprecated
+    ignoredReasons: list[Accessibility.AXProperty] | None = None
 
     # This `Node`'s role, whether explicit or implicit.
-    role: Accessibility.AXValue | None = None  # deprecated
+    role: Accessibility.AXValue | None = None
 
     # This `Node`'s Chrome raw role.
-    chromeRole: Accessibility.AXValue | None = None  # deprecated
+    chromeRole: Accessibility.AXValue | None = None
 
     # The accessible name for this `Node`.
-    name: Accessibility.AXValue | None = None  # deprecated
+    name: Accessibility.AXValue | None = None
 
     # The accessible description for this `Node`.
-    description: Accessibility.AXValue | None = None  # deprecated
+    description: Accessibility.AXValue | None = None
 
     # The value for this `Node`.
-    value: Accessibility.AXValue | None = None  # deprecated
+    value: Accessibility.AXValue | None = None
 
     # All other properties
-    properties: list[Accessibility.AXProperty] | None = None  # deprecated
+    properties: list[Accessibility.AXProperty] | None = None
 
     # ID for this node's parent.
-    parentId: Accessibility.AXNodeId | None = None  # deprecated
+    parentId: Accessibility.AXNodeId | None = None
 
     # IDs for each of this node's child nodes.
-    childIds: list[Accessibility.AXNodeId] | None = None  # deprecated
+    childIds: list[Accessibility.AXNodeId] | None = None
 
     # The backend ID for the associated DOM node, if any.
-    backendDOMNodeId: DOM.BackendNodeId | None = None  # deprecated
+    backendDOMNodeId: DOM.BackendNodeId | None = None
 
     # The frame ID for the frame associated with this nodes document.
-    frameId: Page.FrameId | None = None  # deprecated
+    frameId: Page.FrameId | None = None
 
 
 class AnimationAnimation(CDPObject):
     """ Animation instance. """
 
     # `Animation`'s id.
-    id: str  # deprecated
+    id: str
 
     # `Animation`'s name.
-    name: str  # deprecated
+    name: str
 
     # `Animation`'s internal paused state.
-    pausedState: bool  # deprecated
+    pausedState: bool
 
     # `Animation`'s play state.
-    playState: str  # deprecated
+    playState: str
 
     # `Animation`'s playback rate.
-    playbackRate: float  # deprecated
+    playbackRate: float
 
     # `Animation`'s start time. Milliseconds for time based animations andpercentage [0 - 100] for scroll driven animations (i.e. whenviewOrScrollTimeline exists).
-    startTime: float  # deprecated
+    startTime: float
 
     # `Animation`'s current time.
-    currentTime: float  # deprecated
+    currentTime: float
 
     # Animation type of `Animation`.
-    type: Literal['CSSTransition', 'CSSAnimation', 'WebAnimation']  # deprecated
+    type: Literal['CSSTransition', 'CSSAnimation', 'WebAnimation']
 
     # `Animation`'s source animation node.
-    source: Animation.AnimationEffect | None = None  # deprecated
+    source: Animation.AnimationEffect | None = None
 
     # A unique ID for `Animation` representing the sources that triggered thisCSS animation/transition.
-    cssId: str | None = None  # deprecated
+    cssId: str | None = None
 
     # View or scroll timeline
-    viewOrScrollTimeline: Animation.ViewOrScrollTimeline | None = None  # deprecated
+    viewOrScrollTimeline: Animation.ViewOrScrollTimeline | None = None
 
 
 class AnimationViewOrScrollTimeline(CDPObject):
     """ Timeline instance """
 
     # Scroll container node
-    sourceNodeId: DOM.BackendNodeId | None = None  # deprecated
+    sourceNodeId: DOM.BackendNodeId | None = None
 
     # Represents the starting scroll position of the timeline as a length offsetin pixels from scroll origin.
-    startOffset: float | None = None  # deprecated
+    startOffset: float | None = None
 
     # Represents the ending scroll position of the timeline as a length offsetin pixels from scroll origin.
-    endOffset: float | None = None  # deprecated
+    endOffset: float | None = None
 
     # The element whose principal box's visibility in the scrollport defined theprogress of the timeline. Does not exist for animations with ScrollTimeline
-    subjectNodeId: DOM.BackendNodeId | None = None  # deprecated
+    subjectNodeId: DOM.BackendNodeId | None = None
 
     # Orientation of the scroll
-    axis: DOM.ScrollOrientation  # deprecated
+    axis: DOM.ScrollOrientation
 
 
 class AnimationAnimationEffect(CDPObject):
     """ AnimationEffect instance """
 
     # `AnimationEffect`'s delay.
-    delay: float  # deprecated
+    delay: float
 
     # `AnimationEffect`'s end delay.
-    endDelay: float  # deprecated
+    endDelay: float
 
     # `AnimationEffect`'s iteration start.
-    iterationStart: float  # deprecated
+    iterationStart: float
 
     # `AnimationEffect`'s iterations.
-    iterations: float  # deprecated
+    iterations: float
 
     # `AnimationEffect`'s iteration duration. Milliseconds for time basedanimations and percentage [0 - 100] for scroll driven animations (i.e. whenviewOrScrollTimeline exists).
-    duration: float  # deprecated
+    duration: float
 
     # `AnimationEffect`'s playback direction.
-    direction: str  # deprecated
+    direction: str
 
     # `AnimationEffect`'s fill mode.
-    fill: str  # deprecated
+    fill: str
 
     # `AnimationEffect`'s target node.
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
+    backendNodeId: DOM.BackendNodeId | None = None
 
     # `AnimationEffect`'s keyframes.
-    keyframesRule: Animation.KeyframesRule | None = None  # deprecated
+    keyframesRule: Animation.KeyframesRule | None = None
 
     # `AnimationEffect`'s timing function.
-    easing: str  # deprecated
+    easing: str
 
 
 class AnimationKeyframesRule(CDPObject):
     """ Keyframes Rule """
 
     # CSS keyframed animation's name.
-    name: str | None = None  # deprecated
+    name: str | None = None
 
     # List of animation keyframes.
-    keyframes: list[Animation.KeyframeStyle]  # deprecated
+    keyframes: list[Animation.KeyframeStyle]
 
 
 class AnimationKeyframeStyle(CDPObject):
     """ Keyframe Style """
 
     # Keyframe's time offset.
-    offset: str  # deprecated
+    offset: str
 
     # `AnimationEffect`'s timing function.
-    easing: str  # deprecated
+    easing: str
 
 
 class AuditsAffectedCookie(CDPObject):
     """ Information about a cookie that is affected by an inspector issue. """
 
     # The following three properties uniquely identify a cookie
-    name: str  # deprecated
+    name: str
 
     path: str
 
@@ -352,7 +352,7 @@ class AuditsAffectedRequest(CDPObject):
     """ Information about a request that is affected by an inspector issue. """
 
     # The unique request id.
-    requestId: Network.RequestId | None = None  # deprecated
+    requestId: Network.RequestId | None = None
 
     url: str
 
@@ -416,7 +416,7 @@ class AuditsCookieIssueInsight(CDPObject):
     type: Audits.InsightType
 
     # Link to table entry in third-party cookie migration readiness list.
-    tableEntryUrl: str | None = None  # deprecated
+    tableEntryUrl: str | None = None
 
 
 class AuditsCookieIssueDetails(CDPObject):
@@ -425,7 +425,7 @@ class AuditsCookieIssueDetails(CDPObject):
     information without the cookie. """
 
     # If AffectedCookie is not set then rawCookieLine contains the raw Set-Cookie header string. This hints at a problem where the cookie line issyntactically or semantically malformed in a way that no valid cookie could becreated.
-    cookie: Audits.AffectedCookie | None = None  # deprecated
+    cookie: Audits.AffectedCookie | None = None
 
     rawCookieLine: str | None = None
 
@@ -434,7 +434,7 @@ class AuditsCookieIssueDetails(CDPObject):
     cookieExclusionReasons: list[Audits.CookieExclusionReason]
 
     # Optionally identifies the site-for-cookies and the cookie url, which maybe used by the front-end as additional context.
-    operation: Audits.CookieOperation  # deprecated
+    operation: Audits.CookieOperation
 
     siteForCookies: str | None = None
 
@@ -443,7 +443,7 @@ class AuditsCookieIssueDetails(CDPObject):
     request: Audits.AffectedRequest | None = None
 
     # The recommended solution to the issue.
-    insight: Audits.CookieIssueInsight | None = None  # deprecated
+    insight: Audits.CookieIssueInsight | None = None
 
 
 class AuditsMixedContentResolutionStatus(enum.StrEnum):
@@ -489,22 +489,22 @@ class AuditsMixedContentResourceType(enum.StrEnum):
 class AuditsMixedContentIssueDetails(CDPObject):
 
     # The type of resource causing the mixed content issue (css, js, iframe,form,...). Marked as optional because it is mapped to fromblink::mojom::RequestContextType, which will be replaced bynetwork::mojom::RequestDestination
-    resourceType: Audits.MixedContentResourceType | None = None  # deprecated
+    resourceType: Audits.MixedContentResourceType | None = None
 
     # The way the mixed content issue is being resolved.
-    resolutionStatus: Audits.MixedContentResolutionStatus  # deprecated
+    resolutionStatus: Audits.MixedContentResolutionStatus
 
     # The unsafe http url causing the mixed content issue.
-    insecureURL: str  # deprecated
+    insecureURL: str
 
     # The url responsible for the call to an unsafe url.
-    mainResourceURL: str  # deprecated
+    mainResourceURL: str
 
     # The mixed content request. Does not always exist (e.g. for unsafe formsubmission urls).
-    request: Audits.AffectedRequest | None = None  # deprecated
+    request: Audits.AffectedRequest | None = None
 
     # Optional because not every mixed content issue is necessarily linked to aframe.
-    frame: Audits.AffectedFrame | None = None  # deprecated
+    frame: Audits.AffectedFrame | None = None
 
 
 class AuditsBlockedByResponseReason(enum.StrEnum):
@@ -551,13 +551,13 @@ class AuditsHeavyAdReason(enum.StrEnum):
 class AuditsHeavyAdIssueDetails(CDPObject):
 
     # The resolution status, either blocking the content or warning.
-    resolution: Audits.HeavyAdResolutionStatus  # deprecated
+    resolution: Audits.HeavyAdResolutionStatus
 
     # The reason the ad was blocked, total network or cpu or peak cpu.
-    reason: Audits.HeavyAdReason  # deprecated
+    reason: Audits.HeavyAdReason
 
     # The frame that was blocked.
-    frame: Audits.AffectedFrame  # deprecated
+    frame: Audits.AffectedFrame
 
 
 class AuditsContentSecurityPolicyViolationType(enum.StrEnum):
@@ -585,10 +585,10 @@ class AuditsSourceCodeLocation(CDPObject):
 class AuditsContentSecurityPolicyIssueDetails(CDPObject):
 
     # The url not included in allowed sources.
-    blockedURL: str | None = None  # deprecated
+    blockedURL: str | None = None
 
     # Specific directive that is violated, causing the CSP issue.
-    violatedDirective: str  # deprecated
+    violatedDirective: str
 
     isReportOnly: bool
 
@@ -749,7 +749,7 @@ class AuditsQuirksModeIssueDetails(CDPObject):
     or Limited Quirks Mode that affects page layouting. """
 
     # If false, it means the document's mode is "quirks" instead of "limited-quirks".
-    isLimitedQuirksMode: bool  # deprecated
+    isLimitedQuirksMode: bool
 
     documentNodeId: DOM.BackendNodeId
 
@@ -804,7 +804,7 @@ class AuditsGenericIssueDetails(CDPObject):
     """ Depending on the concrete errorType, different properties are set. """
 
     # Issues with the same errorType are aggregated in the frontend.
-    errorType: Audits.GenericIssueErrorType  # deprecated
+    errorType: Audits.GenericIssueErrorType
 
     frameId: Page.FrameId | None = None
 
@@ -824,7 +824,7 @@ class AuditsDeprecationIssueDetails(CDPObject):
     sourceCodeLocation: Audits.SourceCodeLocation
 
     # One of the deprecation names fromthird_party/blink/renderer/core/frame/deprecation/deprecation.json5
-    type: str  # deprecated
+    type: str
 
 
 class AuditsBounceTrackingIssueDetails(CDPObject):
@@ -953,10 +953,10 @@ class AuditsClientHintIssueDetails(CDPObject):
 class AuditsFailedRequestInfo(CDPObject):
 
     # The URL that failed to load.
-    url: str  # deprecated
+    url: str
 
     # The failure message for the failed request.
-    failureMessage: str  # deprecated
+    failureMessage: str
 
     requestId: Network.RequestId | None = None
 
@@ -970,10 +970,10 @@ class AuditsPartitioningBlobURLInfo(enum.StrEnum):
 class AuditsPartitioningBlobURLIssueDetails(CDPObject):
 
     # The BlobURL that failed to load.
-    url: str  # deprecated
+    url: str
 
     # Additional information about the Partitioning Blob URL issue.
-    partitioningBlobURLInfo: Audits.PartitioningBlobURLInfo  # deprecated
+    partitioningBlobURLInfo: Audits.PartitioningBlobURLInfo
 
 
 class AuditsElementAccessibilityIssueReason(enum.StrEnum):
@@ -1006,13 +1006,13 @@ class AuditsStylesheetLoadingIssueDetails(CDPObject):
     """ This issue warns when a referenced stylesheet couldn't be loaded. """
 
     # Source code position that referenced the failing stylesheet.
-    sourceCodeLocation: Audits.SourceCodeLocation  # deprecated
+    sourceCodeLocation: Audits.SourceCodeLocation
 
     # Reason why the stylesheet couldn't be loaded.
-    styleSheetLoadingIssueReason: Audits.StyleSheetLoadingIssueReason  # deprecated
+    styleSheetLoadingIssueReason: Audits.StyleSheetLoadingIssueReason
 
     # Contains additional info when the failure was due to a request.
-    failedRequestInfo: Audits.FailedRequestInfo | None = None  # deprecated
+    failedRequestInfo: Audits.FailedRequestInfo | None = None
 
 
 class AuditsPropertyRuleIssueReason(enum.StrEnum):
@@ -1028,13 +1028,13 @@ class AuditsPropertyRuleIssueDetails(CDPObject):
     registrations being ignored. """
 
     # Source code position of the property rule.
-    sourceCodeLocation: Audits.SourceCodeLocation  # deprecated
+    sourceCodeLocation: Audits.SourceCodeLocation
 
     # Reason why the property rule was discarded.
-    propertyRuleIssueReason: Audits.PropertyRuleIssueReason  # deprecated
+    propertyRuleIssueReason: Audits.PropertyRuleIssueReason
 
     # The value of the property rule property that failed to parse
-    propertyValue: str | None = None  # deprecated
+    propertyValue: str | None = None
 
 
 class AuditsUserReidentificationIssueType(enum.StrEnum):
@@ -1050,7 +1050,7 @@ class AuditsUserReidentificationIssueDetails(CDPObject):
     type: Audits.UserReidentificationIssueType
 
     # Applies to BlockedFrameNavigation and BlockedSubresource issue types.
-    request: Audits.AffectedRequest | None = None  # deprecated
+    request: Audits.AffectedRequest | None = None
 
 
 class AuditsInspectorIssueCode(enum.StrEnum):
@@ -1112,7 +1112,7 @@ class AuditsInspectorIssueDetails(CDPObject):
 
     partitioningBlobURLIssueDetails: Audits.PartitioningBlobURLIssueDetails | None = None
 
-    navigatorUserAgentIssueDetails: Audits.NavigatorUserAgentIssueDetails | None = None
+    navigatorUserAgentIssueDetails: Audits.NavigatorUserAgentIssueDetails | None = None  # deprecated
 
     genericIssueDetails: Audits.GenericIssueDetails | None = None
 
@@ -1155,7 +1155,7 @@ class AuditsInspectorIssue(CDPObject):
     details: Audits.InspectorIssueDetails
 
     # A unique id for this issue. May be omitted if no other entity (e.g.exception, CDP message, etc.) is referencing this issue.
-    issueId: Audits.IssueId | None = None  # deprecated
+    issueId: Audits.IssueId | None = None
 
 
 class ExtensionsStorageArea(enum.StrEnum):
@@ -1170,28 +1170,28 @@ class ExtensionsStorageArea(enum.StrEnum):
 class AutofillCreditCard(CDPObject):
 
     # 16-digit credit card number.
-    number: str  # deprecated
+    number: str
 
     # Name of the credit card owner.
-    name: str  # deprecated
+    name: str
 
     # 2-digit expiry month.
-    expiryMonth: str  # deprecated
+    expiryMonth: str
 
     # 4-digit expiry year.
-    expiryYear: str  # deprecated
+    expiryYear: str
 
     # 3-digit card verification code.
-    cvc: str  # deprecated
+    cvc: str
 
 
 class AutofillAddressField(CDPObject):
 
     # address field name, for example GIVEN_NAME.
-    name: str  # deprecated
+    name: str
 
     # address field value, for example Jon Doe.
-    value: str  # deprecated
+    value: str
 
 
 class AutofillAddressFields(CDPObject):
@@ -1203,7 +1203,7 @@ class AutofillAddressFields(CDPObject):
 class AutofillAddress(CDPObject):
 
     # fields and values defining an address.
-    fields: list[Autofill.AddressField]  # deprecated
+    fields: list[Autofill.AddressField]
 
 
 class AutofillAddressUI(CDPObject):
@@ -1216,7 +1216,7 @@ class AutofillAddressUI(CDPObject):
     Munich 81456 """
 
     # A two dimension array containing the representation of values from anaddress profile.
-    addressFields: list[Autofill.AddressFields]  # deprecated
+    addressFields: list[Autofill.AddressFields]
 
 
 class AutofillFillingStrategy(enum.StrEnum):
@@ -1229,28 +1229,28 @@ class AutofillFillingStrategy(enum.StrEnum):
 class AutofillFilledField(CDPObject):
 
     # The type of the field, e.g text, password etc.
-    htmlType: str  # deprecated
+    htmlType: str
 
     # the html id
-    id: str  # deprecated
+    id: str
 
     # the html name
-    name: str  # deprecated
+    name: str
 
     # the field value
-    value: str  # deprecated
+    value: str
 
     # The actual field type, e.g FAMILY_NAME
-    autofillType: str  # deprecated
+    autofillType: str
 
     # The filling strategy
-    fillingStrategy: Autofill.FillingStrategy  # deprecated
+    fillingStrategy: Autofill.FillingStrategy
 
     # The frame the field belongs to
-    frameId: Page.FrameId  # deprecated
+    frameId: Page.FrameId
 
     # The form field's DOM node
-    fieldId: DOM.BackendNodeId  # deprecated
+    fieldId: DOM.BackendNodeId
 
 
 class BackgroundServiceServiceName(enum.StrEnum):
@@ -1277,28 +1277,28 @@ class BackgroundServiceEventMetadata(CDPObject):
 class BackgroundServiceBackgroundServiceEvent(CDPObject):
 
     # Timestamp of the event (in seconds).
-    timestamp: Network.TimeSinceEpoch  # deprecated
+    timestamp: Network.TimeSinceEpoch
 
     # The origin this event belongs to.
-    origin: str  # deprecated
+    origin: str
 
     # The Service Worker ID that initiated the event.
-    serviceWorkerRegistrationId: ServiceWorker.RegistrationID  # deprecated
+    serviceWorkerRegistrationId: ServiceWorker.RegistrationID
 
     # The Background Service this event belongs to.
-    service: BackgroundService.ServiceName  # deprecated
+    service: BackgroundService.ServiceName
 
     # A description of the event.
-    eventName: str  # deprecated
+    eventName: str
 
     # An identifier that groups related events together.
-    instanceId: str  # deprecated
+    instanceId: str
 
     # A list of event-specific information.
-    eventMetadata: list[BackgroundService.EventMetadata]  # deprecated
+    eventMetadata: list[BackgroundService.EventMetadata]
 
     # Storage key this event belongs to.
-    storageKey: str  # deprecated
+    storageKey: str
 
 
 BrowserBrowserContextID = str
@@ -1319,19 +1319,19 @@ class BrowserBounds(CDPObject):
     """ Browser window bounds information """
 
     # The offset from the left edge of the screen to the window in pixels.
-    left: int | None = None  # deprecated
+    left: int | None = None
 
     # The offset from the top edge of the screen to the window in pixels.
-    top: int | None = None  # deprecated
+    top: int | None = None
 
     # The window width in pixels.
-    width: int | None = None  # deprecated
+    width: int | None = None
 
     # The window height in pixels.
-    height: int | None = None  # deprecated
+    height: int | None = None
 
     # The window state. Default to normal.
-    windowState: Browser.WindowState | None = None  # deprecated
+    windowState: Browser.WindowState | None = None
 
 
 class BrowserPermissionType(enum.StrEnum):
@@ -1387,22 +1387,22 @@ class BrowserPermissionDescriptor(CDPObject):
     https://w3c.github.io/permissions/#dom-permissiondescriptor. """
 
     # Name of permission. See https://cs.chromium.org/chromium/src/third_party/blink/renderer/modules/permissions/permission_descriptor.idl for valid permissionnames.
-    name: str  # deprecated
+    name: str
 
     # For "midi" permission, may also specify sysex control.
-    sysex: bool | None = None  # deprecated
+    sysex: bool | None = None
 
     # For "push" permission, may specify userVisibleOnly. Note thatuserVisibleOnly = true is the only currently supported type.
-    userVisibleOnly: bool | None = None  # deprecated
+    userVisibleOnly: bool | None = None
 
     # For "clipboard" permission, may specify allowWithoutSanitization.
-    allowWithoutSanitization: bool | None = None  # deprecated
+    allowWithoutSanitization: bool | None = None
 
     # For "fullscreen" permission, must specify allowWithoutGesture:true.
-    allowWithoutGesture: bool | None = None  # deprecated
+    allowWithoutGesture: bool | None = None
 
     # For "camera" permission, may specify panTiltZoom.
-    panTiltZoom: bool | None = None  # deprecated
+    panTiltZoom: bool | None = None
 
 
 class BrowserBrowserCommandId(enum.StrEnum):
@@ -1417,29 +1417,29 @@ class BrowserBucket(CDPObject):
     """ Chrome histogram bucket. """
 
     # Minimum value (inclusive).
-    low: int  # deprecated
+    low: int
 
     # Maximum value (exclusive).
-    high: int  # deprecated
+    high: int
 
     # Number of samples.
-    count: int  # deprecated
+    count: int
 
 
 class BrowserHistogram(CDPObject):
     """ Chrome histogram. """
 
     # Name.
-    name: str  # deprecated
+    name: str
 
     # Sum of sample values.
-    sum: int  # deprecated
+    sum: int
 
     # Total number of samples.
-    count: int  # deprecated
+    count: int
 
     # Buckets.
-    buckets: list[Browser.Bucket]  # deprecated
+    buckets: list[Browser.Bucket]
 
 
 class BrowserPrivacySandboxAPI(enum.StrEnum):
@@ -1466,73 +1466,73 @@ class CSSPseudoElementMatches(CDPObject):
     """ CSS rule collection for a single pseudo style. """
 
     # Pseudo element type.
-    pseudoType: DOM.PseudoType  # deprecated
+    pseudoType: DOM.PseudoType
 
     # Pseudo element custom ident.
-    pseudoIdentifier: str | None = None  # deprecated
+    pseudoIdentifier: str | None = None
 
     # Matches of CSS rules applicable to the pseudo style.
-    matches: list[CSS.RuleMatch]  # deprecated
+    matches: list[CSS.RuleMatch]
 
 
 class CSSCSSAnimationStyle(CDPObject):
     """ CSS style coming from animations with the name of the animation. """
 
     # The name of the animation.
-    name: str | None = None  # deprecated
+    name: str | None = None
 
     # The style coming from the animation.
-    style: CSS.CSSStyle  # deprecated
+    style: CSS.CSSStyle
 
 
 class CSSInheritedStyleEntry(CDPObject):
     """ Inherited CSS rule collection from ancestor node. """
 
     # The ancestor node's inline style, if any, in the style inheritance chain.
-    inlineStyle: CSS.CSSStyle | None = None  # deprecated
+    inlineStyle: CSS.CSSStyle | None = None
 
     # Matches of CSS rules matching the ancestor node in the style inheritancechain.
-    matchedCSSRules: list[CSS.RuleMatch]  # deprecated
+    matchedCSSRules: list[CSS.RuleMatch]
 
 
 class CSSInheritedAnimatedStyleEntry(CDPObject):
     """ Inherited CSS style collection for animated styles from ancestor node. """
 
     # Styles coming from the animations of the ancestor, if any, in the styleinheritance chain.
-    animationStyles: list[CSS.CSSAnimationStyle] | None = None  # deprecated
+    animationStyles: list[CSS.CSSAnimationStyle] | None = None
 
     # The style coming from the transitions of the ancestor, if any, in thestyle inheritance chain.
-    transitionsStyle: CSS.CSSStyle | None = None  # deprecated
+    transitionsStyle: CSS.CSSStyle | None = None
 
 
 class CSSInheritedPseudoElementMatches(CDPObject):
     """ Inherited pseudo element matches from pseudos of an ancestor node. """
 
     # Matches of pseudo styles from the pseudos of an ancestor node.
-    pseudoElements: list[CSS.PseudoElementMatches]  # deprecated
+    pseudoElements: list[CSS.PseudoElementMatches]
 
 
 class CSSRuleMatch(CDPObject):
     """ Match data for a CSS rule. """
 
     # CSS rule in the match.
-    rule: CSS.CSSRule  # deprecated
+    rule: CSS.CSSRule
 
     # Matching selector indices in the rule's selectorList selectors (0-based).
-    matchingSelectors: list[int]  # deprecated
+    matchingSelectors: list[int]
 
 
 class CSSValue(CDPObject):
     """ Data for a simple selector (these are delimited by commas in a selector list). """
 
     # Value text.
-    text: str  # deprecated
+    text: str
 
     # Value range in the underlying resource (if available).
-    range: CSS.SourceRange | None = None  # deprecated
+    range: CSS.SourceRange | None = None
 
     # Specificity of the selector.
-    specificity: CSS.Specificity | None = None  # experimental deprecated
+    specificity: CSS.Specificity | None = None  # experimental
 
 
 class CSSSpecificity(CDPObject):
@@ -1540,121 +1540,121 @@ class CSSSpecificity(CDPObject):
     https://drafts.csswg.org/selectors/#specificity-rules """
 
     # The a component, which represents the number of ID selectors.
-    a: int  # deprecated
+    a: int
 
     # The b component, which represents the number of class selectors,attributes selectors, and pseudo-classes.
-    b: int  # deprecated
+    b: int
 
     # The c component, which represents the number of type selectors and pseudo-elements.
-    c: int  # deprecated
+    c: int
 
 
 class CSSSelectorList(CDPObject):
     """ Selector list data. """
 
     # Selectors in the list.
-    selectors: list[CSS.Value]  # deprecated
+    selectors: list[CSS.Value]
 
     # Rule selector text.
-    text: str  # deprecated
+    text: str
 
 
 class CSSCSSStyleSheetHeader(CDPObject):
     """ CSS stylesheet metainformation. """
 
     # The stylesheet identifier.
-    styleSheetId: CSS.StyleSheetId  # deprecated
+    styleSheetId: CSS.StyleSheetId
 
     # Owner frame identifier.
-    frameId: Page.FrameId  # deprecated
+    frameId: Page.FrameId
 
     # Stylesheet resource URL. Empty if this is a constructed stylesheet createdusing new CSSStyleSheet() (but non-empty if this is a constructed stylesheetimported as a CSS module script).
-    sourceURL: str  # deprecated
+    sourceURL: str
 
     # URL of source map associated with the stylesheet (if any).
-    sourceMapURL: str | None = None  # deprecated
+    sourceMapURL: str | None = None
 
     # Stylesheet origin.
-    origin: CSS.StyleSheetOrigin  # deprecated
+    origin: CSS.StyleSheetOrigin
 
     # Stylesheet title.
-    title: str  # deprecated
+    title: str
 
     # The backend id for the owner node of the stylesheet.
-    ownerNode: DOM.BackendNodeId | None = None  # deprecated
+    ownerNode: DOM.BackendNodeId | None = None
 
     # Denotes whether the stylesheet is disabled.
-    disabled: bool  # deprecated
+    disabled: bool
 
     # Whether the sourceURL field value comes from the sourceURL comment.
-    hasSourceURL: bool | None = None  # deprecated
+    hasSourceURL: bool | None = None
 
     # Whether this stylesheet is created for STYLE tag by parser. This flag isnot set for document.written STYLE tags.
-    isInline: bool  # deprecated
+    isInline: bool
 
     # Whether this stylesheet is mutable. Inline stylesheets become mutableafter they have been modified via CSSOM API. `<link>` element's stylesheetsbecome mutable only if DevTools modifies them. Constructed stylesheets (newCSSStyleSheet()) are mutable immediately after creation.
-    isMutable: bool  # deprecated
+    isMutable: bool
 
     # True if this stylesheet is created through new CSSStyleSheet() or importedas a CSS module script.
-    isConstructed: bool  # deprecated
+    isConstructed: bool
 
     # Line offset of the stylesheet within the resource (zero based).
-    startLine: float  # deprecated
+    startLine: float
 
     # Column offset of the stylesheet within the resource (zero based).
-    startColumn: float  # deprecated
+    startColumn: float
 
     # Size of the content (in characters).
-    length: float  # deprecated
+    length: float
 
     # Line offset of the end of the stylesheet within the resource (zero based).
-    endLine: float  # deprecated
+    endLine: float
 
     # Column offset of the end of the stylesheet within the resource (zerobased).
-    endColumn: float  # deprecated
+    endColumn: float
 
     # If the style sheet was loaded from a network resource, this indicates whenthe resource failed to load
-    loadingFailed: bool | None = None  # experimental deprecated
+    loadingFailed: bool | None = None  # experimental
 
 
 class CSSCSSRule(CDPObject):
     """ CSS rule representation. """
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None  # deprecated
+    styleSheetId: CSS.StyleSheetId | None = None
 
     # Rule selector data.
-    selectorList: CSS.SelectorList  # deprecated
+    selectorList: CSS.SelectorList
 
     # Array of selectors from ancestor style rules, sorted by distance from thecurrent rule.
-    nestingSelectors: list[str] | None = None  # experimental deprecated
+    nestingSelectors: list[str] | None = None  # experimental
 
     # Parent stylesheet's origin.
-    origin: CSS.StyleSheetOrigin  # deprecated
+    origin: CSS.StyleSheetOrigin
 
     # Associated style declaration.
-    style: CSS.CSSStyle  # deprecated
+    style: CSS.CSSStyle
 
     # Media list array (for rules involving media queries). The array enumeratesmedia queries starting with the innermost one, going outwards.
-    media: list[CSS.CSSMedia] | None = None  # deprecated
+    media: list[CSS.CSSMedia] | None = None
 
     # Container query list array (for rules involving container queries). Thearray enumerates container queries starting with the innermost one, goingoutwards.
-    containerQueries: list[CSS.CSSContainerQuery] | None = None  # experimental deprecated
+    containerQueries: list[CSS.CSSContainerQuery] | None = None  # experimental
 
     # @supports CSS at-rule array. The array enumerates @supports at-rulesstarting with the innermost one, going outwards.
-    supports: list[CSS.CSSSupports] | None = None  # experimental deprecated
+    supports: list[CSS.CSSSupports] | None = None  # experimental
 
     # Cascade layer array. Contains the layer hierarchy that this rule belongsto starting with the innermost layer and going outwards.
-    layers: list[CSS.CSSLayer] | None = None  # experimental deprecated
+    layers: list[CSS.CSSLayer] | None = None  # experimental
 
     # @scope CSS at-rule array. The array enumerates @scope at-rules startingwith the innermost one, going outwards.
-    scopes: list[CSS.CSSScope] | None = None  # experimental deprecated
+    scopes: list[CSS.CSSScope] | None = None  # experimental
 
     # The array keeps the types of ancestor CSSRules from the innermost goingoutwards.
-    ruleTypes: list[CSS.CSSRuleType] | None = None  # experimental deprecated
+    ruleTypes: list[CSS.CSSRuleType] | None = None  # experimental
 
     # @starting-style CSS at-rule array. The array enumerates @starting-styleat-rules starting with the innermost one, going outwards.
-    startingStyles: list[CSS.CSSStartingStyle] | None = None  # experimental deprecated
+    startingStyles: list[CSS.CSSStartingStyle] | None = None  # experimental
 
 
 class CSSCSSRuleType(enum.StrEnum):
@@ -1674,279 +1674,279 @@ class CSSRuleUsage(CDPObject):
     """ CSS coverage information. """
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId  # deprecated
+    styleSheetId: CSS.StyleSheetId
 
     # Offset of the start of the rule (including selector) from the beginning ofthe stylesheet.
-    startOffset: float  # deprecated
+    startOffset: float
 
     # Offset of the end of the rule body from the beginning of the stylesheet.
-    endOffset: float  # deprecated
+    endOffset: float
 
     # Indicates whether the rule was actually used by some element in the page.
-    used: bool  # deprecated
+    used: bool
 
 
 class CSSSourceRange(CDPObject):
     """ Text range within a resource. All numbers are zero-based. """
 
     # Start line of range.
-    startLine: int  # deprecated
+    startLine: int
 
     # Start column of range (inclusive).
-    startColumn: int  # deprecated
+    startColumn: int
 
     # End line of range
-    endLine: int  # deprecated
+    endLine: int
 
     # End column of range (exclusive).
-    endColumn: int  # deprecated
+    endColumn: int
 
 
 class CSSShorthandEntry(CDPObject):
 
     # Shorthand name.
-    name: str  # deprecated
+    name: str
 
     # Shorthand value.
-    value: str  # deprecated
+    value: str
 
     # Whether the property has "!important" annotation (implies `false` ifabsent).
-    important: bool | None = None  # deprecated
+    important: bool | None = None
 
 
 class CSSCSSComputedStyleProperty(CDPObject):
 
     # Computed style property name.
-    name: str  # deprecated
+    name: str
 
     # Computed style property value.
-    value: str  # deprecated
+    value: str
 
 
 class CSSCSSStyle(CDPObject):
     """ CSS style representation. """
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None  # deprecated
+    styleSheetId: CSS.StyleSheetId | None = None
 
     # CSS properties in the style.
-    cssProperties: list[CSS.CSSProperty]  # deprecated
+    cssProperties: list[CSS.CSSProperty]
 
     # Computed values for all shorthands found in the style.
-    shorthandEntries: list[CSS.ShorthandEntry]  # deprecated
+    shorthandEntries: list[CSS.ShorthandEntry]
 
     # Style declaration text (if available).
-    cssText: str | None = None  # deprecated
+    cssText: str | None = None
 
     # Style declaration range in the enclosing stylesheet (if available).
-    range: CSS.SourceRange | None = None  # deprecated
+    range: CSS.SourceRange | None = None
 
 
 class CSSCSSProperty(CDPObject):
     """ CSS property declaration data. """
 
     # The property name.
-    name: str  # deprecated
+    name: str
 
     # The property value.
-    value: str  # deprecated
+    value: str
 
     # Whether the property has "!important" annotation (implies `false` ifabsent).
-    important: bool | None = None  # deprecated
+    important: bool | None = None
 
     # Whether the property is implicit (implies `false` if absent).
-    implicit: bool | None = None  # deprecated
+    implicit: bool | None = None
 
     # The full property text as specified in the style.
-    text: str | None = None  # deprecated
+    text: str | None = None
 
     # Whether the property is understood by the browser (implies `true` ifabsent).
-    parsedOk: bool | None = None  # deprecated
+    parsedOk: bool | None = None
 
     # Whether the property is disabled by the user (present for source-basedproperties only).
-    disabled: bool | None = None  # deprecated
+    disabled: bool | None = None
 
     # The entire property range in the enclosing style declaration (ifavailable).
-    range: CSS.SourceRange | None = None  # deprecated
+    range: CSS.SourceRange | None = None
 
     # Parsed longhand components of this property if it is a shorthand. Thisfield will be empty if the given property is not a shorthand.
-    longhandProperties: list[CSS.CSSProperty] | None = None  # experimental deprecated
+    longhandProperties: list[CSS.CSSProperty] | None = None  # experimental
 
 
 class CSSCSSMedia(CDPObject):
     """ CSS media rule descriptor. """
 
     # Media query text.
-    text: str  # deprecated
+    text: str
 
     # Source of the media query: "mediaRule" if specified by a @media rule,"importRule" if specified by an @import rule, "linkedSheet" if specified by a"media" attribute in a linked stylesheet's LINK tag, "inlineSheet" if specifiedby a "media" attribute in an inline stylesheet's STYLE tag.
-    source: Literal['mediaRule', 'importRule', 'linkedSheet', 'inlineSheet']  # deprecated
+    source: Literal['mediaRule', 'importRule', 'linkedSheet', 'inlineSheet']
 
     # URL of the document containing the media query description.
-    sourceURL: str | None = None  # deprecated
+    sourceURL: str | None = None
 
     # The associated rule (@media or @import) header range in the enclosingstylesheet (if available).
-    range: CSS.SourceRange | None = None  # deprecated
+    range: CSS.SourceRange | None = None
 
     # Identifier of the stylesheet containing this object (if exists).
-    styleSheetId: CSS.StyleSheetId | None = None  # deprecated
+    styleSheetId: CSS.StyleSheetId | None = None
 
     # Array of media queries.
-    mediaList: list[CSS.MediaQuery] | None = None  # deprecated
+    mediaList: list[CSS.MediaQuery] | None = None
 
 
 class CSSMediaQuery(CDPObject):
     """ Media query descriptor. """
 
     # Array of media query expressions.
-    expressions: list[CSS.MediaQueryExpression]  # deprecated
+    expressions: list[CSS.MediaQueryExpression]
 
     # Whether the media query condition is satisfied.
-    active: bool  # deprecated
+    active: bool
 
 
 class CSSMediaQueryExpression(CDPObject):
     """ Media query expression descriptor. """
 
     # Media query expression value.
-    value: float  # deprecated
+    value: float
 
     # Media query expression units.
-    unit: str  # deprecated
+    unit: str
 
     # Media query expression feature.
-    feature: str  # deprecated
+    feature: str
 
     # The associated range of the value text in the enclosing stylesheet (ifavailable).
-    valueRange: CSS.SourceRange | None = None  # deprecated
+    valueRange: CSS.SourceRange | None = None
 
     # Computed length of media query expression (if applicable).
-    computedLength: float | None = None  # deprecated
+    computedLength: float | None = None
 
 
 class CSSCSSContainerQuery(CDPObject):
     """ CSS container query rule descriptor. """
 
     # Container query text.
-    text: str  # deprecated
+    text: str
 
     # The associated rule header range in the enclosing stylesheet (ifavailable).
-    range: CSS.SourceRange | None = None  # deprecated
+    range: CSS.SourceRange | None = None
 
     # Identifier of the stylesheet containing this object (if exists).
-    styleSheetId: CSS.StyleSheetId | None = None  # deprecated
+    styleSheetId: CSS.StyleSheetId | None = None
 
     # Optional name for the container.
-    name: str | None = None  # deprecated
+    name: str | None = None
 
     # Optional physical axes queried for the container.
-    physicalAxes: DOM.PhysicalAxes | None = None  # deprecated
+    physicalAxes: DOM.PhysicalAxes | None = None
 
     # Optional logical axes queried for the container.
-    logicalAxes: DOM.LogicalAxes | None = None  # deprecated
+    logicalAxes: DOM.LogicalAxes | None = None
 
     # true if the query contains scroll-state() queries.
-    queriesScrollState: bool | None = None  # deprecated
+    queriesScrollState: bool | None = None
 
 
 class CSSCSSSupports(CDPObject):
     """ CSS Supports at-rule descriptor. """
 
     # Supports rule text.
-    text: str  # deprecated
+    text: str
 
     # Whether the supports condition is satisfied.
-    active: bool  # deprecated
+    active: bool
 
     # The associated rule header range in the enclosing stylesheet (ifavailable).
-    range: CSS.SourceRange | None = None  # deprecated
+    range: CSS.SourceRange | None = None
 
     # Identifier of the stylesheet containing this object (if exists).
-    styleSheetId: CSS.StyleSheetId | None = None  # deprecated
+    styleSheetId: CSS.StyleSheetId | None = None
 
 
 class CSSCSSScope(CDPObject):
     """ CSS Scope at-rule descriptor. """
 
     # Scope rule text.
-    text: str  # deprecated
+    text: str
 
     # The associated rule header range in the enclosing stylesheet (ifavailable).
-    range: CSS.SourceRange | None = None  # deprecated
+    range: CSS.SourceRange | None = None
 
     # Identifier of the stylesheet containing this object (if exists).
-    styleSheetId: CSS.StyleSheetId | None = None  # deprecated
+    styleSheetId: CSS.StyleSheetId | None = None
 
 
 class CSSCSSLayer(CDPObject):
     """ CSS Layer at-rule descriptor. """
 
     # Layer name.
-    text: str  # deprecated
+    text: str
 
     # The associated rule header range in the enclosing stylesheet (ifavailable).
-    range: CSS.SourceRange | None = None  # deprecated
+    range: CSS.SourceRange | None = None
 
     # Identifier of the stylesheet containing this object (if exists).
-    styleSheetId: CSS.StyleSheetId | None = None  # deprecated
+    styleSheetId: CSS.StyleSheetId | None = None
 
 
 class CSSCSSStartingStyle(CDPObject):
     """ CSS Starting Style at-rule descriptor. """
 
     # The associated rule header range in the enclosing stylesheet (ifavailable).
-    range: CSS.SourceRange | None = None  # deprecated
+    range: CSS.SourceRange | None = None
 
     # Identifier of the stylesheet containing this object (if exists).
-    styleSheetId: CSS.StyleSheetId | None = None  # deprecated
+    styleSheetId: CSS.StyleSheetId | None = None
 
 
 class CSSCSSLayerData(CDPObject):
     """ CSS Layer data. """
 
     # Layer name.
-    name: str  # deprecated
+    name: str
 
     # Direct sub-layers
-    subLayers: list[CSS.CSSLayerData] | None = None  # deprecated
+    subLayers: list[CSS.CSSLayerData] | None = None
 
     # Layer order. The order determines the order of the layer in the cascadeorder. A higher number has higher priority in the cascade order.
-    order: float  # deprecated
+    order: float
 
 
 class CSSPlatformFontUsage(CDPObject):
     """ Information about amount of glyphs that were rendered with given font. """
 
     # Font's family name reported by platform.
-    familyName: str  # deprecated
+    familyName: str
 
     # Font's PostScript name reported by platform.
-    postScriptName: str  # deprecated
+    postScriptName: str
 
     # Indicates if the font was downloaded or resolved locally.
-    isCustomFont: bool  # deprecated
+    isCustomFont: bool
 
     # Amount of glyphs that were rendered with this font.
-    glyphCount: float  # deprecated
+    glyphCount: float
 
 
 class CSSFontVariationAxis(CDPObject):
     """ Information about font variation axes for variable fonts """
 
     # The font-variation-setting tag (a.k.a. "axis tag").
-    tag: str  # deprecated
+    tag: str
 
     # Human-readable variation name in the default language (normally, "en").
-    name: str  # deprecated
+    name: str
 
     # The minimum value (inclusive) the font supports for this tag.
-    minValue: float  # deprecated
+    minValue: float
 
     # The maximum value (inclusive) the font supports for this tag.
-    maxValue: float  # deprecated
+    maxValue: float
 
     # The default value.
-    defaultValue: float  # deprecated
+    defaultValue: float
 
 
 class CSSFontFace(CDPObject):
@@ -1954,63 +1954,63 @@ class CSSFontFace(CDPObject):
     and additional information such as platformFontFamily and fontVariationAxes. """
 
     # The font-family.
-    fontFamily: str  # deprecated
+    fontFamily: str
 
     # The font-style.
-    fontStyle: str  # deprecated
+    fontStyle: str
 
     # The font-variant.
-    fontVariant: str  # deprecated
+    fontVariant: str
 
     # The font-weight.
-    fontWeight: str  # deprecated
+    fontWeight: str
 
     # The font-stretch.
-    fontStretch: str  # deprecated
+    fontStretch: str
 
     # The font-display.
-    fontDisplay: str  # deprecated
+    fontDisplay: str
 
     # The unicode-range.
-    unicodeRange: str  # deprecated
+    unicodeRange: str
 
     # The src.
-    src: str  # deprecated
+    src: str
 
     # The resolved platform font family
-    platformFontFamily: str  # deprecated
+    platformFontFamily: str
 
     # Available variation settings (a.k.a. "axes").
-    fontVariationAxes: list[CSS.FontVariationAxis] | None = None  # deprecated
+    fontVariationAxes: list[CSS.FontVariationAxis] | None = None
 
 
 class CSSCSSTryRule(CDPObject):
     """ CSS try rule representation. """
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None  # deprecated
+    styleSheetId: CSS.StyleSheetId | None = None
 
     # Parent stylesheet's origin.
-    origin: CSS.StyleSheetOrigin  # deprecated
+    origin: CSS.StyleSheetOrigin
 
     # Associated style declaration.
-    style: CSS.CSSStyle  # deprecated
+    style: CSS.CSSStyle
 
 
 class CSSCSSPositionTryRule(CDPObject):
     """ CSS @position-try rule representation. """
 
     # The prelude dashed-ident name
-    name: CSS.Value  # deprecated
+    name: CSS.Value
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None  # deprecated
+    styleSheetId: CSS.StyleSheetId | None = None
 
     # Parent stylesheet's origin.
-    origin: CSS.StyleSheetOrigin  # deprecated
+    origin: CSS.StyleSheetOrigin
 
     # Associated style declaration.
-    style: CSS.CSSStyle  # deprecated
+    style: CSS.CSSStyle
 
     active: bool
 
@@ -2019,10 +2019,10 @@ class CSSCSSKeyframesRule(CDPObject):
     """ CSS keyframes rule representation. """
 
     # Animation name.
-    animationName: CSS.Value  # deprecated
+    animationName: CSS.Value
 
     # List of keyframes.
-    keyframes: list[CSS.CSSKeyframeRule]  # deprecated
+    keyframes: list[CSS.CSSKeyframeRule]
 
 
 class CSSCSSPropertyRegistration(CDPObject):
@@ -2041,119 +2041,119 @@ class CSSCSSFontPaletteValuesRule(CDPObject):
     """ CSS font-palette-values rule representation. """
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None  # deprecated
+    styleSheetId: CSS.StyleSheetId | None = None
 
     # Parent stylesheet's origin.
-    origin: CSS.StyleSheetOrigin  # deprecated
+    origin: CSS.StyleSheetOrigin
 
     # Associated font palette name.
-    fontPaletteName: CSS.Value  # deprecated
+    fontPaletteName: CSS.Value
 
     # Associated style declaration.
-    style: CSS.CSSStyle  # deprecated
+    style: CSS.CSSStyle
 
 
 class CSSCSSPropertyRule(CDPObject):
     """ CSS property at-rule representation. """
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None  # deprecated
+    styleSheetId: CSS.StyleSheetId | None = None
 
     # Parent stylesheet's origin.
-    origin: CSS.StyleSheetOrigin  # deprecated
+    origin: CSS.StyleSheetOrigin
 
     # Associated property name.
-    propertyName: CSS.Value  # deprecated
+    propertyName: CSS.Value
 
     # Associated style declaration.
-    style: CSS.CSSStyle  # deprecated
+    style: CSS.CSSStyle
 
 
 class CSSCSSFunctionParameter(CDPObject):
     """ CSS function argument representation. """
 
     # The parameter name.
-    name: str  # deprecated
+    name: str
 
     # The parameter type.
-    type: str  # deprecated
+    type: str
 
 
 class CSSCSSFunctionConditionNode(CDPObject):
     """ CSS function conditional block representation. """
 
     # Media query for this conditional block. Only one type of condition shouldbe set.
-    media: CSS.CSSMedia | None = None  # deprecated
+    media: CSS.CSSMedia | None = None
 
     # Container query for this conditional block. Only one type of conditionshould be set.
-    containerQueries: CSS.CSSContainerQuery | None = None  # deprecated
+    containerQueries: CSS.CSSContainerQuery | None = None
 
     # @supports CSS at-rule condition. Only one type of condition should be set.
-    supports: CSS.CSSSupports | None = None  # deprecated
+    supports: CSS.CSSSupports | None = None
 
     # Block body.
-    children: list[CSS.CSSFunctionNode]  # deprecated
+    children: list[CSS.CSSFunctionNode]
 
     # The condition text.
-    conditionText: str  # deprecated
+    conditionText: str
 
 
 class CSSCSSFunctionNode(CDPObject):
     """ Section of the body of a CSS function rule. """
 
     # A conditional block. If set, style should not be set.
-    condition: CSS.CSSFunctionConditionNode | None = None  # deprecated
+    condition: CSS.CSSFunctionConditionNode | None = None
 
     # Values set by this node. If set, condition should not be set.
-    style: CSS.CSSStyle | None = None  # deprecated
+    style: CSS.CSSStyle | None = None
 
 
 class CSSCSSFunctionRule(CDPObject):
     """ CSS function at-rule representation. """
 
     # Name of the function.
-    name: CSS.Value  # deprecated
+    name: CSS.Value
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None  # deprecated
+    styleSheetId: CSS.StyleSheetId | None = None
 
     # Parent stylesheet's origin.
-    origin: CSS.StyleSheetOrigin  # deprecated
+    origin: CSS.StyleSheetOrigin
 
     # List of parameters.
-    parameters: list[CSS.CSSFunctionParameter]  # deprecated
+    parameters: list[CSS.CSSFunctionParameter]
 
     # Function body.
-    children: list[CSS.CSSFunctionNode]  # deprecated
+    children: list[CSS.CSSFunctionNode]
 
 
 class CSSCSSKeyframeRule(CDPObject):
     """ CSS keyframe rule representation. """
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None  # deprecated
+    styleSheetId: CSS.StyleSheetId | None = None
 
     # Parent stylesheet's origin.
-    origin: CSS.StyleSheetOrigin  # deprecated
+    origin: CSS.StyleSheetOrigin
 
     # Associated key text.
-    keyText: CSS.Value  # deprecated
+    keyText: CSS.Value
 
     # Associated style declaration.
-    style: CSS.CSSStyle  # deprecated
+    style: CSS.CSSStyle
 
 
 class CSSStyleDeclarationEdit(CDPObject):
     """ A descriptor of operation to mutate style declaration text. """
 
     # The css style sheet identifier.
-    styleSheetId: CSS.StyleSheetId  # deprecated
+    styleSheetId: CSS.StyleSheetId
 
     # The range of the style text in the enclosing stylesheet.
-    range: CSS.SourceRange  # deprecated
+    range: CSS.SourceRange
 
     # New style text.
-    text: str  # deprecated
+    text: str
 
 
 """ Unique identifier of the Cache object. """
@@ -2176,47 +2176,47 @@ class CacheStorageDataEntry(CDPObject):
     """ Data entry. """
 
     # Request URL.
-    requestURL: str  # deprecated
+    requestURL: str
 
     # Request method.
-    requestMethod: str  # deprecated
+    requestMethod: str
 
     # Request headers
-    requestHeaders: list[CacheStorage.Header]  # deprecated
+    requestHeaders: list[CacheStorage.Header]
 
     # Number of seconds since epoch.
-    responseTime: float  # deprecated
+    responseTime: float
 
     # HTTP response status code.
-    responseStatus: int  # deprecated
+    responseStatus: int
 
     # HTTP response status text.
-    responseStatusText: str  # deprecated
+    responseStatusText: str
 
     # HTTP response type
-    responseType: CacheStorage.CachedResponseType  # deprecated
+    responseType: CacheStorage.CachedResponseType
 
     # Response headers
-    responseHeaders: list[CacheStorage.Header]  # deprecated
+    responseHeaders: list[CacheStorage.Header]
 
 
 class CacheStorageCache(CDPObject):
     """ Cache identifier. """
 
     # An opaque unique id of the cache.
-    cacheId: CacheStorage.CacheId  # deprecated
+    cacheId: CacheStorage.CacheId
 
     # Security origin of the cache.
-    securityOrigin: str  # deprecated
+    securityOrigin: str
 
     # Storage key of the cache.
-    storageKey: str  # deprecated
+    storageKey: str
 
     # Storage bucket of the cache.
-    storageBucket: Storage.StorageBucket | None = None  # deprecated
+    storageBucket: Storage.StorageBucket | None = None
 
     # The name of the cache.
-    cacheName: str  # deprecated
+    cacheName: str
 
 
 class CacheStorageHeader(CDPObject):
@@ -2230,7 +2230,7 @@ class CacheStorageCachedResponse(CDPObject):
     """ Cached response """
 
     # Entry content, base64-encoded. (Encoded as a base64 string when passedover JSON)
-    body: str  # deprecated
+    body: str
 
 
 class CastSink(CDPObject):
@@ -2240,7 +2240,7 @@ class CastSink(CDPObject):
     id: str
 
     # Text describing the current session. Present only if there is an activesession on the sink.
-    session: str | None = None  # deprecated
+    session: str | None = None
 
 
 """ Unique DOM node identifier. """
@@ -2256,10 +2256,10 @@ class DOMBackendNode(CDPObject):
     """ Backend node with a friendly name. """
 
     # `Node`'s nodeType.
-    nodeType: int  # deprecated
+    nodeType: int
 
     # `Node`'s nodeName.
-    nodeName: str  # deprecated
+    nodeName: str
 
     backendNodeId: DOM.BackendNodeId
 
@@ -2351,91 +2351,91 @@ class DOMNode(CDPObject):
     DOMNode is a base node mirror type. """
 
     # Node identifier that is passed into the rest of the DOM messages as the`nodeId`. Backend will only push node with given `id` once. It is aware of allrequested nodes and will only fire DOM events for nodes known to the client.
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
     # The id of the parent node if any.
-    parentId: DOM.NodeId | None = None  # deprecated
+    parentId: DOM.NodeId | None = None
 
     # The BackendNodeId for this node.
-    backendNodeId: DOM.BackendNodeId  # deprecated
+    backendNodeId: DOM.BackendNodeId
 
     # `Node`'s nodeType.
-    nodeType: int  # deprecated
+    nodeType: int
 
     # `Node`'s nodeName.
-    nodeName: str  # deprecated
+    nodeName: str
 
     # `Node`'s localName.
-    localName: str  # deprecated
+    localName: str
 
     # `Node`'s nodeValue.
-    nodeValue: str  # deprecated
+    nodeValue: str
 
     # Child count for `Container` nodes.
-    childNodeCount: int | None = None  # deprecated
+    childNodeCount: int | None = None
 
     # Child nodes of this node when requested with children.
-    children: list[DOM.Node] | None = None  # deprecated
+    children: list[DOM.Node] | None = None
 
     # Attributes of the `Element` node in the form of flat array `[name1,value1, name2, value2]`.
-    attributes: list[str] | None = None  # deprecated
+    attributes: list[str] | None = None
 
     # Document URL that `Document` or `FrameOwner` node points to.
-    documentURL: str | None = None  # deprecated
+    documentURL: str | None = None
 
     # Base URL that `Document` or `FrameOwner` node uses for URL completion.
-    baseURL: str | None = None  # deprecated
+    baseURL: str | None = None
 
     # `DocumentType`'s publicId.
-    publicId: str | None = None  # deprecated
+    publicId: str | None = None
 
     # `DocumentType`'s systemId.
-    systemId: str | None = None  # deprecated
+    systemId: str | None = None
 
     # `DocumentType`'s internalSubset.
-    internalSubset: str | None = None  # deprecated
+    internalSubset: str | None = None
 
     # `Document`'s XML version in case of XML documents.
-    xmlVersion: str | None = None  # deprecated
+    xmlVersion: str | None = None
 
     # `Attr`'s name.
-    name: str | None = None  # deprecated
+    name: str | None = None
 
     # `Attr`'s value.
-    value: str | None = None  # deprecated
+    value: str | None = None
 
     # Pseudo element type for this node.
-    pseudoType: DOM.PseudoType | None = None  # deprecated
+    pseudoType: DOM.PseudoType | None = None
 
     # Pseudo element identifier for this node. Only present if there is a validpseudoType.
-    pseudoIdentifier: str | None = None  # deprecated
+    pseudoIdentifier: str | None = None
 
     # Shadow root type.
-    shadowRootType: DOM.ShadowRootType | None = None  # deprecated
+    shadowRootType: DOM.ShadowRootType | None = None
 
     # Frame ID for frame owner elements.
-    frameId: Page.FrameId | None = None  # deprecated
+    frameId: Page.FrameId | None = None
 
     # Content document for frame owner elements.
-    contentDocument: DOM.Node | None = None  # deprecated
+    contentDocument: DOM.Node | None = None
 
     # Shadow root list for given element host.
-    shadowRoots: list[DOM.Node] | None = None  # deprecated
+    shadowRoots: list[DOM.Node] | None = None
 
     # Content document fragment for template elements.
-    templateContent: DOM.Node | None = None  # deprecated
+    templateContent: DOM.Node | None = None
 
     # Pseudo elements associated with this node.
-    pseudoElements: list[DOM.Node] | None = None  # deprecated
+    pseudoElements: list[DOM.Node] | None = None
 
     # Deprecated, as the HTML Imports API has been removed (crbug.com/937746).This property used to return the imported document for the HTMLImport links. Theproperty is always undefined now.
     importedDocument: DOM.Node | None = None  # deprecated
 
     # Distributed nodes for given insertion point.
-    distributedNodes: list[DOM.BackendNode] | None = None  # deprecated
+    distributedNodes: list[DOM.BackendNode] | None = None
 
     # Whether the node is SVG.
-    isSVG: bool | None = None  # deprecated
+    isSVG: bool | None = None
 
     compatibilityMode: DOM.CompatibilityMode | None = None
 
@@ -2456,16 +2456,16 @@ class DOMRGBA(CDPObject):
     """ A structure holding an RGBA color. """
 
     # The red component, in the [0-255] range.
-    r: int  # deprecated
+    r: int
 
     # The green component, in the [0-255] range.
-    g: int  # deprecated
+    g: int
 
     # The blue component, in the [0-255] range.
-    b: int  # deprecated
+    b: int
 
     # The alpha component, in the [0-1] range (default: 1).
-    a: float | None = None  # deprecated
+    a: float | None = None
 
 
 """ An array of quad vertices, x immediately followed by y for each point, points clock-wise. """
@@ -2477,63 +2477,63 @@ class DOMBoxModel(CDPObject):
     """ Box model. """
 
     # Content box
-    content: DOM.Quad  # deprecated
+    content: DOM.Quad
 
     # Padding box
-    padding: DOM.Quad  # deprecated
+    padding: DOM.Quad
 
     # Border box
-    border: DOM.Quad  # deprecated
+    border: DOM.Quad
 
     # Margin box
-    margin: DOM.Quad  # deprecated
+    margin: DOM.Quad
 
     # Node width
-    width: int  # deprecated
+    width: int
 
     # Node height
-    height: int  # deprecated
+    height: int
 
     # Shape outside coordinates
-    shapeOutside: DOM.ShapeOutsideInfo | None = None  # deprecated
+    shapeOutside: DOM.ShapeOutsideInfo | None = None
 
 
 class DOMShapeOutsideInfo(CDPObject):
     """ CSS Shape Outside details. """
 
     # Shape bounds
-    bounds: DOM.Quad  # deprecated
+    bounds: DOM.Quad
 
     # Shape coordinate details
-    shape: list[Any]  # deprecated
+    shape: list[Any]
 
     # Margin shape bounds
-    marginShape: list[Any]  # deprecated
+    marginShape: list[Any]
 
 
 class DOMRect(CDPObject):
     """ Rectangle. """
 
     # X coordinate
-    x: float  # deprecated
+    x: float
 
     # Y coordinate
-    y: float  # deprecated
+    y: float
 
     # Rectangle width
-    width: float  # deprecated
+    width: float
 
     # Rectangle height
-    height: float  # deprecated
+    height: float
 
 
 class DOMCSSComputedStyleProperty(CDPObject):
 
     # Computed style property name.
-    name: str  # deprecated
+    name: str
 
     # Computed style property value.
-    value: str  # deprecated
+    value: str
 
 
 class DOMDebuggerDOMBreakpointType(enum.StrEnum):
@@ -2555,119 +2555,119 @@ class DOMDebuggerEventListener(CDPObject):
     """ Object event listener. """
 
     # `EventListener`'s type.
-    type: str  # deprecated
+    type: str
 
     # `EventListener`'s useCapture.
-    useCapture: bool  # deprecated
+    useCapture: bool
 
     # `EventListener`'s passive flag.
-    passive: bool  # deprecated
+    passive: bool
 
     # `EventListener`'s once flag.
-    once: bool  # deprecated
+    once: bool
 
     # Script id of the handler code.
-    scriptId: Runtime.ScriptId  # deprecated
+    scriptId: Runtime.ScriptId
 
     # Line number in the script (0-based).
-    lineNumber: int  # deprecated
+    lineNumber: int
 
     # Column number in the script (0-based).
-    columnNumber: int  # deprecated
+    columnNumber: int
 
     # Event handler function value.
-    handler: Runtime.RemoteObject | None = None  # deprecated
+    handler: Runtime.RemoteObject | None = None
 
     # Event original handler function value.
-    originalHandler: Runtime.RemoteObject | None = None  # deprecated
+    originalHandler: Runtime.RemoteObject | None = None
 
     # Node the listener is added to (if any).
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
+    backendNodeId: DOM.BackendNodeId | None = None
 
 
 class DOMSnapshotDOMNode(CDPObject):
     """ A Node in the DOM tree. """
 
     # `Node`'s nodeType.
-    nodeType: int  # deprecated
+    nodeType: int
 
     # `Node`'s nodeName.
-    nodeName: str  # deprecated
+    nodeName: str
 
     # `Node`'s nodeValue.
-    nodeValue: str  # deprecated
+    nodeValue: str
 
     # Only set for textarea elements, contains the text value.
-    textValue: str | None = None  # deprecated
+    textValue: str | None = None
 
     # Only set for input elements, contains the input's associated text value.
-    inputValue: str | None = None  # deprecated
+    inputValue: str | None = None
 
     # Only set for radio and checkbox input elements, indicates if the elementhas been checked
-    inputChecked: bool | None = None  # deprecated
+    inputChecked: bool | None = None
 
     # Only set for option elements, indicates if the element has been selected
-    optionSelected: bool | None = None  # deprecated
+    optionSelected: bool | None = None
 
     # `Node`'s id, corresponds to DOM.Node.backendNodeId.
-    backendNodeId: DOM.BackendNodeId  # deprecated
+    backendNodeId: DOM.BackendNodeId
 
     # The indexes of the node's child nodes in the `domNodes` array returned by`getSnapshot`, if any.
-    childNodeIndexes: list[int] | None = None  # deprecated
+    childNodeIndexes: list[int] | None = None
 
     # Attributes of an `Element` node.
-    attributes: list[DOMSnapshot.NameValue] | None = None  # deprecated
+    attributes: list[DOMSnapshot.NameValue] | None = None
 
     # Indexes of pseudo elements associated with this node in the `domNodes`array returned by `getSnapshot`, if any.
-    pseudoElementIndexes: list[int] | None = None  # deprecated
+    pseudoElementIndexes: list[int] | None = None
 
     # The index of the node's related layout tree node in the `layoutTreeNodes`array returned by `getSnapshot`, if any.
-    layoutNodeIndex: int | None = None  # deprecated
+    layoutNodeIndex: int | None = None
 
     # Document URL that `Document` or `FrameOwner` node points to.
-    documentURL: str | None = None  # deprecated
+    documentURL: str | None = None
 
     # Base URL that `Document` or `FrameOwner` node uses for URL completion.
-    baseURL: str | None = None  # deprecated
+    baseURL: str | None = None
 
     # Only set for documents, contains the document's content language.
-    contentLanguage: str | None = None  # deprecated
+    contentLanguage: str | None = None
 
     # Only set for documents, contains the document's character set encoding.
-    documentEncoding: str | None = None  # deprecated
+    documentEncoding: str | None = None
 
     # `DocumentType` node's publicId.
-    publicId: str | None = None  # deprecated
+    publicId: str | None = None
 
     # `DocumentType` node's systemId.
-    systemId: str | None = None  # deprecated
+    systemId: str | None = None
 
     # Frame ID for frame owner elements and also for the document node.
-    frameId: Page.FrameId | None = None  # deprecated
+    frameId: Page.FrameId | None = None
 
     # The index of a frame owner element's content document in the `domNodes`array returned by `getSnapshot`, if any.
-    contentDocumentIndex: int | None = None  # deprecated
+    contentDocumentIndex: int | None = None
 
     # Type of a pseudo element node.
-    pseudoType: DOM.PseudoType | None = None  # deprecated
+    pseudoType: DOM.PseudoType | None = None
 
     # Shadow root type.
-    shadowRootType: DOM.ShadowRootType | None = None  # deprecated
+    shadowRootType: DOM.ShadowRootType | None = None
 
     # Whether this DOM node responds to mouse clicks. This includes nodes thathave had click event listeners attached via JavaScript as well as anchor tagsthat naturally navigate when clicked.
-    isClickable: bool | None = None  # deprecated
+    isClickable: bool | None = None
 
     # Details of the node's event listeners, if any.
-    eventListeners: list[DOMDebugger.EventListener] | None = None  # deprecated
+    eventListeners: list[DOMDebugger.EventListener] | None = None
 
     # The selected url for nodes with a srcset attribute.
-    currentSourceURL: str | None = None  # deprecated
+    currentSourceURL: str | None = None
 
     # The url of the script (if any) that generates this node.
-    originURL: str | None = None  # deprecated
+    originURL: str | None = None
 
     # Scroll offsets, set when this node is a Document.
-    scrollOffsetX: float | None = None  # deprecated
+    scrollOffsetX: float | None = None
 
     scrollOffsetY: float | None = None
 
@@ -2677,55 +2677,55 @@ class DOMSnapshotInlineTextBox(CDPObject):
     stable and may change between versions. """
 
     # The bounding box in document coordinates. Note that scroll offset of thedocument is ignored.
-    boundingBox: DOM.Rect  # deprecated
+    boundingBox: DOM.Rect
 
     # The starting index in characters, for this post layout textbox substring.Characters that would be represented as a surrogate pair in UTF-16 have length2.
-    startCharacterIndex: int  # deprecated
+    startCharacterIndex: int
 
     # The number of characters in this post layout textbox substring. Charactersthat would be represented as a surrogate pair in UTF-16 have length 2.
-    numCharacters: int  # deprecated
+    numCharacters: int
 
 
 class DOMSnapshotLayoutTreeNode(CDPObject):
     """ Details of an element in the DOM tree with a LayoutObject. """
 
     # The index of the related DOM node in the `domNodes` array returned by`getSnapshot`.
-    domNodeIndex: int  # deprecated
+    domNodeIndex: int
 
     # The bounding box in document coordinates. Note that scroll offset of thedocument is ignored.
-    boundingBox: DOM.Rect  # deprecated
+    boundingBox: DOM.Rect
 
     # Contents of the LayoutText, if any.
-    layoutText: str | None = None  # deprecated
+    layoutText: str | None = None
 
     # The post-layout inline text nodes, if any.
-    inlineTextNodes: list[DOMSnapshot.InlineTextBox] | None = None  # deprecated
+    inlineTextNodes: list[DOMSnapshot.InlineTextBox] | None = None
 
     # Index into the `computedStyles` array returned by `getSnapshot`.
-    styleIndex: int | None = None  # deprecated
+    styleIndex: int | None = None
 
     # Global paint order index, which is determined by the stacking order of thenodes. Nodes that are painted together will have the same index. Only providedif includePaintOrder in getSnapshot was true.
-    paintOrder: int | None = None  # deprecated
+    paintOrder: int | None = None
 
     # Set to true to indicate the element begins a new stacking context.
-    isStackingContext: bool | None = None  # deprecated
+    isStackingContext: bool | None = None
 
 
 class DOMSnapshotComputedStyle(CDPObject):
     """ A subset of the full ComputedStyle as defined by the request whitelist. """
 
     # Name/value pairs of computed style properties.
-    properties: list[DOMSnapshot.NameValue]  # deprecated
+    properties: list[DOMSnapshot.NameValue]
 
 
 class DOMSnapshotNameValue(CDPObject):
     """ A name/value pair. """
 
     # Attribute/property name.
-    name: str  # deprecated
+    name: str
 
     # Attribute/property value.
-    value: str  # deprecated
+    value: str
 
 
 """ Index of the string in the strings table. """
@@ -2763,141 +2763,141 @@ class DOMSnapshotDocumentSnapshot(CDPObject):
     """ Document snapshot. """
 
     # Document URL that `Document` or `FrameOwner` node points to.
-    documentURL: DOMSnapshot.StringIndex  # deprecated
+    documentURL: DOMSnapshot.StringIndex
 
     # Document title.
-    title: DOMSnapshot.StringIndex  # deprecated
+    title: DOMSnapshot.StringIndex
 
     # Base URL that `Document` or `FrameOwner` node uses for URL completion.
-    baseURL: DOMSnapshot.StringIndex  # deprecated
+    baseURL: DOMSnapshot.StringIndex
 
     # Contains the document's content language.
-    contentLanguage: DOMSnapshot.StringIndex  # deprecated
+    contentLanguage: DOMSnapshot.StringIndex
 
     # Contains the document's character set encoding.
-    encodingName: DOMSnapshot.StringIndex  # deprecated
+    encodingName: DOMSnapshot.StringIndex
 
     # `DocumentType` node's publicId.
-    publicId: DOMSnapshot.StringIndex  # deprecated
+    publicId: DOMSnapshot.StringIndex
 
     # `DocumentType` node's systemId.
-    systemId: DOMSnapshot.StringIndex  # deprecated
+    systemId: DOMSnapshot.StringIndex
 
     # Frame ID for frame owner elements and also for the document node.
-    frameId: DOMSnapshot.StringIndex  # deprecated
+    frameId: DOMSnapshot.StringIndex
 
     # A table with dom nodes.
-    nodes: DOMSnapshot.NodeTreeSnapshot  # deprecated
+    nodes: DOMSnapshot.NodeTreeSnapshot
 
     # The nodes in the layout tree.
-    layout: DOMSnapshot.LayoutTreeSnapshot  # deprecated
+    layout: DOMSnapshot.LayoutTreeSnapshot
 
     # The post-layout inline text nodes.
-    textBoxes: DOMSnapshot.TextBoxSnapshot  # deprecated
+    textBoxes: DOMSnapshot.TextBoxSnapshot
 
     # Horizontal scroll offset.
-    scrollOffsetX: float | None = None  # deprecated
+    scrollOffsetX: float | None = None
 
     # Vertical scroll offset.
-    scrollOffsetY: float | None = None  # deprecated
+    scrollOffsetY: float | None = None
 
     # Document content width.
-    contentWidth: float | None = None  # deprecated
+    contentWidth: float | None = None
 
     # Document content height.
-    contentHeight: float | None = None  # deprecated
+    contentHeight: float | None = None
 
 
 class DOMSnapshotNodeTreeSnapshot(CDPObject):
     """ Table containing nodes. """
 
     # Parent node index.
-    parentIndex: list[int] | None = None  # deprecated
+    parentIndex: list[int] | None = None
 
     # `Node`'s nodeType.
-    nodeType: list[int] | None = None  # deprecated
+    nodeType: list[int] | None = None
 
     # Type of the shadow root the `Node` is in. String values are equal to the`ShadowRootType` enum.
-    shadowRootType: DOMSnapshot.RareStringData | None = None  # deprecated
+    shadowRootType: DOMSnapshot.RareStringData | None = None
 
     # `Node`'s nodeName.
-    nodeName: list[DOMSnapshot.StringIndex] | None = None  # deprecated
+    nodeName: list[DOMSnapshot.StringIndex] | None = None
 
     # `Node`'s nodeValue.
-    nodeValue: list[DOMSnapshot.StringIndex] | None = None  # deprecated
+    nodeValue: list[DOMSnapshot.StringIndex] | None = None
 
     # `Node`'s id, corresponds to DOM.Node.backendNodeId.
-    backendNodeId: list[DOM.BackendNodeId] | None = None  # deprecated
+    backendNodeId: list[DOM.BackendNodeId] | None = None
 
     # Attributes of an `Element` node. Flatten name, value pairs.
-    attributes: list[DOMSnapshot.ArrayOfStrings] | None = None  # deprecated
+    attributes: list[DOMSnapshot.ArrayOfStrings] | None = None
 
     # Only set for textarea elements, contains the text value.
-    textValue: DOMSnapshot.RareStringData | None = None  # deprecated
+    textValue: DOMSnapshot.RareStringData | None = None
 
     # Only set for input elements, contains the input's associated text value.
-    inputValue: DOMSnapshot.RareStringData | None = None  # deprecated
+    inputValue: DOMSnapshot.RareStringData | None = None
 
     # Only set for radio and checkbox input elements, indicates if the elementhas been checked
-    inputChecked: DOMSnapshot.RareBooleanData | None = None  # deprecated
+    inputChecked: DOMSnapshot.RareBooleanData | None = None
 
     # Only set for option elements, indicates if the element has been selected
-    optionSelected: DOMSnapshot.RareBooleanData | None = None  # deprecated
+    optionSelected: DOMSnapshot.RareBooleanData | None = None
 
     # The index of the document in the list of the snapshot documents.
-    contentDocumentIndex: DOMSnapshot.RareIntegerData | None = None  # deprecated
+    contentDocumentIndex: DOMSnapshot.RareIntegerData | None = None
 
     # Type of a pseudo element node.
-    pseudoType: DOMSnapshot.RareStringData | None = None  # deprecated
+    pseudoType: DOMSnapshot.RareStringData | None = None
 
     # Pseudo element identifier for this node. Only present if there is a validpseudoType.
-    pseudoIdentifier: DOMSnapshot.RareStringData | None = None  # deprecated
+    pseudoIdentifier: DOMSnapshot.RareStringData | None = None
 
     # Whether this DOM node responds to mouse clicks. This includes nodes thathave had click event listeners attached via JavaScript as well as anchor tagsthat naturally navigate when clicked.
-    isClickable: DOMSnapshot.RareBooleanData | None = None  # deprecated
+    isClickable: DOMSnapshot.RareBooleanData | None = None
 
     # The selected url for nodes with a srcset attribute.
-    currentSourceURL: DOMSnapshot.RareStringData | None = None  # deprecated
+    currentSourceURL: DOMSnapshot.RareStringData | None = None
 
     # The url of the script (if any) that generates this node.
-    originURL: DOMSnapshot.RareStringData | None = None  # deprecated
+    originURL: DOMSnapshot.RareStringData | None = None
 
 
 class DOMSnapshotLayoutTreeSnapshot(CDPObject):
     """ Table of details of an element in the DOM tree with a LayoutObject. """
 
     # Index of the corresponding node in the `NodeTreeSnapshot` array returnedby `captureSnapshot`.
-    nodeIndex: list[int]  # deprecated
+    nodeIndex: list[int]
 
     # Array of indexes specifying computed style strings, filtered according tothe `computedStyles` parameter passed to `captureSnapshot`.
-    styles: list[DOMSnapshot.ArrayOfStrings]  # deprecated
+    styles: list[DOMSnapshot.ArrayOfStrings]
 
     # The absolute position bounding box.
-    bounds: list[DOMSnapshot.Rectangle]  # deprecated
+    bounds: list[DOMSnapshot.Rectangle]
 
     # Contents of the LayoutText, if any.
-    text: list[DOMSnapshot.StringIndex]  # deprecated
+    text: list[DOMSnapshot.StringIndex]
 
     # Stacking context information.
-    stackingContexts: DOMSnapshot.RareBooleanData  # deprecated
+    stackingContexts: DOMSnapshot.RareBooleanData
 
     # Global paint order index, which is determined by the stacking order of thenodes. Nodes that are painted together will have the same index. Only providedif includePaintOrder in captureSnapshot was true.
-    paintOrders: list[int] | None = None  # deprecated
+    paintOrders: list[int] | None = None
 
     # The offset rect of nodes. Only available when includeDOMRects is set totrue
-    offsetRects: list[DOMSnapshot.Rectangle] | None = None  # deprecated
+    offsetRects: list[DOMSnapshot.Rectangle] | None = None
 
     # The scroll rect of nodes. Only available when includeDOMRects is set totrue
-    scrollRects: list[DOMSnapshot.Rectangle] | None = None  # deprecated
+    scrollRects: list[DOMSnapshot.Rectangle] | None = None
 
     # The client rect of nodes. Only available when includeDOMRects is set totrue
-    clientRects: list[DOMSnapshot.Rectangle] | None = None  # deprecated
+    clientRects: list[DOMSnapshot.Rectangle] | None = None
 
     # The list of background colors that are blended with colors of overlappingelements.
-    blendedBackgroundColors: list[DOMSnapshot.StringIndex] | None = None  # experimental deprecated
+    blendedBackgroundColors: list[DOMSnapshot.StringIndex] | None = None  # experimental
 
     # The list of computed text opacities.
-    textColorOpacities: list[float] | None = None  # experimental deprecated
+    textColorOpacities: list[float] | None = None  # experimental
 
 
 class DOMSnapshotTextBoxSnapshot(CDPObject):
@@ -2905,16 +2905,16 @@ class DOMSnapshotTextBoxSnapshot(CDPObject):
     stable and may change between versions. """
 
     # Index of the layout tree node that owns this box collection.
-    layoutIndex: list[int]  # deprecated
+    layoutIndex: list[int]
 
     # The absolute position bounding box.
-    bounds: list[DOMSnapshot.Rectangle]  # deprecated
+    bounds: list[DOMSnapshot.Rectangle]
 
     # The starting index in characters, for this post layout textbox substring.Characters that would be represented as a surrogate pair in UTF-16 have length2.
-    start: list[int]  # deprecated
+    start: list[int]
 
     # The number of characters in this post layout textbox substring. Charactersthat would be represented as a surrogate pair in UTF-16 have length 2.
-    length: list[int]  # deprecated
+    length: list[int]
 
 
 DOMStorageSerializedStorageKey = str
@@ -2924,13 +2924,13 @@ class DOMStorageStorageId(CDPObject):
     """ DOM Storage identifier. """
 
     # Security origin for the storage.
-    securityOrigin: str | None = None  # deprecated
+    securityOrigin: str | None = None
 
     # Represents a key by which DOM Storage keys its CachedStorageAreas
-    storageKey: DOMStorage.SerializedStorageKey | None = None  # deprecated
+    storageKey: DOMStorage.SerializedStorageKey | None = None
 
     # Whether the storage is local storage (not session storage).
-    isLocalStorage: bool  # deprecated
+    isLocalStorage: bool
 
 
 """ DOM Storage item. """
@@ -2941,56 +2941,56 @@ DOMStorageItem = list[str]
 class EmulationSafeAreaInsets(CDPObject):
 
     # Overrides safe-area-inset-top.
-    top: int | None = None  # deprecated
+    top: int | None = None
 
     # Overrides safe-area-max-inset-top.
-    topMax: int | None = None  # deprecated
+    topMax: int | None = None
 
     # Overrides safe-area-inset-left.
-    left: int | None = None  # deprecated
+    left: int | None = None
 
     # Overrides safe-area-max-inset-left.
-    leftMax: int | None = None  # deprecated
+    leftMax: int | None = None
 
     # Overrides safe-area-inset-bottom.
-    bottom: int | None = None  # deprecated
+    bottom: int | None = None
 
     # Overrides safe-area-max-inset-bottom.
-    bottomMax: int | None = None  # deprecated
+    bottomMax: int | None = None
 
     # Overrides safe-area-inset-right.
-    right: int | None = None  # deprecated
+    right: int | None = None
 
     # Overrides safe-area-max-inset-right.
-    rightMax: int | None = None  # deprecated
+    rightMax: int | None = None
 
 
 class EmulationScreenOrientation(CDPObject):
     """ Screen orientation. """
 
     # Orientation type.
-    type: Literal['portraitPrimary', 'portraitSecondary', 'landscapePrimary', 'landscapeSecondary']  # deprecated
+    type: Literal['portraitPrimary', 'portraitSecondary', 'landscapePrimary', 'landscapeSecondary']
 
     # Orientation angle.
-    angle: int  # deprecated
+    angle: int
 
 
 class EmulationDisplayFeature(CDPObject):
 
     # Orientation of a display feature in relation to screen
-    orientation: Literal['vertical', 'horizontal']  # deprecated
+    orientation: Literal['vertical', 'horizontal']
 
     # The offset from the screen origin in either the x (for verticalorientation) or y (for horizontal orientation) direction.
-    offset: int  # deprecated
+    offset: int
 
     # A display feature may mask content such that it is not physicallydisplayed - this length along with the offset describes this area. A displayfeature that only splits content will have a 0 mask_length.
-    maskLength: int  # deprecated
+    maskLength: int
 
 
 class EmulationDevicePosture(CDPObject):
 
     # Current posture of the device
-    type: Literal['continuous', 'folded']  # deprecated
+    type: Literal['continuous', 'folded']
 
 
 class EmulationMediaFeature(CDPObject):
@@ -3024,12 +3024,12 @@ class EmulationUserAgentMetadata(CDPObject):
     Missing optional values will be filled in by the target with what it would normally use. """
 
     # Brands appearing in Sec-CH-UA.
-    brands: list[Emulation.UserAgentBrandVersion] | None = None  # deprecated
+    brands: list[Emulation.UserAgentBrandVersion] | None = None
 
     # Brands appearing in Sec-CH-UA-Full-Version-List.
-    fullVersionList: list[Emulation.UserAgentBrandVersion] | None = None  # deprecated
+    fullVersionList: list[Emulation.UserAgentBrandVersion] | None = None
 
-    fullVersion: str | None = None
+    fullVersion: str | None = None  # deprecated
 
     platform: str
 
@@ -3046,7 +3046,7 @@ class EmulationUserAgentMetadata(CDPObject):
     wow64: bool | None = None
 
     # Used to specify User Agent form-factor values. Seehttps://wicg.github.io/ua-client-hints/#sec-ch-ua-form-factors
-    formFactors: list[str] | None = None  # deprecated
+    formFactors: list[str] | None = None
 
 
 class EmulationSensorType(enum.StrEnum):
@@ -3135,13 +3135,13 @@ class HeadlessExperimentalScreenshotParams(CDPObject):
     """ Encoding options for a screenshot. """
 
     # Image compression format (defaults to png).
-    format: Literal['jpeg', 'png', 'webp'] | None = None  # deprecated
+    format: Literal['jpeg', 'png', 'webp'] | None = None
 
     # Compression quality from range [0..100] (jpeg and webp only).
-    quality: int | None = None  # deprecated
+    quality: int | None = None
 
     # Optimize image encoding for speed, not for resulting size (defaults tofalse)
-    optimizeForSpeed: bool | None = None  # deprecated
+    optimizeForSpeed: bool | None = None
 
 
 """ This is either obtained from another method or specified as `blob:<uuid>` where
@@ -3155,10 +3155,10 @@ class FileSystemFile(CDPObject):
     name: str
 
     # Timestamp
-    lastModified: Network.TimeSinceEpoch  # deprecated
+    lastModified: Network.TimeSinceEpoch
 
     # Size in bytes
-    size: float  # deprecated
+    size: float
 
     type: str
 
@@ -3170,161 +3170,161 @@ class FileSystemDirectory(CDPObject):
     nestedDirectories: list[str]
 
     # Files that are directly nested under this directory.
-    nestedFiles: list[FileSystem.File]  # deprecated
+    nestedFiles: list[FileSystem.File]
 
 
 class FileSystemBucketFileSystemLocator(CDPObject):
 
     # Storage key
-    storageKey: Storage.SerializedStorageKey  # deprecated
+    storageKey: Storage.SerializedStorageKey
 
     # Bucket name. Not passing a `bucketName` will retrieve the default Bucket.(https://developer.mozilla.org/en-US/docs/Web/API/Storage_API#storage_buckets)
-    bucketName: str | None = None  # deprecated
+    bucketName: str | None = None
 
     # Path to the directory using each path component as an array item.
-    pathComponents: list[str]  # deprecated
+    pathComponents: list[str]
 
 
 class IndexedDBDatabaseWithObjectStores(CDPObject):
     """ Database with an array of object stores. """
 
     # Database name.
-    name: str  # deprecated
+    name: str
 
     # Database version (type is not 'integer', as the standard requires theversion number to be 'unsigned long long')
-    version: float  # deprecated
+    version: float
 
     # Object stores in this database.
-    objectStores: list[IndexedDB.ObjectStore]  # deprecated
+    objectStores: list[IndexedDB.ObjectStore]
 
 
 class IndexedDBObjectStore(CDPObject):
     """ Object store. """
 
     # Object store name.
-    name: str  # deprecated
+    name: str
 
     # Object store key path.
-    keyPath: IndexedDB.KeyPath  # deprecated
+    keyPath: IndexedDB.KeyPath
 
     # If true, object store has auto increment flag set.
-    autoIncrement: bool  # deprecated
+    autoIncrement: bool
 
     # Indexes in this object store.
-    indexes: list[IndexedDB.ObjectStoreIndex]  # deprecated
+    indexes: list[IndexedDB.ObjectStoreIndex]
 
 
 class IndexedDBObjectStoreIndex(CDPObject):
     """ Object store index. """
 
     # Index name.
-    name: str  # deprecated
+    name: str
 
     # Index key path.
-    keyPath: IndexedDB.KeyPath  # deprecated
+    keyPath: IndexedDB.KeyPath
 
     # If true, index is unique.
-    unique: bool  # deprecated
+    unique: bool
 
     # If true, index allows multiple entries for a key.
-    multiEntry: bool  # deprecated
+    multiEntry: bool
 
 
 class IndexedDBKey(CDPObject):
     """ Key. """
 
     # Key type.
-    type: Literal['number', 'string', 'date', 'array']  # deprecated
+    type: Literal['number', 'string', 'date', 'array']
 
     # Number value.
-    number: float | None = None  # deprecated
+    number: float | None = None
 
     # String value.
-    string: str | None = None  # deprecated
+    string: str | None = None
 
     # Date value.
-    date: float | None = None  # deprecated
+    date: float | None = None
 
     # Array value.
-    array: list[IndexedDB.Key] | None = None  # deprecated
+    array: list[IndexedDB.Key] | None = None
 
 
 class IndexedDBKeyRange(CDPObject):
     """ Key range. """
 
     # Lower bound.
-    lower: IndexedDB.Key | None = None  # deprecated
+    lower: IndexedDB.Key | None = None
 
     # Upper bound.
-    upper: IndexedDB.Key | None = None  # deprecated
+    upper: IndexedDB.Key | None = None
 
     # If true lower bound is open.
-    lowerOpen: bool  # deprecated
+    lowerOpen: bool
 
     # If true upper bound is open.
-    upperOpen: bool  # deprecated
+    upperOpen: bool
 
 
 class IndexedDBDataEntry(CDPObject):
     """ Data entry. """
 
     # Key object.
-    key: Runtime.RemoteObject  # deprecated
+    key: Runtime.RemoteObject
 
     # Primary key object.
-    primaryKey: Runtime.RemoteObject  # deprecated
+    primaryKey: Runtime.RemoteObject
 
     # Value object.
-    value: Runtime.RemoteObject  # deprecated
+    value: Runtime.RemoteObject
 
 
 class IndexedDBKeyPath(CDPObject):
     """ Key path. """
 
     # Key path type.
-    type: Literal['null', 'string', 'array']  # deprecated
+    type: Literal['null', 'string', 'array']
 
     # String value.
-    string: str | None = None  # deprecated
+    string: str | None = None
 
     # Array value.
-    array: list[str] | None = None  # deprecated
+    array: list[str] | None = None
 
 
 class InputTouchPoint(CDPObject):
 
     # X coordinate of the event relative to the main frame's viewport in CSSpixels.
-    x: float  # deprecated
+    x: float
 
     # Y coordinate of the event relative to the main frame's viewport in CSSpixels. 0 refers to the top of the viewport and Y increases as it proceedstowards the bottom of the viewport.
-    y: float  # deprecated
+    y: float
 
     # X radius of the touch area (default: 1.0).
-    radiusX: float | None = None  # deprecated
+    radiusX: float | None = None
 
     # Y radius of the touch area (default: 1.0).
-    radiusY: float | None = None  # deprecated
+    radiusY: float | None = None
 
     # Rotation angle (default: 0.0).
-    rotationAngle: float | None = None  # deprecated
+    rotationAngle: float | None = None
 
     # Force (default: 1.0).
-    force: float | None = None  # deprecated
+    force: float | None = None
 
     # The normalized tangential pressure, which has a range of [-1,1] (default:0).
-    tangentialPressure: float | None = None  # experimental deprecated
+    tangentialPressure: float | None = None  # experimental
 
     # The plane angle between the Y-Z plane and the plane containing both thestylus axis and the Y axis, in degrees of the range [-90,90], a positive tiltXis to the right (default: 0)
-    tiltX: float | None = None  # deprecated
+    tiltX: float | None = None
 
     # The plane angle between the X-Z plane and the plane containing both thestylus axis and the X axis, in degrees of the range [-90,90], a positive tiltYis towards the user (default: 0).
-    tiltY: float | None = None  # deprecated
+    tiltY: float | None = None
 
     # The clockwise rotation of a pen stylus around its own major axis, indegrees in the range [0,359] (default: 0).
-    twist: int | None = None  # experimental deprecated
+    twist: int | None = None  # experimental
 
     # Identifier used to track touch sources between events, must be uniquewithin an event.
-    id: float | None = None  # deprecated
+    id: float | None = None
 
 
 class InputGestureSourceType(enum.StrEnum):
@@ -3352,16 +3352,16 @@ InputTimeSinceEpoch = float
 class InputDragDataItem(CDPObject):
 
     # Mime type of the dragged data.
-    mimeType: str  # deprecated
+    mimeType: str
 
     # Depending of the value of `mimeType`, it contains the dragged link, text,HTML markup or any other data.
-    data: str  # deprecated
+    data: str
 
     # Title associated with a link. Only valid when `mimeType` == "text/uri-list".
-    title: str | None = None  # deprecated
+    title: str | None = None
 
     # Stores the base URL for the contained markup. Only valid when `mimeType`== "text/html".
-    baseURL: str | None = None  # deprecated
+    baseURL: str | None = None
 
 
 class InputDragData(CDPObject):
@@ -3369,10 +3369,10 @@ class InputDragData(CDPObject):
     items: list[Input.DragDataItem]
 
     # List of filenames that should be included when dropping
-    files: list[str] | None = None  # deprecated
+    files: list[str] | None = None
 
     # Bit field representing allowed drag operations. Copy = 1, Link = 2, Move =16
-    dragOperationsMask: int  # deprecated
+    dragOperationsMask: int
 
 
 """ Unique Layer identifier. """
@@ -3387,91 +3387,91 @@ class LayerTreeScrollRect(CDPObject):
     """ Rectangle where scrolling happens on the main thread. """
 
     # Rectangle itself.
-    rect: DOM.Rect  # deprecated
+    rect: DOM.Rect
 
     # Reason for rectangle to force scrolling on the main thread
-    type: Literal['RepaintsOnScroll', 'TouchEventHandler', 'WheelEventHandler']  # deprecated
+    type: Literal['RepaintsOnScroll', 'TouchEventHandler', 'WheelEventHandler']
 
 
 class LayerTreeStickyPositionConstraint(CDPObject):
     """ Sticky position constraints. """
 
     # Layout rectangle of the sticky element before being shifted
-    stickyBoxRect: DOM.Rect  # deprecated
+    stickyBoxRect: DOM.Rect
 
     # Layout rectangle of the containing block of the sticky element
-    containingBlockRect: DOM.Rect  # deprecated
+    containingBlockRect: DOM.Rect
 
     # The nearest sticky layer that shifts the sticky box
-    nearestLayerShiftingStickyBox: LayerTree.LayerId | None = None  # deprecated
+    nearestLayerShiftingStickyBox: LayerTree.LayerId | None = None
 
     # The nearest sticky layer that shifts the containing block
-    nearestLayerShiftingContainingBlock: LayerTree.LayerId | None = None  # deprecated
+    nearestLayerShiftingContainingBlock: LayerTree.LayerId | None = None
 
 
 class LayerTreePictureTile(CDPObject):
     """ Serialized fragment of layer picture along with its offset within the layer. """
 
     # Offset from owning layer left boundary
-    x: float  # deprecated
+    x: float
 
     # Offset from owning layer top boundary
-    y: float  # deprecated
+    y: float
 
     # Base64-encoded snapshot data. (Encoded as a base64 string when passed overJSON)
-    picture: str  # deprecated
+    picture: str
 
 
 class LayerTreeLayer(CDPObject):
     """ Information about a compositing layer. """
 
     # The unique id for this layer.
-    layerId: LayerTree.LayerId  # deprecated
+    layerId: LayerTree.LayerId
 
     # The id of parent (not present for root).
-    parentLayerId: LayerTree.LayerId | None = None  # deprecated
+    parentLayerId: LayerTree.LayerId | None = None
 
     # The backend id for the node associated with this layer.
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
+    backendNodeId: DOM.BackendNodeId | None = None
 
     # Offset from parent layer, X coordinate.
-    offsetX: float  # deprecated
+    offsetX: float
 
     # Offset from parent layer, Y coordinate.
-    offsetY: float  # deprecated
+    offsetY: float
 
     # Layer width.
-    width: float  # deprecated
+    width: float
 
     # Layer height.
-    height: float  # deprecated
+    height: float
 
     # Transformation matrix for layer, default is identity matrix
-    transform: list[float] | None = None  # deprecated
+    transform: list[float] | None = None
 
     # Transform anchor point X, absent if no transform specified
-    anchorX: float | None = None  # deprecated
+    anchorX: float | None = None
 
     # Transform anchor point Y, absent if no transform specified
-    anchorY: float | None = None  # deprecated
+    anchorY: float | None = None
 
     # Transform anchor point Z, absent if no transform specified
-    anchorZ: float | None = None  # deprecated
+    anchorZ: float | None = None
 
     # Indicates how many time this layer has painted.
-    paintCount: int  # deprecated
+    paintCount: int
 
     # Indicates whether this layer hosts any content, rather than being used fortransform/scrolling purposes only.
-    drawsContent: bool  # deprecated
+    drawsContent: bool
 
     # Set if layer is not visible.
-    invisible: bool | None = None  # deprecated
+    invisible: bool | None = None
 
     # Rectangles scrolling on main thread only.
-    scrollRects: list[LayerTree.ScrollRect] | None = None  # deprecated
+    scrollRects: list[LayerTree.ScrollRect] | None = None
 
     # Sticky position constraint information
-    stickyPositionConstraint: LayerTree.StickyPositionConstraint | None = None  # deprecated
+    stickyPositionConstraint: LayerTree.StickyPositionConstraint | None = None
 
 
 """ Array of timings, one per paint step. """
@@ -3483,46 +3483,46 @@ class LogLogEntry(CDPObject):
     """ Log entry. """
 
     # Log entry source.
-    source: Literal['xml', 'javascript', 'network', 'storage', 'appcache', 'rendering', 'security', 'deprecation', 'worker', 'violation', 'intervention', 'recommendation', 'other']  # deprecated
+    source: Literal['xml', 'javascript', 'network', 'storage', 'appcache', 'rendering', 'security', 'deprecation', 'worker', 'violation', 'intervention', 'recommendation', 'other']
 
     # Log entry severity.
-    level: Literal['verbose', 'info', 'warning', 'error']  # deprecated
+    level: Literal['verbose', 'info', 'warning', 'error']
 
     # Logged text.
-    text: str  # deprecated
+    text: str
 
     category: Literal['cors'] | None = None
 
     # Timestamp when this entry was added.
-    timestamp: Runtime.Timestamp  # deprecated
+    timestamp: Runtime.Timestamp
 
     # URL of the resource if known.
-    url: str | None = None  # deprecated
+    url: str | None = None
 
     # Line number in the resource.
-    lineNumber: int | None = None  # deprecated
+    lineNumber: int | None = None
 
     # JavaScript stack trace.
-    stackTrace: Runtime.StackTrace | None = None  # deprecated
+    stackTrace: Runtime.StackTrace | None = None
 
     # Identifier of the network request associated with this entry.
-    networkRequestId: Network.RequestId | None = None  # deprecated
+    networkRequestId: Network.RequestId | None = None
 
     # Identifier of the worker associated with this entry.
-    workerId: str | None = None  # deprecated
+    workerId: str | None = None
 
     # Call arguments.
-    args: list[Runtime.RemoteObject] | None = None  # deprecated
+    args: list[Runtime.RemoteObject] | None = None
 
 
 class LogViolationSetting(CDPObject):
     """ Violation configuration setting. """
 
     # Violation type.
-    name: Literal['longTask', 'longLayout', 'blockedEvent', 'blockedParser', 'discouragedAPIUse', 'handler', 'recurringHandler']  # deprecated
+    name: Literal['longTask', 'longLayout', 'blockedEvent', 'blockedParser', 'discouragedAPIUse', 'handler', 'recurringHandler']
 
     # Time threshold to trigger upon.
-    threshold: float  # deprecated
+    threshold: float
 
 
 class MemoryPressureLevel(enum.StrEnum):
@@ -3536,13 +3536,13 @@ class MemorySamplingProfileNode(CDPObject):
     """ Heap profile sample. """
 
     # Size of the sampled allocation.
-    size: float  # deprecated
+    size: float
 
     # Total bytes attributed to this sample.
-    total: float  # deprecated
+    total: float
 
     # Execution stack at the point of allocation.
-    stack: list[str]  # deprecated
+    stack: list[str]
 
 
 class MemorySamplingProfile(CDPObject):
@@ -3557,26 +3557,26 @@ class MemoryModule(CDPObject):
     """ Executable module information """
 
     # Name of the module.
-    name: str  # deprecated
+    name: str
 
     # UUID of the module.
-    uuid: str  # deprecated
+    uuid: str
 
     # Base address where the module is loaded into memory. Encoded as a decimalor hexadecimal (0x prefixed) string.
-    baseAddress: str  # deprecated
+    baseAddress: str
 
     # Size of the module in bytes.
-    size: float  # deprecated
+    size: float
 
 
 class MemoryDOMCounter(CDPObject):
     """ DOM object counter data. """
 
     # Object name. Note: object names should be presumed volatile and clientsshould not expect the returned names to be consistent across runs.
-    name: str  # deprecated
+    name: str
 
     # Object count.
-    count: int  # deprecated
+    count: int
 
 
 class NetworkResourceType(enum.StrEnum):
@@ -3692,67 +3692,67 @@ class NetworkResourceTiming(CDPObject):
     """ Timing information for the request. """
 
     # Timing's requestTime is a baseline in seconds, while the other numbers areticks in milliseconds relatively to this requestTime.
-    requestTime: float  # deprecated
+    requestTime: float
 
     # Started resolving proxy.
-    proxyStart: float  # deprecated
+    proxyStart: float
 
     # Finished resolving proxy.
-    proxyEnd: float  # deprecated
+    proxyEnd: float
 
     # Started DNS address resolve.
-    dnsStart: float  # deprecated
+    dnsStart: float
 
     # Finished DNS address resolve.
-    dnsEnd: float  # deprecated
+    dnsEnd: float
 
     # Started connecting to the remote host.
-    connectStart: float  # deprecated
+    connectStart: float
 
     # Connected to the remote host.
-    connectEnd: float  # deprecated
+    connectEnd: float
 
     # Started SSL handshake.
-    sslStart: float  # deprecated
+    sslStart: float
 
     # Finished SSL handshake.
-    sslEnd: float  # deprecated
+    sslEnd: float
 
     # Started running ServiceWorker.
-    workerStart: float | None = None  # experimental deprecated
+    workerStart: float | None = None  # experimental
 
     # Finished Starting ServiceWorker.
-    workerReady: float | None = None  # experimental deprecated
+    workerReady: float | None = None  # experimental
 
     # Started fetch event.
-    workerFetchStart: float | None = None  # experimental deprecated
+    workerFetchStart: float | None = None  # experimental
 
     # Settled fetch event respondWith promise.
-    workerRespondWithSettled: float | None = None  # experimental deprecated
+    workerRespondWithSettled: float | None = None  # experimental
 
     # Started ServiceWorker static routing source evaluation.
-    workerRouterEvaluationStart: float | None = None  # experimental deprecated
+    workerRouterEvaluationStart: float | None = None  # experimental
 
     # Started cache lookup when the source was evaluated to `cache`.
-    workerCacheLookupStart: float | None = None  # experimental deprecated
+    workerCacheLookupStart: float | None = None  # experimental
 
     # Started sending request.
-    sendStart: float  # deprecated
+    sendStart: float
 
     # Finished sending request.
-    sendEnd: float  # deprecated
+    sendEnd: float
 
     # Time the server started pushing request.
-    pushStart: float | None = None  # experimental deprecated
+    pushStart: float | None = None  # experimental
 
     # Time the server finished pushing request.
-    pushEnd: float | None = None  # experimental deprecated
+    pushEnd: float | None = None  # experimental
 
     # Started receiving response headers.
-    receiveHeadersStart: float | None = None  # experimental deprecated
+    receiveHeadersStart: float | None = None  # experimental
 
     # Finished receiving response headers.
-    receiveHeadersEnd: float  # deprecated
+    receiveHeadersEnd: float
 
 
 class NetworkResourcePriority(enum.StrEnum):
@@ -3775,120 +3775,120 @@ class NetworkRequest(CDPObject):
     """ HTTP request data. """
 
     # Request URL (without fragment).
-    url: str  # deprecated
+    url: str
 
     # Fragment of the requested URL starting with hash, if present.
-    urlFragment: str | None = None  # deprecated
+    urlFragment: str | None = None
 
     # HTTP request method.
-    method: str  # deprecated
+    method: str
 
     # HTTP request headers.
-    headers: Network.Headers  # deprecated
+    headers: Network.Headers
 
     # HTTP POST request data. Use postDataEntries instead.
     postData: str | None = None  # deprecated
 
     # True when the request has POST data. Note that postData might still beomitted when this flag is true when the data is too long.
-    hasPostData: bool | None = None  # deprecated
+    hasPostData: bool | None = None
 
     # Request body elements (post data broken into individual entries).
-    postDataEntries: list[Network.PostDataEntry] | None = None  # experimental deprecated
+    postDataEntries: list[Network.PostDataEntry] | None = None  # experimental
 
     # The mixed content type of the request.
-    mixedContentType: Security.MixedContentType | None = None  # deprecated
+    mixedContentType: Security.MixedContentType | None = None
 
     # Priority of the resource request at the time request is sent.
-    initialPriority: Network.ResourcePriority  # deprecated
+    initialPriority: Network.ResourcePriority
 
     # The referrer policy of the request, as defined inhttps://www.w3.org/TR/referrer-policy/
-    referrerPolicy: Literal['unsafe-url', 'no-referrer-when-downgrade', 'no-referrer', 'origin', 'origin-when-cross-origin', 'same-origin', 'strict-origin', 'strict-origin-when-cross-origin']  # deprecated
+    referrerPolicy: Literal['unsafe-url', 'no-referrer-when-downgrade', 'no-referrer', 'origin', 'origin-when-cross-origin', 'same-origin', 'strict-origin', 'strict-origin-when-cross-origin']
 
     # Whether is loaded via link preload.
-    isLinkPreload: bool | None = None  # deprecated
+    isLinkPreload: bool | None = None
 
     # Set for requests when the TrustToken API is used. Contains the parameterspassed by the developer (e.g. via "fetch") as understood by the backend.
-    trustTokenParams: Network.TrustTokenParams | None = None  # experimental deprecated
+    trustTokenParams: Network.TrustTokenParams | None = None  # experimental
 
     # True if this resource request is considered to be the 'same site' as therequest corresponding to the main frame.
-    isSameSite: bool | None = None  # experimental deprecated
+    isSameSite: bool | None = None  # experimental
 
 
 class NetworkSignedCertificateTimestamp(CDPObject):
     """ Details of a signed certificate timestamp (SCT). """
 
     # Validation status.
-    status: str  # deprecated
+    status: str
 
     # Origin.
-    origin: str  # deprecated
+    origin: str
 
     # Log name / description.
-    logDescription: str  # deprecated
+    logDescription: str
 
     # Log ID.
-    logId: str  # deprecated
+    logId: str
 
     # Issuance date. Unlike TimeSinceEpoch, this contains the number ofmilliseconds since January 1, 1970, UTC, not the number of seconds.
-    timestamp: float  # deprecated
+    timestamp: float
 
     # Hash algorithm.
-    hashAlgorithm: str  # deprecated
+    hashAlgorithm: str
 
     # Signature algorithm.
-    signatureAlgorithm: str  # deprecated
+    signatureAlgorithm: str
 
     # Signature data.
-    signatureData: str  # deprecated
+    signatureData: str
 
 
 class NetworkSecurityDetails(CDPObject):
     """ Security details about a request. """
 
     # Protocol name (e.g. "TLS 1.2" or "QUIC").
-    protocol: str  # deprecated
+    protocol: str
 
     # Key Exchange used by the connection, or the empty string if notapplicable.
-    keyExchange: str  # deprecated
+    keyExchange: str
 
     # (EC)DH group used by the connection, if applicable.
-    keyExchangeGroup: str | None = None  # deprecated
+    keyExchangeGroup: str | None = None
 
     # Cipher name.
-    cipher: str  # deprecated
+    cipher: str
 
     # TLS MAC. Note that AEAD ciphers do not have separate MACs.
-    mac: str | None = None  # deprecated
+    mac: str | None = None
 
     # Certificate ID value.
-    certificateId: Security.CertificateId  # deprecated
+    certificateId: Security.CertificateId
 
     # Certificate subject name.
-    subjectName: str  # deprecated
+    subjectName: str
 
     # Subject Alternative Name (SAN) DNS names and IP addresses.
-    sanList: list[str]  # deprecated
+    sanList: list[str]
 
     # Name of the issuing CA.
-    issuer: str  # deprecated
+    issuer: str
 
     # Certificate valid from date.
-    validFrom: Network.TimeSinceEpoch  # deprecated
+    validFrom: Network.TimeSinceEpoch
 
     # Certificate valid to (expiration) date
-    validTo: Network.TimeSinceEpoch  # deprecated
+    validTo: Network.TimeSinceEpoch
 
     # List of signed certificate timestamps (SCTs).
-    signedCertificateTimestampList: list[Network.SignedCertificateTimestamp]  # deprecated
+    signedCertificateTimestampList: list[Network.SignedCertificateTimestamp]
 
     # Whether the request complied with Certificate Transparency policy
-    certificateTransparencyCompliance: Network.CertificateTransparencyCompliance  # deprecated
+    certificateTransparencyCompliance: Network.CertificateTransparencyCompliance
 
     # The signature algorithm used by the server in the TLS server signature,represented as a TLS SignatureScheme code point. Omitted if not applicable ornot known.
-    serverSignatureAlgorithm: int | None = None  # deprecated
+    serverSignatureAlgorithm: int | None = None
 
     # Whether the connection used Encrypted ClientHello
-    encryptedClientHello: bool  # deprecated
+    encryptedClientHello: bool
 
 
 class NetworkCertificateTransparencyCompliance(enum.StrEnum):
@@ -3984,10 +3984,10 @@ class NetworkTrustTokenParams(CDPObject):
     operation: Network.TrustTokenOperationType
 
     # Only set for "token-redemption" operation and determine whether to requesta fresh SRR or use a still valid cached SRR.
-    refreshPolicy: Literal['UseCached', 'Refresh']  # deprecated
+    refreshPolicy: Literal['UseCached', 'Refresh']
 
     # Origins of issuers from whom to request tokens or redemption records.
-    issuers: list[str] | None = None  # deprecated
+    issuers: list[str] | None = None
 
 
 class NetworkTrustTokenOperationType(enum.StrEnum):
@@ -4023,178 +4023,178 @@ class NetworkServiceWorkerRouterSource(enum.StrEnum):
 class NetworkServiceWorkerRouterInfo(CDPObject):
 
     # ID of the rule matched. If there is a matched rule, this field will beset, otherwiser no value will be set.
-    ruleIdMatched: int | None = None  # deprecated
+    ruleIdMatched: int | None = None
 
     # The router source of the matched rule. If there is a matched rule, thisfield will be set, otherwise no value will be set.
-    matchedSourceType: Network.ServiceWorkerRouterSource | None = None  # deprecated
+    matchedSourceType: Network.ServiceWorkerRouterSource | None = None
 
     # The actual router source used.
-    actualSourceType: Network.ServiceWorkerRouterSource | None = None  # deprecated
+    actualSourceType: Network.ServiceWorkerRouterSource | None = None
 
 
 class NetworkResponse(CDPObject):
     """ HTTP response data. """
 
     # Response URL. This URL can be different from CachedResource.url in case ofredirect.
-    url: str  # deprecated
+    url: str
 
     # HTTP response status code.
-    status: int  # deprecated
+    status: int
 
     # HTTP response status text.
-    statusText: str  # deprecated
+    statusText: str
 
     # HTTP response headers.
-    headers: Network.Headers  # deprecated
+    headers: Network.Headers
 
     # HTTP response headers text. This has been replaced by the headers inNetwork.responseReceivedExtraInfo.
     headersText: str | None = None  # deprecated
 
     # Resource mimeType as determined by the browser.
-    mimeType: str  # deprecated
+    mimeType: str
 
     # Resource charset as determined by the browser (if applicable).
-    charset: str  # deprecated
+    charset: str
 
     # Refined HTTP request headers that were actually transmitted over thenetwork.
-    requestHeaders: Network.Headers | None = None  # deprecated
+    requestHeaders: Network.Headers | None = None
 
     # HTTP request headers text. This has been replaced by the headers inNetwork.requestWillBeSentExtraInfo.
     requestHeadersText: str | None = None  # deprecated
 
     # Specifies whether physical connection was actually reused for thisrequest.
-    connectionReused: bool  # deprecated
+    connectionReused: bool
 
     # Physical connection id that was actually used for this request.
-    connectionId: float  # deprecated
+    connectionId: float
 
     # Remote IP address.
-    remoteIPAddress: str | None = None  # deprecated
+    remoteIPAddress: str | None = None
 
     # Remote port.
-    remotePort: int | None = None  # deprecated
+    remotePort: int | None = None
 
     # Specifies that the request was served from the disk cache.
-    fromDiskCache: bool | None = None  # deprecated
+    fromDiskCache: bool | None = None
 
     # Specifies that the request was served from the ServiceWorker.
-    fromServiceWorker: bool | None = None  # deprecated
+    fromServiceWorker: bool | None = None
 
     # Specifies that the request was served from the prefetch cache.
-    fromPrefetchCache: bool | None = None  # deprecated
+    fromPrefetchCache: bool | None = None
 
     # Specifies that the request was served from the prefetch cache.
-    fromEarlyHints: bool | None = None  # deprecated
+    fromEarlyHints: bool | None = None
 
     # Information about how ServiceWorker Static Router API was used. If thisfield is set with `matchedSourceType` field, a matching rule is found. If thisfield is set without `matchedSource`, no matching rule is found. Otherwise, theAPI is not used.
-    serviceWorkerRouterInfo: Network.ServiceWorkerRouterInfo | None = None  # experimental deprecated
+    serviceWorkerRouterInfo: Network.ServiceWorkerRouterInfo | None = None  # experimental
 
     # Total number of bytes received for this request so far.
-    encodedDataLength: float  # deprecated
+    encodedDataLength: float
 
     # Timing information for the given request.
-    timing: Network.ResourceTiming | None = None  # deprecated
+    timing: Network.ResourceTiming | None = None
 
     # Response source of response from ServiceWorker.
-    serviceWorkerResponseSource: Network.ServiceWorkerResponseSource | None = None  # deprecated
+    serviceWorkerResponseSource: Network.ServiceWorkerResponseSource | None = None
 
     # The time at which the returned response was generated.
-    responseTime: Network.TimeSinceEpoch | None = None  # deprecated
+    responseTime: Network.TimeSinceEpoch | None = None
 
     # Cache Storage Cache Name.
-    cacheStorageCacheName: str | None = None  # deprecated
+    cacheStorageCacheName: str | None = None
 
     # Protocol used to fetch this request.
-    protocol: str | None = None  # deprecated
+    protocol: str | None = None
 
     # The reason why Chrome uses a specific transport protocol for HTTPsemantics.
-    alternateProtocolUsage: Network.AlternateProtocolUsage | None = None  # experimental deprecated
+    alternateProtocolUsage: Network.AlternateProtocolUsage | None = None  # experimental
 
     # Security state of the request resource.
-    securityState: Security.SecurityState  # deprecated
+    securityState: Security.SecurityState
 
     # Security details for the request.
-    securityDetails: Network.SecurityDetails | None = None  # deprecated
+    securityDetails: Network.SecurityDetails | None = None
 
 
 class NetworkWebSocketRequest(CDPObject):
     """ WebSocket request data. """
 
     # HTTP request headers.
-    headers: Network.Headers  # deprecated
+    headers: Network.Headers
 
 
 class NetworkWebSocketResponse(CDPObject):
     """ WebSocket response data. """
 
     # HTTP response status code.
-    status: int  # deprecated
+    status: int
 
     # HTTP response status text.
-    statusText: str  # deprecated
+    statusText: str
 
     # HTTP response headers.
-    headers: Network.Headers  # deprecated
+    headers: Network.Headers
 
     # HTTP response headers text.
-    headersText: str | None = None  # deprecated
+    headersText: str | None = None
 
     # HTTP request headers.
-    requestHeaders: Network.Headers | None = None  # deprecated
+    requestHeaders: Network.Headers | None = None
 
     # HTTP request headers text.
-    requestHeadersText: str | None = None  # deprecated
+    requestHeadersText: str | None = None
 
 
 class NetworkWebSocketFrame(CDPObject):
     """ WebSocket message data. This represents an entire WebSocket message, not just a fragmented frame as the name suggests. """
 
     # WebSocket message opcode.
-    opcode: float  # deprecated
+    opcode: float
 
     # WebSocket message mask.
-    mask: bool  # deprecated
+    mask: bool
 
     # WebSocket message payload data. If the opcode is 1, this is a text messageand payloadData is a UTF-8 string. If the opcode isn't 1, then payloadData is abase64 encoded string representing binary data.
-    payloadData: str  # deprecated
+    payloadData: str
 
 
 class NetworkCachedResource(CDPObject):
     """ Information about the cached resource. """
 
     # Resource URL. This is the url of the original network request.
-    url: str  # deprecated
+    url: str
 
     # Type of this resource.
-    type: Network.ResourceType  # deprecated
+    type: Network.ResourceType
 
     # Cached response data.
-    response: Network.Response | None = None  # deprecated
+    response: Network.Response | None = None
 
     # Cached response body size.
-    bodySize: float  # deprecated
+    bodySize: float
 
 
 class NetworkInitiator(CDPObject):
     """ Information about the request initiator. """
 
     # Type of this initiator.
-    type: Literal['parser', 'script', 'preload', 'SignedExchange', 'preflight', 'other']  # deprecated
+    type: Literal['parser', 'script', 'preload', 'SignedExchange', 'preflight', 'other']
 
     # Initiator JavaScript stack trace, set for Script only. Requires theDebugger domain to be enabled.
-    stack: Runtime.StackTrace | None = None  # deprecated
+    stack: Runtime.StackTrace | None = None
 
     # Initiator URL, set for Parser type or for Script type (when script isimporting module) or for SignedExchange type.
-    url: str | None = None  # deprecated
+    url: str | None = None
 
     # Initiator line number, set for Parser type or for Script type (when scriptis importing module) (0-based).
-    lineNumber: float | None = None  # deprecated
+    lineNumber: float | None = None
 
     # Initiator column number, set for Parser type or for Script type (whenscript is importing module) (0-based).
-    columnNumber: float | None = None  # deprecated
+    columnNumber: float | None = None
 
     # Set if another request triggered this request (e.g. preflight).
-    requestId: Network.RequestId | None = None  # deprecated
+    requestId: Network.RequestId | None = None
 
 
 class NetworkCookiePartitionKey(CDPObject):
@@ -4202,62 +4202,62 @@ class NetworkCookiePartitionKey(CDPObject):
     The representation of the components of the key that are created by the cookiePartitionKey class contained in net/cookies/cookie_partition_key.h. """
 
     # The site of the top-level URL the browser was visiting at the start of therequest to the endpoint that set the cookie.
-    topLevelSite: str  # deprecated
+    topLevelSite: str
 
     # Indicates if the cookie has any ancestors that are cross-site to thetopLevelSite.
-    hasCrossSiteAncestor: bool  # deprecated
+    hasCrossSiteAncestor: bool
 
 
 class NetworkCookie(CDPObject):
     """ Cookie object """
 
     # Cookie name.
-    name: str  # deprecated
+    name: str
 
     # Cookie value.
-    value: str  # deprecated
+    value: str
 
     # Cookie domain.
-    domain: str  # deprecated
+    domain: str
 
     # Cookie path.
-    path: str  # deprecated
+    path: str
 
     # Cookie expiration date as the number of seconds since the UNIX epoch.
-    expires: float  # deprecated
+    expires: float
 
     # Cookie size.
-    size: int  # deprecated
+    size: int
 
     # True if cookie is http-only.
-    httpOnly: bool  # deprecated
+    httpOnly: bool
 
     # True if cookie is secure.
-    secure: bool  # deprecated
+    secure: bool
 
     # True in case of session cookie.
-    session: bool  # deprecated
+    session: bool
 
     # Cookie SameSite type.
-    sameSite: Network.CookieSameSite | None = None  # deprecated
+    sameSite: Network.CookieSameSite | None = None
 
     # Cookie Priority
-    priority: Network.CookiePriority | None = None  # experimental deprecated
+    priority: Network.CookiePriority | None = None  # experimental
 
     # True if cookie is SameParty.
     sameParty: bool | None = None  # experimental deprecated
 
     # Cookie source scheme type.
-    sourceScheme: Network.CookieSourceScheme | None = None  # experimental deprecated
+    sourceScheme: Network.CookieSourceScheme | None = None  # experimental
 
     # Cookie source port. Valid values are {-1, [1, 65535]}, -1 indicates anunspecified port. An unspecified port value allows protocol clients to emulatelegacy cookie scope for the port. This is a temporary ability and it will beremoved in the future.
-    sourcePort: int | None = None  # experimental deprecated
+    sourcePort: int | None = None  # experimental
 
     # Cookie partition key.
-    partitionKey: Network.CookiePartitionKey | None = None  # experimental deprecated
+    partitionKey: Network.CookiePartitionKey | None = None  # experimental
 
     # True if cookie partition key is opaque.
-    partitionKeyOpaque: bool | None = None  # experimental deprecated
+    partitionKeyOpaque: bool | None = None  # experimental
 
 
 class NetworkSetCookieBlockedReason(enum.StrEnum):
@@ -4331,13 +4331,13 @@ class NetworkBlockedSetCookieWithReason(CDPObject):
     """ A cookie which was not stored from a response with the corresponding reason. """
 
     # The reason(s) this cookie was blocked.
-    blockedReasons: list[Network.SetCookieBlockedReason]  # deprecated
+    blockedReasons: list[Network.SetCookieBlockedReason]
 
     # The string representing this individual cookie as it would appear in theheader. This is not the entire "cookie" or "set-cookie" header which could havemultiple cookies.
-    cookieLine: str  # deprecated
+    cookieLine: str
 
     # The cookie object which represents the cookie which was not stored. It isoptional because sometimes complete cookie information is not available, such asin the case of parsing errors.
-    cookie: Network.Cookie | None = None  # deprecated
+    cookie: Network.Cookie | None = None
 
 
 class NetworkExemptedSetCookieWithReason(CDPObject):
@@ -4345,13 +4345,13 @@ class NetworkExemptedSetCookieWithReason(CDPObject):
     corresponding reason. A cookie could only have at most one exemption reason. """
 
     # The reason the cookie was exempted.
-    exemptionReason: Network.CookieExemptionReason  # deprecated
+    exemptionReason: Network.CookieExemptionReason
 
     # The string representing this individual cookie as it would appear in theheader.
-    cookieLine: str  # deprecated
+    cookieLine: str
 
     # The cookie object representing the cookie.
-    cookie: Network.Cookie  # deprecated
+    cookie: Network.Cookie
 
 
 class NetworkAssociatedCookie(CDPObject):
@@ -4359,88 +4359,88 @@ class NetworkAssociatedCookie(CDPObject):
     Includes the cookies itself and reasons for blocking or exemption. """
 
     # The cookie object representing the cookie which was not sent.
-    cookie: Network.Cookie  # deprecated
+    cookie: Network.Cookie
 
     # The reason(s) the cookie was blocked. If empty means the cookie isincluded.
-    blockedReasons: list[Network.CookieBlockedReason]  # deprecated
+    blockedReasons: list[Network.CookieBlockedReason]
 
     # The reason the cookie should have been blocked by 3PCD but is exempted. Acookie could only have at most one exemption reason.
-    exemptionReason: Network.CookieExemptionReason | None = None  # deprecated
+    exemptionReason: Network.CookieExemptionReason | None = None
 
 
 class NetworkCookieParam(CDPObject):
     """ Cookie parameter object """
 
     # Cookie name.
-    name: str  # deprecated
+    name: str
 
     # Cookie value.
-    value: str  # deprecated
+    value: str
 
     # The request-URI to associate with the setting of the cookie. This valuecan affect the default domain, path, source port, and source scheme values ofthe created cookie.
-    url: str | None = None  # deprecated
+    url: str | None = None
 
     # Cookie domain.
-    domain: str | None = None  # deprecated
+    domain: str | None = None
 
     # Cookie path.
-    path: str | None = None  # deprecated
+    path: str | None = None
 
     # True if cookie is secure.
-    secure: bool | None = None  # deprecated
+    secure: bool | None = None
 
     # True if cookie is http-only.
-    httpOnly: bool | None = None  # deprecated
+    httpOnly: bool | None = None
 
     # Cookie SameSite type.
-    sameSite: Network.CookieSameSite | None = None  # deprecated
+    sameSite: Network.CookieSameSite | None = None
 
     # Cookie expiration date, session cookie if not set
-    expires: Network.TimeSinceEpoch | None = None  # deprecated
+    expires: Network.TimeSinceEpoch | None = None
 
     # Cookie Priority.
-    priority: Network.CookiePriority | None = None  # experimental deprecated
+    priority: Network.CookiePriority | None = None  # experimental
 
     # True if cookie is SameParty.
-    sameParty: bool | None = None  # experimental deprecated
+    sameParty: bool | None = None  # experimental
 
     # Cookie source scheme type.
-    sourceScheme: Network.CookieSourceScheme | None = None  # experimental deprecated
+    sourceScheme: Network.CookieSourceScheme | None = None  # experimental
 
     # Cookie source port. Valid values are {-1, [1, 65535]}, -1 indicates anunspecified port. An unspecified port value allows protocol clients to emulatelegacy cookie scope for the port. This is a temporary ability and it will beremoved in the future.
-    sourcePort: int | None = None  # experimental deprecated
+    sourcePort: int | None = None  # experimental
 
     # Cookie partition key. If not set, the cookie will be set as notpartitioned.
-    partitionKey: Network.CookiePartitionKey | None = None  # experimental deprecated
+    partitionKey: Network.CookiePartitionKey | None = None  # experimental
 
 
 class NetworkAuthChallenge(CDPObject):
     """ Authorization challenge for HTTP status code 401 or 407. """
 
     # Source of the authentication challenge.
-    source: Literal['Server', 'Proxy'] | None = None  # deprecated
+    source: Literal['Server', 'Proxy'] | None = None
 
     # Origin of the challenger.
-    origin: str  # deprecated
+    origin: str
 
     # The authentication scheme used, such as basic or digest
-    scheme: str  # deprecated
+    scheme: str
 
     # The realm of the challenge. May be empty.
-    realm: str  # deprecated
+    realm: str
 
 
 class NetworkAuthChallengeResponse(CDPObject):
     """ Response to an AuthChallenge. """
 
     # The decision on what to do in response to the authorization challenge.Default means deferring to the default behavior of the net stack, which willlikely either the Cancel authentication or display a popup dialog box.
-    response: Literal['Default', 'CancelAuth', 'ProvideCredentials']  # deprecated
+    response: Literal['Default', 'CancelAuth', 'ProvideCredentials']
 
     # The username to provide, possibly empty. Should only be set if response isProvideCredentials.
-    username: str | None = None  # deprecated
+    username: str | None = None
 
     # The password to provide, possibly empty. Should only be set if response isProvideCredentials.
-    password: str | None = None  # deprecated
+    password: str | None = None
 
 
 class NetworkInterceptionStage(enum.StrEnum):
@@ -4455,13 +4455,13 @@ class NetworkRequestPattern(CDPObject):
     """ Request pattern for interception. """
 
     # Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed.Escape character is backslash. Omitting is equivalent to `"*"`.
-    urlPattern: str | None = None  # deprecated
+    urlPattern: str | None = None
 
     # If set, only requests for matching resource types will be intercepted.
-    resourceType: Network.ResourceType | None = None  # deprecated
+    resourceType: Network.ResourceType | None = None
 
     # Stage at which to begin intercepting requests. Default is Request.
-    interceptionStage: Network.InterceptionStage | None = None  # deprecated
+    interceptionStage: Network.InterceptionStage | None = None
 
 
 class NetworkSignedExchangeSignature(CDPObject):
@@ -4469,31 +4469,31 @@ class NetworkSignedExchangeSignature(CDPObject):
     https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#rfc.section.3.1 """
 
     # Signed exchange signature label.
-    label: str  # deprecated
+    label: str
 
     # The hex string of signed exchange signature.
-    signature: str  # deprecated
+    signature: str
 
     # Signed exchange signature integrity.
-    integrity: str  # deprecated
+    integrity: str
 
     # Signed exchange signature cert Url.
-    certUrl: str | None = None  # deprecated
+    certUrl: str | None = None
 
     # The hex string of signed exchange signature cert sha256.
-    certSha256: str | None = None  # deprecated
+    certSha256: str | None = None
 
     # Signed exchange signature validity Url.
-    validityUrl: str  # deprecated
+    validityUrl: str
 
     # Signed exchange signature date.
-    date: int  # deprecated
+    date: int
 
     # Signed exchange signature expires.
-    expires: int  # deprecated
+    expires: int
 
     # The encoded certificates.
-    certificates: list[str] | None = None  # deprecated
+    certificates: list[str] | None = None
 
 
 class NetworkSignedExchangeHeader(CDPObject):
@@ -4501,19 +4501,19 @@ class NetworkSignedExchangeHeader(CDPObject):
     https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#cbor-representation """
 
     # Signed exchange request URL.
-    requestUrl: str  # deprecated
+    requestUrl: str
 
     # Signed exchange response code.
-    responseCode: int  # deprecated
+    responseCode: int
 
     # Signed exchange response headers.
-    responseHeaders: Network.Headers  # deprecated
+    responseHeaders: Network.Headers
 
     # Signed exchange response signature.
-    signatures: list[Network.SignedExchangeSignature]  # deprecated
+    signatures: list[Network.SignedExchangeSignature]
 
     # Signed exchange header integrity hash in the form of `sha256-<base64-hash-value>`.
-    headerIntegrity: str  # deprecated
+    headerIntegrity: str
 
 
 class NetworkSignedExchangeErrorField(enum.StrEnum):
@@ -4531,32 +4531,32 @@ class NetworkSignedExchangeError(CDPObject):
     """ Information about a signed exchange response. """
 
     # Error message.
-    message: str  # deprecated
+    message: str
 
     # The index of the signature which caused the error.
-    signatureIndex: int | None = None  # deprecated
+    signatureIndex: int | None = None
 
     # The field which caused the error.
-    errorField: Network.SignedExchangeErrorField | None = None  # deprecated
+    errorField: Network.SignedExchangeErrorField | None = None
 
 
 class NetworkSignedExchangeInfo(CDPObject):
     """ Information about a signed exchange response. """
 
     # The outer response of signed HTTP exchange which was received fromnetwork.
-    outerResponse: Network.Response  # deprecated
+    outerResponse: Network.Response
 
     # Whether network response for the signed exchange was accompanied by extraheaders.
-    hasExtraInfo: bool  # deprecated
+    hasExtraInfo: bool
 
     # Information about the signed exchange header.
-    header: Network.SignedExchangeHeader | None = None  # deprecated
+    header: Network.SignedExchangeHeader | None = None
 
     # Security details for the signed exchange header.
-    securityDetails: Network.SecurityDetails | None = None  # deprecated
+    securityDetails: Network.SecurityDetails | None = None
 
     # Errors occurred while handling the signed exchange.
-    errors: list[Network.SignedExchangeError] | None = None  # deprecated
+    errors: list[Network.SignedExchangeError] | None = None
 
 
 class NetworkContentEncoding(enum.StrEnum):
@@ -4577,16 +4577,16 @@ class NetworkDirectSocketDnsQueryType(enum.StrEnum):
 class NetworkDirectTCPSocketOptions(CDPObject):
 
     # TCP_NODELAY option
-    noDelay: bool  # deprecated
+    noDelay: bool
 
     # Expected to be unsigned integer.
-    keepAliveDelay: float | None = None  # deprecated
+    keepAliveDelay: float | None = None
 
     # Expected to be unsigned integer.
-    sendBufferSize: float | None = None  # deprecated
+    sendBufferSize: float | None = None
 
     # Expected to be unsigned integer.
-    receiveBufferSize: float | None = None  # deprecated
+    receiveBufferSize: float | None = None
 
     dnsQueryType: Network.DirectSocketDnsQueryType | None = None
 
@@ -4596,20 +4596,20 @@ class NetworkDirectUDPSocketOptions(CDPObject):
     remoteAddr: str | None = None
 
     # Unsigned int 16.
-    remotePort: int | None = None  # deprecated
+    remotePort: int | None = None
 
     localAddr: str | None = None
 
     # Unsigned int 16.
-    localPort: int | None = None  # deprecated
+    localPort: int | None = None
 
     dnsQueryType: Network.DirectSocketDnsQueryType | None = None
 
     # Expected to be unsigned integer.
-    sendBufferSize: float | None = None  # deprecated
+    sendBufferSize: float | None = None
 
     # Expected to be unsigned integer.
-    receiveBufferSize: float | None = None  # deprecated
+    receiveBufferSize: float | None = None
 
 
 class NetworkDirectUDPMessage(CDPObject):
@@ -4617,10 +4617,10 @@ class NetworkDirectUDPMessage(CDPObject):
     data: str
 
     # Null for connected mode.
-    remoteAddr: str | None = None  # deprecated
+    remoteAddr: str | None = None
 
     # Null for connected mode. Expected to be unsigned integer.
-    remotePort: int | None = None  # deprecated
+    remotePort: int | None = None
 
 
 class NetworkPrivateNetworkRequestPolicy(enum.StrEnum):
@@ -4645,7 +4645,7 @@ class NetworkIPAddressSpace(enum.StrEnum):
 class NetworkConnectTiming(CDPObject):
 
     # Timing's requestTime is a baseline in seconds, while the other numbers areticks in milliseconds relatively to this requestTime. Matches ResourceTiming'srequestTime for the same request (but not for redirected requests).
-    requestTime: float  # deprecated
+    requestTime: float
 
 
 class NetworkClientSecurityState(CDPObject):
@@ -4739,22 +4739,22 @@ class NetworkReportingApiReport(CDPObject):
     id: Network.ReportId
 
     # The URL of the document that triggered the report.
-    initiatorUrl: str  # deprecated
+    initiatorUrl: str
 
     # The name of the endpoint group that should be used to deliver the report.
-    destination: str  # deprecated
+    destination: str
 
     # The type of the report (specifies the set of data that is contained in thereport body).
-    type: str  # deprecated
+    type: str
 
     # When the report was generated.
-    timestamp: Network.TimeSinceEpoch  # deprecated
+    timestamp: Network.TimeSinceEpoch
 
     # How many uploads deep the related request was.
-    depth: int  # deprecated
+    depth: int
 
     # The number of delivery attempts made so far, not including an activeattempt.
-    completedAttempts: int  # deprecated
+    completedAttempts: int
 
     body: JSON_DICT
 
@@ -4764,10 +4764,10 @@ class NetworkReportingApiReport(CDPObject):
 class NetworkReportingApiEndpoint(CDPObject):
 
     # The URL of the endpoint to which reports may be delivered.
-    url: str  # deprecated
+    url: str
 
     # Name of the endpoint group.
-    groupName: str  # deprecated
+    groupName: str
 
 
 class NetworkLoadNetworkResourcePageResult(CDPObject):
@@ -4776,17 +4776,17 @@ class NetworkLoadNetworkResourcePageResult(CDPObject):
     success: bool
 
     # Optional values used for error reporting.
-    netError: float | None = None  # deprecated
+    netError: float | None = None
 
     netErrorName: str | None = None
 
     httpStatusCode: float | None = None
 
     # If successful, one of the following two fields holds the result.
-    stream: IO.StreamHandle | None = None  # deprecated
+    stream: IO.StreamHandle | None = None
 
     # Response headers.
-    headers: Network.Headers | None = None  # deprecated
+    headers: Network.Headers | None = None
 
 
 class NetworkLoadNetworkResourceOptions(CDPObject):
@@ -4802,135 +4802,135 @@ class OverlaySourceOrderConfig(CDPObject):
     """ Configuration data for drawing the source order of an elements children. """
 
     # the color to outline the given element in.
-    parentOutlineColor: DOM.RGBA  # deprecated
+    parentOutlineColor: DOM.RGBA
 
     # the color to outline the child elements in.
-    childOutlineColor: DOM.RGBA  # deprecated
+    childOutlineColor: DOM.RGBA
 
 
 class OverlayGridHighlightConfig(CDPObject):
     """ Configuration data for the highlighting of Grid elements. """
 
     # Whether the extension lines from grid cells to the rulers should be shown(default: false).
-    showGridExtensionLines: bool | None = None  # deprecated
+    showGridExtensionLines: bool | None = None
 
     # Show Positive line number labels (default: false).
-    showPositiveLineNumbers: bool | None = None  # deprecated
+    showPositiveLineNumbers: bool | None = None
 
     # Show Negative line number labels (default: false).
-    showNegativeLineNumbers: bool | None = None  # deprecated
+    showNegativeLineNumbers: bool | None = None
 
     # Show area name labels (default: false).
-    showAreaNames: bool | None = None  # deprecated
+    showAreaNames: bool | None = None
 
     # Show line name labels (default: false).
-    showLineNames: bool | None = None  # deprecated
+    showLineNames: bool | None = None
 
     # Show track size labels (default: false).
-    showTrackSizes: bool | None = None  # deprecated
+    showTrackSizes: bool | None = None
 
     # The grid container border highlight color (default: transparent).
-    gridBorderColor: DOM.RGBA | None = None  # deprecated
+    gridBorderColor: DOM.RGBA | None = None
 
     # The cell border color (default: transparent). Deprecated, please userowLineColor and columnLineColor instead.
     cellBorderColor: DOM.RGBA | None = None  # deprecated
 
     # The row line color (default: transparent).
-    rowLineColor: DOM.RGBA | None = None  # deprecated
+    rowLineColor: DOM.RGBA | None = None
 
     # The column line color (default: transparent).
-    columnLineColor: DOM.RGBA | None = None  # deprecated
+    columnLineColor: DOM.RGBA | None = None
 
     # Whether the grid border is dashed (default: false).
-    gridBorderDash: bool | None = None  # deprecated
+    gridBorderDash: bool | None = None
 
     # Whether the cell border is dashed (default: false). Deprecated, please usrowLineDash and columnLineDash instead.
     cellBorderDash: bool | None = None  # deprecated
 
     # Whether row lines are dashed (default: false).
-    rowLineDash: bool | None = None  # deprecated
+    rowLineDash: bool | None = None
 
     # Whether column lines are dashed (default: false).
-    columnLineDash: bool | None = None  # deprecated
+    columnLineDash: bool | None = None
 
     # The row gap highlight fill color (default: transparent).
-    rowGapColor: DOM.RGBA | None = None  # deprecated
+    rowGapColor: DOM.RGBA | None = None
 
     # The row gap hatching fill color (default: transparent).
-    rowHatchColor: DOM.RGBA | None = None  # deprecated
+    rowHatchColor: DOM.RGBA | None = None
 
     # The column gap highlight fill color (default: transparent).
-    columnGapColor: DOM.RGBA | None = None  # deprecated
+    columnGapColor: DOM.RGBA | None = None
 
     # The column gap hatching fill color (default: transparent).
-    columnHatchColor: DOM.RGBA | None = None  # deprecated
+    columnHatchColor: DOM.RGBA | None = None
 
     # The named grid areas border color (Default: transparent).
-    areaBorderColor: DOM.RGBA | None = None  # deprecated
+    areaBorderColor: DOM.RGBA | None = None
 
     # The grid container background color (Default: transparent).
-    gridBackgroundColor: DOM.RGBA | None = None  # deprecated
+    gridBackgroundColor: DOM.RGBA | None = None
 
 
 class OverlayFlexContainerHighlightConfig(CDPObject):
     """ Configuration data for the highlighting of Flex container elements. """
 
     # The style of the container border
-    containerBorder: Overlay.LineStyle | None = None  # deprecated
+    containerBorder: Overlay.LineStyle | None = None
 
     # The style of the separator between lines
-    lineSeparator: Overlay.LineStyle | None = None  # deprecated
+    lineSeparator: Overlay.LineStyle | None = None
 
     # The style of the separator between items
-    itemSeparator: Overlay.LineStyle | None = None  # deprecated
+    itemSeparator: Overlay.LineStyle | None = None
 
     # Style of content-distribution space on the main axis (justify-content).
-    mainDistributedSpace: Overlay.BoxStyle | None = None  # deprecated
+    mainDistributedSpace: Overlay.BoxStyle | None = None
 
     # Style of content-distribution space on the cross axis (align-content).
-    crossDistributedSpace: Overlay.BoxStyle | None = None  # deprecated
+    crossDistributedSpace: Overlay.BoxStyle | None = None
 
     # Style of empty space caused by row gaps (gap/row-gap).
-    rowGapSpace: Overlay.BoxStyle | None = None  # deprecated
+    rowGapSpace: Overlay.BoxStyle | None = None
 
     # Style of empty space caused by columns gaps (gap/column-gap).
-    columnGapSpace: Overlay.BoxStyle | None = None  # deprecated
+    columnGapSpace: Overlay.BoxStyle | None = None
 
     # Style of the self-alignment line (align-items).
-    crossAlignment: Overlay.LineStyle | None = None  # deprecated
+    crossAlignment: Overlay.LineStyle | None = None
 
 
 class OverlayFlexItemHighlightConfig(CDPObject):
     """ Configuration data for the highlighting of Flex item elements. """
 
     # Style of the box representing the item's base size
-    baseSizeBox: Overlay.BoxStyle | None = None  # deprecated
+    baseSizeBox: Overlay.BoxStyle | None = None
 
     # Style of the border around the box representing the item's base size
-    baseSizeBorder: Overlay.LineStyle | None = None  # deprecated
+    baseSizeBorder: Overlay.LineStyle | None = None
 
     # Style of the arrow representing if the item grew or shrank
-    flexibilityArrow: Overlay.LineStyle | None = None  # deprecated
+    flexibilityArrow: Overlay.LineStyle | None = None
 
 
 class OverlayLineStyle(CDPObject):
     """ Style information for drawing a line. """
 
     # The color of the line (default: transparent)
-    color: DOM.RGBA | None = None  # deprecated
+    color: DOM.RGBA | None = None
 
     # The line pattern (default: solid)
-    pattern: Literal['dashed', 'dotted'] | None = None  # deprecated
+    pattern: Literal['dashed', 'dotted'] | None = None
 
 
 class OverlayBoxStyle(CDPObject):
     """ Style information for drawing a box. """
 
     # The background color for the box (default: transparent)
-    fillColor: DOM.RGBA | None = None  # deprecated
+    fillColor: DOM.RGBA | None = None
 
     # The hatching color for the box (default: transparent)
-    hatchColor: DOM.RGBA | None = None  # deprecated
+    hatchColor: DOM.RGBA | None = None
 
 
 class OverlayContrastAlgorithm(enum.StrEnum):
@@ -4944,61 +4944,61 @@ class OverlayHighlightConfig(CDPObject):
     """ Configuration data for the highlighting of page elements. """
 
     # Whether the node info tooltip should be shown (default: false).
-    showInfo: bool | None = None  # deprecated
+    showInfo: bool | None = None
 
     # Whether the node styles in the tooltip (default: false).
-    showStyles: bool | None = None  # deprecated
+    showStyles: bool | None = None
 
     # Whether the rulers should be shown (default: false).
-    showRulers: bool | None = None  # deprecated
+    showRulers: bool | None = None
 
     # Whether the a11y info should be shown (default: true).
-    showAccessibilityInfo: bool | None = None  # deprecated
+    showAccessibilityInfo: bool | None = None
 
     # Whether the extension lines from node to the rulers should be shown(default: false).
-    showExtensionLines: bool | None = None  # deprecated
+    showExtensionLines: bool | None = None
 
     # The content box highlight fill color (default: transparent).
-    contentColor: DOM.RGBA | None = None  # deprecated
+    contentColor: DOM.RGBA | None = None
 
     # The padding highlight fill color (default: transparent).
-    paddingColor: DOM.RGBA | None = None  # deprecated
+    paddingColor: DOM.RGBA | None = None
 
     # The border highlight fill color (default: transparent).
-    borderColor: DOM.RGBA | None = None  # deprecated
+    borderColor: DOM.RGBA | None = None
 
     # The margin highlight fill color (default: transparent).
-    marginColor: DOM.RGBA | None = None  # deprecated
+    marginColor: DOM.RGBA | None = None
 
     # The event target element highlight fill color (default: transparent).
-    eventTargetColor: DOM.RGBA | None = None  # deprecated
+    eventTargetColor: DOM.RGBA | None = None
 
     # The shape outside fill color (default: transparent).
-    shapeColor: DOM.RGBA | None = None  # deprecated
+    shapeColor: DOM.RGBA | None = None
 
     # The shape margin fill color (default: transparent).
-    shapeMarginColor: DOM.RGBA | None = None  # deprecated
+    shapeMarginColor: DOM.RGBA | None = None
 
     # The grid layout color (default: transparent).
-    cssGridColor: DOM.RGBA | None = None  # deprecated
+    cssGridColor: DOM.RGBA | None = None
 
     # The color format used to format color styles (default: hex).
-    colorFormat: Overlay.ColorFormat | None = None  # deprecated
+    colorFormat: Overlay.ColorFormat | None = None
 
     # The grid layout highlight configuration (default: all transparent).
-    gridHighlightConfig: Overlay.GridHighlightConfig | None = None  # deprecated
+    gridHighlightConfig: Overlay.GridHighlightConfig | None = None
 
     # The flex container highlight configuration (default: all transparent).
-    flexContainerHighlightConfig: Overlay.FlexContainerHighlightConfig | None = None  # deprecated
+    flexContainerHighlightConfig: Overlay.FlexContainerHighlightConfig | None = None
 
     # The flex item highlight configuration (default: all transparent).
-    flexItemHighlightConfig: Overlay.FlexItemHighlightConfig | None = None  # deprecated
+    flexItemHighlightConfig: Overlay.FlexItemHighlightConfig | None = None
 
     # The contrast algorithm to use for the contrast ratio (default: aa).
-    contrastAlgorithm: Overlay.ContrastAlgorithm | None = None  # deprecated
+    contrastAlgorithm: Overlay.ContrastAlgorithm | None = None
 
     # The container query container highlight configuration (default: alltransparent).
-    containerQueryContainerHighlightConfig: Overlay.ContainerQueryContainerHighlightConfig | None = None  # deprecated
+    containerQueryContainerHighlightConfig: Overlay.ContainerQueryContainerHighlightConfig | None = None
 
 
 class OverlayColorFormat(enum.StrEnum):
@@ -5013,108 +5013,108 @@ class OverlayGridNodeHighlightConfig(CDPObject):
     """ Configurations for Persistent Grid Highlight """
 
     # A descriptor for the highlight appearance.
-    gridHighlightConfig: Overlay.GridHighlightConfig  # deprecated
+    gridHighlightConfig: Overlay.GridHighlightConfig
 
     # Identifier of the node to highlight.
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
 class OverlayFlexNodeHighlightConfig(CDPObject):
 
     # A descriptor for the highlight appearance of flex containers.
-    flexContainerHighlightConfig: Overlay.FlexContainerHighlightConfig  # deprecated
+    flexContainerHighlightConfig: Overlay.FlexContainerHighlightConfig
 
     # Identifier of the node to highlight.
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
 class OverlayScrollSnapContainerHighlightConfig(CDPObject):
 
     # The style of the snapport border (default: transparent)
-    snapportBorder: Overlay.LineStyle | None = None  # deprecated
+    snapportBorder: Overlay.LineStyle | None = None
 
     # The style of the snap area border (default: transparent)
-    snapAreaBorder: Overlay.LineStyle | None = None  # deprecated
+    snapAreaBorder: Overlay.LineStyle | None = None
 
     # The margin highlight fill color (default: transparent).
-    scrollMarginColor: DOM.RGBA | None = None  # deprecated
+    scrollMarginColor: DOM.RGBA | None = None
 
     # The padding highlight fill color (default: transparent).
-    scrollPaddingColor: DOM.RGBA | None = None  # deprecated
+    scrollPaddingColor: DOM.RGBA | None = None
 
 
 class OverlayScrollSnapHighlightConfig(CDPObject):
 
     # A descriptor for the highlight appearance of scroll snap containers.
-    scrollSnapContainerHighlightConfig: Overlay.ScrollSnapContainerHighlightConfig  # deprecated
+    scrollSnapContainerHighlightConfig: Overlay.ScrollSnapContainerHighlightConfig
 
     # Identifier of the node to highlight.
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
 class OverlayHingeConfig(CDPObject):
     """ Configuration for dual screen hinge """
 
     # A rectangle represent hinge
-    rect: DOM.Rect  # deprecated
+    rect: DOM.Rect
 
     # The content box highlight fill color (default: a dark color).
-    contentColor: DOM.RGBA | None = None  # deprecated
+    contentColor: DOM.RGBA | None = None
 
     # The content box highlight outline color (default: transparent).
-    outlineColor: DOM.RGBA | None = None  # deprecated
+    outlineColor: DOM.RGBA | None = None
 
 
 class OverlayWindowControlsOverlayConfig(CDPObject):
     """ Configuration for Window Controls Overlay """
 
     # Whether the title bar CSS should be shown when emulating the WindowControls Overlay.
-    showCSS: bool  # deprecated
+    showCSS: bool
 
     # Selected platforms to show the overlay.
-    selectedPlatform: str  # deprecated
+    selectedPlatform: str
 
     # The theme color defined in app manifest.
-    themeColor: str  # deprecated
+    themeColor: str
 
 
 class OverlayContainerQueryHighlightConfig(CDPObject):
 
     # A descriptor for the highlight appearance of container query containers.
-    containerQueryContainerHighlightConfig: Overlay.ContainerQueryContainerHighlightConfig  # deprecated
+    containerQueryContainerHighlightConfig: Overlay.ContainerQueryContainerHighlightConfig
 
     # Identifier of the container node to highlight.
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
 class OverlayContainerQueryContainerHighlightConfig(CDPObject):
 
     # The style of the container border.
-    containerBorder: Overlay.LineStyle | None = None  # deprecated
+    containerBorder: Overlay.LineStyle | None = None
 
     # The style of the descendants' borders.
-    descendantBorder: Overlay.LineStyle | None = None  # deprecated
+    descendantBorder: Overlay.LineStyle | None = None
 
 
 class OverlayIsolatedElementHighlightConfig(CDPObject):
 
     # A descriptor for the highlight appearance of an element in isolation mode.
-    isolationModeHighlightConfig: Overlay.IsolationModeHighlightConfig  # deprecated
+    isolationModeHighlightConfig: Overlay.IsolationModeHighlightConfig
 
     # Identifier of the isolated element to highlight.
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
 class OverlayIsolationModeHighlightConfig(CDPObject):
 
     # The fill color of the resizers (default: transparent).
-    resizerColor: DOM.RGBA | None = None  # deprecated
+    resizerColor: DOM.RGBA | None = None
 
     # The fill color for resizer handles (default: transparent).
-    resizerHandleColor: DOM.RGBA | None = None  # deprecated
+    resizerHandleColor: DOM.RGBA | None = None
 
     # The fill color for the mask covering non-isolated elements (default:transparent).
-    maskColor: DOM.RGBA | None = None  # deprecated
+    maskColor: DOM.RGBA | None = None
 
 
 class OverlayInspectMode(enum.StrEnum):
@@ -5158,10 +5158,10 @@ class PageAdScriptId(CDPObject):
     ad. """
 
     # Script Id of the script which caused a script or frame to be labelled asan ad.
-    scriptId: Runtime.ScriptId  # deprecated
+    scriptId: Runtime.ScriptId
 
     # Id of scriptId's debugger.
-    debuggerId: Runtime.UniqueDebuggerId  # deprecated
+    debuggerId: Runtime.UniqueDebuggerId
 
 
 class PageAdScriptAncestry(CDPObject):
@@ -5170,10 +5170,10 @@ class PageAdScriptAncestry(CDPObject):
     is not empty. """
 
     # A chain of `AdScriptId`s representing the ancestry of an ad script thatled to the creation of a frame. The chain is ordered from the script itself(lower level) up to its root ancestor that was flagged by filterlist.
-    ancestryChain: list[Page.AdScriptId]  # deprecated
+    ancestryChain: list[Page.AdScriptId]
 
     # The filterlist rule that caused the root (last) script in `ancestryChain`to be ad-tagged. Only populated if the rule is available.
-    rootScriptFilterlistRule: str | None = None  # deprecated
+    rootScriptFilterlistRule: str | None = None
 
 
 class PageSecureContextType(enum.StrEnum):
@@ -5392,7 +5392,7 @@ class PageOriginTrialTokenWithStatus(CDPObject):
     rawTokenText: str
 
     # `parsedToken` is present only when the token is extractable and parsable.
-    parsedToken: Page.OriginTrialToken | None = None  # deprecated
+    parsedToken: Page.OriginTrialToken | None = None
 
     status: Page.OriginTrialTokenStatus
 
@@ -5410,104 +5410,104 @@ class PageSecurityOriginDetails(CDPObject):
     """ Additional information about the frame document's security origin. """
 
     # Indicates whether the frame document's security origin is one of the localhostnames (e.g. "localhost") or IP addresses (IPv4 127.0.0.0/8 or IPv6 ::1).
-    isLocalhost: bool  # deprecated
+    isLocalhost: bool
 
 
 class PageFrame(CDPObject):
     """ Information about the Frame on the page. """
 
     # Frame unique identifier.
-    id: Page.FrameId  # deprecated
+    id: Page.FrameId
 
     # Parent frame identifier.
-    parentId: Page.FrameId | None = None  # deprecated
+    parentId: Page.FrameId | None = None
 
     # Identifier of the loader associated with this frame.
-    loaderId: Network.LoaderId  # deprecated
+    loaderId: Network.LoaderId
 
     # Frame's name as specified in the tag.
-    name: str | None = None  # deprecated
+    name: str | None = None
 
     # Frame document's URL without fragment.
-    url: str  # deprecated
+    url: str
 
     # Frame document's URL fragment including the '#'.
-    urlFragment: str | None = None  # experimental deprecated
+    urlFragment: str | None = None  # experimental
 
     # Frame document's registered domain, taking the public suffixes list intoaccount. Extracted from the Frame's url. Example URLs:http://www.google.com/file.html -> "google.com"http://a.b.co.uk/file.html      -> "b.co.uk"
-    domainAndRegistry: str | None = None  # experimental deprecated
+    domainAndRegistry: str | None = None  # experimental
 
     # Frame document's security origin.
-    securityOrigin: str  # deprecated
+    securityOrigin: str
 
     # Additional details about the frame document's security origin.
-    securityOriginDetails: Page.SecurityOriginDetails | None = None  # experimental deprecated
+    securityOriginDetails: Page.SecurityOriginDetails | None = None  # experimental
 
     # Frame document's mimeType as determined by the browser.
-    mimeType: str  # deprecated
+    mimeType: str
 
     # If the frame failed to load, this contains the URL that could not beloaded. Note that unlike url above, this URL may contain a fragment.
-    unreachableUrl: str | None = None  # experimental deprecated
+    unreachableUrl: str | None = None  # experimental
 
     # Indicates whether this frame was tagged as an ad and why.
-    adFrameStatus: Page.AdFrameStatus | None = None  # experimental deprecated
+    adFrameStatus: Page.AdFrameStatus | None = None  # experimental
 
     # Indicates whether the main document is a secure context and explains whythat is the case.
-    secureContextType: Page.SecureContextType | None = None  # experimental deprecated
+    secureContextType: Page.SecureContextType | None = None  # experimental
 
     # Indicates whether this is a cross origin isolated context.
-    crossOriginIsolatedContextType: Page.CrossOriginIsolatedContextType | None = None  # experimental deprecated
+    crossOriginIsolatedContextType: Page.CrossOriginIsolatedContextType | None = None  # experimental
 
     # Indicated which gated APIs / features are available.
-    gatedAPIFeatures: list[Page.GatedAPIFeatures] | None = None  # experimental deprecated
+    gatedAPIFeatures: list[Page.GatedAPIFeatures] | None = None  # experimental
 
 
 class PageFrameResource(CDPObject):
     """ Information about the Resource on the page. """
 
     # Resource URL.
-    url: str  # deprecated
+    url: str
 
     # Type of this resource.
-    type: Network.ResourceType  # deprecated
+    type: Network.ResourceType
 
     # Resource mimeType as determined by the browser.
-    mimeType: str  # deprecated
+    mimeType: str
 
     # last-modified timestamp as reported by server.
-    lastModified: Network.TimeSinceEpoch | None = None  # deprecated
+    lastModified: Network.TimeSinceEpoch | None = None
 
     # Resource content size.
-    contentSize: float | None = None  # deprecated
+    contentSize: float | None = None
 
     # True if the resource failed to load.
-    failed: bool | None = None  # deprecated
+    failed: bool | None = None
 
     # True if the resource was canceled during loading.
-    canceled: bool | None = None  # deprecated
+    canceled: bool | None = None
 
 
 class PageFrameResourceTree(CDPObject):
     """ Information about the Frame hierarchy along with their cached resources. """
 
     # Frame information for this tree item.
-    frame: Page.Frame  # deprecated
+    frame: Page.Frame
 
     # Child frames.
-    childFrames: list[Page.FrameResourceTree] | None = None  # deprecated
+    childFrames: list[Page.FrameResourceTree] | None = None
 
     # Information about frame resources.
-    resources: list[Page.FrameResource]  # deprecated
+    resources: list[Page.FrameResource]
 
 
 class PageFrameTree(CDPObject):
     """ Information about the Frame hierarchy. """
 
     # Frame information for this tree item.
-    frame: Page.Frame  # deprecated
+    frame: Page.Frame
 
     # Child frames.
-    childFrames: list[Page.FrameTree] | None = None  # deprecated
+    childFrames: list[Page.FrameTree] | None = None
 
 
 """ Unique script identifier. """
@@ -5537,44 +5537,44 @@ class PageNavigationEntry(CDPObject):
     """ Navigation history entry. """
 
     # Unique id of the navigation history entry.
-    id: int  # deprecated
+    id: int
 
     # URL of the navigation history entry.
-    url: str  # deprecated
+    url: str
 
     # URL that the user typed in the url bar.
-    userTypedURL: str  # deprecated
+    userTypedURL: str
 
     # Title of the navigation history entry.
-    title: str  # deprecated
+    title: str
 
     # Transition type.
-    transitionType: Page.TransitionType  # deprecated
+    transitionType: Page.TransitionType
 
 
 class PageScreencastFrameMetadata(CDPObject):
     """ Screencast frame metadata. """
 
     # Top offset in DIP.
-    offsetTop: float  # deprecated
+    offsetTop: float
 
     # Page scale factor.
-    pageScaleFactor: float  # deprecated
+    pageScaleFactor: float
 
     # Device screen width in DIP.
-    deviceWidth: float  # deprecated
+    deviceWidth: float
 
     # Device screen height in DIP.
-    deviceHeight: float  # deprecated
+    deviceHeight: float
 
     # Position of horizontal scroll in CSS pixels.
-    scrollOffsetX: float  # deprecated
+    scrollOffsetX: float
 
     # Position of vertical scroll in CSS pixels.
-    scrollOffsetY: float  # deprecated
+    scrollOffsetY: float
 
     # Frame swap timestamp.
-    timestamp: Network.TimeSinceEpoch | None = None  # deprecated
+    timestamp: Network.TimeSinceEpoch | None = None
 
 
 class PageDialogType(enum.StrEnum):
@@ -5590,131 +5590,131 @@ class PageAppManifestError(CDPObject):
     """ Error while paring app manifest. """
 
     # Error message.
-    message: str  # deprecated
+    message: str
 
     # If critical, this is a non-recoverable parse error.
-    critical: int  # deprecated
+    critical: int
 
     # Error line.
-    line: int  # deprecated
+    line: int
 
     # Error column.
-    column: int  # deprecated
+    column: int
 
 
 class PageAppManifestParsedProperties(CDPObject):
     """ Parsed app manifest properties. """
 
     # Computed scope value
-    scope: str  # deprecated
+    scope: str
 
 
 class PageLayoutViewport(CDPObject):
     """ Layout viewport position and dimensions. """
 
     # Horizontal offset relative to the document (CSS pixels).
-    pageX: int  # deprecated
+    pageX: int
 
     # Vertical offset relative to the document (CSS pixels).
-    pageY: int  # deprecated
+    pageY: int
 
     # Width (CSS pixels), excludes scrollbar if present.
-    clientWidth: int  # deprecated
+    clientWidth: int
 
     # Height (CSS pixels), excludes scrollbar if present.
-    clientHeight: int  # deprecated
+    clientHeight: int
 
 
 class PageVisualViewport(CDPObject):
     """ Visual viewport position, dimensions, and scale. """
 
     # Horizontal offset relative to the layout viewport (CSS pixels).
-    offsetX: float  # deprecated
+    offsetX: float
 
     # Vertical offset relative to the layout viewport (CSS pixels).
-    offsetY: float  # deprecated
+    offsetY: float
 
     # Horizontal offset relative to the document (CSS pixels).
-    pageX: float  # deprecated
+    pageX: float
 
     # Vertical offset relative to the document (CSS pixels).
-    pageY: float  # deprecated
+    pageY: float
 
     # Width (CSS pixels), excludes scrollbar if present.
-    clientWidth: float  # deprecated
+    clientWidth: float
 
     # Height (CSS pixels), excludes scrollbar if present.
-    clientHeight: float  # deprecated
+    clientHeight: float
 
     # Scale relative to the ideal viewport (size at width=device-width).
-    scale: float  # deprecated
+    scale: float
 
     # Page zoom factor (CSS to device independent pixels ratio).
-    zoom: float | None = None  # deprecated
+    zoom: float | None = None
 
 
 class PageViewport(CDPObject):
     """ Viewport for capturing screenshot. """
 
     # X offset in device independent pixels (dip).
-    x: float  # deprecated
+    x: float
 
     # Y offset in device independent pixels (dip).
-    y: float  # deprecated
+    y: float
 
     # Rectangle width in device independent pixels (dip).
-    width: float  # deprecated
+    width: float
 
     # Rectangle height in device independent pixels (dip).
-    height: float  # deprecated
+    height: float
 
     # Page scale factor.
-    scale: float  # deprecated
+    scale: float
 
 
 class PageFontFamilies(CDPObject):
     """ Generic font families collection. """
 
     # The standard font-family.
-    standard: str | None = None  # deprecated
+    standard: str | None = None
 
     # The fixed font-family.
-    fixed: str | None = None  # deprecated
+    fixed: str | None = None
 
     # The serif font-family.
-    serif: str | None = None  # deprecated
+    serif: str | None = None
 
     # The sansSerif font-family.
-    sansSerif: str | None = None  # deprecated
+    sansSerif: str | None = None
 
     # The cursive font-family.
-    cursive: str | None = None  # deprecated
+    cursive: str | None = None
 
     # The fantasy font-family.
-    fantasy: str | None = None  # deprecated
+    fantasy: str | None = None
 
     # The math font-family.
-    math: str | None = None  # deprecated
+    math: str | None = None
 
 
 class PageScriptFontFamilies(CDPObject):
     """ Font families collection for a script. """
 
     # Name of the script which these font families are defined for.
-    script: str  # deprecated
+    script: str
 
     # Generic font families collection for the script.
-    fontFamilies: Page.FontFamilies  # deprecated
+    fontFamilies: Page.FontFamilies
 
 
 class PageFontSizes(CDPObject):
     """ Default font sizes. """
 
     # Default standard font size.
-    standard: int | None = None  # deprecated
+    standard: int | None = None
 
     # Default fixed font size.
-    fixed: int | None = None  # deprecated
+    fixed: int | None = None
 
 
 class PageClientNavigationReason(enum.StrEnum):
@@ -5742,20 +5742,20 @@ class PageClientNavigationDisposition(enum.StrEnum):
 class PageInstallabilityErrorArgument(CDPObject):
 
     # Argument name (e.g. name:'minimum-icon-size-in-pixels').
-    name: str  # deprecated
+    name: str
 
     # Argument value (e.g. value:'64').
-    value: str  # deprecated
+    value: str
 
 
 class PageInstallabilityError(CDPObject):
     """ The installability error """
 
     # The error id (e.g. 'manifest-missing-suitable-icon').
-    errorId: str  # deprecated
+    errorId: str
 
     # The list of error arguments (e.g. {name:'minimum-icon-size-in-pixels',value:'64'}).
-    errorArguments: list[Page.InstallabilityErrorArgument]  # deprecated
+    errorArguments: list[Page.InstallabilityErrorArgument]
 
 
 class PageReferrerPolicy(enum.StrEnum):
@@ -5775,10 +5775,10 @@ class PageCompilationCacheParams(CDPObject):
     """ Per-script compilation cache parameters for `Page.produceCompilationCache` """
 
     # The URL of the script to produce a compilation cache entry for.
-    url: str  # deprecated
+    url: str
 
     # A hint to the backend whether eager compilation is recommended. (theactual compilation mode used is upon backend discretion).
-    eager: bool | None = None  # deprecated
+    eager: bool | None = None
 
 
 class PageFileFilter(CDPObject):
@@ -5797,17 +5797,17 @@ class PageFileHandler(CDPObject):
     icons: list[Page.ImageResource] | None = None
 
     # Mimic a map, name is the key, accepts is the value.
-    accepts: list[Page.FileFilter] | None = None  # deprecated
+    accepts: list[Page.FileFilter] | None = None
 
     # Won't repeat the enums, using string for easy comparison. Same as theother enums below.
-    launchType: str  # deprecated
+    launchType: str
 
 
 class PageImageResource(CDPObject):
     """ The image definition used in both icon and screenshot. """
 
     # The src field in the definition, but changing to url in favor ofconsistency.
-    url: str  # deprecated
+    url: str
 
     sizes: str | None = None
 
@@ -5836,7 +5836,7 @@ class PageRelatedApplication(CDPObject):
 class PageScopeExtension(CDPObject):
 
     # Instead of using tuple, this field always returns the serialized stringfor easy understanding and comparison.
-    origin: str  # deprecated
+    origin: str
 
     hasOriginWildcard: bool
 
@@ -5859,7 +5859,7 @@ class PageShareTarget(CDPObject):
     enctype: str
 
     # Embed the ShareTargetParams
-    title: str | None = None  # deprecated
+    title: str | None = None
 
     text: str | None = None
 
@@ -5880,17 +5880,17 @@ class PageWebAppManifest(CDPObject):
     backgroundColor: str | None = None
 
     # The extra description provided by the manifest.
-    description: str | None = None  # deprecated
+    description: str | None = None
 
     dir: str | None = None
 
     display: str | None = None
 
     # The overrided display mode controlled by the user.
-    displayOverrides: list[str] | None = None  # deprecated
+    displayOverrides: list[str] | None = None
 
     # The handlers to open files.
-    fileHandlers: list[Page.FileHandler] | None = None  # deprecated
+    fileHandlers: list[Page.FileHandler] | None = None
 
     icons: list[Page.ImageResource] | None = None
 
@@ -5899,7 +5899,7 @@ class PageWebAppManifest(CDPObject):
     lang: str | None = None
 
     # TODO(crbug.com/1231886): This field is non-standard and part of a Chromeexperiment. See: https://github.com/WICG/web-app-launch/blob/main/launch_handler.md
-    launchHandler: Page.LaunchHandler | None = None  # deprecated
+    launchHandler: Page.LaunchHandler | None = None
 
     name: str | None = None
 
@@ -5908,17 +5908,17 @@ class PageWebAppManifest(CDPObject):
     preferRelatedApplications: bool | None = None
 
     # The handlers to open protocols.
-    protocolHandlers: list[Page.ProtocolHandler] | None = None  # deprecated
+    protocolHandlers: list[Page.ProtocolHandler] | None = None
 
     relatedApplications: list[Page.RelatedApplication] | None = None
 
     scope: str | None = None
 
     # Non-standard, see https://github.com/WICG/manifest-incubations/blob/gh-pages/scope_extensions-explainer.md
-    scopeExtensions: list[Page.ScopeExtension] | None = None  # deprecated
+    scopeExtensions: list[Page.ScopeExtension] | None = None
 
     # The screenshots used by chromium.
-    screenshots: list[Page.Screenshot] | None = None  # deprecated
+    screenshots: list[Page.Screenshot] | None = None
 
     shareTarget: Page.ShareTarget | None = None
 
@@ -6097,28 +6097,28 @@ class PageBackForwardCacheNotRestoredReasonType(enum.StrEnum):
 class PageBackForwardCacheBlockingDetails(CDPObject):
 
     # Url of the file where blockage happened. Optional because of tests.
-    url: str | None = None  # deprecated
+    url: str | None = None
 
     # Function name where blockage happened. Optional because of anonymousfunctions and tests.
-    function: str | None = None  # deprecated
+    function: str | None = None
 
     # Line number in the script (0-based).
-    lineNumber: int  # deprecated
+    lineNumber: int
 
     # Column number in the script (0-based).
-    columnNumber: int  # deprecated
+    columnNumber: int
 
 
 class PageBackForwardCacheNotRestoredExplanation(CDPObject):
 
     # Type of the reason
-    type: Page.BackForwardCacheNotRestoredReasonType  # deprecated
+    type: Page.BackForwardCacheNotRestoredReasonType
 
     # Not restored reason
-    reason: Page.BackForwardCacheNotRestoredReason  # deprecated
+    reason: Page.BackForwardCacheNotRestoredReason
 
     # Context associated with the reason. The meaning of this context isdependent on the reason: - EmbedderExtensionSentMessageToCachedFrame: theextension ID.
-    context: str | None = None  # deprecated
+    context: str | None = None
 
     details: list[Page.BackForwardCacheBlockingDetails] | None = None
 
@@ -6126,23 +6126,23 @@ class PageBackForwardCacheNotRestoredExplanation(CDPObject):
 class PageBackForwardCacheNotRestoredExplanationTree(CDPObject):
 
     # URL of each frame
-    url: str  # deprecated
+    url: str
 
     # Not restored reasons of each frame
-    explanations: list[Page.BackForwardCacheNotRestoredExplanation]  # deprecated
+    explanations: list[Page.BackForwardCacheNotRestoredExplanation]
 
     # Array of children frame
-    children: list[Page.BackForwardCacheNotRestoredExplanationTree]  # deprecated
+    children: list[Page.BackForwardCacheNotRestoredExplanationTree]
 
 
 class PerformanceMetric(CDPObject):
     """ Run-time execution metric. """
 
     # Metric name.
-    name: str  # deprecated
+    name: str
 
     # Metric value.
-    value: float  # deprecated
+    value: float
 
 
 class PerformanceTimelineLargestContentfulPaint(CDPObject):
@@ -6153,13 +6153,13 @@ class PerformanceTimelineLargestContentfulPaint(CDPObject):
     loadTime: Network.TimeSinceEpoch
 
     # The number of pixels being painted.
-    size: float  # deprecated
+    size: float
 
     # The id attribute of the element, if available.
-    elementId: str | None = None  # deprecated
+    elementId: str | None = None
 
     # The URL of the image (may be trimmed).
-    url: str | None = None  # deprecated
+    url: str | None = None
 
     nodeId: DOM.BackendNodeId | None = None
 
@@ -6177,7 +6177,7 @@ class PerformanceTimelineLayoutShift(CDPObject):
     """ See https://wicg.github.io/layout-instability/#sec-layout-shift and layout_shift.idl """
 
     # Score increment produced by this event.
-    value: float  # deprecated
+    value: float
 
     hadRecentInput: bool
 
@@ -6189,19 +6189,19 @@ class PerformanceTimelineLayoutShift(CDPObject):
 class PerformanceTimelineTimelineEvent(CDPObject):
 
     # Identifies the frame that this event is related to. Empty for non-frametargets.
-    frameId: Page.FrameId  # deprecated
+    frameId: Page.FrameId
 
     # The event type, as specified in https://w3c.github.io/performance-timeline/#dom-performanceentry-entrytype This determines which of the optional"details" fields is present.
-    type: str  # deprecated
+    type: str
 
     # Name may be empty depending on the type.
-    name: str  # deprecated
+    name: str
 
     # Time in seconds since Epoch, monotonically increasing within documentlifetime.
-    time: Network.TimeSinceEpoch  # deprecated
+    time: Network.TimeSinceEpoch
 
     # Event duration, if applicable.
-    duration: float | None = None  # deprecated
+    duration: float | None = None
 
     lcpDetails: PerformanceTimeline.LargestContentfulPaint | None = None
 
@@ -6237,58 +6237,58 @@ class SecurityCertificateSecurityState(CDPObject):
     """ Details about the security state of the page certificate. """
 
     # Protocol name (e.g. "TLS 1.2" or "QUIC").
-    protocol: str  # deprecated
+    protocol: str
 
     # Key Exchange used by the connection, or the empty string if notapplicable.
-    keyExchange: str  # deprecated
+    keyExchange: str
 
     # (EC)DH group used by the connection, if applicable.
-    keyExchangeGroup: str | None = None  # deprecated
+    keyExchangeGroup: str | None = None
 
     # Cipher name.
-    cipher: str  # deprecated
+    cipher: str
 
     # TLS MAC. Note that AEAD ciphers do not have separate MACs.
-    mac: str | None = None  # deprecated
+    mac: str | None = None
 
     # Page certificate.
-    certificate: list[str]  # deprecated
+    certificate: list[str]
 
     # Certificate subject name.
-    subjectName: str  # deprecated
+    subjectName: str
 
     # Name of the issuing CA.
-    issuer: str  # deprecated
+    issuer: str
 
     # Certificate valid from date.
-    validFrom: Network.TimeSinceEpoch  # deprecated
+    validFrom: Network.TimeSinceEpoch
 
     # Certificate valid to (expiration) date
-    validTo: Network.TimeSinceEpoch  # deprecated
+    validTo: Network.TimeSinceEpoch
 
     # The highest priority network error code, if the certificate has an error.
-    certificateNetworkError: str | None = None  # deprecated
+    certificateNetworkError: str | None = None
 
     # True if the certificate uses a weak signature algorithm.
-    certificateHasWeakSignature: bool  # deprecated
+    certificateHasWeakSignature: bool
 
     # True if the certificate has a SHA1 signature in the chain.
-    certificateHasSha1Signature: bool  # deprecated
+    certificateHasSha1Signature: bool
 
     # True if modern SSL
-    modernSSL: bool  # deprecated
+    modernSSL: bool
 
     # True if the connection is using an obsolete SSL protocol.
-    obsoleteSslProtocol: bool  # deprecated
+    obsoleteSslProtocol: bool
 
     # True if the connection is using an obsolete SSL key exchange.
-    obsoleteSslKeyExchange: bool  # deprecated
+    obsoleteSslKeyExchange: bool
 
     # True if the connection is using an obsolete SSL cipher.
-    obsoleteSslCipher: bool  # deprecated
+    obsoleteSslCipher: bool
 
     # True if the connection is using an obsolete SSL signature.
-    obsoleteSslSignature: bool  # deprecated
+    obsoleteSslSignature: bool
 
 
 class SecuritySafetyTipStatus(enum.StrEnum):
@@ -6300,76 +6300,76 @@ class SecuritySafetyTipStatus(enum.StrEnum):
 class SecuritySafetyTipInfo(CDPObject):
 
     # Describes whether the page triggers any safety tips or reputationwarnings. Default is unknown.
-    safetyTipStatus: Security.SafetyTipStatus  # deprecated
+    safetyTipStatus: Security.SafetyTipStatus
 
     # The URL the safety tip suggested ("Did you mean?"). Only filled in forlookalike matches.
-    safeUrl: str | None = None  # deprecated
+    safeUrl: str | None = None
 
 
 class SecurityVisibleSecurityState(CDPObject):
     """ Security state information about the page. """
 
     # The security level of the page.
-    securityState: Security.SecurityState  # deprecated
+    securityState: Security.SecurityState
 
     # Security state details about the page certificate.
-    certificateSecurityState: Security.CertificateSecurityState | None = None  # deprecated
+    certificateSecurityState: Security.CertificateSecurityState | None = None
 
     # The type of Safety Tip triggered on the page. Note that this field will beset even if the Safety Tip UI was not actually shown.
-    safetyTipInfo: Security.SafetyTipInfo | None = None  # deprecated
+    safetyTipInfo: Security.SafetyTipInfo | None = None
 
     # Array of security state issues ids.
-    securityStateIssueIds: list[str]  # deprecated
+    securityStateIssueIds: list[str]
 
 
 class SecuritySecurityStateExplanation(CDPObject):
     """ An explanation of an factor contributing to the security state. """
 
     # Security state representing the severity of the factor being explained.
-    securityState: Security.SecurityState  # deprecated
+    securityState: Security.SecurityState
 
     # Title describing the type of factor.
-    title: str  # deprecated
+    title: str
 
     # Short phrase describing the type of factor.
-    summary: str  # deprecated
+    summary: str
 
     # Full text explanation of the factor.
-    description: str  # deprecated
+    description: str
 
     # The type of mixed content described by the explanation.
-    mixedContentType: Security.MixedContentType  # deprecated
+    mixedContentType: Security.MixedContentType
 
     # Page certificate.
-    certificate: list[str]  # deprecated
+    certificate: list[str]
 
     # Recommendations to fix any issues.
-    recommendations: list[str] | None = None  # deprecated
+    recommendations: list[str] | None = None
 
 
 class SecurityInsecureContentStatus(CDPObject):
     """ Information about insecure content on the page. """
 
     # Always false.
-    ranMixedContent: bool  # deprecated
+    ranMixedContent: bool
 
     # Always false.
-    displayedMixedContent: bool  # deprecated
+    displayedMixedContent: bool
 
     # Always false.
-    containedMixedForm: bool  # deprecated
+    containedMixedForm: bool
 
     # Always false.
-    ranContentWithCertErrors: bool  # deprecated
+    ranContentWithCertErrors: bool
 
     # Always false.
-    displayedContentWithCertErrors: bool  # deprecated
+    displayedContentWithCertErrors: bool
 
     # Always set to unknown.
-    ranInsecureContentStyle: Security.SecurityState  # deprecated
+    ranInsecureContentStyle: Security.SecurityState
 
     # Always set to unknown.
-    displayedInsecureContentStyle: Security.SecurityState  # deprecated
+    displayedInsecureContentStyle: Security.SecurityState
 
 
 class SecurityCertificateErrorAction(enum.StrEnum):
@@ -6425,10 +6425,10 @@ class ServiceWorkerServiceWorkerVersion(CDPObject):
     status: ServiceWorker.ServiceWorkerVersionStatus
 
     # The Last-Modified header value of the main script.
-    scriptLastModified: float | None = None  # deprecated
+    scriptLastModified: float | None = None
 
     # The time at which the response headers of the main script were receivedfrom the server. For cached script it is the last time the cache entry wasvalidated.
-    scriptResponseTime: float | None = None  # deprecated
+    scriptResponseTime: float | None = None
 
     controlledClients: list[Target.TargetID] | None = None
 
@@ -6478,10 +6478,10 @@ class StorageUsageForType(CDPObject):
     """ Usage for a storage type. """
 
     # Name of storage type.
-    storageType: Storage.StorageType  # deprecated
+    storageType: Storage.StorageType
 
     # Storage usage (bytes).
-    usage: float  # deprecated
+    usage: float
 
 
 class StorageTrustTokens(CDPObject):
@@ -6572,16 +6572,16 @@ class StorageSharedStorageMetadata(CDPObject):
     """ Details for an origin's shared storage. """
 
     # Time when the origin's shared storage was last created.
-    creationTime: Network.TimeSinceEpoch  # deprecated
+    creationTime: Network.TimeSinceEpoch
 
     # Number of key-value pairs stored in origin's shared storage.
-    length: int  # deprecated
+    length: int
 
     # Current amount of bits of entropy remaining in the navigation budget.
-    remainingBudget: float  # deprecated
+    remainingBudget: float
 
     # Total number of bytes stored as key-value pairs in origin's sharedstorage.
-    bytesUsed: int  # deprecated
+    bytesUsed: int
 
 
 class StorageSharedStoragePrivateAggregationConfig(CDPObject):
@@ -6589,16 +6589,16 @@ class StorageSharedStoragePrivateAggregationConfig(CDPObject):
     run or selectURL. """
 
     # The chosen aggregation service deployment.
-    aggregationCoordinatorOrigin: str | None = None  # deprecated
+    aggregationCoordinatorOrigin: str | None = None
 
     # The context ID provided.
-    contextId: str | None = None  # deprecated
+    contextId: str | None = None
 
     # Configures the maximum size allowed for filtering IDs.
-    filteringIdMaxBytes: int  # deprecated
+    filteringIdMaxBytes: int
 
     # The limit on the number of contributions in the final report.
-    maxContributions: int | None = None  # deprecated
+    maxContributions: int | None = None
 
 
 class StorageSharedStorageReportingMetadata(CDPObject):
@@ -6613,10 +6613,10 @@ class StorageSharedStorageUrlWithMetadata(CDPObject):
     """ Bundles a candidate URL with its reporting metadata. """
 
     # Spec of candidate URL.
-    url: str  # deprecated
+    url: str
 
     # Any associated reporting metadata.
-    reportingMetadata: list[Storage.SharedStorageReportingMetadata]  # deprecated
+    reportingMetadata: list[Storage.SharedStorageReportingMetadata]
 
 
 class StorageSharedStorageAccessParams(CDPObject):
@@ -6624,55 +6624,55 @@ class StorageSharedStorageAccessParams(CDPObject):
     presence/absence can vary according to SharedStorageAccessType. """
 
     # Spec of the module script URL. Present only forSharedStorageAccessMethods: addModule and createWorklet.
-    scriptSourceUrl: str | None = None  # deprecated
+    scriptSourceUrl: str | None = None
 
     # String denoting "context-origin", "script-origin", or a custom origin tobe used as the worklet's data origin. Present only forSharedStorageAccessMethod: createWorklet.
-    dataOrigin: str | None = None  # deprecated
+    dataOrigin: str | None = None
 
     # Name of the registered operation to be run. Present only forSharedStorageAccessMethods: run and selectURL.
-    operationName: str | None = None  # deprecated
+    operationName: str | None = None
 
     # ID of the operation call. Present only for SharedStorageAccessMethods: runand selectURL.
-    operationId: str | None = None  # deprecated
+    operationId: str | None = None
 
     # Whether or not to keep the worket alive for future run or selectURL calls.Present only for SharedStorageAccessMethods: run and selectURL.
-    keepAlive: bool | None = None  # deprecated
+    keepAlive: bool | None = None
 
     # Configures the private aggregation options. Present only forSharedStorageAccessMethods: run and selectURL.
-    privateAggregationConfig: Storage.SharedStoragePrivateAggregationConfig | None = None  # deprecated
+    privateAggregationConfig: Storage.SharedStoragePrivateAggregationConfig | None = None
 
     # The operation's serialized data in bytes (converted to a string). Presentonly for SharedStorageAccessMethods: run and selectURL.TODO(crbug.com/401011862): Consider updating this parameter to binary.
-    serializedData: str | None = None  # deprecated
+    serializedData: str | None = None
 
     # Array of candidate URLs' specs, along with any associated metadata.Present only for SharedStorageAccessMethod: selectURL.
-    urlsWithMetadata: list[Storage.SharedStorageUrlWithMetadata] | None = None  # deprecated
+    urlsWithMetadata: list[Storage.SharedStorageUrlWithMetadata] | None = None
 
     # Spec of the URN:UUID generated for a selectURL call. Present only forSharedStorageAccessMethod: selectURL.
-    urnUuid: str | None = None  # deprecated
+    urnUuid: str | None = None
 
     # Key for a specific entry in an origin's shared storage. Present only forSharedStorageAccessMethods: set, append, delete, and get.
-    key: str | None = None  # deprecated
+    key: str | None = None
 
     # Value for a specific entry in an origin's shared storage. Present only forSharedStorageAccessMethods: set and append.
-    value: str | None = None  # deprecated
+    value: str | None = None
 
     # Whether or not to set an entry for a key if that key is already present.Present only for SharedStorageAccessMethod: set.
-    ignoreIfPresent: bool | None = None  # deprecated
+    ignoreIfPresent: bool | None = None
 
     # A number denoting the (0-based) order of the worklet's creation relativeto all other shared storage worklets created by documents using the currentstorage partition. Present only for SharedStorageAccessMethods: addModule,createWorklet.
-    workletOrdinal: int | None = None  # deprecated
+    workletOrdinal: int | None = None
 
     # Hex representation of the DevTools token used as the TargetID for theassociated shared storage worklet. Present only for SharedStorageAccessMethods:addModule, createWorklet, run, selectURL, and any otherSharedStorageAccessMethod when the SharedStorageAccessScope issharedStorageWorklet.
-    workletTargetId: Target.TargetID | None = None  # deprecated
+    workletTargetId: Target.TargetID | None = None
 
     # Name of the lock to be acquired, if present. Optionally present only forSharedStorageAccessMethods: batchUpdate, set, append, delete, and clear.
-    withLock: str | None = None  # deprecated
+    withLock: str | None = None
 
     # If the method has been called as part of a batchUpdate, then this numberidentifies the batch to which it belongs. Optionally present only forSharedStorageAccessMethods: batchUpdate (required), set, append, delete, andclear.
-    batchUpdateId: str | None = None  # deprecated
+    batchUpdateId: str | None = None
 
     # Number of modifier methods sent in batch. Present only forSharedStorageAccessMethod: batchUpdate.
-    batchSize: int | None = None  # deprecated
+    batchSize: int | None = None
 
 
 class StorageStorageBucketsDurability(enum.StrEnum):
@@ -6686,7 +6686,7 @@ class StorageStorageBucket(CDPObject):
     storageKey: Storage.SerializedStorageKey
 
     # If not specified, it is the default bucket of the storageKey.
-    name: str | None = None  # deprecated
+    name: str | None = None
 
 
 class StorageStorageBucketInfo(CDPObject):
@@ -6698,7 +6698,7 @@ class StorageStorageBucketInfo(CDPObject):
     expiration: Network.TimeSinceEpoch
 
     # Storage quota (bytes).
-    quota: float  # deprecated
+    quota: float
 
     persistent: bool
 
@@ -6730,7 +6730,7 @@ class StorageAttributionReportingFilterConfig(CDPObject):
     filterValues: list[Storage.AttributionReportingFilterDataEntry]
 
     # duration in seconds
-    lookbackWindow: int | None = None  # deprecated
+    lookbackWindow: int | None = None
 
 
 class StorageAttributionReportingFilterPair(CDPObject):
@@ -6750,10 +6750,10 @@ class StorageAttributionReportingAggregationKeysEntry(CDPObject):
 class StorageAttributionReportingEventReportWindows(CDPObject):
 
     # duration in seconds
-    start: int  # deprecated
+    start: int
 
     # duration in seconds
-    ends: list[int]  # deprecated
+    ends: list[int]
 
 
 class StorageAttributionReportingTriggerDataMatching(enum.StrEnum):
@@ -6767,7 +6767,7 @@ class StorageAttributionReportingAggregatableDebugReportingData(CDPObject):
     keyPiece: Storage.UnsignedInt128AsBase16
 
     # number instead of integer because not all uint32 can be represented by int
-    value: float  # deprecated
+    value: float
 
     types: list[str]
 
@@ -6775,7 +6775,7 @@ class StorageAttributionReportingAggregatableDebugReportingData(CDPObject):
 class StorageAttributionReportingAggregatableDebugReportingConfig(CDPObject):
 
     # number instead of integer because not all uint32 can be represented byint, only present for source registrations
-    budget: float | None = None  # deprecated
+    budget: float | None = None
 
     keyPiece: Storage.UnsignedInt128AsBase16
 
@@ -6789,7 +6789,7 @@ class StorageAttributionScopesData(CDPObject):
     values: list[str]
 
     # number instead of integer because not all uint32 can be represented by int
-    limit: float  # deprecated
+    limit: float
 
     maxEventStates: float
 
@@ -6806,15 +6806,15 @@ class StorageAttributionReportingSourceRegistration(CDPObject):
     time: Network.TimeSinceEpoch
 
     # duration in seconds
-    expiry: int  # deprecated
+    expiry: int
 
     # number instead of integer because not all uint32 can be represented by int
-    triggerData: list[float]  # deprecated
+    triggerData: list[float]
 
     eventReportWindows: Storage.AttributionReportingEventReportWindows
 
     # duration in seconds
-    aggregatableReportWindow: int  # deprecated
+    aggregatableReportWindow: int
 
     type: Storage.AttributionReportingSourceType
 
@@ -6882,7 +6882,7 @@ class StorageAttributionReportingAggregatableValueDictEntry(CDPObject):
     key: str
 
     # number instead of integer because not all uint32 can be represented by int
-    value: float  # deprecated
+    value: float
 
     filteringId: Storage.UnsignedInt64AsBase10
 
@@ -7013,51 +7013,51 @@ class StorageRelatedWebsiteSet(CDPObject):
     """ A single Related Website Set object. """
 
     # The primary site of this set, along with the ccTLDs if there is any.
-    primarySites: list[str]  # deprecated
+    primarySites: list[str]
 
     # The associated sites of this set, along with the ccTLDs if there is any.
-    associatedSites: list[str]  # deprecated
+    associatedSites: list[str]
 
     # The service sites of this set, along with the ccTLDs if there is any.
-    serviceSites: list[str]  # deprecated
+    serviceSites: list[str]
 
 
 class SystemInfoGPUDevice(CDPObject):
     """ Describes a single graphics processor (GPU). """
 
     # PCI ID of the GPU vendor, if available; 0 otherwise.
-    vendorId: float  # deprecated
+    vendorId: float
 
     # PCI ID of the GPU device, if available; 0 otherwise.
-    deviceId: float  # deprecated
+    deviceId: float
 
     # Sub sys ID of the GPU, only available on Windows.
-    subSysId: float | None = None  # deprecated
+    subSysId: float | None = None
 
     # Revision of the GPU, only available on Windows.
-    revision: float | None = None  # deprecated
+    revision: float | None = None
 
     # String description of the GPU vendor, if the PCI ID is not available.
-    vendorString: str  # deprecated
+    vendorString: str
 
     # String description of the GPU device, if the PCI ID is not available.
-    deviceString: str  # deprecated
+    deviceString: str
 
     # String description of the GPU driver vendor.
-    driverVendor: str  # deprecated
+    driverVendor: str
 
     # String description of the GPU driver version.
-    driverVersion: str  # deprecated
+    driverVersion: str
 
 
 class SystemInfoSize(CDPObject):
     """ Describes the width and height dimensions of an entity. """
 
     # Width in pixels.
-    width: int  # deprecated
+    width: int
 
     # Height in pixels.
-    height: int  # deprecated
+    height: int
 
 
 class SystemInfoVideoDecodeAcceleratorCapability(CDPObject):
@@ -7065,13 +7065,13 @@ class SystemInfoVideoDecodeAcceleratorCapability(CDPObject):
     maximum resolutions. """
 
     # Video codec profile that is supported, e.g. VP9 Profile 2.
-    profile: str  # deprecated
+    profile: str
 
     # Maximum video dimensions in pixels supported for this |profile|.
-    maxResolution: SystemInfo.Size  # deprecated
+    maxResolution: SystemInfo.Size
 
     # Minimum video dimensions in pixels supported for this |profile|.
-    minResolution: SystemInfo.Size  # deprecated
+    minResolution: SystemInfo.Size
 
 
 class SystemInfoVideoEncodeAcceleratorCapability(CDPObject):
@@ -7079,13 +7079,13 @@ class SystemInfoVideoEncodeAcceleratorCapability(CDPObject):
     resolution and maximum framerate. """
 
     # Video codec profile that is supported, e.g H264 Main.
-    profile: str  # deprecated
+    profile: str
 
     # Maximum video dimensions in pixels supported for this |profile|.
-    maxResolution: SystemInfo.Size  # deprecated
+    maxResolution: SystemInfo.Size
 
     # Maximum encoding framerate in frames per second supported for this|profile|, as fraction's numerator and denominator, e.g. 24/1 fps, 24000/1001fps, etc.
-    maxFramerateNumerator: int  # deprecated
+    maxFramerateNumerator: int
 
     maxFramerateDenominator: int
 
@@ -7111,54 +7111,54 @@ class SystemInfoImageDecodeAcceleratorCapability(CDPObject):
     maximum resolutions and subsampling. """
 
     # Image coded, e.g. Jpeg.
-    imageType: SystemInfo.ImageType  # deprecated
+    imageType: SystemInfo.ImageType
 
     # Maximum supported dimensions of the image in pixels.
-    maxDimensions: SystemInfo.Size  # deprecated
+    maxDimensions: SystemInfo.Size
 
     # Minimum supported dimensions of the image in pixels.
-    minDimensions: SystemInfo.Size  # deprecated
+    minDimensions: SystemInfo.Size
 
     # Optional array of supported subsampling formats, e.g. 4:2:0, if known.
-    subsamplings: list[SystemInfo.SubsamplingFormat]  # deprecated
+    subsamplings: list[SystemInfo.SubsamplingFormat]
 
 
 class SystemInfoGPUInfo(CDPObject):
     """ Provides information about the GPU(s) on the system. """
 
     # The graphics devices on the system. Element 0 is the primary GPU.
-    devices: list[SystemInfo.GPUDevice]  # deprecated
+    devices: list[SystemInfo.GPUDevice]
 
     # An optional dictionary of additional GPU related attributes.
-    auxAttributes: JSON_DICT | None = None  # deprecated
+    auxAttributes: JSON_DICT | None = None
 
     # An optional dictionary of graphics features and their status.
-    featureStatus: JSON_DICT | None = None  # deprecated
+    featureStatus: JSON_DICT | None = None
 
     # An optional array of GPU driver bug workarounds.
-    driverBugWorkarounds: list[str]  # deprecated
+    driverBugWorkarounds: list[str]
 
     # Supported accelerated video decoding capabilities.
-    videoDecoding: list[SystemInfo.VideoDecodeAcceleratorCapability]  # deprecated
+    videoDecoding: list[SystemInfo.VideoDecodeAcceleratorCapability]
 
     # Supported accelerated video encoding capabilities.
-    videoEncoding: list[SystemInfo.VideoEncodeAcceleratorCapability]  # deprecated
+    videoEncoding: list[SystemInfo.VideoEncodeAcceleratorCapability]
 
     # Supported accelerated image decoding capabilities.
-    imageDecoding: list[SystemInfo.ImageDecodeAcceleratorCapability]  # deprecated
+    imageDecoding: list[SystemInfo.ImageDecodeAcceleratorCapability]
 
 
 class SystemInfoProcessInfo(CDPObject):
     """ Represents process info. """
 
     # Specifies process type.
-    type: str  # deprecated
+    type: str
 
     # Specifies process id.
-    id: int  # deprecated
+    id: int
 
     # Specifies cumulative CPU usage in seconds across all threads of theprocess since the process start.
-    cpuTime: float  # deprecated
+    cpuTime: float
 
 
 TargetTargetID = str
@@ -7172,38 +7172,38 @@ class TargetTargetInfo(CDPObject):
     targetId: Target.TargetID
 
     # List of types: https://source.chromium.org/chromium/chromium/src/+/main:content/browser/devtools/devtools_agent_host_impl.cc?ss=chromium&q=f:devtools%20-f:out%20%22::kTypeTab%5B%5D%22
-    type: str  # deprecated
+    type: str
 
     title: str
 
     url: str
 
     # Whether the target has an attached client.
-    attached: bool  # deprecated
+    attached: bool
 
     # Opener target Id
-    openerId: Target.TargetID | None = None  # deprecated
+    openerId: Target.TargetID | None = None
 
     # Whether the target has access to the originating window.
-    canAccessOpener: bool | None = None  # experimental deprecated
+    canAccessOpener: bool | None = None  # experimental
 
     # Frame id of originating window (is only set if target has an opener).
-    openerFrameId: Page.FrameId | None = None  # experimental deprecated
+    openerFrameId: Page.FrameId | None = None  # experimental
 
     browserContextId: Browser.BrowserContextID | None = None  # experimental
 
     # Provides additional details for specific target types. For example, forthe type of "page", this may be set to "prerender".
-    subtype: str | None = None  # experimental deprecated
+    subtype: str | None = None  # experimental
 
 
 class TargetFilterEntry(CDPObject):
     """ A filter used by target query/discovery/auto-attach operations. """
 
     # If set, causes exclusion of matching targets from the list.
-    exclude: bool | None = None  # deprecated
+    exclude: bool | None = None
 
     # If not present, matches any type.
-    type: str | None = None  # deprecated
+    type: str | None = None
 
 
 """ The entries in TargetFilter are matched sequentially against targets and
@@ -7240,31 +7240,31 @@ TracingMemoryDumpConfig = JSON_DICT
 class TracingTraceConfig(CDPObject):
 
     # Controls how the trace buffer stores data. The default is`recordUntilFull`.
-    recordMode: Literal['recordUntilFull', 'recordContinuously', 'recordAsMuchAsPossible', 'echoToConsole'] | None = None  # experimental deprecated
+    recordMode: Literal['recordUntilFull', 'recordContinuously', 'recordAsMuchAsPossible', 'echoToConsole'] | None = None  # experimental
 
     # Size of the trace buffer in kilobytes. If not specified or zero is passed,a default value of 200 MB would be used.
-    traceBufferSizeInKb: float | None = None  # experimental deprecated
+    traceBufferSizeInKb: float | None = None  # experimental
 
     # Turns on JavaScript stack sampling.
-    enableSampling: bool | None = None  # experimental deprecated
+    enableSampling: bool | None = None  # experimental
 
     # Turns on system tracing.
-    enableSystrace: bool | None = None  # experimental deprecated
+    enableSystrace: bool | None = None  # experimental
 
     # Turns on argument filter.
-    enableArgumentFilter: bool | None = None  # experimental deprecated
+    enableArgumentFilter: bool | None = None  # experimental
 
     # Included category filters.
-    includedCategories: list[str] | None = None  # deprecated
+    includedCategories: list[str] | None = None
 
     # Excluded category filters.
-    excludedCategories: list[str] | None = None  # deprecated
+    excludedCategories: list[str] | None = None
 
     # Configuration to synthesize the delays in tracing.
-    syntheticDelays: list[str] | None = None  # experimental deprecated
+    syntheticDelays: list[str] | None = None  # experimental
 
     # Configuration for memory dump triggers. Used only when "memory-infra"category is enabled.
-    memoryDumpConfig: Tracing.MemoryDumpConfig | None = None  # experimental deprecated
+    memoryDumpConfig: Tracing.MemoryDumpConfig | None = None  # experimental
 
 
 class TracingStreamFormat(enum.StrEnum):
@@ -7323,13 +7323,13 @@ class FetchRequestStage(enum.StrEnum):
 class FetchRequestPattern(CDPObject):
 
     # Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed.Escape character is backslash. Omitting is equivalent to `"*"`.
-    urlPattern: str | None = None  # deprecated
+    urlPattern: str | None = None
 
     # If set, only requests for matching resource types will be intercepted.
-    resourceType: Network.ResourceType | None = None  # deprecated
+    resourceType: Network.ResourceType | None = None
 
     # Stage at which to begin intercepting requests. Default is Request.
-    requestStage: Fetch.RequestStage | None = None  # deprecated
+    requestStage: Fetch.RequestStage | None = None
 
 
 class FetchHeaderEntry(CDPObject):
@@ -7344,29 +7344,29 @@ class FetchAuthChallenge(CDPObject):
     """ Authorization challenge for HTTP status code 401 or 407. """
 
     # Source of the authentication challenge.
-    source: Literal['Server', 'Proxy'] | None = None  # deprecated
+    source: Literal['Server', 'Proxy'] | None = None
 
     # Origin of the challenger.
-    origin: str  # deprecated
+    origin: str
 
     # The authentication scheme used, such as basic or digest
-    scheme: str  # deprecated
+    scheme: str
 
     # The realm of the challenge. May be empty.
-    realm: str  # deprecated
+    realm: str
 
 
 class FetchAuthChallengeResponse(CDPObject):
     """ Response to an AuthChallenge. """
 
     # The decision on what to do in response to the authorization challenge.Default means deferring to the default behavior of the net stack, which willlikely either the Cancel authentication or display a popup dialog box.
-    response: Literal['Default', 'CancelAuth', 'ProvideCredentials']  # deprecated
+    response: Literal['Default', 'CancelAuth', 'ProvideCredentials']
 
     # The username to provide, possibly empty. Should only be set if response isProvideCredentials.
-    username: str | None = None  # deprecated
+    username: str | None = None
 
     # The password to provide, possibly empty. Should only be set if response isProvideCredentials.
-    password: str | None = None  # deprecated
+    password: str | None = None
 
 
 """ An unique ID for a graph object (AudioContext, AudioNode, AudioParam) in Web Audio API """
@@ -7426,16 +7426,16 @@ class WebAudioContextRealtimeData(CDPObject):
     """ Fields in AudioContext that change in real-time. """
 
     # The current context time in second in BaseAudioContext.
-    currentTime: float  # deprecated
+    currentTime: float
 
     # The time spent on rendering graph divided by render quantum duration, andmultiplied by 100. 100 means the audio renderer reached the full capacity andglitch may occur.
-    renderCapacity: float  # deprecated
+    renderCapacity: float
 
     # A running mean of callback interval.
-    callbackIntervalMean: float  # deprecated
+    callbackIntervalMean: float
 
     # A running variance of callback interval.
-    callbackIntervalVariance: float  # deprecated
+    callbackIntervalVariance: float
 
 
 class WebAudioBaseAudioContext(CDPObject):
@@ -7450,13 +7450,13 @@ class WebAudioBaseAudioContext(CDPObject):
     realtimeData: WebAudio.ContextRealtimeData | None = None
 
     # Platform-dependent callback buffer size.
-    callbackBufferSize: float  # deprecated
+    callbackBufferSize: float
 
     # Number of output channels supported by audio hardware in use.
-    maxOutputChannelCount: float  # deprecated
+    maxOutputChannelCount: float
 
     # Context sample rate.
-    sampleRate: float  # deprecated
+    sampleRate: float
 
 
 class WebAudioAudioListener(CDPObject):
@@ -7536,39 +7536,39 @@ class WebAuthnVirtualAuthenticatorOptions(CDPObject):
     protocol: WebAuthn.AuthenticatorProtocol
 
     # Defaults to ctap2_0. Ignored if |protocol| == u2f.
-    ctap2Version: WebAuthn.Ctap2Version | None = None  # deprecated
+    ctap2Version: WebAuthn.Ctap2Version | None = None
 
     transport: WebAuthn.AuthenticatorTransport
 
     # Defaults to false.
-    hasResidentKey: bool | None = None  # deprecated
+    hasResidentKey: bool | None = None
 
     # Defaults to false.
-    hasUserVerification: bool | None = None  # deprecated
+    hasUserVerification: bool | None = None
 
     # If set to true, the authenticator will support the largeBlob extension.https://w3c.github.io/webauthn#largeBlob Defaults to false.
-    hasLargeBlob: bool | None = None  # deprecated
+    hasLargeBlob: bool | None = None
 
     # If set to true, the authenticator will support the credBlob extension.https://fidoalliance.org/specs/fido-v2.1-rd-20201208/fido-client-to-authenticator-protocol-v2.1-rd-20201208.html#sctn-credBlob-extension Defaults tofalse.
-    hasCredBlob: bool | None = None  # deprecated
+    hasCredBlob: bool | None = None
 
     # If set to true, the authenticator will support the minPinLength extension.https://fidoalliance.org/specs/fido-v2.1-ps-20210615/fido-client-to-authenticator-protocol-v2.1-ps-20210615.html#sctn-minpinlength-extensionDefaults to false.
-    hasMinPinLength: bool | None = None  # deprecated
+    hasMinPinLength: bool | None = None
 
     # If set to true, the authenticator will support the prf extension.https://w3c.github.io/webauthn/#prf-extension Defaults to false.
-    hasPrf: bool | None = None  # deprecated
+    hasPrf: bool | None = None
 
     # If set to true, tests of user presence will succeed immediately.Otherwise, they will not be resolved. Defaults to true.
-    automaticPresenceSimulation: bool | None = None  # deprecated
+    automaticPresenceSimulation: bool | None = None
 
     # Sets whether User Verification succeeds or fails for an authenticator.Defaults to false.
-    isUserVerified: bool | None = None  # deprecated
+    isUserVerified: bool | None = None
 
     # Credentials created by this authenticator will have the backup eligibility(BE) flag set to this value. Defaults to false.https://w3c.github.io/webauthn/#sctn-credential-backup
-    defaultBackupEligibility: bool | None = None  # deprecated
+    defaultBackupEligibility: bool | None = None
 
     # Credentials created by this authenticator will have the backup state (BS)flag set to this value. Defaults to false. https://w3c.github.io/webauthn/#sctn-credential-backup
-    defaultBackupState: bool | None = None  # deprecated
+    defaultBackupState: bool | None = None
 
 
 class WebAuthnCredential(CDPObject):
@@ -7578,31 +7578,31 @@ class WebAuthnCredential(CDPObject):
     isResidentCredential: bool
 
     # Relying Party ID the credential is scoped to. Must be set when adding acredential.
-    rpId: str | None = None  # deprecated
+    rpId: str | None = None
 
     # The ECDSA P-256 private key in PKCS#8 format. (Encoded as a base64 stringwhen passed over JSON)
-    privateKey: str  # deprecated
+    privateKey: str
 
     # An opaque byte sequence with a maximum size of 64 bytes mapping thecredential to a specific user. (Encoded as a base64 string when passed overJSON)
-    userHandle: str | None = None  # deprecated
+    userHandle: str | None = None
 
     # Signature counter. This is incremented by one for each successfulassertion. See https://w3c.github.io/webauthn/#signature-counter
-    signCount: int  # deprecated
+    signCount: int
 
     # The large blob associated with the credential. Seehttps://w3c.github.io/webauthn/#sctn-large-blob-extension (Encoded as a base64string when passed over JSON)
-    largeBlob: str | None = None  # deprecated
+    largeBlob: str | None = None
 
     # Assertions returned by this credential will have the backup eligibility(BE) flag set to this value. Defaults to the authenticator'sdefaultBackupEligibility value.
-    backupEligibility: bool | None = None  # deprecated
+    backupEligibility: bool | None = None
 
     # Assertions returned by this credential will have the backup state (BS)flag set to this value. Defaults to the authenticator's defaultBackupStatevalue.
-    backupState: bool | None = None  # deprecated
+    backupState: bool | None = None
 
     # The credential's user.name property. Equivalent to empty if not set.https://w3c.github.io/webauthn/#dom-publickeycredentialentity-name
-    userName: str | None = None  # deprecated
+    userName: str | None = None
 
     # The credential's user.displayName property. Equivalent to empty if notset. https://w3c.github.io/webauthn/#dom-publickeycredentialuserentity-displayname
-    userDisplayName: str | None = None  # deprecated
+    userDisplayName: str | None = None
 
 
 """ Players will get an ID that is unique within the agent context. """
@@ -7617,7 +7617,7 @@ class MediaPlayerMessage(CDPObject):
     Corresponds to kMessage """
 
     # Keep in sync with MediaLogMessageLevel We are currently keeping themessage level 'error' separate from the PlayerError type because right now theyrepresent different things, this one being a DVLOG(ERROR) style log message thatgets printed based on what log level is selected in the UI, and the other is arepresentation of a media::PipelineStatus object. Soon however we're going to bemoving away from using PipelineStatus for errors and introducing a new errortype which should hopefully let us integrate the error log level into thePlayerError type.
-    level: Literal['error', 'warning', 'info', 'debug']  # deprecated
+    level: Literal['error', 'warning', 'info', 'debug']
 
     message: str
 
@@ -7653,16 +7653,16 @@ class MediaPlayerError(CDPObject):
     errorType: str
 
     # Code is the numeric enum entry for a specific set of error codes, such asPipelineStatusCodes in media/base/pipeline_status.h
-    code: int  # deprecated
+    code: int
 
     # A trace of where this error was caused / where it passed through.
-    stack: list[Media.PlayerErrorSourceLocation]  # deprecated
+    stack: list[Media.PlayerErrorSourceLocation]
 
     # Errors potentially have a root cause error, ie, a DecoderError might becaused by an WindowsError
-    cause: list[Media.PlayerError]  # deprecated
+    cause: list[Media.PlayerError]
 
     # Extra data attached to an error, such as an HRESULT, Video Codec, etc.
-    data: JSON_DICT  # deprecated
+    data: JSON_DICT
 
 
 """ Device request id. """
@@ -7679,7 +7679,7 @@ class DeviceAccessPromptDevice(CDPObject):
     id: DeviceAccess.DeviceId
 
     # Display name as it appears in a device request user prompt.
-    name: str  # deprecated
+    name: str
 
 
 """ Unique id """
@@ -7693,20 +7693,20 @@ class PreloadRuleSet(CDPObject):
     id: Preload.RuleSetId
 
     # Identifies a document which the rule set is associated with.
-    loaderId: Network.LoaderId  # deprecated
+    loaderId: Network.LoaderId
 
     # Source text of JSON representing the rule set. If it comes from `<script>`tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md
-    sourceText: str  # deprecated
+    sourceText: str
 
     # A speculation rule set is either added through an inline `<script>` tag orthrough an external resource via the 'Speculation-Rules' HTTP header. For thefirst case, we include the BackendNodeId of the relevant `<script>` tag. For thesecond case, we include the external URL where the rule set was loaded from, andalso RequestId if Network domain is enabled.  See also: -https://wicg.github.io/nav-speculation/speculation-rules.html#speculation-rules-script - https://wicg.github.io/nav-speculation/speculation-rules.html#speculation-rules-header
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
+    backendNodeId: DOM.BackendNodeId | None = None
 
     url: str | None = None
 
     requestId: Network.RequestId | None = None
 
     # Error information `errorMessage` is null iff `errorType` is null.
-    errorType: Preload.RuleSetErrorType | None = None  # deprecated
+    errorType: Preload.RuleSetErrorType | None = None
 
     # TODO(https://crbug.com/1425354): Replace this property with structurederror.
     errorMessage: str | None = None  # deprecated
@@ -7969,7 +7969,7 @@ class FedCmAccount(CDPObject):
     loginState: FedCm.LoginState
 
     # These two are only set if the loginState is signUp
-    termsOfServiceUrl: str | None = None  # deprecated
+    termsOfServiceUrl: str | None = None
 
     privacyPolicyUrl: str | None = None
 
@@ -7979,7 +7979,7 @@ class PWAFileHandlerAccept(CDPObject):
     https://crsrc.org/c/chrome/browser/web_applications/proto/web_app_os_integration_state.proto;drc=9910d3be894c8f142c977ba1023f30a656bc13fc;l=67 """
 
     # New name of the mimetype according tohttps://www.iana.org/assignments/media-types/media-types.xhtml
-    mediaType: str  # deprecated
+    mediaType: str
 
     fileExtensions: list[str]
 
@@ -8043,10 +8043,10 @@ class BluetoothEmulationManufacturerData(CDPObject):
     """ Stores the manufacturer data """
 
     # Company identifier https://bitbucket.org/bluetooth-SIG/public/src/main/assigned_numbers/company_identifiers/company_identifiers.yamlhttps://usb.org/developers
-    key: int  # deprecated
+    key: int
 
     # Manufacturer-specific data (Encoded as a base64 string when passed overJSON)
-    data: str  # deprecated
+    data: str
 
 
 class BluetoothEmulationScanRecord(CDPObject):
@@ -8057,13 +8057,13 @@ class BluetoothEmulationScanRecord(CDPObject):
     uuids: list[str] | None = None
 
     # Stores the external appearance description of the device.
-    appearance: int | None = None  # deprecated
+    appearance: int | None = None
 
     # Stores the transmission power of a broadcasting device.
-    txPower: int | None = None  # deprecated
+    txPower: int | None = None
 
     # Key is the company identifier and the value is an array of bytes ofmanufacturer specific data.
-    manufacturerData: list[BluetoothEmulation.ManufacturerData] | None = None  # deprecated
+    manufacturerData: list[BluetoothEmulation.ManufacturerData] | None = None
 
 
 class BluetoothEmulationScanEntry(CDPObject):
@@ -8101,22 +8101,22 @@ class ConsoleConsoleMessage(CDPObject):
     """ Console message. """
 
     # Message source.
-    source: Literal['xml', 'javascript', 'network', 'console-api', 'storage', 'appcache', 'rendering', 'security', 'other', 'deprecation', 'worker']  # deprecated
+    source: Literal['xml', 'javascript', 'network', 'console-api', 'storage', 'appcache', 'rendering', 'security', 'other', 'deprecation', 'worker']
 
     # Message severity.
-    level: Literal['log', 'warning', 'error', 'debug', 'info']  # deprecated
+    level: Literal['log', 'warning', 'error', 'debug', 'info']
 
     # Message text.
-    text: str  # deprecated
+    text: str
 
     # URL of the message origin.
-    url: str | None = None  # deprecated
+    url: str | None = None
 
     # Line number in the resource that generated this message (1-based).
-    line: int | None = None  # deprecated
+    line: int | None = None
 
     # Column number in the resource that generated this message (1-based).
-    column: int | None = None  # deprecated
+    column: int | None = None
 
 
 """ Breakpoint identifier. """
@@ -8131,13 +8131,13 @@ class DebuggerLocation(CDPObject):
     """ Location in the source code. """
 
     # Script identifier as reported in the `Debugger.scriptParsed`.
-    scriptId: Runtime.ScriptId  # deprecated
+    scriptId: Runtime.ScriptId
 
     # Line number in the script (0-based).
-    lineNumber: int  # deprecated
+    lineNumber: int
 
     # Column number in the script (0-based).
-    columnNumber: int | None = None  # deprecated
+    columnNumber: int | None = None
 
 
 class DebuggerScriptPosition(CDPObject):
@@ -8162,71 +8162,71 @@ class DebuggerCallFrame(CDPObject):
     """ JavaScript call frame. Array of call frames form the call stack. """
 
     # Call frame identifier. This identifier is only valid while the virtualmachine is paused.
-    callFrameId: Debugger.CallFrameId  # deprecated
+    callFrameId: Debugger.CallFrameId
 
     # Name of the JavaScript function called on this call frame.
-    functionName: str  # deprecated
+    functionName: str
 
     # Location in the source code.
-    functionLocation: Debugger.Location | None = None  # deprecated
+    functionLocation: Debugger.Location | None = None
 
     # Location in the source code.
-    location: Debugger.Location  # deprecated
+    location: Debugger.Location
 
     # JavaScript script name or url. Deprecated in favor of using the`location.scriptId` to resolve the URL via a previously sent`Debugger.scriptParsed` event.
     url: str  # deprecated
 
     # Scope chain for this call frame.
-    scopeChain: list[Debugger.Scope]  # deprecated
+    scopeChain: list[Debugger.Scope]
 
     # `this` object for this call frame.
-    this: Runtime.RemoteObject  # deprecated
+    this: Runtime.RemoteObject
 
     # The value being returned, if the function is at return point.
-    returnValue: Runtime.RemoteObject | None = None  # deprecated
+    returnValue: Runtime.RemoteObject | None = None
 
     # Valid only while the VM is paused and indicates whether this frame can berestarted or not. Note that a `true` value here does not guarantee thatDebugger#restartFrame with this CallFrameId will be successful, but it is verylikely.
-    canBeRestarted: bool | None = None  # experimental deprecated
+    canBeRestarted: bool | None = None  # experimental
 
 
 class DebuggerScope(CDPObject):
     """ Scope description. """
 
     # Scope type.
-    type: Literal['global', 'local', 'with', 'closure', 'catch', 'block', 'script', 'eval', 'module', 'wasm-expression-stack']  # deprecated
+    type: Literal['global', 'local', 'with', 'closure', 'catch', 'block', 'script', 'eval', 'module', 'wasm-expression-stack']
 
     # Object representing the scope. For `global` and `with` scopes itrepresents the actual object; for the rest of the scopes, it is artificialtransient object enumerating scope variables as its properties.
-    object: Runtime.RemoteObject  # deprecated
+    object: Runtime.RemoteObject
 
     name: str | None = None
 
     # Location in the source code where scope starts
-    startLocation: Debugger.Location | None = None  # deprecated
+    startLocation: Debugger.Location | None = None
 
     # Location in the source code where scope ends
-    endLocation: Debugger.Location | None = None  # deprecated
+    endLocation: Debugger.Location | None = None
 
 
 class DebuggerSearchMatch(CDPObject):
     """ Search match for resource. """
 
     # Line number in resource content.
-    lineNumber: float  # deprecated
+    lineNumber: float
 
     # Line with match content.
-    lineContent: str  # deprecated
+    lineContent: str
 
 
 class DebuggerBreakLocation(CDPObject):
 
     # Script identifier as reported in the `Debugger.scriptParsed`.
-    scriptId: Runtime.ScriptId  # deprecated
+    scriptId: Runtime.ScriptId
 
     # Line number in the script (0-based).
-    lineNumber: int  # deprecated
+    lineNumber: int
 
     # Column number in the script (0-based).
-    columnNumber: int | None = None  # deprecated
+    columnNumber: int | None = None
 
     type: Literal['debuggerStatement', 'call', 'return'] | None = None
 
@@ -8234,10 +8234,10 @@ class DebuggerBreakLocation(CDPObject):
 class DebuggerWasmDisassemblyChunk(CDPObject):
 
     # The next chunk of disassembled lines.
-    lines: list[str]  # deprecated
+    lines: list[str]
 
     # The bytecode offsets describing the start of each line.
-    bytecodeOffsets: list[int]  # deprecated
+    bytecodeOffsets: list[int]
 
 
 class DebuggerScriptLanguage(enum.StrEnum):
@@ -8251,19 +8251,19 @@ class DebuggerDebugSymbols(CDPObject):
     """ Debug symbols available for a wasm script. """
 
     # Type of the debug symbols.
-    type: Literal['SourceMap', 'EmbeddedDWARF', 'ExternalDWARF']  # deprecated
+    type: Literal['SourceMap', 'EmbeddedDWARF', 'ExternalDWARF']
 
     # URL of the external symbol source.
-    externalURL: str | None = None  # deprecated
+    externalURL: str | None = None
 
 
 class DebuggerResolvedBreakpoint(CDPObject):
 
     # Breakpoint unique identifier.
-    breakpointId: Debugger.BreakpointId  # deprecated
+    breakpointId: Debugger.BreakpointId
 
     # Actual breakpoint location.
-    location: Debugger.Location  # deprecated
+    location: Debugger.Location
 
 
 """ Heap snapshot object id. """
@@ -8275,29 +8275,29 @@ class HeapProfilerSamplingHeapProfileNode(CDPObject):
     """ Sampling Heap Profile node. Holds callsite information, allocation statistics and child nodes. """
 
     # Function location.
-    callFrame: Runtime.CallFrame  # deprecated
+    callFrame: Runtime.CallFrame
 
     # Allocations size in bytes for the node excluding children.
-    selfSize: float  # deprecated
+    selfSize: float
 
     # Node id. Ids are unique across all profiles collected betweenstartSampling and stopSampling.
-    id: int  # deprecated
+    id: int
 
     # Child nodes.
-    children: list[HeapProfiler.SamplingHeapProfileNode]  # deprecated
+    children: list[HeapProfiler.SamplingHeapProfileNode]
 
 
 class HeapProfilerSamplingHeapProfileSample(CDPObject):
     """ A single sample from a sampling profile. """
 
     # Allocation size in bytes attributed to the sample.
-    size: float  # deprecated
+    size: float
 
     # Id of the corresponding profile tree node.
-    nodeId: int  # deprecated
+    nodeId: int
 
     # Time-ordered sample ordinal number. It is unique across all profilesretrieved between startSampling and stopSampling.
-    ordinal: float  # deprecated
+    ordinal: float
 
 
 class HeapProfilerSamplingHeapProfile(CDPObject):
@@ -8312,90 +8312,90 @@ class ProfilerProfileNode(CDPObject):
     """ Profile node. Holds callsite information, execution statistics and child nodes. """
 
     # Unique id of the node.
-    id: int  # deprecated
+    id: int
 
     # Function location.
-    callFrame: Runtime.CallFrame  # deprecated
+    callFrame: Runtime.CallFrame
 
     # Number of samples where this node was on top of the call stack.
-    hitCount: int | None = None  # deprecated
+    hitCount: int | None = None
 
     # Child node ids.
-    children: list[int] | None = None  # deprecated
+    children: list[int] | None = None
 
     # The reason of being not optimized. The function may be deoptimized ormarked as don't optimize.
-    deoptReason: str | None = None  # deprecated
+    deoptReason: str | None = None
 
     # An array of source position ticks.
-    positionTicks: list[Profiler.PositionTickInfo] | None = None  # deprecated
+    positionTicks: list[Profiler.PositionTickInfo] | None = None
 
 
 class ProfilerProfile(CDPObject):
     """ Profile. """
 
     # The list of profile nodes. First item is the root node.
-    nodes: list[Profiler.ProfileNode]  # deprecated
+    nodes: list[Profiler.ProfileNode]
 
     # Profiling start timestamp in microseconds.
-    startTime: float  # deprecated
+    startTime: float
 
     # Profiling end timestamp in microseconds.
-    endTime: float  # deprecated
+    endTime: float
 
     # Ids of samples top nodes.
-    samples: list[int] | None = None  # deprecated
+    samples: list[int] | None = None
 
     # Time intervals between adjacent samples in microseconds. The first deltais relative to the profile startTime.
-    timeDeltas: list[int] | None = None  # deprecated
+    timeDeltas: list[int] | None = None
 
 
 class ProfilerPositionTickInfo(CDPObject):
     """ Specifies a number of samples attributed to a certain source position. """
 
     # Source line number (1-based).
-    line: int  # deprecated
+    line: int
 
     # Number of samples attributed to the source line.
-    ticks: int  # deprecated
+    ticks: int
 
 
 class ProfilerCoverageRange(CDPObject):
     """ Coverage data for a source range. """
 
     # JavaScript script source offset for the range start.
-    startOffset: int  # deprecated
+    startOffset: int
 
     # JavaScript script source offset for the range end.
-    endOffset: int  # deprecated
+    endOffset: int
 
     # Collected execution count of the source range.
-    count: int  # deprecated
+    count: int
 
 
 class ProfilerFunctionCoverage(CDPObject):
     """ Coverage data for a JavaScript function. """
 
     # JavaScript function name.
-    functionName: str  # deprecated
+    functionName: str
 
     # Source ranges inside the function with coverage data.
-    ranges: list[Profiler.CoverageRange]  # deprecated
+    ranges: list[Profiler.CoverageRange]
 
     # Whether coverage data for this function has block granularity.
-    isBlockCoverage: bool  # deprecated
+    isBlockCoverage: bool
 
 
 class ProfilerScriptCoverage(CDPObject):
     """ Coverage data for a JavaScript script. """
 
     # JavaScript script id.
-    scriptId: Runtime.ScriptId  # deprecated
+    scriptId: Runtime.ScriptId
 
     # JavaScript script name or url.
-    url: str  # deprecated
+    url: str
 
     # Functions contained in the script that has coverage data.
-    functions: list[Profiler.FunctionCoverage]  # deprecated
+    functions: list[Profiler.FunctionCoverage]
 
 
 """ Unique script identifier. """
@@ -8409,10 +8409,10 @@ class RuntimeSerializationOptions(CDPObject):
     serialization: Literal['deep', 'json', 'idOnly']
 
     # Deep serialization depth. Default is full depth. Respected only in `deep`serialization mode.
-    maxDepth: int | None = None  # deprecated
+    maxDepth: int | None = None
 
     # Embedder-specific parameters. For example if connected to V8 in Chromethese control DOM serialization via `maxNodeDepth: integer` and`includeShadowTree: "none" | "open" | "all"`. Values can be only of type stringor integer.
-    additionalParameters: JSON_DICT | None = None  # deprecated
+    additionalParameters: JSON_DICT | None = None
 
 
 class RuntimeDeepSerializedValue(CDPObject):
@@ -8425,7 +8425,7 @@ class RuntimeDeepSerializedValue(CDPObject):
     objectId: str | None = None
 
     # Set if value reference met more then once during serialization. In suchcase, value is provided only to one of the serialized values. Unique per valuein the scope of one CDP call.
-    weakLocalObjectReference: int | None = None  # deprecated
+    weakLocalObjectReference: int | None = None
 
 
 """ Unique object identifier. """
@@ -8441,31 +8441,31 @@ class RuntimeRemoteObject(CDPObject):
     """ Mirror object referencing original JavaScript object. """
 
     # Object type.
-    type: Literal['object', 'function', 'undefined', 'string', 'number', 'boolean', 'symbol', 'bigint']  # deprecated
+    type: Literal['object', 'function', 'undefined', 'string', 'number', 'boolean', 'symbol', 'bigint']
 
     # Object subtype hint. Specified for `object` type values only. NOTE: If youchange anything here, make sure to also update `subtype` in `ObjectPreview` and`PropertyPreview` below.
-    subtype: Literal['array', 'null', 'node', 'regexp', 'date', 'map', 'set', 'weakmap', 'weakset', 'iterator', 'generator', 'error', 'proxy', 'promise', 'typedarray', 'arraybuffer', 'dataview', 'webassemblymemory', 'wasmvalue'] | None = None  # deprecated
+    subtype: Literal['array', 'null', 'node', 'regexp', 'date', 'map', 'set', 'weakmap', 'weakset', 'iterator', 'generator', 'error', 'proxy', 'promise', 'typedarray', 'arraybuffer', 'dataview', 'webassemblymemory', 'wasmvalue'] | None = None
 
     # Object class (constructor) name. Specified for `object` type values only.
-    className: str | None = None  # deprecated
+    className: str | None = None
 
     # Remote object value in case of primitive values or JSON values (if it wasrequested).
-    value: Any = None  # deprecated
+    value: Any = None
 
     # Primitive value which can not be JSON-stringified does not have `value`,but gets this property.
-    unserializableValue: Runtime.UnserializableValue | None = None  # deprecated
+    unserializableValue: Runtime.UnserializableValue | None = None
 
     # String representation of the object.
-    description: str | None = None  # deprecated
+    description: str | None = None
 
     # Deep serialized value.
-    deepSerializedValue: Runtime.DeepSerializedValue | None = None  # experimental deprecated
+    deepSerializedValue: Runtime.DeepSerializedValue | None = None  # experimental
 
     # Unique object identifier (for non-primitive values).
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
+    objectId: Runtime.RemoteObjectId | None = None
 
     # Preview containing abbreviated property values. Specified for `object`type values only.
-    preview: Runtime.ObjectPreview | None = None  # experimental deprecated
+    preview: Runtime.ObjectPreview | None = None  # experimental
 
     customPreview: Runtime.CustomPreview | None = None  # experimental
 
@@ -8473,119 +8473,119 @@ class RuntimeRemoteObject(CDPObject):
 class RuntimeCustomPreview(CDPObject):
 
     # The JSON-stringified result of formatter.header(object, config) call. Itcontains json ML array that represents RemoteObject.
-    header: str  # deprecated
+    header: str
 
     # If formatter returns true as a result of formatter.hasBody call thenbodyGetterId will contain RemoteObjectId for the function that returns result offormatter.body(object, config) call. The result value is json ML array.
-    bodyGetterId: Runtime.RemoteObjectId | None = None  # deprecated
+    bodyGetterId: Runtime.RemoteObjectId | None = None
 
 
 class RuntimeObjectPreview(CDPObject):
     """ Object containing abbreviated remote object value. """
 
     # Object type.
-    type: Literal['object', 'function', 'undefined', 'string', 'number', 'boolean', 'symbol', 'bigint']  # deprecated
+    type: Literal['object', 'function', 'undefined', 'string', 'number', 'boolean', 'symbol', 'bigint']
 
     # Object subtype hint. Specified for `object` type values only.
-    subtype: Literal['array', 'null', 'node', 'regexp', 'date', 'map', 'set', 'weakmap', 'weakset', 'iterator', 'generator', 'error', 'proxy', 'promise', 'typedarray', 'arraybuffer', 'dataview', 'webassemblymemory', 'wasmvalue'] | None = None  # deprecated
+    subtype: Literal['array', 'null', 'node', 'regexp', 'date', 'map', 'set', 'weakmap', 'weakset', 'iterator', 'generator', 'error', 'proxy', 'promise', 'typedarray', 'arraybuffer', 'dataview', 'webassemblymemory', 'wasmvalue'] | None = None
 
     # String representation of the object.
-    description: str | None = None  # deprecated
+    description: str | None = None
 
     # True iff some of the properties or entries of the original object did notfit.
-    overflow: bool  # deprecated
+    overflow: bool
 
     # List of the properties.
-    properties: list[Runtime.PropertyPreview]  # deprecated
+    properties: list[Runtime.PropertyPreview]
 
     # List of the entries. Specified for `map` and `set` subtype values only.
-    entries: list[Runtime.EntryPreview] | None = None  # deprecated
+    entries: list[Runtime.EntryPreview] | None = None
 
 
 class RuntimePropertyPreview(CDPObject):
 
     # Property name.
-    name: str  # deprecated
+    name: str
 
     # Object type. Accessor means that the property itself is an accessorproperty.
-    type: Literal['object', 'function', 'undefined', 'string', 'number', 'boolean', 'symbol', 'accessor', 'bigint']  # deprecated
+    type: Literal['object', 'function', 'undefined', 'string', 'number', 'boolean', 'symbol', 'accessor', 'bigint']
 
     # User-friendly property value string.
-    value: str | None = None  # deprecated
+    value: str | None = None
 
     # Nested value preview.
-    valuePreview: Runtime.ObjectPreview | None = None  # deprecated
+    valuePreview: Runtime.ObjectPreview | None = None
 
     # Object subtype hint. Specified for `object` type values only.
-    subtype: Literal['array', 'null', 'node', 'regexp', 'date', 'map', 'set', 'weakmap', 'weakset', 'iterator', 'generator', 'error', 'proxy', 'promise', 'typedarray', 'arraybuffer', 'dataview', 'webassemblymemory', 'wasmvalue'] | None = None  # deprecated
+    subtype: Literal['array', 'null', 'node', 'regexp', 'date', 'map', 'set', 'weakmap', 'weakset', 'iterator', 'generator', 'error', 'proxy', 'promise', 'typedarray', 'arraybuffer', 'dataview', 'webassemblymemory', 'wasmvalue'] | None = None
 
 
 class RuntimeEntryPreview(CDPObject):
 
     # Preview of the key. Specified for map-like collection entries.
-    key: Runtime.ObjectPreview | None = None  # deprecated
+    key: Runtime.ObjectPreview | None = None
 
     # Preview of the value.
-    value: Runtime.ObjectPreview  # deprecated
+    value: Runtime.ObjectPreview
 
 
 class RuntimePropertyDescriptor(CDPObject):
     """ Object property descriptor. """
 
     # Property name or symbol description.
-    name: str  # deprecated
+    name: str
 
     # The value associated with the property.
-    value: Runtime.RemoteObject | None = None  # deprecated
+    value: Runtime.RemoteObject | None = None
 
     # True if the value associated with the property may be changed (datadescriptors only).
-    writable: bool | None = None  # deprecated
+    writable: bool | None = None
 
     # A function which serves as a getter for the property, or `undefined` ifthere is no getter (accessor descriptors only).
-    get: Runtime.RemoteObject | None = None  # deprecated
+    get: Runtime.RemoteObject | None = None
 
     # A function which serves as a setter for the property, or `undefined` ifthere is no setter (accessor descriptors only).
-    set: Runtime.RemoteObject | None = None  # deprecated
+    set: Runtime.RemoteObject | None = None
 
     # True if the type of this property descriptor may be changed and if theproperty may be deleted from the corresponding object.
-    configurable: bool  # deprecated
+    configurable: bool
 
     # True if this property shows up during enumeration of the properties on thecorresponding object.
-    enumerable: bool  # deprecated
+    enumerable: bool
 
     # True if the result was thrown during the evaluation.
-    wasThrown: bool | None = None  # deprecated
+    wasThrown: bool | None = None
 
     # True if the property is owned for the object.
-    isOwn: bool | None = None  # deprecated
+    isOwn: bool | None = None
 
     # Property symbol object, if the property is of the `symbol` type.
-    symbol: Runtime.RemoteObject | None = None  # deprecated
+    symbol: Runtime.RemoteObject | None = None
 
 
 class RuntimeInternalPropertyDescriptor(CDPObject):
     """ Object internal property descriptor. This property isn't normally visible in JavaScript code. """
 
     # Conventional property name.
-    name: str  # deprecated
+    name: str
 
     # The value associated with the property.
-    value: Runtime.RemoteObject | None = None  # deprecated
+    value: Runtime.RemoteObject | None = None
 
 
 class RuntimePrivatePropertyDescriptor(CDPObject):
     """ Object private field descriptor. """
 
     # Private property name.
-    name: str  # deprecated
+    name: str
 
     # The value associated with the private property.
-    value: Runtime.RemoteObject | None = None  # deprecated
+    value: Runtime.RemoteObject | None = None
 
     # A function which serves as a getter for the private property, or`undefined` if there is no getter (accessor descriptors only).
-    get: Runtime.RemoteObject | None = None  # deprecated
+    get: Runtime.RemoteObject | None = None
 
     # A function which serves as a setter for the private property, or`undefined` if there is no setter (accessor descriptors only).
-    set: Runtime.RemoteObject | None = None  # deprecated
+    set: Runtime.RemoteObject | None = None
 
 
 class RuntimeCallArgument(CDPObject):
@@ -8593,13 +8593,13 @@ class RuntimeCallArgument(CDPObject):
     unserializable primitive value or neither of (for undefined) them should be specified. """
 
     # Primitive value or serializable javascript object.
-    value: Any = None  # deprecated
+    value: Any = None
 
     # Primitive value which can not be JSON-stringified.
-    unserializableValue: Runtime.UnserializableValue | None = None  # deprecated
+    unserializableValue: Runtime.UnserializableValue | None = None
 
     # Remote object handle.
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
+    objectId: Runtime.RemoteObjectId | None = None
 
 
 """ Id of an execution context. """
@@ -8611,19 +8611,19 @@ class RuntimeExecutionContextDescription(CDPObject):
     """ Description of an isolated world. """
 
     # Unique id of the execution context. It can be used to specify in whichexecution context script evaluation should be performed.
-    id: Runtime.ExecutionContextId  # deprecated
+    id: Runtime.ExecutionContextId
 
     # Execution context origin.
-    origin: str  # deprecated
+    origin: str
 
     # Human readable name describing given context.
-    name: str  # deprecated
+    name: str
 
     # A system-unique execution context identifier. Unlike the id, this isunique across multiple processes, so can be reliably used to identify specificcontext while backend performs a cross-process navigation.
-    uniqueId: str | None = None  # experimental deprecated
+    uniqueId: str | None = None  # experimental
 
     # Embedder-specific auxiliary data likely matching {isDefault: boolean,type: 'default'|'isolated'|'worker', frameId: string}
-    auxData: JSON_DICT | None = None  # deprecated
+    auxData: JSON_DICT | None = None
 
 
 class RuntimeExceptionDetails(CDPObject):
@@ -8631,34 +8631,34 @@ class RuntimeExceptionDetails(CDPObject):
     execution. """
 
     # Exception id.
-    exceptionId: int  # deprecated
+    exceptionId: int
 
     # Exception text, which should be used together with exception object whenavailable.
-    text: str  # deprecated
+    text: str
 
     # Line number of the exception location (0-based).
-    lineNumber: int  # deprecated
+    lineNumber: int
 
     # Column number of the exception location (0-based).
-    columnNumber: int  # deprecated
+    columnNumber: int
 
     # Script ID of the exception location.
-    scriptId: Runtime.ScriptId | None = None  # deprecated
+    scriptId: Runtime.ScriptId | None = None
 
     # URL of the exception location, to be used when the script was notreported.
-    url: str | None = None  # deprecated
+    url: str | None = None
 
     # JavaScript stack trace if available.
-    stackTrace: Runtime.StackTrace | None = None  # deprecated
+    stackTrace: Runtime.StackTrace | None = None
 
     # Exception object if available.
-    exception: Runtime.RemoteObject | None = None  # deprecated
+    exception: Runtime.RemoteObject | None = None
 
     # Identifier of the context where exception happened.
-    executionContextId: Runtime.ExecutionContextId | None = None  # deprecated
+    executionContextId: Runtime.ExecutionContextId | None = None
 
     # Dictionary with entries of meta data that the client associated with thisexception, such as information about associated network requests, etc.
-    exceptionMetaData: JSON_DICT | None = None  # experimental deprecated
+    exceptionMetaData: JSON_DICT | None = None  # experimental
 
 
 """ Number of milliseconds since epoch. """
@@ -8673,35 +8673,35 @@ class RuntimeCallFrame(CDPObject):
     """ Stack entry for runtime errors and assertions. """
 
     # JavaScript function name.
-    functionName: str  # deprecated
+    functionName: str
 
     # JavaScript script id.
-    scriptId: Runtime.ScriptId  # deprecated
+    scriptId: Runtime.ScriptId
 
     # JavaScript script name or url.
-    url: str  # deprecated
+    url: str
 
     # JavaScript script line number (0-based).
-    lineNumber: int  # deprecated
+    lineNumber: int
 
     # JavaScript script column number (0-based).
-    columnNumber: int  # deprecated
+    columnNumber: int
 
 
 class RuntimeStackTrace(CDPObject):
     """ Call frames for assertions or error messages. """
 
     # String label of this stack trace. For async traces this may be a name ofthe function that initiated the async call.
-    description: str | None = None  # deprecated
+    description: str | None = None
 
     # JavaScript function name.
-    callFrames: list[Runtime.CallFrame]  # deprecated
+    callFrames: list[Runtime.CallFrame]
 
     # Asynchronous JavaScript stack trace that preceded this stack, ifavailable.
-    parent: Runtime.StackTrace | None = None  # deprecated
+    parent: Runtime.StackTrace | None = None
 
     # Asynchronous JavaScript stack trace that preceded this stack, ifavailable.
-    parentId: Runtime.StackTraceId | None = None  # experimental deprecated
+    parentId: Runtime.StackTraceId | None = None  # experimental
 
 
 """ Unique identifier of current debugger. """
@@ -8722,10 +8722,10 @@ class SchemaDomain(CDPObject):
     """ Description of the protocol domain. """
 
     # Domain name.
-    name: str  # deprecated
+    name: str
 
     # Domain version.
-    version: str  # deprecated
+    version: str
 
 
 class Accessibility:

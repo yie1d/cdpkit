@@ -21,20 +21,20 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class GetEncodedResponseInput(InputModel):
 
-    requestId: Network.RequestId  # deprecated
-    encoding: Literal['webp', 'jpeg', 'png']  # deprecated
-    quality: float | None = None  # deprecated
-    sizeOnly: bool | None = None  # deprecated
+    requestId: Network.RequestId
+    encoding: Literal['webp', 'jpeg', 'png']
+    quality: float | None = None
+    sizeOnly: bool | None = None
 
 
 class GetEncodedResponseOutput(OutputModel):
 
-    body: str | None = None  # deprecated
-    originalSize: int  # deprecated
-    encodedSize: int  # deprecated
+    body: str | None = None
+    originalSize: int
+    encodedSize: int
 
 
-class GetEncodedResponse(CDPMethod[GetEncodedResponseOutput]):  # deprecated
+class GetEncodedResponse(CDPMethod[GetEncodedResponseOutput]):
     """ Returns the response body and size if it were re-encoded with the specified settings. Only
     applies to images. """
 
@@ -57,14 +57,14 @@ class GetEncodedResponse(CDPMethod[GetEncodedResponseOutput]):  # deprecated
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables issues domain, prevents further issues from being reported to the client. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables issues domain, sends the issues collected so far to the client by means of the
     `issueAdded` event. """
 
@@ -74,10 +74,10 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class CheckContrastInput(InputModel):
 
-    reportAAA: bool | None = None  # deprecated
+    reportAAA: bool | None = None
 
 
-class CheckContrast(CDPMethod[None]):  # deprecated
+class CheckContrast(CDPMethod[None]):
     """ Runs the contrast check for the target page. Found issues are reported
     using Audits.issueAdded event. """
 
@@ -99,7 +99,7 @@ class CheckFormsIssuesOutput(OutputModel):
     formIssues: list[Audits.GenericIssueDetails]
 
 
-class CheckFormsIssues(CDPMethod[CheckFormsIssuesOutput]):  # deprecated
+class CheckFormsIssues(CDPMethod[CheckFormsIssuesOutput]):
     """ Runs the form issues check for the target page. Found issues are reported
     using Audits.issueAdded event. """
 

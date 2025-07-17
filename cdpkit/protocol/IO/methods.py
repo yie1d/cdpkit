@@ -19,10 +19,10 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class CloseInput(InputModel):
 
-    handle: IO.StreamHandle  # deprecated
+    handle: IO.StreamHandle
 
 
-class Close(CDPMethod[None]):  # deprecated
+class Close(CDPMethod[None]):
     """ Close the stream, discard any temporary backing storage. """
 
     INPUT_VALIDATOR = CloseInput
@@ -40,19 +40,19 @@ class Close(CDPMethod[None]):  # deprecated
 
 class ReadInput(InputModel):
 
-    handle: IO.StreamHandle  # deprecated
-    offset: int | None = None  # deprecated
-    size: int | None = None  # deprecated
+    handle: IO.StreamHandle
+    offset: int | None = None
+    size: int | None = None
 
 
 class ReadOutput(OutputModel):
 
-    base64Encoded: bool | None = None  # deprecated
-    data: str  # deprecated
-    eof: bool  # deprecated
+    base64Encoded: bool | None = None
+    data: str
+    eof: bool
 
 
-class Read(CDPMethod[ReadOutput]):  # deprecated
+class Read(CDPMethod[ReadOutput]):
     """ Read a chunk of the stream """
 
     INPUT_VALIDATOR = ReadInput
@@ -74,15 +74,15 @@ class Read(CDPMethod[ReadOutput]):  # deprecated
 
 class ResolveBlobInput(InputModel):
 
-    objectId: Runtime.RemoteObjectId  # deprecated
+    objectId: Runtime.RemoteObjectId
 
 
 class ResolveBlobOutput(OutputModel):
 
-    uuid: str  # deprecated
+    uuid: str
 
 
-class ResolveBlob(CDPMethod[ResolveBlobOutput]):  # deprecated
+class ResolveBlob(CDPMethod[ResolveBlobOutput]):
     """ Return UUID of Blob object specified by a remote object id. """
 
     INPUT_VALIDATOR = ResolveBlobInput

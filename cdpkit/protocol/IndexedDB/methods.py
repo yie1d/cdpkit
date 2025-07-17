@@ -19,14 +19,14 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class ClearObjectStoreInput(InputModel):
 
-    securityOrigin: str | None = None  # deprecated
-    storageKey: str | None = None  # deprecated
-    storageBucket: Storage.StorageBucket | None = None  # deprecated
-    databaseName: str  # deprecated
-    objectStoreName: str  # deprecated
+    securityOrigin: str | None = None
+    storageKey: str | None = None
+    storageBucket: Storage.StorageBucket | None = None
+    databaseName: str
+    objectStoreName: str
 
 
-class ClearObjectStore(CDPMethod[None]):  # deprecated
+class ClearObjectStore(CDPMethod[None]):
     """ Clears all entries from an object store. """
 
     INPUT_VALIDATOR = ClearObjectStoreInput
@@ -52,13 +52,13 @@ class ClearObjectStore(CDPMethod[None]):  # deprecated
 
 class DeleteDatabaseInput(InputModel):
 
-    securityOrigin: str | None = None  # deprecated
-    storageKey: str | None = None  # deprecated
-    storageBucket: Storage.StorageBucket | None = None  # deprecated
-    databaseName: str  # deprecated
+    securityOrigin: str | None = None
+    storageKey: str | None = None
+    storageBucket: Storage.StorageBucket | None = None
+    databaseName: str
 
 
-class DeleteDatabase(CDPMethod[None]):  # deprecated
+class DeleteDatabase(CDPMethod[None]):
     """ Deletes a database. """
 
     INPUT_VALIDATOR = DeleteDatabaseInput
@@ -82,15 +82,15 @@ class DeleteDatabase(CDPMethod[None]):  # deprecated
 
 class DeleteObjectStoreEntriesInput(InputModel):
 
-    securityOrigin: str | None = None  # deprecated
-    storageKey: str | None = None  # deprecated
-    storageBucket: Storage.StorageBucket | None = None  # deprecated
+    securityOrigin: str | None = None
+    storageKey: str | None = None
+    storageBucket: Storage.StorageBucket | None = None
     databaseName: str
     objectStoreName: str
-    keyRange: IndexedDB.KeyRange  # deprecated
+    keyRange: IndexedDB.KeyRange
 
 
-class DeleteObjectStoreEntries(CDPMethod[None]):  # deprecated
+class DeleteObjectStoreEntries(CDPMethod[None]):
     """ Delete a range of entries from an object store """
 
     INPUT_VALIDATOR = DeleteObjectStoreEntriesInput
@@ -116,14 +116,14 @@ class DeleteObjectStoreEntries(CDPMethod[None]):  # deprecated
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables events from backend. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables events from backend. """
 
     INPUT_VALIDATOR = None
@@ -132,24 +132,24 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class RequestDataInput(InputModel):
 
-    securityOrigin: str | None = None  # deprecated
-    storageKey: str | None = None  # deprecated
-    storageBucket: Storage.StorageBucket | None = None  # deprecated
-    databaseName: str  # deprecated
-    objectStoreName: str  # deprecated
-    indexName: str  # deprecated
-    skipCount: int  # deprecated
-    pageSize: int  # deprecated
-    keyRange: IndexedDB.KeyRange | None = None  # deprecated
+    securityOrigin: str | None = None
+    storageKey: str | None = None
+    storageBucket: Storage.StorageBucket | None = None
+    databaseName: str
+    objectStoreName: str
+    indexName: str
+    skipCount: int
+    pageSize: int
+    keyRange: IndexedDB.KeyRange | None = None
 
 
 class RequestDataOutput(OutputModel):
 
-    objectStoreDataEntries: list[IndexedDB.DataEntry]  # deprecated
-    hasMore: bool  # deprecated
+    objectStoreDataEntries: list[IndexedDB.DataEntry]
+    hasMore: bool
 
 
-class RequestData(CDPMethod[RequestDataOutput]):  # deprecated
+class RequestData(CDPMethod[RequestDataOutput]):
     """ Requests data from object store or index. """
 
     INPUT_VALIDATOR = RequestDataInput
@@ -183,20 +183,20 @@ class RequestData(CDPMethod[RequestDataOutput]):  # deprecated
 
 class GetMetadataInput(InputModel):
 
-    securityOrigin: str | None = None  # deprecated
-    storageKey: str | None = None  # deprecated
-    storageBucket: Storage.StorageBucket | None = None  # deprecated
-    databaseName: str  # deprecated
-    objectStoreName: str  # deprecated
+    securityOrigin: str | None = None
+    storageKey: str | None = None
+    storageBucket: Storage.StorageBucket | None = None
+    databaseName: str
+    objectStoreName: str
 
 
 class GetMetadataOutput(OutputModel):
 
-    entriesCount: float  # deprecated
-    keyGeneratorValue: float  # deprecated
+    entriesCount: float
+    keyGeneratorValue: float
 
 
-class GetMetadata(CDPMethod[GetMetadataOutput]):  # deprecated
+class GetMetadata(CDPMethod[GetMetadataOutput]):
     """ Gets metadata of an object store. """
 
     INPUT_VALIDATOR = GetMetadataInput
@@ -222,18 +222,18 @@ class GetMetadata(CDPMethod[GetMetadataOutput]):  # deprecated
 
 class RequestDatabaseInput(InputModel):
 
-    securityOrigin: str | None = None  # deprecated
-    storageKey: str | None = None  # deprecated
-    storageBucket: Storage.StorageBucket | None = None  # deprecated
-    databaseName: str  # deprecated
+    securityOrigin: str | None = None
+    storageKey: str | None = None
+    storageBucket: Storage.StorageBucket | None = None
+    databaseName: str
 
 
 class RequestDatabaseOutput(OutputModel):
 
-    databaseWithObjectStores: IndexedDB.DatabaseWithObjectStores  # deprecated
+    databaseWithObjectStores: IndexedDB.DatabaseWithObjectStores
 
 
-class RequestDatabase(CDPMethod[RequestDatabaseOutput]):  # deprecated
+class RequestDatabase(CDPMethod[RequestDatabaseOutput]):
     """ Requests database with given name in given frame. """
 
     INPUT_VALIDATOR = RequestDatabaseInput
@@ -257,17 +257,17 @@ class RequestDatabase(CDPMethod[RequestDatabaseOutput]):  # deprecated
 
 class RequestDatabaseNamesInput(InputModel):
 
-    securityOrigin: str | None = None  # deprecated
-    storageKey: str | None = None  # deprecated
-    storageBucket: Storage.StorageBucket | None = None  # deprecated
+    securityOrigin: str | None = None
+    storageKey: str | None = None
+    storageBucket: Storage.StorageBucket | None = None
 
 
 class RequestDatabaseNamesOutput(OutputModel):
 
-    databaseNames: list[str]  # deprecated
+    databaseNames: list[str]
 
 
-class RequestDatabaseNames(CDPMethod[RequestDatabaseNamesOutput]):  # deprecated
+class RequestDatabaseNames(CDPMethod[RequestDatabaseNamesOutput]):
     """ Requests database names for given security origin. """
 
     INPUT_VALIDATOR = RequestDatabaseNamesInput

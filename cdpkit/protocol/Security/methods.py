@@ -16,14 +16,14 @@ from cdpkit.protocol._types import (
 from cdpkit.protocol.base import CDPMethod, InputModel
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables tracking security state changes. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables tracking security state changes. """
 
     INPUT_VALIDATOR = None
@@ -32,10 +32,10 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class SetIgnoreCertificateErrorsInput(InputModel):
 
-    ignore: bool  # deprecated
+    ignore: bool
 
 
-class SetIgnoreCertificateErrors(CDPMethod[None]):  # deprecated
+class SetIgnoreCertificateErrors(CDPMethod[None]):
     """ Enable/disable whether all certificate errors should be ignored. """
 
     INPUT_VALIDATOR = SetIgnoreCertificateErrorsInput
@@ -53,8 +53,8 @@ class SetIgnoreCertificateErrors(CDPMethod[None]):  # deprecated
 
 class HandleCertificateErrorInput(InputModel):
 
-    eventId: int  # deprecated
-    action: Security.CertificateErrorAction  # deprecated
+    eventId: int
+    action: Security.CertificateErrorAction
 
 
 class HandleCertificateError(CDPMethod[None]):  # deprecated
@@ -77,7 +77,7 @@ class HandleCertificateError(CDPMethod[None]):  # deprecated
 
 class SetOverrideCertificateErrorsInput(InputModel):
 
-    override: bool  # deprecated
+    override: bool
 
 
 class SetOverrideCertificateErrors(CDPMethod[None]):  # deprecated

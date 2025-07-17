@@ -23,7 +23,7 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class CanEmulateOutput(OutputModel):
 
-    result: bool  # deprecated
+    result: bool
 
 
 class CanEmulate(CDPMethod[CanEmulateOutput]):  # deprecated
@@ -33,21 +33,21 @@ class CanEmulate(CDPMethod[CanEmulateOutput]):  # deprecated
     OUTPUT_VALIDATOR = CanEmulateOutput
 
 
-class ClearDeviceMetricsOverride(CDPMethod[None]):  # deprecated
+class ClearDeviceMetricsOverride(CDPMethod[None]):
     """ Clears the overridden device metrics. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class ClearGeolocationOverride(CDPMethod[None]):  # deprecated
+class ClearGeolocationOverride(CDPMethod[None]):
     """ Clears the overridden Geolocation Position and Error. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class ResetPageScaleFactor(CDPMethod[None]):  # experimental deprecated
+class ResetPageScaleFactor(CDPMethod[None]):  # experimental
     """ Requests that page scale factor is reset to initial values. """
 
     INPUT_VALIDATOR = None
@@ -56,10 +56,10 @@ class ResetPageScaleFactor(CDPMethod[None]):  # experimental deprecated
 
 class SetFocusEmulationEnabledInput(InputModel):
 
-    enabled: bool  # deprecated
+    enabled: bool
 
 
-class SetFocusEmulationEnabled(CDPMethod[None]):  # experimental deprecated
+class SetFocusEmulationEnabled(CDPMethod[None]):  # experimental
     """ Enables or disables simulating a focused and active page. """
 
     INPUT_VALIDATOR = SetFocusEmulationEnabledInput
@@ -77,10 +77,10 @@ class SetFocusEmulationEnabled(CDPMethod[None]):  # experimental deprecated
 
 class SetAutoDarkModeOverrideInput(InputModel):
 
-    enabled: bool | None = None  # deprecated
+    enabled: bool | None = None
 
 
-class SetAutoDarkModeOverride(CDPMethod[None]):  # experimental deprecated
+class SetAutoDarkModeOverride(CDPMethod[None]):  # experimental
     """ Automatically render all web contents using a dark theme. """
 
     INPUT_VALIDATOR = SetAutoDarkModeOverrideInput
@@ -98,10 +98,10 @@ class SetAutoDarkModeOverride(CDPMethod[None]):  # experimental deprecated
 
 class SetCPUThrottlingRateInput(InputModel):
 
-    rate: float  # deprecated
+    rate: float
 
 
-class SetCPUThrottlingRate(CDPMethod[None]):  # deprecated
+class SetCPUThrottlingRate(CDPMethod[None]):
     """ Enables CPU throttling to emulate slow CPUs. """
 
     INPUT_VALIDATOR = SetCPUThrottlingRateInput
@@ -119,10 +119,10 @@ class SetCPUThrottlingRate(CDPMethod[None]):  # deprecated
 
 class SetDefaultBackgroundColorOverrideInput(InputModel):
 
-    color: DOM.RGBA | None = None  # deprecated
+    color: DOM.RGBA | None = None
 
 
-class SetDefaultBackgroundColorOverride(CDPMethod[None]):  # deprecated
+class SetDefaultBackgroundColorOverride(CDPMethod[None]):
     """ Sets or clears an override of the default background color of the frame. This override is used
     if the content does not specify one. """
 
@@ -144,7 +144,7 @@ class SetSafeAreaInsetsOverrideInput(InputModel):
     insets: Emulation.SafeAreaInsets
 
 
-class SetSafeAreaInsetsOverride(CDPMethod[None]):  # experimental deprecated
+class SetSafeAreaInsetsOverride(CDPMethod[None]):  # experimental
     """ Overrides the values for env(safe-area-inset-*) and env(safe-area-max-inset-*). Unset values will cause the
     respective variables to be undefined, even if previously overridden. """
 
@@ -163,23 +163,23 @@ class SetSafeAreaInsetsOverride(CDPMethod[None]):  # experimental deprecated
 
 class SetDeviceMetricsOverrideInput(InputModel):
 
-    width: int  # deprecated
-    height: int  # deprecated
-    deviceScaleFactor: float  # deprecated
-    mobile: bool  # deprecated
-    scale: float | None = None  # experimental deprecated
-    screenWidth: int | None = None  # experimental deprecated
-    screenHeight: int | None = None  # experimental deprecated
-    positionX: int | None = None  # experimental deprecated
-    positionY: int | None = None  # experimental deprecated
-    dontSetVisibleSize: bool | None = None  # experimental deprecated
-    screenOrientation: Emulation.ScreenOrientation | None = None  # deprecated
-    viewport: Page.Viewport | None = None  # experimental deprecated
+    width: int
+    height: int
+    deviceScaleFactor: float
+    mobile: bool
+    scale: float | None = None  # experimental
+    screenWidth: int | None = None  # experimental
+    screenHeight: int | None = None  # experimental
+    positionX: int | None = None  # experimental
+    positionY: int | None = None  # experimental
+    dontSetVisibleSize: bool | None = None  # experimental
+    screenOrientation: Emulation.ScreenOrientation | None = None
+    viewport: Page.Viewport | None = None  # experimental
     displayFeature: Emulation.DisplayFeature | None = None  # experimental deprecated
     devicePosture: Emulation.DevicePosture | None = None  # experimental deprecated
 
 
-class SetDeviceMetricsOverride(CDPMethod[None]):  # deprecated
+class SetDeviceMetricsOverride(CDPMethod[None]):
     """ Overrides the values of device screen dimensions (window.screen.width, window.screen.height,
     window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media
     query results). """
@@ -228,7 +228,7 @@ class SetDevicePostureOverrideInput(InputModel):
     posture: Emulation.DevicePosture
 
 
-class SetDevicePostureOverride(CDPMethod[None]):  # experimental deprecated
+class SetDevicePostureOverride(CDPMethod[None]):  # experimental
     """ Start reporting the given posture value to the Device Posture API.
     This override can also be set in setDeviceMetricsOverride(). """
 
@@ -245,7 +245,7 @@ class SetDevicePostureOverride(CDPMethod[None]):  # experimental deprecated
         )
 
 
-class ClearDevicePostureOverride(CDPMethod[None]):  # experimental deprecated
+class ClearDevicePostureOverride(CDPMethod[None]):  # experimental
     """ Clears a device posture override set with either setDeviceMetricsOverride()
     or setDevicePostureOverride() and starts using posture information from the
     platform again.
@@ -260,7 +260,7 @@ class SetDisplayFeaturesOverrideInput(InputModel):
     features: list[Emulation.DisplayFeature]
 
 
-class SetDisplayFeaturesOverride(CDPMethod[None]):  # experimental deprecated
+class SetDisplayFeaturesOverride(CDPMethod[None]):  # experimental
     """ Start using the given display features to pupulate the Viewport Segments API.
     This override can also be set in setDeviceMetricsOverride(). """
 
@@ -277,7 +277,7 @@ class SetDisplayFeaturesOverride(CDPMethod[None]):  # experimental deprecated
         )
 
 
-class ClearDisplayFeaturesOverride(CDPMethod[None]):  # experimental deprecated
+class ClearDisplayFeaturesOverride(CDPMethod[None]):  # experimental
     """ Clears the display features override set with either setDeviceMetricsOverride()
     or setDisplayFeaturesOverride() and starts using display features from the
     platform again.
@@ -289,7 +289,7 @@ class ClearDisplayFeaturesOverride(CDPMethod[None]):  # experimental deprecated
 
 class SetScrollbarsHiddenInput(InputModel):
 
-    hidden: bool  # deprecated
+    hidden: bool
 
 
 class SetScrollbarsHidden(CDPMethod[None]):  # experimental
@@ -309,7 +309,7 @@ class SetScrollbarsHidden(CDPMethod[None]):  # experimental
 
 class SetDocumentCookieDisabledInput(InputModel):
 
-    disabled: bool  # deprecated
+    disabled: bool
 
 
 class SetDocumentCookieDisabled(CDPMethod[None]):  # experimental
@@ -329,8 +329,8 @@ class SetDocumentCookieDisabled(CDPMethod[None]):  # experimental
 
 class SetEmitTouchEventsForMouseInput(InputModel):
 
-    enabled: bool  # deprecated
-    configuration: Literal['mobile', 'desktop'] | None = None  # deprecated
+    enabled: bool
+    configuration: Literal['mobile', 'desktop'] | None = None
 
 
 class SetEmitTouchEventsForMouse(CDPMethod[None]):  # experimental
@@ -352,11 +352,11 @@ class SetEmitTouchEventsForMouse(CDPMethod[None]):  # experimental
 
 class SetEmulatedMediaInput(InputModel):
 
-    media: str | None = None  # deprecated
-    features: list[Emulation.MediaFeature] | None = None  # deprecated
+    media: str | None = None
+    features: list[Emulation.MediaFeature] | None = None
 
 
-class SetEmulatedMedia(CDPMethod[None]):  # deprecated
+class SetEmulatedMedia(CDPMethod[None]):
     """ Emulates the given media type or media feature for CSS media queries. """
 
     INPUT_VALIDATOR = SetEmulatedMediaInput
@@ -376,10 +376,10 @@ class SetEmulatedMedia(CDPMethod[None]):  # deprecated
 
 class SetEmulatedVisionDeficiencyInput(InputModel):
 
-    type: Literal['none', 'blurredVision', 'reducedContrast', 'achromatopsia', 'deuteranopia', 'protanopia', 'tritanopia']  # deprecated
+    type: Literal['none', 'blurredVision', 'reducedContrast', 'achromatopsia', 'deuteranopia', 'protanopia', 'tritanopia']
 
 
-class SetEmulatedVisionDeficiency(CDPMethod[None]):  # deprecated
+class SetEmulatedVisionDeficiency(CDPMethod[None]):
     """ Emulates the given vision deficiency. """
 
     INPUT_VALIDATOR = SetEmulatedVisionDeficiencyInput
@@ -400,7 +400,7 @@ class SetEmulatedOSTextScaleInput(InputModel):
     scale: float | None = None
 
 
-class SetEmulatedOSTextScale(CDPMethod[None]):  # deprecated
+class SetEmulatedOSTextScale(CDPMethod[None]):
     """ Emulates the given OS text scale. """
 
     INPUT_VALIDATOR = SetEmulatedOSTextScaleInput
@@ -418,16 +418,16 @@ class SetEmulatedOSTextScale(CDPMethod[None]):  # deprecated
 
 class SetGeolocationOverrideInput(InputModel):
 
-    latitude: float | None = None  # deprecated
-    longitude: float | None = None  # deprecated
-    accuracy: float | None = None  # deprecated
-    altitude: float | None = None  # deprecated
-    altitudeAccuracy: float | None = None  # deprecated
-    heading: float | None = None  # deprecated
-    speed: float | None = None  # deprecated
+    latitude: float | None = None
+    longitude: float | None = None
+    accuracy: float | None = None
+    altitude: float | None = None
+    altitudeAccuracy: float | None = None
+    heading: float | None = None
+    speed: float | None = None
 
 
-class SetGeolocationOverride(CDPMethod[None]):  # deprecated
+class SetGeolocationOverride(CDPMethod[None]):
     """ Overrides the Geolocation Position or Error. Omitting latitude, longitude or
     accuracy emulates position unavailable. """
 
@@ -488,7 +488,7 @@ class SetSensorOverrideEnabledInput(InputModel):
     metadata: Emulation.SensorMetadata | None = None
 
 
-class SetSensorOverrideEnabled(CDPMethod[None]):  # experimental deprecated
+class SetSensorOverrideEnabled(CDPMethod[None]):  # experimental
     """ Overrides a platform sensor of a given type. If |enabled| is true, calls to
     Sensor.start() will use a virtual sensor as backend rather than fetching
     data from a real hardware sensor. Otherwise, existing virtual
@@ -518,7 +518,7 @@ class SetSensorOverrideReadingsInput(InputModel):
     reading: Emulation.SensorReading
 
 
-class SetSensorOverrideReadings(CDPMethod[None]):  # experimental deprecated
+class SetSensorOverrideReadings(CDPMethod[None]):  # experimental
     """ Updates the sensor readings reported by a sensor type previously overridden
     by setSensorOverrideEnabled. """
 
@@ -544,7 +544,7 @@ class SetPressureSourceOverrideEnabledInput(InputModel):
     metadata: Emulation.PressureMetadata | None = None
 
 
-class SetPressureSourceOverrideEnabled(CDPMethod[None]):  # experimental deprecated
+class SetPressureSourceOverrideEnabled(CDPMethod[None]):  # experimental
     """ Overrides a pressure source of a given type, as used by the Compute
     Pressure API, so that updates to PressureObserver.observe() are provided
     via setPressureStateOverride instead of being retrieved from
@@ -573,7 +573,7 @@ class SetPressureStateOverrideInput(InputModel):
     state: Emulation.PressureState
 
 
-class SetPressureStateOverride(CDPMethod[None]):  # experimental deprecated
+class SetPressureStateOverride(CDPMethod[None]):  # experimental
     """ TODO: OBSOLETE: To remove when setPressureDataOverride is merged.
     Provides a given pressure state that will be processed and eventually be
     delivered to PressureObserver users. |source| must have been previously
@@ -601,7 +601,7 @@ class SetPressureDataOverrideInput(InputModel):
     ownContributionEstimate: float | None = None
 
 
-class SetPressureDataOverride(CDPMethod[None]):  # experimental deprecated
+class SetPressureDataOverride(CDPMethod[None]):  # experimental
     """ Provides a given pressure data set that will be processed and eventually be
     delivered to PressureObserver users. |source| must have been previously
     overridden by setPressureSourceOverrideEnabled. """
@@ -625,11 +625,11 @@ class SetPressureDataOverride(CDPMethod[None]):  # experimental deprecated
 
 class SetIdleOverrideInput(InputModel):
 
-    isUserActive: bool  # deprecated
-    isScreenUnlocked: bool  # deprecated
+    isUserActive: bool
+    isScreenUnlocked: bool
 
 
-class SetIdleOverride(CDPMethod[None]):  # deprecated
+class SetIdleOverride(CDPMethod[None]):
     """ Overrides the Idle state. """
 
     INPUT_VALIDATOR = SetIdleOverrideInput
@@ -647,7 +647,7 @@ class SetIdleOverride(CDPMethod[None]):  # deprecated
         )
 
 
-class ClearIdleOverride(CDPMethod[None]):  # deprecated
+class ClearIdleOverride(CDPMethod[None]):
     """ Clears Idle state overrides. """
 
     INPUT_VALIDATOR = None
@@ -656,7 +656,7 @@ class ClearIdleOverride(CDPMethod[None]):  # deprecated
 
 class SetNavigatorOverridesInput(InputModel):
 
-    platform: str  # deprecated
+    platform: str
 
 
 class SetNavigatorOverrides(CDPMethod[None]):  # experimental deprecated
@@ -677,10 +677,10 @@ class SetNavigatorOverrides(CDPMethod[None]):  # experimental deprecated
 
 class SetPageScaleFactorInput(InputModel):
 
-    pageScaleFactor: float  # deprecated
+    pageScaleFactor: float
 
 
-class SetPageScaleFactor(CDPMethod[None]):  # experimental deprecated
+class SetPageScaleFactor(CDPMethod[None]):  # experimental
     """ Sets a specified page scale factor. """
 
     INPUT_VALIDATOR = SetPageScaleFactorInput
@@ -698,10 +698,10 @@ class SetPageScaleFactor(CDPMethod[None]):  # experimental deprecated
 
 class SetScriptExecutionDisabledInput(InputModel):
 
-    value: bool  # deprecated
+    value: bool
 
 
-class SetScriptExecutionDisabled(CDPMethod[None]):  # deprecated
+class SetScriptExecutionDisabled(CDPMethod[None]):
     """ Switches script execution in the page. """
 
     INPUT_VALIDATOR = SetScriptExecutionDisabledInput
@@ -719,11 +719,11 @@ class SetScriptExecutionDisabled(CDPMethod[None]):  # deprecated
 
 class SetTouchEmulationEnabledInput(InputModel):
 
-    enabled: bool  # deprecated
-    maxTouchPoints: int | None = None  # deprecated
+    enabled: bool
+    maxTouchPoints: int | None = None
 
 
-class SetTouchEmulationEnabled(CDPMethod[None]):  # deprecated
+class SetTouchEmulationEnabled(CDPMethod[None]):
     """ Enables touch on platforms which do not support them. """
 
     INPUT_VALIDATOR = SetTouchEmulationEnabledInput
@@ -744,17 +744,17 @@ class SetTouchEmulationEnabled(CDPMethod[None]):  # deprecated
 class SetVirtualTimePolicyInput(InputModel):
 
     policy: Emulation.VirtualTimePolicy
-    budget: float | None = None  # deprecated
-    maxVirtualTimeTaskStarvationCount: int | None = None  # deprecated
-    initialVirtualTime: Network.TimeSinceEpoch | None = None  # deprecated
+    budget: float | None = None
+    maxVirtualTimeTaskStarvationCount: int | None = None
+    initialVirtualTime: Network.TimeSinceEpoch | None = None
 
 
 class SetVirtualTimePolicyOutput(OutputModel):
 
-    virtualTimeTicksBase: float  # deprecated
+    virtualTimeTicksBase: float
 
 
-class SetVirtualTimePolicy(CDPMethod[SetVirtualTimePolicyOutput]):  # experimental deprecated
+class SetVirtualTimePolicy(CDPMethod[SetVirtualTimePolicyOutput]):  # experimental
     """ Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets
     the current virtual time policy.  Note this supersedes any previous time budget. """
 
@@ -779,10 +779,10 @@ class SetVirtualTimePolicy(CDPMethod[SetVirtualTimePolicyOutput]):  # experiment
 
 class SetLocaleOverrideInput(InputModel):
 
-    locale: str | None = None  # deprecated
+    locale: str | None = None
 
 
-class SetLocaleOverride(CDPMethod[None]):  # experimental deprecated
+class SetLocaleOverride(CDPMethod[None]):  # experimental
     """ Overrides default host system locale with the specified one. """
 
     INPUT_VALIDATOR = SetLocaleOverrideInput
@@ -800,10 +800,10 @@ class SetLocaleOverride(CDPMethod[None]):  # experimental deprecated
 
 class SetTimezoneOverrideInput(InputModel):
 
-    timezoneId: str  # deprecated
+    timezoneId: str
 
 
-class SetTimezoneOverride(CDPMethod[None]):  # deprecated
+class SetTimezoneOverride(CDPMethod[None]):
     """ Overrides default host system timezone with the specified one. """
 
     INPUT_VALIDATOR = SetTimezoneOverrideInput
@@ -821,8 +821,8 @@ class SetTimezoneOverride(CDPMethod[None]):  # deprecated
 
 class SetVisibleSizeInput(InputModel):
 
-    width: int  # deprecated
-    height: int  # deprecated
+    width: int
+    height: int
 
 
 class SetVisibleSize(CDPMethod[None]):  # experimental deprecated
@@ -847,7 +847,7 @@ class SetVisibleSize(CDPMethod[None]):  # experimental deprecated
 
 class SetDisabledImageTypesInput(InputModel):
 
-    imageTypes: list[Emulation.DisabledImageType]  # deprecated
+    imageTypes: list[Emulation.DisabledImageType]
 
 
 class SetDisabledImageTypes(CDPMethod[None]):  # experimental
@@ -867,10 +867,10 @@ class SetDisabledImageTypes(CDPMethod[None]):  # experimental
 
 class SetDataSaverOverrideInput(InputModel):
 
-    dataSaverEnabled: bool | None = None  # deprecated
+    dataSaverEnabled: bool | None = None
 
 
-class SetDataSaverOverride(CDPMethod[None]):  # experimental deprecated
+class SetDataSaverOverride(CDPMethod[None]):  # experimental
     """ Override the value of navigator.connection.saveData """
 
     INPUT_VALIDATOR = SetDataSaverOverrideInput
@@ -888,7 +888,7 @@ class SetDataSaverOverride(CDPMethod[None]):  # experimental deprecated
 
 class SetHardwareConcurrencyOverrideInput(InputModel):
 
-    hardwareConcurrency: int  # deprecated
+    hardwareConcurrency: int
 
 
 class SetHardwareConcurrencyOverride(CDPMethod[None]):  # experimental
@@ -908,13 +908,13 @@ class SetHardwareConcurrencyOverride(CDPMethod[None]):  # experimental
 
 class SetUserAgentOverrideInput(InputModel):
 
-    userAgent: str  # deprecated
-    acceptLanguage: str | None = None  # deprecated
-    platform: str | None = None  # deprecated
-    userAgentMetadata: Emulation.UserAgentMetadata | None = None  # experimental deprecated
+    userAgent: str
+    acceptLanguage: str | None = None
+    platform: str | None = None
+    userAgentMetadata: Emulation.UserAgentMetadata | None = None  # experimental
 
 
-class SetUserAgentOverride(CDPMethod[None]):  # deprecated
+class SetUserAgentOverride(CDPMethod[None]):
     """ Allows overriding user agent with the given string.
     `userAgentMetadata` must be set for Client Hint headers to be sent. """
 
@@ -939,10 +939,10 @@ class SetUserAgentOverride(CDPMethod[None]):  # deprecated
 
 class SetAutomationOverrideInput(InputModel):
 
-    enabled: bool  # deprecated
+    enabled: bool
 
 
-class SetAutomationOverride(CDPMethod[None]):  # experimental deprecated
+class SetAutomationOverride(CDPMethod[None]):  # experimental
     """ Allows overriding the automation flag. """
 
     INPUT_VALIDATOR = SetAutomationOverrideInput
@@ -960,10 +960,10 @@ class SetAutomationOverride(CDPMethod[None]):  # experimental deprecated
 
 class SetSmallViewportHeightDifferenceOverrideInput(InputModel):
 
-    difference: int  # deprecated
+    difference: int
 
 
-class SetSmallViewportHeightDifferenceOverride(CDPMethod[None]):  # experimental deprecated
+class SetSmallViewportHeightDifferenceOverride(CDPMethod[None]):  # experimental
     """ Allows overriding the difference between the small and large viewport sizes, which determine the
     value of the `svh` and `lvh` unit, respectively. Only supported for top-level frames. """
 

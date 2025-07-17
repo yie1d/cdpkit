@@ -19,10 +19,10 @@ from cdpkit.protocol.base import CDPEvent
 
 class LayerPainted(CDPEvent):
 
-    layerId: LayerTree.LayerId  # deprecated
-    clip: DOM.Rect  # deprecated
+    layerId: LayerTree.LayerId
+    clip: DOM.Rect
 
 
 class LayerTreeDidChange(CDPEvent):
 
-    layers: list[LayerTree.Layer] | None = None  # deprecated
+    layers: list[LayerTree.Layer] | None = None

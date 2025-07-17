@@ -18,7 +18,7 @@ from cdpkit.protocol._types import (
 from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disable collecting and reporting metrics. """
 
     INPUT_VALIDATOR = None
@@ -27,10 +27,10 @@ class Disable(CDPMethod[None]):  # deprecated
 
 class EnableInput(InputModel):
 
-    timeDomain: Literal['timeTicks', 'threadTicks'] | None = None  # deprecated
+    timeDomain: Literal['timeTicks', 'threadTicks'] | None = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enable collecting and reporting metrics. """
 
     INPUT_VALIDATOR = EnableInput
@@ -48,7 +48,7 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class SetTimeDomainInput(InputModel):
 
-    timeDomain: Literal['timeTicks', 'threadTicks']  # deprecated
+    timeDomain: Literal['timeTicks', 'threadTicks']
 
 
 class SetTimeDomain(CDPMethod[None]):  # experimental deprecated
@@ -71,10 +71,10 @@ class SetTimeDomain(CDPMethod[None]):  # experimental deprecated
 
 class GetMetricsOutput(OutputModel):
 
-    metrics: list[Performance.Metric]  # deprecated
+    metrics: list[Performance.Metric]
 
 
-class GetMetrics(CDPMethod[GetMetricsOutput]):  # deprecated
+class GetMetrics(CDPMethod[GetMetricsOutput]):
     """ Retrieve current values of run-time metrics. """
 
     INPUT_VALIDATOR = None

@@ -21,17 +21,17 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class GetEventListenersInput(InputModel):
 
-    objectId: Runtime.RemoteObjectId  # deprecated
-    depth: int | None = None  # deprecated
-    pierce: bool | None = None  # deprecated
+    objectId: Runtime.RemoteObjectId
+    depth: int | None = None
+    pierce: bool | None = None
 
 
 class GetEventListenersOutput(OutputModel):
 
-    listeners: list[DOMDebugger.EventListener]  # deprecated
+    listeners: list[DOMDebugger.EventListener]
 
 
-class GetEventListeners(CDPMethod[GetEventListenersOutput]):  # deprecated
+class GetEventListeners(CDPMethod[GetEventListenersOutput]):
     """ Returns event listeners of the given object. """
 
     INPUT_VALIDATOR = GetEventListenersInput
@@ -53,11 +53,11 @@ class GetEventListeners(CDPMethod[GetEventListenersOutput]):  # deprecated
 
 class RemoveDOMBreakpointInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    type: DOMDebugger.DOMBreakpointType  # deprecated
+    nodeId: DOM.NodeId
+    type: DOMDebugger.DOMBreakpointType
 
 
-class RemoveDOMBreakpoint(CDPMethod[None]):  # deprecated
+class RemoveDOMBreakpoint(CDPMethod[None]):
     """ Removes DOM breakpoint that was set using `setDOMBreakpoint`. """
 
     INPUT_VALIDATOR = RemoveDOMBreakpointInput
@@ -77,11 +77,11 @@ class RemoveDOMBreakpoint(CDPMethod[None]):  # deprecated
 
 class RemoveEventListenerBreakpointInput(InputModel):
 
-    eventName: str  # deprecated
-    targetName: str | None = None  # experimental deprecated
+    eventName: str
+    targetName: str | None = None  # experimental
 
 
-class RemoveEventListenerBreakpoint(CDPMethod[None]):  # deprecated
+class RemoveEventListenerBreakpoint(CDPMethod[None]):
     """ Removes breakpoint on particular DOM event. """
 
     INPUT_VALIDATOR = RemoveEventListenerBreakpointInput
@@ -101,7 +101,7 @@ class RemoveEventListenerBreakpoint(CDPMethod[None]):  # deprecated
 
 class RemoveInstrumentationBreakpointInput(InputModel):
 
-    eventName: str  # deprecated
+    eventName: str
 
 
 class RemoveInstrumentationBreakpoint(CDPMethod[None]):  # experimental deprecated
@@ -122,10 +122,10 @@ class RemoveInstrumentationBreakpoint(CDPMethod[None]):  # experimental deprecat
 
 class RemoveXHRBreakpointInput(InputModel):
 
-    url: str  # deprecated
+    url: str
 
 
-class RemoveXHRBreakpoint(CDPMethod[None]):  # deprecated
+class RemoveXHRBreakpoint(CDPMethod[None]):
     """ Removes breakpoint from XMLHttpRequest. """
 
     INPUT_VALIDATOR = RemoveXHRBreakpointInput
@@ -143,10 +143,10 @@ class RemoveXHRBreakpoint(CDPMethod[None]):  # deprecated
 
 class SetBreakOnCSPViolationInput(InputModel):
 
-    violationTypes: list[DOMDebugger.CSPViolationType]  # deprecated
+    violationTypes: list[DOMDebugger.CSPViolationType]
 
 
-class SetBreakOnCSPViolation(CDPMethod[None]):  # experimental deprecated
+class SetBreakOnCSPViolation(CDPMethod[None]):  # experimental
     """ Sets breakpoint on particular CSP violations. """
 
     INPUT_VALIDATOR = SetBreakOnCSPViolationInput
@@ -164,11 +164,11 @@ class SetBreakOnCSPViolation(CDPMethod[None]):  # experimental deprecated
 
 class SetDOMBreakpointInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    type: DOMDebugger.DOMBreakpointType  # deprecated
+    nodeId: DOM.NodeId
+    type: DOMDebugger.DOMBreakpointType
 
 
-class SetDOMBreakpoint(CDPMethod[None]):  # deprecated
+class SetDOMBreakpoint(CDPMethod[None]):
     """ Sets breakpoint on particular operation with DOM. """
 
     INPUT_VALIDATOR = SetDOMBreakpointInput
@@ -188,11 +188,11 @@ class SetDOMBreakpoint(CDPMethod[None]):  # deprecated
 
 class SetEventListenerBreakpointInput(InputModel):
 
-    eventName: str  # deprecated
-    targetName: str | None = None  # experimental deprecated
+    eventName: str
+    targetName: str | None = None  # experimental
 
 
-class SetEventListenerBreakpoint(CDPMethod[None]):  # deprecated
+class SetEventListenerBreakpoint(CDPMethod[None]):
     """ Sets breakpoint on particular DOM event. """
 
     INPUT_VALIDATOR = SetEventListenerBreakpointInput
@@ -212,7 +212,7 @@ class SetEventListenerBreakpoint(CDPMethod[None]):  # deprecated
 
 class SetInstrumentationBreakpointInput(InputModel):
 
-    eventName: str  # deprecated
+    eventName: str
 
 
 class SetInstrumentationBreakpoint(CDPMethod[None]):  # experimental deprecated
@@ -233,10 +233,10 @@ class SetInstrumentationBreakpoint(CDPMethod[None]):  # experimental deprecated
 
 class SetXHRBreakpointInput(InputModel):
 
-    url: str  # deprecated
+    url: str
 
 
-class SetXHRBreakpoint(CDPMethod[None]):  # deprecated
+class SetXHRBreakpoint(CDPMethod[None]):
     """ Sets breakpoint on XMLHttpRequest. """
 
     INPUT_VALIDATOR = SetXHRBreakpointInput

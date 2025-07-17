@@ -23,7 +23,7 @@ class GetDOMCountersOutput(OutputModel):
     jsEventListeners: int
 
 
-class GetDOMCounters(CDPMethod[GetDOMCountersOutput]):  # deprecated
+class GetDOMCounters(CDPMethod[GetDOMCountersOutput]):
     """ Retruns current DOM object counters. """
 
     INPUT_VALIDATOR = None
@@ -32,17 +32,17 @@ class GetDOMCounters(CDPMethod[GetDOMCountersOutput]):  # deprecated
 
 class GetDOMCountersForLeakDetectionOutput(OutputModel):
 
-    counters: list[Memory.DOMCounter]  # deprecated
+    counters: list[Memory.DOMCounter]
 
 
-class GetDOMCountersForLeakDetection(CDPMethod[GetDOMCountersForLeakDetectionOutput]):  # deprecated
+class GetDOMCountersForLeakDetection(CDPMethod[GetDOMCountersForLeakDetectionOutput]):
     """ Retruns DOM object counters after preparing renderer for leak detection. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = GetDOMCountersForLeakDetectionOutput
 
 
-class PrepareForLeakDetection(CDPMethod[None]):  # deprecated
+class PrepareForLeakDetection(CDPMethod[None]):
     """ Prepares for leak detection by terminating workers, stopping spellcheckers,
     dropping non-essential internal caches, running garbage collections, etc. """
 
@@ -50,7 +50,7 @@ class PrepareForLeakDetection(CDPMethod[None]):  # deprecated
     OUTPUT_VALIDATOR = None
 
 
-class ForciblyPurgeJavaScriptMemory(CDPMethod[None]):  # deprecated
+class ForciblyPurgeJavaScriptMemory(CDPMethod[None]):
     """ Simulate OomIntervention by purging V8 memory. """
 
     INPUT_VALIDATOR = None
@@ -59,10 +59,10 @@ class ForciblyPurgeJavaScriptMemory(CDPMethod[None]):  # deprecated
 
 class SetPressureNotificationsSuppressedInput(InputModel):
 
-    suppressed: bool  # deprecated
+    suppressed: bool
 
 
-class SetPressureNotificationsSuppressed(CDPMethod[None]):  # deprecated
+class SetPressureNotificationsSuppressed(CDPMethod[None]):
     """ Enable/disable suppressing memory pressure notifications in all processes. """
 
     INPUT_VALIDATOR = SetPressureNotificationsSuppressedInput
@@ -80,10 +80,10 @@ class SetPressureNotificationsSuppressed(CDPMethod[None]):  # deprecated
 
 class SimulatePressureNotificationInput(InputModel):
 
-    level: Memory.PressureLevel  # deprecated
+    level: Memory.PressureLevel
 
 
-class SimulatePressureNotification(CDPMethod[None]):  # deprecated
+class SimulatePressureNotification(CDPMethod[None]):
     """ Simulate a memory pressure notification in all processes. """
 
     INPUT_VALIDATOR = SimulatePressureNotificationInput
@@ -101,11 +101,11 @@ class SimulatePressureNotification(CDPMethod[None]):  # deprecated
 
 class StartSamplingInput(InputModel):
 
-    samplingInterval: int | None = None  # deprecated
-    suppressRandomness: bool | None = None  # deprecated
+    samplingInterval: int | None = None
+    suppressRandomness: bool | None = None
 
 
-class StartSampling(CDPMethod[None]):  # deprecated
+class StartSampling(CDPMethod[None]):
     """ Start collecting native memory profile. """
 
     INPUT_VALIDATOR = StartSamplingInput
@@ -123,7 +123,7 @@ class StartSampling(CDPMethod[None]):  # deprecated
         )
 
 
-class StopSampling(CDPMethod[None]):  # deprecated
+class StopSampling(CDPMethod[None]):
     """ Stop collecting native memory profile. """
 
     INPUT_VALIDATOR = None
@@ -135,7 +135,7 @@ class GetAllTimeSamplingProfileOutput(OutputModel):
     profile: Memory.SamplingProfile
 
 
-class GetAllTimeSamplingProfile(CDPMethod[GetAllTimeSamplingProfileOutput]):  # deprecated
+class GetAllTimeSamplingProfile(CDPMethod[GetAllTimeSamplingProfileOutput]):
     """ Retrieve native memory allocations profile
     collected since renderer process startup. """
 
@@ -148,7 +148,7 @@ class GetBrowserSamplingProfileOutput(OutputModel):
     profile: Memory.SamplingProfile
 
 
-class GetBrowserSamplingProfile(CDPMethod[GetBrowserSamplingProfileOutput]):  # deprecated
+class GetBrowserSamplingProfile(CDPMethod[GetBrowserSamplingProfileOutput]):
     """ Retrieve native memory allocations profile
     collected since browser process startup. """
 
@@ -161,7 +161,7 @@ class GetSamplingProfileOutput(OutputModel):
     profile: Memory.SamplingProfile
 
 
-class GetSamplingProfile(CDPMethod[GetSamplingProfileOutput]):  # deprecated
+class GetSamplingProfile(CDPMethod[GetSamplingProfileOutput]):
     """ Retrieve native memory allocations profile collected since last
     `startSampling` call. """
 

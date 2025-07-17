@@ -19,4 +19,4 @@ from cdpkit.protocol.base import CDPEvent
 class EntryAdded(CDPEvent):
     """ Issued when new message was logged. """
 
-    entry: Log.LogEntry  # deprecated
+    entry: Log.LogEntry

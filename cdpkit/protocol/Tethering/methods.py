@@ -15,10 +15,10 @@ from cdpkit.protocol.base import CDPMethod, InputModel
 
 class BindInput(InputModel):
 
-    port: int  # deprecated
+    port: int
 
 
-class Bind(CDPMethod[None]):  # deprecated
+class Bind(CDPMethod[None]):
     """ Request browser port binding. """
 
     INPUT_VALIDATOR = BindInput
@@ -36,10 +36,10 @@ class Bind(CDPMethod[None]):  # deprecated
 
 class UnbindInput(InputModel):
 
-    port: int  # deprecated
+    port: int
 
 
-class Unbind(CDPMethod[None]):  # deprecated
+class Unbind(CDPMethod[None]):
     """ Request browser port unbinding. """
 
     INPUT_VALIDATOR = UnbindInput

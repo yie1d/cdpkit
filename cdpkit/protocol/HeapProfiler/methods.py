@@ -19,10 +19,10 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class AddInspectedHeapObjectInput(InputModel):
 
-    heapObjectId: HeapProfiler.HeapSnapshotObjectId  # deprecated
+    heapObjectId: HeapProfiler.HeapSnapshotObjectId
 
 
-class AddInspectedHeapObject(CDPMethod[None]):  # deprecated
+class AddInspectedHeapObject(CDPMethod[None]):
     """ Enables console to refer to the node with given id via $x (see Command Line API for more details
     $x functions). """
 
@@ -59,12 +59,12 @@ class Enable(CDPMethod[None]):
 
 class GetHeapObjectIdInput(InputModel):
 
-    objectId: Runtime.RemoteObjectId  # deprecated
+    objectId: Runtime.RemoteObjectId
 
 
 class GetHeapObjectIdOutput(OutputModel):
 
-    heapSnapshotObjectId: HeapProfiler.HeapSnapshotObjectId  # deprecated
+    heapSnapshotObjectId: HeapProfiler.HeapSnapshotObjectId
 
 
 class GetHeapObjectId(CDPMethod[GetHeapObjectIdOutput]):
@@ -85,12 +85,12 @@ class GetHeapObjectId(CDPMethod[GetHeapObjectIdOutput]):
 class GetObjectByHeapObjectIdInput(InputModel):
 
     objectId: HeapProfiler.HeapSnapshotObjectId
-    objectGroup: str | None = None  # deprecated
+    objectGroup: str | None = None
 
 
 class GetObjectByHeapObjectIdOutput(OutputModel):
 
-    result: Runtime.RemoteObject  # deprecated
+    result: Runtime.RemoteObject
 
 
 class GetObjectByHeapObjectId(CDPMethod[GetObjectByHeapObjectIdOutput]):
@@ -112,7 +112,7 @@ class GetObjectByHeapObjectId(CDPMethod[GetObjectByHeapObjectIdOutput]):
 
 class GetSamplingProfileOutput(OutputModel):
 
-    profile: HeapProfiler.SamplingHeapProfile  # deprecated
+    profile: HeapProfiler.SamplingHeapProfile
 
 
 class GetSamplingProfile(CDPMethod[GetSamplingProfileOutput]):
@@ -123,9 +123,9 @@ class GetSamplingProfile(CDPMethod[GetSamplingProfileOutput]):
 
 class StartSamplingInput(InputModel):
 
-    samplingInterval: float | None = None  # deprecated
-    includeObjectsCollectedByMajorGC: bool | None = None  # deprecated
-    includeObjectsCollectedByMinorGC: bool | None = None  # deprecated
+    samplingInterval: float | None = None
+    includeObjectsCollectedByMajorGC: bool | None = None
+    includeObjectsCollectedByMinorGC: bool | None = None
 
 
 class StartSampling(CDPMethod[None]):
@@ -169,7 +169,7 @@ class StartTrackingHeapObjects(CDPMethod[None]):
 
 class StopSamplingOutput(OutputModel):
 
-    profile: HeapProfiler.SamplingHeapProfile  # deprecated
+    profile: HeapProfiler.SamplingHeapProfile
 
 
 class StopSampling(CDPMethod[StopSamplingOutput]):
@@ -180,10 +180,10 @@ class StopSampling(CDPMethod[StopSamplingOutput]):
 
 class StopTrackingHeapObjectsInput(InputModel):
 
-    reportProgress: bool | None = None  # deprecated
+    reportProgress: bool | None = None
     treatGlobalObjectsAsRoots: bool | None = None  # deprecated
-    captureNumericValue: bool | None = None  # deprecated
-    exposeInternals: bool | None = None  # experimental deprecated
+    captureNumericValue: bool | None = None
+    exposeInternals: bool | None = None  # experimental
 
 
 class StopTrackingHeapObjects(CDPMethod[None]):
@@ -209,10 +209,10 @@ class StopTrackingHeapObjects(CDPMethod[None]):
 
 class TakeHeapSnapshotInput(InputModel):
 
-    reportProgress: bool | None = None  # deprecated
+    reportProgress: bool | None = None
     treatGlobalObjectsAsRoots: bool | None = None  # deprecated
-    captureNumericValue: bool | None = None  # deprecated
-    exposeInternals: bool | None = None  # experimental deprecated
+    captureNumericValue: bool | None = None
+    exposeInternals: bool | None = None  # experimental
 
 
 class TakeHeapSnapshot(CDPMethod[None]):

@@ -19,4 +19,4 @@ from cdpkit.protocol.base import CDPEvent
 class MessageAdded(CDPEvent):
     """ Issued when new console message is added. """
 
-    message: Console.ConsoleMessage  # deprecated
+    message: Console.ConsoleMessage

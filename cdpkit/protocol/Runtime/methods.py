@@ -22,18 +22,18 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class AwaitPromiseInput(InputModel):
 
-    promiseObjectId: Runtime.RemoteObjectId  # deprecated
-    returnByValue: bool | None = None  # deprecated
-    generatePreview: bool | None = None  # deprecated
+    promiseObjectId: Runtime.RemoteObjectId
+    returnByValue: bool | None = None
+    generatePreview: bool | None = None
 
 
 class AwaitPromiseOutput(OutputModel):
 
-    result: Runtime.RemoteObject  # deprecated
-    exceptionDetails: Runtime.ExceptionDetails | None = None  # deprecated
+    result: Runtime.RemoteObject
+    exceptionDetails: Runtime.ExceptionDetails | None = None
 
 
-class AwaitPromise(CDPMethod[AwaitPromiseOutput]):  # deprecated
+class AwaitPromise(CDPMethod[AwaitPromiseOutput]):
     """ Add handler to promise with given promise object id. """
 
     INPUT_VALIDATOR = AwaitPromiseInput
@@ -55,28 +55,28 @@ class AwaitPromise(CDPMethod[AwaitPromiseOutput]):  # deprecated
 
 class CallFunctionOnInput(InputModel):
 
-    functionDeclaration: str  # deprecated
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
-    arguments: list[Runtime.CallArgument] | None = None  # deprecated
-    silent: bool | None = None  # deprecated
-    returnByValue: bool | None = None  # deprecated
-    generatePreview: bool | None = None  # experimental deprecated
-    userGesture: bool | None = None  # deprecated
-    awaitPromise: bool | None = None  # deprecated
-    executionContextId: Runtime.ExecutionContextId | None = None  # deprecated
-    objectGroup: str | None = None  # deprecated
-    throwOnSideEffect: bool | None = None  # experimental deprecated
-    uniqueContextId: str | None = None  # experimental deprecated
-    serializationOptions: Runtime.SerializationOptions | None = None  # experimental deprecated
+    functionDeclaration: str
+    objectId: Runtime.RemoteObjectId | None = None
+    arguments: list[Runtime.CallArgument] | None = None
+    silent: bool | None = None
+    returnByValue: bool | None = None
+    generatePreview: bool | None = None  # experimental
+    userGesture: bool | None = None
+    awaitPromise: bool | None = None
+    executionContextId: Runtime.ExecutionContextId | None = None
+    objectGroup: str | None = None
+    throwOnSideEffect: bool | None = None  # experimental
+    uniqueContextId: str | None = None  # experimental
+    serializationOptions: Runtime.SerializationOptions | None = None  # experimental
 
 
 class CallFunctionOnOutput(OutputModel):
 
-    result: Runtime.RemoteObject  # deprecated
-    exceptionDetails: Runtime.ExceptionDetails | None = None  # deprecated
+    result: Runtime.RemoteObject
+    exceptionDetails: Runtime.ExceptionDetails | None = None
 
 
-class CallFunctionOn(CDPMethod[CallFunctionOnOutput]):  # deprecated
+class CallFunctionOn(CDPMethod[CallFunctionOnOutput]):
     """ Calls function with given declaration on the given object. Object group of the result is
     inherited from the target object. """
 
@@ -119,19 +119,19 @@ class CallFunctionOn(CDPMethod[CallFunctionOnOutput]):  # deprecated
 
 class CompileScriptInput(InputModel):
 
-    expression: str  # deprecated
-    sourceURL: str  # deprecated
-    persistScript: bool  # deprecated
-    executionContextId: Runtime.ExecutionContextId | None = None  # deprecated
+    expression: str
+    sourceURL: str
+    persistScript: bool
+    executionContextId: Runtime.ExecutionContextId | None = None
 
 
 class CompileScriptOutput(OutputModel):
 
-    scriptId: Runtime.ScriptId | None = None  # deprecated
-    exceptionDetails: Runtime.ExceptionDetails | None = None  # deprecated
+    scriptId: Runtime.ScriptId | None = None
+    exceptionDetails: Runtime.ExceptionDetails | None = None
 
 
-class CompileScript(CDPMethod[CompileScriptOutput]):  # deprecated
+class CompileScript(CDPMethod[CompileScriptOutput]):
     """ Compiles expression. """
 
     INPUT_VALIDATOR = CompileScriptInput
@@ -153,21 +153,21 @@ class CompileScript(CDPMethod[CompileScriptOutput]):  # deprecated
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables reporting of execution contexts creation. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class DiscardConsoleEntries(CDPMethod[None]):  # deprecated
+class DiscardConsoleEntries(CDPMethod[None]):
     """ Discards collected exceptions and console API calls. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables reporting of execution contexts creation by means of `executionContextCreated` event.
     When the reporting gets enabled the event will be sent immediately for each existing execution
     context. """
@@ -178,31 +178,31 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class EvaluateInput(InputModel):
 
-    expression: str  # deprecated
-    objectGroup: str | None = None  # deprecated
-    includeCommandLineAPI: bool | None = None  # deprecated
-    silent: bool | None = None  # deprecated
-    contextId: Runtime.ExecutionContextId | None = None  # deprecated
-    returnByValue: bool | None = None  # deprecated
-    generatePreview: bool | None = None  # experimental deprecated
-    userGesture: bool | None = None  # deprecated
-    awaitPromise: bool | None = None  # deprecated
-    throwOnSideEffect: bool | None = None  # experimental deprecated
-    timeout: Runtime.TimeDelta | None = None  # experimental deprecated
-    disableBreaks: bool | None = None  # experimental deprecated
-    replMode: bool | None = None  # experimental deprecated
-    allowUnsafeEvalBlockedByCSP: bool | None = None  # experimental deprecated
-    uniqueContextId: str | None = None  # experimental deprecated
-    serializationOptions: Runtime.SerializationOptions | None = None  # experimental deprecated
+    expression: str
+    objectGroup: str | None = None
+    includeCommandLineAPI: bool | None = None
+    silent: bool | None = None
+    contextId: Runtime.ExecutionContextId | None = None
+    returnByValue: bool | None = None
+    generatePreview: bool | None = None  # experimental
+    userGesture: bool | None = None
+    awaitPromise: bool | None = None
+    throwOnSideEffect: bool | None = None  # experimental
+    timeout: Runtime.TimeDelta | None = None  # experimental
+    disableBreaks: bool | None = None  # experimental
+    replMode: bool | None = None  # experimental
+    allowUnsafeEvalBlockedByCSP: bool | None = None  # experimental
+    uniqueContextId: str | None = None  # experimental
+    serializationOptions: Runtime.SerializationOptions | None = None  # experimental
 
 
 class EvaluateOutput(OutputModel):
 
-    result: Runtime.RemoteObject  # deprecated
-    exceptionDetails: Runtime.ExceptionDetails | None = None  # deprecated
+    result: Runtime.RemoteObject
+    exceptionDetails: Runtime.ExceptionDetails | None = None
 
 
-class Evaluate(CDPMethod[EvaluateOutput]):  # deprecated
+class Evaluate(CDPMethod[EvaluateOutput]):
     """ Evaluates expression on global object. """
 
     INPUT_VALIDATOR = EvaluateInput
@@ -250,10 +250,10 @@ class Evaluate(CDPMethod[EvaluateOutput]):  # deprecated
 
 class GetIsolateIdOutput(OutputModel):
 
-    id: str  # deprecated
+    id: str
 
 
-class GetIsolateId(CDPMethod[GetIsolateIdOutput]):  # experimental deprecated
+class GetIsolateId(CDPMethod[GetIsolateIdOutput]):  # experimental
     """ Returns the isolate id. """
 
     INPUT_VALIDATOR = None
@@ -262,13 +262,13 @@ class GetIsolateId(CDPMethod[GetIsolateIdOutput]):  # experimental deprecated
 
 class GetHeapUsageOutput(OutputModel):
 
-    usedSize: float  # deprecated
-    totalSize: float  # deprecated
-    embedderHeapUsedSize: float  # deprecated
-    backingStorageSize: float  # deprecated
+    usedSize: float
+    totalSize: float
+    embedderHeapUsedSize: float
+    backingStorageSize: float
 
 
-class GetHeapUsage(CDPMethod[GetHeapUsageOutput]):  # experimental deprecated
+class GetHeapUsage(CDPMethod[GetHeapUsageOutput]):  # experimental
     """ Returns the JavaScript heap usage.
     It is the total usage of the corresponding isolate not scoped to a particular Runtime. """
 
@@ -278,22 +278,22 @@ class GetHeapUsage(CDPMethod[GetHeapUsageOutput]):  # experimental deprecated
 
 class GetPropertiesInput(InputModel):
 
-    objectId: Runtime.RemoteObjectId  # deprecated
-    ownProperties: bool | None = None  # deprecated
-    accessorPropertiesOnly: bool | None = None  # experimental deprecated
-    generatePreview: bool | None = None  # experimental deprecated
-    nonIndexedPropertiesOnly: bool | None = None  # experimental deprecated
+    objectId: Runtime.RemoteObjectId
+    ownProperties: bool | None = None
+    accessorPropertiesOnly: bool | None = None  # experimental
+    generatePreview: bool | None = None  # experimental
+    nonIndexedPropertiesOnly: bool | None = None  # experimental
 
 
 class GetPropertiesOutput(OutputModel):
 
-    result: list[Runtime.PropertyDescriptor]  # deprecated
-    internalProperties: list[Runtime.InternalPropertyDescriptor] | None = None  # deprecated
-    privateProperties: list[Runtime.PrivatePropertyDescriptor] | None = None  # experimental deprecated
-    exceptionDetails: Runtime.ExceptionDetails | None = None  # deprecated
+    result: list[Runtime.PropertyDescriptor]
+    internalProperties: list[Runtime.InternalPropertyDescriptor] | None = None
+    privateProperties: list[Runtime.PrivatePropertyDescriptor] | None = None  # experimental
+    exceptionDetails: Runtime.ExceptionDetails | None = None
 
 
-class GetProperties(CDPMethod[GetPropertiesOutput]):  # deprecated
+class GetProperties(CDPMethod[GetPropertiesOutput]):
     """ Returns properties of a given object. Object group of the result is inherited from the target
     object. """
 
@@ -320,7 +320,7 @@ class GetProperties(CDPMethod[GetPropertiesOutput]):  # deprecated
 
 class GlobalLexicalScopeNamesInput(InputModel):
 
-    executionContextId: Runtime.ExecutionContextId | None = None  # deprecated
+    executionContextId: Runtime.ExecutionContextId | None = None
 
 
 class GlobalLexicalScopeNamesOutput(OutputModel):
@@ -328,7 +328,7 @@ class GlobalLexicalScopeNamesOutput(OutputModel):
     names: list[str]
 
 
-class GlobalLexicalScopeNames(CDPMethod[GlobalLexicalScopeNamesOutput]):  # deprecated
+class GlobalLexicalScopeNames(CDPMethod[GlobalLexicalScopeNamesOutput]):
     """ Returns all let, const and class variables from global scope. """
 
     INPUT_VALIDATOR = GlobalLexicalScopeNamesInput
@@ -346,13 +346,13 @@ class GlobalLexicalScopeNames(CDPMethod[GlobalLexicalScopeNamesOutput]):  # depr
 
 class QueryObjectsInput(InputModel):
 
-    prototypeObjectId: Runtime.RemoteObjectId  # deprecated
-    objectGroup: str | None = None  # deprecated
+    prototypeObjectId: Runtime.RemoteObjectId
+    objectGroup: str | None = None
 
 
 class QueryObjectsOutput(OutputModel):
 
-    objects: Runtime.RemoteObject  # deprecated
+    objects: Runtime.RemoteObject
 
 
 class QueryObjects(CDPMethod[QueryObjectsOutput]):
@@ -374,10 +374,10 @@ class QueryObjects(CDPMethod[QueryObjectsOutput]):
 
 class ReleaseObjectInput(InputModel):
 
-    objectId: Runtime.RemoteObjectId  # deprecated
+    objectId: Runtime.RemoteObjectId
 
 
-class ReleaseObject(CDPMethod[None]):  # deprecated
+class ReleaseObject(CDPMethod[None]):
     """ Releases remote object with given id. """
 
     INPUT_VALIDATOR = ReleaseObjectInput
@@ -395,10 +395,10 @@ class ReleaseObject(CDPMethod[None]):  # deprecated
 
 class ReleaseObjectGroupInput(InputModel):
 
-    objectGroup: str  # deprecated
+    objectGroup: str
 
 
-class ReleaseObjectGroup(CDPMethod[None]):  # deprecated
+class ReleaseObjectGroup(CDPMethod[None]):
     """ Releases all remote objects that belong to a given group. """
 
     INPUT_VALIDATOR = ReleaseObjectGroupInput
@@ -414,7 +414,7 @@ class ReleaseObjectGroup(CDPMethod[None]):  # deprecated
         )
 
 
-class RunIfWaitingForDebugger(CDPMethod[None]):  # deprecated
+class RunIfWaitingForDebugger(CDPMethod[None]):
     """ Tells inspected instance to run if it was waiting for debugger to attach. """
 
     INPUT_VALIDATOR = None
@@ -423,23 +423,23 @@ class RunIfWaitingForDebugger(CDPMethod[None]):  # deprecated
 
 class RunScriptInput(InputModel):
 
-    scriptId: Runtime.ScriptId  # deprecated
-    executionContextId: Runtime.ExecutionContextId | None = None  # deprecated
-    objectGroup: str | None = None  # deprecated
-    silent: bool | None = None  # deprecated
-    includeCommandLineAPI: bool | None = None  # deprecated
-    returnByValue: bool | None = None  # deprecated
-    generatePreview: bool | None = None  # deprecated
-    awaitPromise: bool | None = None  # deprecated
+    scriptId: Runtime.ScriptId
+    executionContextId: Runtime.ExecutionContextId | None = None
+    objectGroup: str | None = None
+    silent: bool | None = None
+    includeCommandLineAPI: bool | None = None
+    returnByValue: bool | None = None
+    generatePreview: bool | None = None
+    awaitPromise: bool | None = None
 
 
 class RunScriptOutput(OutputModel):
 
-    result: Runtime.RemoteObject  # deprecated
-    exceptionDetails: Runtime.ExceptionDetails | None = None  # deprecated
+    result: Runtime.RemoteObject
+    exceptionDetails: Runtime.ExceptionDetails | None = None
 
 
-class RunScript(CDPMethod[RunScriptOutput]):  # deprecated
+class RunScript(CDPMethod[RunScriptOutput]):
     """ Runs script with given id in a given context. """
 
     INPUT_VALIDATOR = RunScriptInput
@@ -471,10 +471,10 @@ class RunScript(CDPMethod[RunScriptOutput]):  # deprecated
 
 class SetAsyncCallStackDepthInput(InputModel):
 
-    maxDepth: int  # deprecated
+    maxDepth: int
 
 
-class SetAsyncCallStackDepth(CDPMethod[None]):  # deprecated
+class SetAsyncCallStackDepth(CDPMethod[None]):
     """ Enables or disables async call stacks tracking. """
 
     INPUT_VALIDATOR = SetAsyncCallStackDepthInput
@@ -530,7 +530,7 @@ class SetMaxCallStackSizeToCapture(CDPMethod[None]):  # experimental
         )
 
 
-class TerminateExecution(CDPMethod[None]):  # experimental deprecated
+class TerminateExecution(CDPMethod[None]):  # experimental
     """ Terminate current or next JavaScript execution.
     Will cancel the termination when the outer-most script execution ends. """
 
@@ -542,10 +542,10 @@ class AddBindingInput(InputModel):
 
     name: str
     executionContextId: Runtime.ExecutionContextId | None = None  # experimental deprecated
-    executionContextName: str | None = None  # deprecated
+    executionContextName: str | None = None
 
 
-class AddBinding(CDPMethod[None]):  # deprecated
+class AddBinding(CDPMethod[None]):
     """ If executionContextId is empty, adds binding with the given name on the
     global objects of all inspected contexts, including those created later,
     bindings survive reloads.
@@ -575,7 +575,7 @@ class RemoveBindingInput(InputModel):
     name: str
 
 
-class RemoveBinding(CDPMethod[None]):  # deprecated
+class RemoveBinding(CDPMethod[None]):
     """ This method does not remove binding function from global object but
     unsubscribes current runtime agent from Runtime.bindingCalled notifications. """
 
@@ -594,7 +594,7 @@ class RemoveBinding(CDPMethod[None]):  # deprecated
 
 class GetExceptionDetailsInput(InputModel):
 
-    errorObjectId: Runtime.RemoteObjectId  # deprecated
+    errorObjectId: Runtime.RemoteObjectId
 
 
 class GetExceptionDetailsOutput(OutputModel):
@@ -602,7 +602,7 @@ class GetExceptionDetailsOutput(OutputModel):
     exceptionDetails: Runtime.ExceptionDetails | None = None
 
 
-class GetExceptionDetails(CDPMethod[GetExceptionDetailsOutput]):  # experimental deprecated
+class GetExceptionDetails(CDPMethod[GetExceptionDetailsOutput]):  # experimental
     """ This method tries to lookup and populate exception details for a
     JavaScript Error object.
     Note that the stackTrace portion of the resulting exceptionDetails will

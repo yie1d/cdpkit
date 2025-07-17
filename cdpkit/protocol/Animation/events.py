@@ -19,22 +19,22 @@ from cdpkit.protocol.base import CDPEvent
 class AnimationCanceled(CDPEvent):
     """ Event for when an animation has been cancelled. """
 
-    id: str  # deprecated
+    id: str
 
 
 class AnimationCreated(CDPEvent):
     """ Event for each animation that has been created. """
 
-    id: str  # deprecated
+    id: str
 
 
 class AnimationStarted(CDPEvent):
     """ Event for animation that has been started. """
 
-    animation: Animation.Animation  # deprecated
+    animation: Animation.Animation
 
 
 class AnimationUpdated(CDPEvent):
     """ Event for animation that has been updated. """
 
-    animation: Animation.Animation  # deprecated
+    animation: Animation.Animation

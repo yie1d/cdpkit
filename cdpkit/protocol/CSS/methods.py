@@ -25,18 +25,18 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class AddRuleInput(InputModel):
 
-    styleSheetId: CSS.StyleSheetId  # deprecated
-    ruleText: str  # deprecated
-    location: CSS.SourceRange  # deprecated
-    nodeForPropertySyntaxValidation: DOM.NodeId | None = None  # experimental deprecated
+    styleSheetId: CSS.StyleSheetId
+    ruleText: str
+    location: CSS.SourceRange
+    nodeForPropertySyntaxValidation: DOM.NodeId | None = None  # experimental
 
 
 class AddRuleOutput(OutputModel):
 
-    rule: CSS.CSSRule  # deprecated
+    rule: CSS.CSSRule
 
 
-class AddRule(CDPMethod[AddRuleOutput]):  # deprecated
+class AddRule(CDPMethod[AddRuleOutput]):
     """ Inserts a new rule with the given `ruleText` in a stylesheet with given `styleSheetId`, at the
     position specified by `location`. """
 
@@ -66,10 +66,10 @@ class CollectClassNamesInput(InputModel):
 
 class CollectClassNamesOutput(OutputModel):
 
-    classNames: list[str]  # deprecated
+    classNames: list[str]
 
 
-class CollectClassNames(CDPMethod[CollectClassNamesOutput]):  # deprecated
+class CollectClassNames(CDPMethod[CollectClassNamesOutput]):
     """ Returns all class names from specified stylesheet. """
 
     INPUT_VALIDATOR = CollectClassNamesInput
@@ -87,16 +87,16 @@ class CollectClassNames(CDPMethod[CollectClassNamesOutput]):  # deprecated
 
 class CreateStyleSheetInput(InputModel):
 
-    frameId: Page.FrameId  # deprecated
-    force: bool | None = None  # deprecated
+    frameId: Page.FrameId
+    force: bool | None = None
 
 
 class CreateStyleSheetOutput(OutputModel):
 
-    styleSheetId: CSS.StyleSheetId  # deprecated
+    styleSheetId: CSS.StyleSheetId
 
 
-class CreateStyleSheet(CDPMethod[CreateStyleSheetOutput]):  # deprecated
+class CreateStyleSheet(CDPMethod[CreateStyleSheetOutput]):
     """ Creates a new special "via-inspector" stylesheet in the frame with given `frameId`. """
 
     INPUT_VALIDATOR = CreateStyleSheetInput
@@ -114,14 +114,14 @@ class CreateStyleSheet(CDPMethod[CreateStyleSheetOutput]):  # deprecated
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables the CSS agent for the given page. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables the CSS agent for the given page. Clients should not assume that the CSS agent has been
     enabled until the result of this command is received. """
 
@@ -131,11 +131,11 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class ForcePseudoStateInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    forcedPseudoClasses: list[str]  # deprecated
+    nodeId: DOM.NodeId
+    forcedPseudoClasses: list[str]
 
 
-class ForcePseudoState(CDPMethod[None]):  # deprecated
+class ForcePseudoState(CDPMethod[None]):
     """ Ensures that the given node will have specified pseudo-classes whenever its style is computed by
     the browser. """
 
@@ -156,11 +156,11 @@ class ForcePseudoState(CDPMethod[None]):  # deprecated
 
 class ForceStartingStyleInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    forced: bool  # deprecated
+    nodeId: DOM.NodeId
+    forced: bool
 
 
-class ForceStartingStyle(CDPMethod[None]):  # deprecated
+class ForceStartingStyle(CDPMethod[None]):
     """ Ensures that the given node is in its starting-style state. """
 
     INPUT_VALIDATOR = ForceStartingStyleInput
@@ -180,14 +180,14 @@ class ForceStartingStyle(CDPMethod[None]):  # deprecated
 
 class GetBackgroundColorsInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
 class GetBackgroundColorsOutput(OutputModel):
 
-    backgroundColors: list[str] | None = None  # deprecated
-    computedFontSize: str | None = None  # deprecated
-    computedFontWeight: str | None = None  # deprecated
+    backgroundColors: list[str] | None = None
+    computedFontSize: str | None = None
+    computedFontWeight: str | None = None
 
 
 class GetBackgroundColors(CDPMethod[GetBackgroundColorsOutput]):
@@ -212,10 +212,10 @@ class GetComputedStyleForNodeInput(InputModel):
 
 class GetComputedStyleForNodeOutput(OutputModel):
 
-    computedStyle: list[CSS.CSSComputedStyleProperty]  # deprecated
+    computedStyle: list[CSS.CSSComputedStyleProperty]
 
 
-class GetComputedStyleForNode(CDPMethod[GetComputedStyleForNodeOutput]):  # deprecated
+class GetComputedStyleForNode(CDPMethod[GetComputedStyleForNodeOutput]):
     """ Returns the computed style for a DOM node identified by `nodeId`. """
 
     INPUT_VALIDATOR = GetComputedStyleForNodeInput
@@ -233,11 +233,11 @@ class GetComputedStyleForNode(CDPMethod[GetComputedStyleForNodeOutput]):  # depr
 
 class ResolveValuesInput(InputModel):
 
-    values: list[str]  # deprecated
-    nodeId: DOM.NodeId  # deprecated
-    propertyName: str | None = None  # deprecated
-    pseudoType: DOM.PseudoType | None = None  # deprecated
-    pseudoIdentifier: str | None = None  # deprecated
+    values: list[str]
+    nodeId: DOM.NodeId
+    propertyName: str | None = None
+    pseudoType: DOM.PseudoType | None = None
+    pseudoIdentifier: str | None = None
 
 
 class ResolveValuesOutput(OutputModel):
@@ -245,7 +245,7 @@ class ResolveValuesOutput(OutputModel):
     results: list[str]
 
 
-class ResolveValues(CDPMethod[ResolveValuesOutput]):  # experimental deprecated
+class ResolveValues(CDPMethod[ResolveValuesOutput]):  # experimental
     """ Resolve the specified values in the context of the provided element.
     For example, a value of '1em' is evaluated according to the computed
     'font-size' of the element and a value 'calc(1px + 2px)' will be
@@ -312,11 +312,11 @@ class GetInlineStylesForNodeInput(InputModel):
 
 class GetInlineStylesForNodeOutput(OutputModel):
 
-    inlineStyle: CSS.CSSStyle | None = None  # deprecated
-    attributesStyle: CSS.CSSStyle | None = None  # deprecated
+    inlineStyle: CSS.CSSStyle | None = None
+    attributesStyle: CSS.CSSStyle | None = None
 
 
-class GetInlineStylesForNode(CDPMethod[GetInlineStylesForNodeOutput]):  # deprecated
+class GetInlineStylesForNode(CDPMethod[GetInlineStylesForNodeOutput]):
     """ Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM
     attributes) for a DOM node identified by `nodeId`. """
 
@@ -340,12 +340,12 @@ class GetAnimatedStylesForNodeInput(InputModel):
 
 class GetAnimatedStylesForNodeOutput(OutputModel):
 
-    animationStyles: list[CSS.CSSAnimationStyle] | None = None  # deprecated
-    transitionsStyle: CSS.CSSStyle | None = None  # deprecated
-    inherited: list[CSS.InheritedAnimatedStyleEntry] | None = None  # deprecated
+    animationStyles: list[CSS.CSSAnimationStyle] | None = None
+    transitionsStyle: CSS.CSSStyle | None = None
+    inherited: list[CSS.InheritedAnimatedStyleEntry] | None = None
 
 
-class GetAnimatedStylesForNode(CDPMethod[GetAnimatedStylesForNodeOutput]):  # experimental deprecated
+class GetAnimatedStylesForNode(CDPMethod[GetAnimatedStylesForNodeOutput]):  # experimental
     """ Returns the styles coming from animations & transitions
     including the animation & transition styles coming from inheritance chain. """
 
@@ -369,23 +369,23 @@ class GetMatchedStylesForNodeInput(InputModel):
 
 class GetMatchedStylesForNodeOutput(OutputModel):
 
-    inlineStyle: CSS.CSSStyle | None = None  # deprecated
-    attributesStyle: CSS.CSSStyle | None = None  # deprecated
-    matchedCSSRules: list[CSS.RuleMatch] | None = None  # deprecated
-    pseudoElements: list[CSS.PseudoElementMatches] | None = None  # deprecated
-    inherited: list[CSS.InheritedStyleEntry] | None = None  # deprecated
-    inheritedPseudoElements: list[CSS.InheritedPseudoElementMatches] | None = None  # deprecated
-    cssKeyframesRules: list[CSS.CSSKeyframesRule] | None = None  # deprecated
-    cssPositionTryRules: list[CSS.CSSPositionTryRule] | None = None  # deprecated
-    activePositionFallbackIndex: int | None = None  # deprecated
-    cssPropertyRules: list[CSS.CSSPropertyRule] | None = None  # deprecated
-    cssPropertyRegistrations: list[CSS.CSSPropertyRegistration] | None = None  # deprecated
-    cssFontPaletteValuesRule: CSS.CSSFontPaletteValuesRule | None = None  # deprecated
-    parentLayoutNodeId: DOM.NodeId | None = None  # experimental deprecated
-    cssFunctionRules: list[CSS.CSSFunctionRule] | None = None  # experimental deprecated
+    inlineStyle: CSS.CSSStyle | None = None
+    attributesStyle: CSS.CSSStyle | None = None
+    matchedCSSRules: list[CSS.RuleMatch] | None = None
+    pseudoElements: list[CSS.PseudoElementMatches] | None = None
+    inherited: list[CSS.InheritedStyleEntry] | None = None
+    inheritedPseudoElements: list[CSS.InheritedPseudoElementMatches] | None = None
+    cssKeyframesRules: list[CSS.CSSKeyframesRule] | None = None
+    cssPositionTryRules: list[CSS.CSSPositionTryRule] | None = None
+    activePositionFallbackIndex: int | None = None
+    cssPropertyRules: list[CSS.CSSPropertyRule] | None = None
+    cssPropertyRegistrations: list[CSS.CSSPropertyRegistration] | None = None
+    cssFontPaletteValuesRule: CSS.CSSFontPaletteValuesRule | None = None
+    parentLayoutNodeId: DOM.NodeId | None = None  # experimental
+    cssFunctionRules: list[CSS.CSSFunctionRule] | None = None  # experimental
 
 
-class GetMatchedStylesForNode(CDPMethod[GetMatchedStylesForNodeOutput]):  # deprecated
+class GetMatchedStylesForNode(CDPMethod[GetMatchedStylesForNodeOutput]):
     """ Returns requested styles for a DOM node identified by `nodeId`. """
 
     INPUT_VALIDATOR = GetMatchedStylesForNodeInput
@@ -406,7 +406,7 @@ class GetMediaQueriesOutput(OutputModel):
     medias: list[CSS.CSSMedia]
 
 
-class GetMediaQueries(CDPMethod[GetMediaQueriesOutput]):  # deprecated
+class GetMediaQueries(CDPMethod[GetMediaQueriesOutput]):
     """ Returns all media queries parsed by the rendering engine. """
 
     INPUT_VALIDATOR = None
@@ -420,10 +420,10 @@ class GetPlatformFontsForNodeInput(InputModel):
 
 class GetPlatformFontsForNodeOutput(OutputModel):
 
-    fonts: list[CSS.PlatformFontUsage]  # deprecated
+    fonts: list[CSS.PlatformFontUsage]
 
 
-class GetPlatformFontsForNode(CDPMethod[GetPlatformFontsForNodeOutput]):  # deprecated
+class GetPlatformFontsForNode(CDPMethod[GetPlatformFontsForNodeOutput]):
     """ Requests information about platform fonts which we used to render child TextNodes in the given
     node. """
 
@@ -447,10 +447,10 @@ class GetStyleSheetTextInput(InputModel):
 
 class GetStyleSheetTextOutput(OutputModel):
 
-    text: str  # deprecated
+    text: str
 
 
-class GetStyleSheetText(CDPMethod[GetStyleSheetTextOutput]):  # deprecated
+class GetStyleSheetText(CDPMethod[GetStyleSheetTextOutput]):
     """ Returns the current textual content for a stylesheet. """
 
     INPUT_VALIDATOR = GetStyleSheetTextInput
@@ -476,7 +476,7 @@ class GetLayersForNodeOutput(OutputModel):
     rootLayer: CSS.CSSLayerData
 
 
-class GetLayersForNode(CDPMethod[GetLayersForNodeOutput]):  # experimental deprecated
+class GetLayersForNode(CDPMethod[GetLayersForNodeOutput]):  # experimental
     """ Returns all layers parsed by the rendering engine for the tree scope of a node.
     Given a DOM element identified by nodeId, getLayersForNode returns the root
     layer for the nearest ancestor document or shadow root. The layer root contains
@@ -506,7 +506,7 @@ class GetLocationForSelectorOutput(OutputModel):
     ranges: list[CSS.SourceRange]
 
 
-class GetLocationForSelector(CDPMethod[GetLocationForSelectorOutput]):  # experimental deprecated
+class GetLocationForSelector(CDPMethod[GetLocationForSelectorOutput]):  # experimental
     """ Given a CSS selector text and a style sheet ID, getLocationForSelector
     returns an array of locations of the CSS selector in the style sheet. """
 
@@ -530,7 +530,7 @@ class TrackComputedStyleUpdatesForNodeInput(InputModel):
     nodeId: DOM.NodeId | None = None
 
 
-class TrackComputedStyleUpdatesForNode(CDPMethod[None]):  # experimental deprecated
+class TrackComputedStyleUpdatesForNode(CDPMethod[None]):  # experimental
     """ Starts tracking the given node for the computed style updates
     and whenever the computed style is updated for node, it queues
     a `computedStyleUpdated` event with throttling.
@@ -556,7 +556,7 @@ class TrackComputedStyleUpdatesInput(InputModel):
     propertiesToTrack: list[CSS.CSSComputedStyleProperty]
 
 
-class TrackComputedStyleUpdates(CDPMethod[None]):  # experimental deprecated
+class TrackComputedStyleUpdates(CDPMethod[None]):  # experimental
     """ Starts tracking the given computed styles for updates. The specified array of properties
     replaces the one previously specified. Pass empty array to disable tracking.
     Use takeComputedStyleUpdates to retrieve the list of nodes that had properties modified.
@@ -579,10 +579,10 @@ class TrackComputedStyleUpdates(CDPMethod[None]):  # experimental deprecated
 
 class TakeComputedStyleUpdatesOutput(OutputModel):
 
-    nodeIds: list[DOM.NodeId]  # deprecated
+    nodeIds: list[DOM.NodeId]
 
 
-class TakeComputedStyleUpdates(CDPMethod[TakeComputedStyleUpdatesOutput]):  # experimental deprecated
+class TakeComputedStyleUpdates(CDPMethod[TakeComputedStyleUpdatesOutput]):  # experimental
     """ Polls the next batch of computed style updates. """
 
     INPUT_VALIDATOR = None
@@ -591,12 +591,12 @@ class TakeComputedStyleUpdates(CDPMethod[TakeComputedStyleUpdatesOutput]):  # ex
 
 class SetEffectivePropertyValueForNodeInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
     propertyName: str
     value: str
 
 
-class SetEffectivePropertyValueForNode(CDPMethod[None]):  # deprecated
+class SetEffectivePropertyValueForNode(CDPMethod[None]):
     """ Find a rule with the given active property for the given node and set the new value for this
     property """
 
@@ -626,10 +626,10 @@ class SetPropertyRulePropertyNameInput(InputModel):
 
 class SetPropertyRulePropertyNameOutput(OutputModel):
 
-    propertyName: CSS.Value  # deprecated
+    propertyName: CSS.Value
 
 
-class SetPropertyRulePropertyName(CDPMethod[SetPropertyRulePropertyNameOutput]):  # deprecated
+class SetPropertyRulePropertyName(CDPMethod[SetPropertyRulePropertyNameOutput]):
     """ Modifies the property rule property name. """
 
     INPUT_VALIDATOR = SetPropertyRulePropertyNameInput
@@ -658,10 +658,10 @@ class SetKeyframeKeyInput(InputModel):
 
 class SetKeyframeKeyOutput(OutputModel):
 
-    keyText: CSS.Value  # deprecated
+    keyText: CSS.Value
 
 
-class SetKeyframeKey(CDPMethod[SetKeyframeKeyOutput]):  # deprecated
+class SetKeyframeKey(CDPMethod[SetKeyframeKeyOutput]):
     """ Modifies the keyframe rule key text. """
 
     INPUT_VALIDATOR = SetKeyframeKeyInput
@@ -690,10 +690,10 @@ class SetMediaTextInput(InputModel):
 
 class SetMediaTextOutput(OutputModel):
 
-    media: CSS.CSSMedia  # deprecated
+    media: CSS.CSSMedia
 
 
-class SetMediaText(CDPMethod[SetMediaTextOutput]):  # deprecated
+class SetMediaText(CDPMethod[SetMediaTextOutput]):
     """ Modifies the rule selector. """
 
     INPUT_VALIDATOR = SetMediaTextInput
@@ -722,10 +722,10 @@ class SetContainerQueryTextInput(InputModel):
 
 class SetContainerQueryTextOutput(OutputModel):
 
-    containerQuery: CSS.CSSContainerQuery  # deprecated
+    containerQuery: CSS.CSSContainerQuery
 
 
-class SetContainerQueryText(CDPMethod[SetContainerQueryTextOutput]):  # experimental deprecated
+class SetContainerQueryText(CDPMethod[SetContainerQueryTextOutput]):  # experimental
     """ Modifies the expression of a container query. """
 
     INPUT_VALIDATOR = SetContainerQueryTextInput
@@ -754,10 +754,10 @@ class SetSupportsTextInput(InputModel):
 
 class SetSupportsTextOutput(OutputModel):
 
-    supports: CSS.CSSSupports  # deprecated
+    supports: CSS.CSSSupports
 
 
-class SetSupportsText(CDPMethod[SetSupportsTextOutput]):  # experimental deprecated
+class SetSupportsText(CDPMethod[SetSupportsTextOutput]):  # experimental
     """ Modifies the expression of a supports at-rule. """
 
     INPUT_VALIDATOR = SetSupportsTextInput
@@ -786,10 +786,10 @@ class SetScopeTextInput(InputModel):
 
 class SetScopeTextOutput(OutputModel):
 
-    scope: CSS.CSSScope  # deprecated
+    scope: CSS.CSSScope
 
 
-class SetScopeText(CDPMethod[SetScopeTextOutput]):  # experimental deprecated
+class SetScopeText(CDPMethod[SetScopeTextOutput]):  # experimental
     """ Modifies the expression of a scope at-rule. """
 
     INPUT_VALIDATOR = SetScopeTextInput
@@ -818,10 +818,10 @@ class SetRuleSelectorInput(InputModel):
 
 class SetRuleSelectorOutput(OutputModel):
 
-    selectorList: CSS.SelectorList  # deprecated
+    selectorList: CSS.SelectorList
 
 
-class SetRuleSelector(CDPMethod[SetRuleSelectorOutput]):  # deprecated
+class SetRuleSelector(CDPMethod[SetRuleSelectorOutput]):
     """ Modifies the rule selector. """
 
     INPUT_VALIDATOR = SetRuleSelectorInput
@@ -849,10 +849,10 @@ class SetStyleSheetTextInput(InputModel):
 
 class SetStyleSheetTextOutput(OutputModel):
 
-    sourceMapURL: str | None = None  # deprecated
+    sourceMapURL: str | None = None
 
 
-class SetStyleSheetText(CDPMethod[SetStyleSheetTextOutput]):  # deprecated
+class SetStyleSheetText(CDPMethod[SetStyleSheetTextOutput]):
     """ Sets the new stylesheet text. """
 
     INPUT_VALIDATOR = SetStyleSheetTextInput
@@ -873,15 +873,15 @@ class SetStyleSheetText(CDPMethod[SetStyleSheetTextOutput]):  # deprecated
 class SetStyleTextsInput(InputModel):
 
     edits: list[CSS.StyleDeclarationEdit]
-    nodeForPropertySyntaxValidation: DOM.NodeId | None = None  # experimental deprecated
+    nodeForPropertySyntaxValidation: DOM.NodeId | None = None  # experimental
 
 
 class SetStyleTextsOutput(OutputModel):
 
-    styles: list[CSS.CSSStyle]  # deprecated
+    styles: list[CSS.CSSStyle]
 
 
-class SetStyleTexts(CDPMethod[SetStyleTextsOutput]):  # deprecated
+class SetStyleTexts(CDPMethod[SetStyleTextsOutput]):
     """ Applies specified style edits one after another in the given order. """
 
     INPUT_VALIDATOR = SetStyleTextsInput
@@ -899,7 +899,7 @@ class SetStyleTexts(CDPMethod[SetStyleTextsOutput]):  # deprecated
         )
 
 
-class StartRuleUsageTracking(CDPMethod[None]):  # deprecated
+class StartRuleUsageTracking(CDPMethod[None]):
     """ Enables the selector recording. """
 
     INPUT_VALIDATOR = None
@@ -911,7 +911,7 @@ class StopRuleUsageTrackingOutput(OutputModel):
     ruleUsage: list[CSS.RuleUsage]
 
 
-class StopRuleUsageTracking(CDPMethod[StopRuleUsageTrackingOutput]):  # deprecated
+class StopRuleUsageTracking(CDPMethod[StopRuleUsageTrackingOutput]):
     """ Stop tracking rule usage and return the list of rules that were used since last call to
     `takeCoverageDelta` (or since start of coverage instrumentation). """
 
@@ -922,10 +922,10 @@ class StopRuleUsageTracking(CDPMethod[StopRuleUsageTrackingOutput]):  # deprecat
 class TakeCoverageDeltaOutput(OutputModel):
 
     coverage: list[CSS.RuleUsage]
-    timestamp: float  # deprecated
+    timestamp: float
 
 
-class TakeCoverageDelta(CDPMethod[TakeCoverageDeltaOutput]):  # deprecated
+class TakeCoverageDelta(CDPMethod[TakeCoverageDeltaOutput]):
     """ Obtain list of rules that became used since last call to this method (or since start of coverage
     instrumentation). """
 
@@ -935,10 +935,10 @@ class TakeCoverageDelta(CDPMethod[TakeCoverageDeltaOutput]):  # deprecated
 
 class SetLocalFontsEnabledInput(InputModel):
 
-    enabled: bool  # deprecated
+    enabled: bool
 
 
-class SetLocalFontsEnabled(CDPMethod[None]):  # experimental deprecated
+class SetLocalFontsEnabled(CDPMethod[None]):  # experimental
     """ Enables/disables rendering of local CSS fonts (enabled by default). """
 
     INPUT_VALIDATOR = SetLocalFontsEnabledInput

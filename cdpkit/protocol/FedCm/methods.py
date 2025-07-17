@@ -18,7 +18,7 @@ from cdpkit.protocol.base import CDPMethod, InputModel
 
 class EnableInput(InputModel):
 
-    disableRejectionDelay: bool | None = None  # deprecated
+    disableRejectionDelay: bool | None = None
 
 
 class Enable(CDPMethod[None]):
@@ -137,7 +137,7 @@ class DismissDialog(CDPMethod[None]):
         )
 
 
-class ResetCooldown(CDPMethod[None]):  # deprecated
+class ResetCooldown(CDPMethod[None]):
     """ Resets the cooldown time, if any, to allow the next FedCM call to show
     a dialog even if one was recently dismissed by the user. """
 

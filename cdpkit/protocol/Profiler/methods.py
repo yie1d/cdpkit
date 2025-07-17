@@ -30,10 +30,10 @@ class Enable(CDPMethod[None]):
 
 class GetBestEffortCoverageOutput(OutputModel):
 
-    result: list[Profiler.ScriptCoverage]  # deprecated
+    result: list[Profiler.ScriptCoverage]
 
 
-class GetBestEffortCoverage(CDPMethod[GetBestEffortCoverageOutput]):  # deprecated
+class GetBestEffortCoverage(CDPMethod[GetBestEffortCoverageOutput]):
     """ Collect coverage data for the current isolate. The coverage data may be incomplete due to
     garbage collection. """
 
@@ -43,10 +43,10 @@ class GetBestEffortCoverage(CDPMethod[GetBestEffortCoverageOutput]):  # deprecat
 
 class SetSamplingIntervalInput(InputModel):
 
-    interval: int  # deprecated
+    interval: int
 
 
-class SetSamplingInterval(CDPMethod[None]):  # deprecated
+class SetSamplingInterval(CDPMethod[None]):
     """ Changes CPU profiler sampling interval. Must be called before CPU profiles recording started. """
 
     INPUT_VALIDATOR = SetSamplingIntervalInput
@@ -70,17 +70,17 @@ class Start(CDPMethod[None]):
 
 class StartPreciseCoverageInput(InputModel):
 
-    callCount: bool | None = None  # deprecated
-    detailed: bool | None = None  # deprecated
-    allowTriggeredUpdates: bool | None = None  # deprecated
+    callCount: bool | None = None
+    detailed: bool | None = None
+    allowTriggeredUpdates: bool | None = None
 
 
 class StartPreciseCoverageOutput(OutputModel):
 
-    timestamp: float  # deprecated
+    timestamp: float
 
 
-class StartPreciseCoverage(CDPMethod[StartPreciseCoverageOutput]):  # deprecated
+class StartPreciseCoverage(CDPMethod[StartPreciseCoverageOutput]):
     """ Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code
     coverage may be incomplete. Enabling prevents running optimized code and resets execution
     counters. """
@@ -104,7 +104,7 @@ class StartPreciseCoverage(CDPMethod[StartPreciseCoverageOutput]):  # deprecated
 
 class StopOutput(OutputModel):
 
-    profile: Profiler.Profile  # deprecated
+    profile: Profiler.Profile
 
 
 class Stop(CDPMethod[StopOutput]):
@@ -113,7 +113,7 @@ class Stop(CDPMethod[StopOutput]):
     OUTPUT_VALIDATOR = StopOutput
 
 
-class StopPreciseCoverage(CDPMethod[None]):  # deprecated
+class StopPreciseCoverage(CDPMethod[None]):
     """ Disable precise code coverage. Disabling releases unnecessary execution count records and allows
     executing optimized code. """
 
@@ -123,11 +123,11 @@ class StopPreciseCoverage(CDPMethod[None]):  # deprecated
 
 class TakePreciseCoverageOutput(OutputModel):
 
-    result: list[Profiler.ScriptCoverage]  # deprecated
-    timestamp: float  # deprecated
+    result: list[Profiler.ScriptCoverage]
+    timestamp: float
 
 
-class TakePreciseCoverage(CDPMethod[TakePreciseCoverageOutput]):  # deprecated
+class TakePreciseCoverage(CDPMethod[TakePreciseCoverageOutput]):
     """ Collect coverage data for the current isolate, and resets execution counters. Precise code
     coverage needs to have started. """
 

@@ -19,10 +19,10 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class EnableInput(InputModel):
 
-    enableUI: bool | None = None  # deprecated
+    enableUI: bool | None = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enable the WebAuthn domain and start intercepting credential storage and
     retrieval with a virtual authenticator. """
 
@@ -39,7 +39,7 @@ class Enable(CDPMethod[None]):  # deprecated
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disable the WebAuthn domain. """
 
     INPUT_VALIDATOR = None
@@ -56,7 +56,7 @@ class AddVirtualAuthenticatorOutput(OutputModel):
     authenticatorId: WebAuthn.AuthenticatorId
 
 
-class AddVirtualAuthenticator(CDPMethod[AddVirtualAuthenticatorOutput]):  # deprecated
+class AddVirtualAuthenticator(CDPMethod[AddVirtualAuthenticatorOutput]):
     """ Creates and adds a virtual authenticator. """
 
     INPUT_VALIDATOR = AddVirtualAuthenticatorInput
@@ -75,12 +75,12 @@ class AddVirtualAuthenticator(CDPMethod[AddVirtualAuthenticatorOutput]):  # depr
 class SetResponseOverrideBitsInput(InputModel):
 
     authenticatorId: WebAuthn.AuthenticatorId
-    isBogusSignature: bool | None = None  # deprecated
-    isBadUV: bool | None = None  # deprecated
-    isBadUP: bool | None = None  # deprecated
+    isBogusSignature: bool | None = None
+    isBadUV: bool | None = None
+    isBadUP: bool | None = None
 
 
-class SetResponseOverrideBits(CDPMethod[None]):  # deprecated
+class SetResponseOverrideBits(CDPMethod[None]):
     """ Resets parameters isBogusSignature, isBadUV, isBadUP to false if they are not present. """
 
     INPUT_VALIDATOR = SetResponseOverrideBitsInput
@@ -107,7 +107,7 @@ class RemoveVirtualAuthenticatorInput(InputModel):
     authenticatorId: WebAuthn.AuthenticatorId
 
 
-class RemoveVirtualAuthenticator(CDPMethod[None]):  # deprecated
+class RemoveVirtualAuthenticator(CDPMethod[None]):
     """ Removes the given authenticator. """
 
     INPUT_VALIDATOR = RemoveVirtualAuthenticatorInput
@@ -129,7 +129,7 @@ class AddCredentialInput(InputModel):
     credential: WebAuthn.Credential
 
 
-class AddCredential(CDPMethod[None]):  # deprecated
+class AddCredential(CDPMethod[None]):
     """ Adds the credential to the specified authenticator. """
 
     INPUT_VALIDATOR = AddCredentialInput
@@ -158,7 +158,7 @@ class GetCredentialOutput(OutputModel):
     credential: WebAuthn.Credential
 
 
-class GetCredential(CDPMethod[GetCredentialOutput]):  # deprecated
+class GetCredential(CDPMethod[GetCredentialOutput]):
     """ Returns a single credential stored in the given virtual authenticator that
     matches the credential ID. """
 
@@ -187,7 +187,7 @@ class GetCredentialsOutput(OutputModel):
     credentials: list[WebAuthn.Credential]
 
 
-class GetCredentials(CDPMethod[GetCredentialsOutput]):  # deprecated
+class GetCredentials(CDPMethod[GetCredentialsOutput]):
     """ Returns all the credentials stored in the given virtual authenticator. """
 
     INPUT_VALIDATOR = GetCredentialsInput
@@ -209,7 +209,7 @@ class RemoveCredentialInput(InputModel):
     credentialId: str
 
 
-class RemoveCredential(CDPMethod[None]):  # deprecated
+class RemoveCredential(CDPMethod[None]):
     """ Removes a credential from the authenticator. """
 
     INPUT_VALIDATOR = RemoveCredentialInput
@@ -232,7 +232,7 @@ class ClearCredentialsInput(InputModel):
     authenticatorId: WebAuthn.AuthenticatorId
 
 
-class ClearCredentials(CDPMethod[None]):  # deprecated
+class ClearCredentials(CDPMethod[None]):
     """ Clears all the credentials from the specified device. """
 
     INPUT_VALIDATOR = ClearCredentialsInput
@@ -254,7 +254,7 @@ class SetUserVerifiedInput(InputModel):
     isUserVerified: bool
 
 
-class SetUserVerified(CDPMethod[None]):  # deprecated
+class SetUserVerified(CDPMethod[None]):
     """ Sets whether User Verification succeeds or fails for an authenticator.
     The default is true. """
 
@@ -279,7 +279,7 @@ class SetAutomaticPresenceSimulationInput(InputModel):
     enabled: bool
 
 
-class SetAutomaticPresenceSimulation(CDPMethod[None]):  # deprecated
+class SetAutomaticPresenceSimulation(CDPMethod[None]):
     """ Sets whether tests of user presence will succeed immediately (if true) or fail to resolve (if false) for an authenticator.
     The default is true. """
 
@@ -306,7 +306,7 @@ class SetCredentialPropertiesInput(InputModel):
     backupState: bool | None = None
 
 
-class SetCredentialProperties(CDPMethod[None]):  # deprecated
+class SetCredentialProperties(CDPMethod[None]):
     """ Allows setting credential properties.
     https://w3c.github.io/webauthn/#sctn-automation-set-credential-properties """
 

@@ -19,14 +19,14 @@ from cdpkit.protocol._types import (
 from cdpkit.protocol.base import JSON_DICT, CDPMethod, InputModel, OutputModel
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables domain notifications. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables domain notifications. """
 
     INPUT_VALIDATOR = None
@@ -35,19 +35,19 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class GetHighlightObjectForTestInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    includeDistance: bool | None = None  # deprecated
-    includeStyle: bool | None = None  # deprecated
-    colorFormat: Overlay.ColorFormat | None = None  # deprecated
-    showAccessibilityInfo: bool | None = None  # deprecated
+    nodeId: DOM.NodeId
+    includeDistance: bool | None = None
+    includeStyle: bool | None = None
+    colorFormat: Overlay.ColorFormat | None = None
+    showAccessibilityInfo: bool | None = None
 
 
 class GetHighlightObjectForTestOutput(OutputModel):
 
-    highlight: JSON_DICT  # deprecated
+    highlight: JSON_DICT
 
 
-class GetHighlightObjectForTest(CDPMethod[GetHighlightObjectForTestOutput]):  # deprecated
+class GetHighlightObjectForTest(CDPMethod[GetHighlightObjectForTestOutput]):
     """ For testing. """
 
     INPUT_VALIDATOR = GetHighlightObjectForTestInput
@@ -73,15 +73,15 @@ class GetHighlightObjectForTest(CDPMethod[GetHighlightObjectForTestOutput]):  # 
 
 class GetGridHighlightObjectsForTestInput(InputModel):
 
-    nodeIds: list[DOM.NodeId]  # deprecated
+    nodeIds: list[DOM.NodeId]
 
 
 class GetGridHighlightObjectsForTestOutput(OutputModel):
 
-    highlights: JSON_DICT  # deprecated
+    highlights: JSON_DICT
 
 
-class GetGridHighlightObjectsForTest(CDPMethod[GetGridHighlightObjectsForTestOutput]):  # deprecated
+class GetGridHighlightObjectsForTest(CDPMethod[GetGridHighlightObjectsForTestOutput]):
     """ For Persistent Grid testing. """
 
     INPUT_VALIDATOR = GetGridHighlightObjectsForTestInput
@@ -99,15 +99,15 @@ class GetGridHighlightObjectsForTest(CDPMethod[GetGridHighlightObjectsForTestOut
 
 class GetSourceOrderHighlightObjectForTestInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
 class GetSourceOrderHighlightObjectForTestOutput(OutputModel):
 
-    highlight: JSON_DICT  # deprecated
+    highlight: JSON_DICT
 
 
-class GetSourceOrderHighlightObjectForTest(CDPMethod[GetSourceOrderHighlightObjectForTestOutput]):  # deprecated
+class GetSourceOrderHighlightObjectForTest(CDPMethod[GetSourceOrderHighlightObjectForTestOutput]):
     """ For Source Order Viewer testing. """
 
     INPUT_VALIDATOR = GetSourceOrderHighlightObjectForTestInput
@@ -123,7 +123,7 @@ class GetSourceOrderHighlightObjectForTest(CDPMethod[GetSourceOrderHighlightObje
         )
 
 
-class HideHighlight(CDPMethod[None]):  # deprecated
+class HideHighlight(CDPMethod[None]):
     """ Hides any highlight. """
 
     INPUT_VALIDATOR = None
@@ -132,9 +132,9 @@ class HideHighlight(CDPMethod[None]):  # deprecated
 
 class HighlightFrameInput(InputModel):
 
-    frameId: Page.FrameId  # deprecated
-    contentColor: DOM.RGBA | None = None  # deprecated
-    contentOutlineColor: DOM.RGBA | None = None  # deprecated
+    frameId: Page.FrameId
+    contentColor: DOM.RGBA | None = None
+    contentOutlineColor: DOM.RGBA | None = None
 
 
 class HighlightFrame(CDPMethod[None]):  # deprecated
@@ -162,14 +162,14 @@ class HighlightFrame(CDPMethod[None]):  # deprecated
 
 class HighlightNodeInput(InputModel):
 
-    highlightConfig: Overlay.HighlightConfig  # deprecated
-    nodeId: DOM.NodeId | None = None  # deprecated
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
-    selector: str | None = None  # deprecated
+    highlightConfig: Overlay.HighlightConfig
+    nodeId: DOM.NodeId | None = None
+    backendNodeId: DOM.BackendNodeId | None = None
+    objectId: Runtime.RemoteObjectId | None = None
+    selector: str | None = None
 
 
-class HighlightNode(CDPMethod[None]):  # deprecated
+class HighlightNode(CDPMethod[None]):
     """ Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or
     objectId must be specified. """
 
@@ -196,12 +196,12 @@ class HighlightNode(CDPMethod[None]):  # deprecated
 
 class HighlightQuadInput(InputModel):
 
-    quad: DOM.Quad  # deprecated
-    color: DOM.RGBA | None = None  # deprecated
-    outlineColor: DOM.RGBA | None = None  # deprecated
+    quad: DOM.Quad
+    color: DOM.RGBA | None = None
+    outlineColor: DOM.RGBA | None = None
 
 
-class HighlightQuad(CDPMethod[None]):  # deprecated
+class HighlightQuad(CDPMethod[None]):
     """ Highlights given quad. Coordinates are absolute with respect to the main frame viewport. """
 
     INPUT_VALIDATOR = HighlightQuadInput
@@ -223,15 +223,15 @@ class HighlightQuad(CDPMethod[None]):  # deprecated
 
 class HighlightRectInput(InputModel):
 
-    x: int  # deprecated
-    y: int  # deprecated
-    width: int  # deprecated
-    height: int  # deprecated
-    color: DOM.RGBA | None = None  # deprecated
-    outlineColor: DOM.RGBA | None = None  # deprecated
+    x: int
+    y: int
+    width: int
+    height: int
+    color: DOM.RGBA | None = None
+    outlineColor: DOM.RGBA | None = None
 
 
-class HighlightRect(CDPMethod[None]):  # deprecated
+class HighlightRect(CDPMethod[None]):
     """ Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport. """
 
     INPUT_VALIDATOR = HighlightRectInput
@@ -259,13 +259,13 @@ class HighlightRect(CDPMethod[None]):  # deprecated
 
 class HighlightSourceOrderInput(InputModel):
 
-    sourceOrderConfig: Overlay.SourceOrderConfig  # deprecated
-    nodeId: DOM.NodeId | None = None  # deprecated
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
+    sourceOrderConfig: Overlay.SourceOrderConfig
+    nodeId: DOM.NodeId | None = None
+    backendNodeId: DOM.BackendNodeId | None = None
+    objectId: Runtime.RemoteObjectId | None = None
 
 
-class HighlightSourceOrder(CDPMethod[None]):  # deprecated
+class HighlightSourceOrder(CDPMethod[None]):
     """ Highlights the source order of the children of the DOM node with given id or with the given
     JavaScript object wrapper. Either nodeId or objectId must be specified. """
 
@@ -290,11 +290,11 @@ class HighlightSourceOrder(CDPMethod[None]):  # deprecated
 
 class SetInspectModeInput(InputModel):
 
-    mode: Overlay.InspectMode  # deprecated
-    highlightConfig: Overlay.HighlightConfig | None = None  # deprecated
+    mode: Overlay.InspectMode
+    highlightConfig: Overlay.HighlightConfig | None = None
 
 
-class SetInspectMode(CDPMethod[None]):  # deprecated
+class SetInspectMode(CDPMethod[None]):
     """ Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted.
     Backend then generates 'inspectNodeRequested' event upon element selection. """
 
@@ -315,10 +315,10 @@ class SetInspectMode(CDPMethod[None]):  # deprecated
 
 class SetShowAdHighlightsInput(InputModel):
 
-    show: bool  # deprecated
+    show: bool
 
 
-class SetShowAdHighlights(CDPMethod[None]):  # deprecated
+class SetShowAdHighlights(CDPMethod[None]):
     """ Highlights owner element of all frames detected to be ads. """
 
     INPUT_VALIDATOR = SetShowAdHighlightsInput
@@ -336,7 +336,7 @@ class SetShowAdHighlights(CDPMethod[None]):  # deprecated
 
 class SetPausedInDebuggerMessageInput(InputModel):
 
-    message: str | None = None  # deprecated
+    message: str | None = None
 
 
 class SetPausedInDebuggerMessage(CDPMethod[None]):
@@ -356,10 +356,10 @@ class SetPausedInDebuggerMessage(CDPMethod[None]):
 
 class SetShowDebugBordersInput(InputModel):
 
-    show: bool  # deprecated
+    show: bool
 
 
-class SetShowDebugBorders(CDPMethod[None]):  # deprecated
+class SetShowDebugBorders(CDPMethod[None]):
     """ Requests that backend shows debug borders on layers """
 
     INPUT_VALIDATOR = SetShowDebugBordersInput
@@ -377,10 +377,10 @@ class SetShowDebugBorders(CDPMethod[None]):  # deprecated
 
 class SetShowFPSCounterInput(InputModel):
 
-    show: bool  # deprecated
+    show: bool
 
 
-class SetShowFPSCounter(CDPMethod[None]):  # deprecated
+class SetShowFPSCounter(CDPMethod[None]):
     """ Requests that backend shows the FPS counter """
 
     INPUT_VALIDATOR = SetShowFPSCounterInput
@@ -398,10 +398,10 @@ class SetShowFPSCounter(CDPMethod[None]):  # deprecated
 
 class SetShowGridOverlaysInput(InputModel):
 
-    gridNodeHighlightConfigs: list[Overlay.GridNodeHighlightConfig]  # deprecated
+    gridNodeHighlightConfigs: list[Overlay.GridNodeHighlightConfig]
 
 
-class SetShowGridOverlays(CDPMethod[None]):  # deprecated
+class SetShowGridOverlays(CDPMethod[None]):
     """ Highlight multiple elements with the CSS Grid overlay. """
 
     INPUT_VALIDATOR = SetShowGridOverlaysInput
@@ -419,7 +419,7 @@ class SetShowGridOverlays(CDPMethod[None]):  # deprecated
 
 class SetShowFlexOverlaysInput(InputModel):
 
-    flexNodeHighlightConfigs: list[Overlay.FlexNodeHighlightConfig]  # deprecated
+    flexNodeHighlightConfigs: list[Overlay.FlexNodeHighlightConfig]
 
 
 class SetShowFlexOverlays(CDPMethod[None]):
@@ -439,7 +439,7 @@ class SetShowFlexOverlays(CDPMethod[None]):
 
 class SetShowScrollSnapOverlaysInput(InputModel):
 
-    scrollSnapHighlightConfigs: list[Overlay.ScrollSnapHighlightConfig]  # deprecated
+    scrollSnapHighlightConfigs: list[Overlay.ScrollSnapHighlightConfig]
 
 
 class SetShowScrollSnapOverlays(CDPMethod[None]):
@@ -459,7 +459,7 @@ class SetShowScrollSnapOverlays(CDPMethod[None]):
 
 class SetShowContainerQueryOverlaysInput(InputModel):
 
-    containerQueryHighlightConfigs: list[Overlay.ContainerQueryHighlightConfig]  # deprecated
+    containerQueryHighlightConfigs: list[Overlay.ContainerQueryHighlightConfig]
 
 
 class SetShowContainerQueryOverlays(CDPMethod[None]):
@@ -479,10 +479,10 @@ class SetShowContainerQueryOverlays(CDPMethod[None]):
 
 class SetShowPaintRectsInput(InputModel):
 
-    result: bool  # deprecated
+    result: bool
 
 
-class SetShowPaintRects(CDPMethod[None]):  # deprecated
+class SetShowPaintRects(CDPMethod[None]):
     """ Requests that backend shows paint rectangles """
 
     INPUT_VALIDATOR = SetShowPaintRectsInput
@@ -500,10 +500,10 @@ class SetShowPaintRects(CDPMethod[None]):  # deprecated
 
 class SetShowLayoutShiftRegionsInput(InputModel):
 
-    result: bool  # deprecated
+    result: bool
 
 
-class SetShowLayoutShiftRegions(CDPMethod[None]):  # deprecated
+class SetShowLayoutShiftRegions(CDPMethod[None]):
     """ Requests that backend shows layout shift regions """
 
     INPUT_VALIDATOR = SetShowLayoutShiftRegionsInput
@@ -521,10 +521,10 @@ class SetShowLayoutShiftRegions(CDPMethod[None]):  # deprecated
 
 class SetShowScrollBottleneckRectsInput(InputModel):
 
-    show: bool  # deprecated
+    show: bool
 
 
-class SetShowScrollBottleneckRects(CDPMethod[None]):  # deprecated
+class SetShowScrollBottleneckRects(CDPMethod[None]):
     """ Requests that backend shows scroll bottleneck rects """
 
     INPUT_VALIDATOR = SetShowScrollBottleneckRectsInput
@@ -542,7 +542,7 @@ class SetShowScrollBottleneckRects(CDPMethod[None]):  # deprecated
 
 class SetShowHitTestBordersInput(InputModel):
 
-    show: bool  # deprecated
+    show: bool
 
 
 class SetShowHitTestBorders(CDPMethod[None]):  # deprecated
@@ -584,10 +584,10 @@ class SetShowWebVitals(CDPMethod[None]):  # deprecated
 
 class SetShowViewportSizeOnResizeInput(InputModel):
 
-    show: bool  # deprecated
+    show: bool
 
 
-class SetShowViewportSizeOnResize(CDPMethod[None]):  # deprecated
+class SetShowViewportSizeOnResize(CDPMethod[None]):
     """ Paints viewport size upon main frame resize. """
 
     INPUT_VALIDATOR = SetShowViewportSizeOnResizeInput
@@ -605,10 +605,10 @@ class SetShowViewportSizeOnResize(CDPMethod[None]):  # deprecated
 
 class SetShowHingeInput(InputModel):
 
-    hingeConfig: Overlay.HingeConfig | None = None  # deprecated
+    hingeConfig: Overlay.HingeConfig | None = None
 
 
-class SetShowHinge(CDPMethod[None]):  # deprecated
+class SetShowHinge(CDPMethod[None]):
     """ Add a dual screen device hinge """
 
     INPUT_VALIDATOR = SetShowHingeInput
@@ -626,10 +626,10 @@ class SetShowHinge(CDPMethod[None]):  # deprecated
 
 class SetShowIsolatedElementsInput(InputModel):
 
-    isolatedElementHighlightConfigs: list[Overlay.IsolatedElementHighlightConfig]  # deprecated
+    isolatedElementHighlightConfigs: list[Overlay.IsolatedElementHighlightConfig]
 
 
-class SetShowIsolatedElements(CDPMethod[None]):  # deprecated
+class SetShowIsolatedElements(CDPMethod[None]):
     """ Show elements in isolation mode with overlays. """
 
     INPUT_VALIDATOR = SetShowIsolatedElementsInput
@@ -647,10 +647,10 @@ class SetShowIsolatedElements(CDPMethod[None]):  # deprecated
 
 class SetShowWindowControlsOverlayInput(InputModel):
 
-    windowControlsOverlayConfig: Overlay.WindowControlsOverlayConfig | None = None  # deprecated
+    windowControlsOverlayConfig: Overlay.WindowControlsOverlayConfig | None = None
 
 
-class SetShowWindowControlsOverlay(CDPMethod[None]):  # deprecated
+class SetShowWindowControlsOverlay(CDPMethod[None]):
     """ Show Window Controls Overlay for PWA """
 
     INPUT_VALIDATOR = SetShowWindowControlsOverlayInput

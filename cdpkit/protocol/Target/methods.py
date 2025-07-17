@@ -22,7 +22,7 @@ class ActivateTargetInput(InputModel):
     targetId: Target.TargetID
 
 
-class ActivateTarget(CDPMethod[None]):  # deprecated
+class ActivateTarget(CDPMethod[None]):
     """ Activates (focuses) the target. """
 
     INPUT_VALIDATOR = ActivateTargetInput
@@ -41,15 +41,15 @@ class ActivateTarget(CDPMethod[None]):  # deprecated
 class AttachToTargetInput(InputModel):
 
     targetId: Target.TargetID
-    flatten: bool | None = None  # deprecated
+    flatten: bool | None = None
 
 
 class AttachToTargetOutput(OutputModel):
 
-    sessionId: Target.SessionID  # deprecated
+    sessionId: Target.SessionID
 
 
-class AttachToTarget(CDPMethod[AttachToTargetOutput]):  # deprecated
+class AttachToTarget(CDPMethod[AttachToTargetOutput]):
     """ Attaches to the target with given id. """
 
     INPUT_VALIDATOR = AttachToTargetInput
@@ -69,10 +69,10 @@ class AttachToTarget(CDPMethod[AttachToTargetOutput]):  # deprecated
 
 class AttachToBrowserTargetOutput(OutputModel):
 
-    sessionId: Target.SessionID  # deprecated
+    sessionId: Target.SessionID
 
 
-class AttachToBrowserTarget(CDPMethod[AttachToBrowserTargetOutput]):  # experimental deprecated
+class AttachToBrowserTarget(CDPMethod[AttachToBrowserTargetOutput]):  # experimental
     """ Attaches to the browser target, only uses flat sessionId mode. """
 
     INPUT_VALIDATOR = None
@@ -89,7 +89,7 @@ class CloseTargetOutput(OutputModel):
     success: bool  # deprecated
 
 
-class CloseTarget(CDPMethod[CloseTargetOutput]):  # deprecated
+class CloseTarget(CDPMethod[CloseTargetOutput]):
     """ Closes the target. If the target is a page that gets closed too. """
 
     INPUT_VALIDATOR = CloseTargetInput
@@ -108,11 +108,11 @@ class CloseTarget(CDPMethod[CloseTargetOutput]):  # deprecated
 class ExposeDevToolsProtocolInput(InputModel):
 
     targetId: Target.TargetID
-    bindingName: str | None = None  # deprecated
-    inheritPermissions: bool | None = None  # deprecated
+    bindingName: str | None = None
+    inheritPermissions: bool | None = None
 
 
-class ExposeDevToolsProtocol(CDPMethod[None]):  # experimental deprecated
+class ExposeDevToolsProtocol(CDPMethod[None]):  # experimental
     """ Inject object to the target's main frame that provides a communication
     channel with browser target.
 
@@ -141,18 +141,18 @@ class ExposeDevToolsProtocol(CDPMethod[None]):  # experimental deprecated
 
 class CreateBrowserContextInput(InputModel):
 
-    disposeOnDetach: bool | None = None  # experimental deprecated
-    proxyServer: str | None = None  # experimental deprecated
-    proxyBypassList: str | None = None  # experimental deprecated
-    originsWithUniversalNetworkAccess: list[str] | None = None  # experimental deprecated
+    disposeOnDetach: bool | None = None  # experimental
+    proxyServer: str | None = None  # experimental
+    proxyBypassList: str | None = None  # experimental
+    originsWithUniversalNetworkAccess: list[str] | None = None  # experimental
 
 
 class CreateBrowserContextOutput(OutputModel):
 
-    browserContextId: Browser.BrowserContextID  # deprecated
+    browserContextId: Browser.BrowserContextID
 
 
-class CreateBrowserContext(CDPMethod[CreateBrowserContextOutput]):  # deprecated
+class CreateBrowserContext(CDPMethod[CreateBrowserContextOutput]):
     """ Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than
     one. """
 
@@ -177,10 +177,10 @@ class CreateBrowserContext(CDPMethod[CreateBrowserContextOutput]):  # deprecated
 
 class GetBrowserContextsOutput(OutputModel):
 
-    browserContextIds: list[Browser.BrowserContextID]  # deprecated
+    browserContextIds: list[Browser.BrowserContextID]
 
 
-class GetBrowserContexts(CDPMethod[GetBrowserContextsOutput]):  # deprecated
+class GetBrowserContexts(CDPMethod[GetBrowserContextsOutput]):
     """ Returns all browser contexts created with `Target.createBrowserContext` method. """
 
     INPUT_VALIDATOR = None
@@ -189,26 +189,26 @@ class GetBrowserContexts(CDPMethod[GetBrowserContextsOutput]):  # deprecated
 
 class CreateTargetInput(InputModel):
 
-    url: str  # deprecated
-    left: int | None = None  # experimental deprecated
-    top: int | None = None  # experimental deprecated
-    width: int | None = None  # deprecated
-    height: int | None = None  # deprecated
-    windowState: Target.WindowState | None = None  # deprecated
-    browserContextId: Browser.BrowserContextID | None = None  # experimental deprecated
-    enableBeginFrameControl: bool | None = None  # experimental deprecated
-    newWindow: bool | None = None  # deprecated
-    background: bool | None = None  # deprecated
-    forTab: bool | None = None  # experimental deprecated
-    hidden: bool | None = None  # experimental deprecated
+    url: str
+    left: int | None = None  # experimental
+    top: int | None = None  # experimental
+    width: int | None = None
+    height: int | None = None
+    windowState: Target.WindowState | None = None
+    browserContextId: Browser.BrowserContextID | None = None  # experimental
+    enableBeginFrameControl: bool | None = None  # experimental
+    newWindow: bool | None = None
+    background: bool | None = None
+    forTab: bool | None = None  # experimental
+    hidden: bool | None = None  # experimental
 
 
 class CreateTargetOutput(OutputModel):
 
-    targetId: Target.TargetID  # deprecated
+    targetId: Target.TargetID
 
 
-class CreateTarget(CDPMethod[CreateTargetOutput]):  # deprecated
+class CreateTarget(CDPMethod[CreateTargetOutput]):
     """ Creates a new page. """
 
     INPUT_VALIDATOR = CreateTargetInput
@@ -248,11 +248,11 @@ class CreateTarget(CDPMethod[CreateTargetOutput]):  # deprecated
 
 class DetachFromTargetInput(InputModel):
 
-    sessionId: Target.SessionID | None = None  # deprecated
+    sessionId: Target.SessionID | None = None
     targetId: Target.TargetID | None = None  # deprecated
 
 
-class DetachFromTarget(CDPMethod[None]):  # deprecated
+class DetachFromTarget(CDPMethod[None]):
     """ Detaches session with given id. """
 
     INPUT_VALIDATOR = DetachFromTargetInput
@@ -275,7 +275,7 @@ class DisposeBrowserContextInput(InputModel):
     browserContextId: Browser.BrowserContextID
 
 
-class DisposeBrowserContext(CDPMethod[None]):  # deprecated
+class DisposeBrowserContext(CDPMethod[None]):
     """ Deletes a BrowserContext. All the belonging pages will be closed without calling their
     beforeunload hooks. """
 
@@ -302,7 +302,7 @@ class GetTargetInfoOutput(OutputModel):
     targetInfo: Target.TargetInfo
 
 
-class GetTargetInfo(CDPMethod[GetTargetInfoOutput]):  # experimental deprecated
+class GetTargetInfo(CDPMethod[GetTargetInfoOutput]):  # experimental
     """ Returns information about a target. """
 
     INPUT_VALIDATOR = GetTargetInfoInput
@@ -320,15 +320,15 @@ class GetTargetInfo(CDPMethod[GetTargetInfoOutput]):  # experimental deprecated
 
 class GetTargetsInput(InputModel):
 
-    filter: Target.TargetFilter | None = None  # experimental deprecated
+    filter: Target.TargetFilter | None = None  # experimental
 
 
 class GetTargetsOutput(OutputModel):
 
-    targetInfos: list[Target.TargetInfo]  # deprecated
+    targetInfos: list[Target.TargetInfo]
 
 
-class GetTargets(CDPMethod[GetTargetsOutput]):  # deprecated
+class GetTargets(CDPMethod[GetTargetsOutput]):
     """ Retrieves a list of available targets. """
 
     INPUT_VALIDATOR = GetTargetsInput
@@ -347,7 +347,7 @@ class GetTargets(CDPMethod[GetTargetsOutput]):  # deprecated
 class SendMessageToTargetInput(InputModel):
 
     message: str
-    sessionId: Target.SessionID | None = None  # deprecated
+    sessionId: Target.SessionID | None = None
     targetId: Target.TargetID | None = None  # deprecated
 
 
@@ -375,13 +375,13 @@ class SendMessageToTarget(CDPMethod[None]):  # deprecated
 
 class SetAutoAttachInput(InputModel):
 
-    autoAttach: bool  # deprecated
-    waitForDebuggerOnStart: bool  # deprecated
-    flatten: bool | None = None  # experimental deprecated
-    filter: Target.TargetFilter | None = None  # experimental deprecated
+    autoAttach: bool
+    waitForDebuggerOnStart: bool
+    flatten: bool | None = None  # experimental
+    filter: Target.TargetFilter | None = None  # experimental
 
 
-class SetAutoAttach(CDPMethod[None]):  # deprecated
+class SetAutoAttach(CDPMethod[None]):
     """ Controls whether to automatically attach to new targets which are considered
     to be directly related to this one (for example, iframes or workers).
     When turned on, attaches to all existing related targets as well. When turned off,
@@ -413,11 +413,11 @@ class SetAutoAttach(CDPMethod[None]):  # deprecated
 class AutoAttachRelatedInput(InputModel):
 
     targetId: Target.TargetID
-    waitForDebuggerOnStart: bool  # deprecated
-    filter: Target.TargetFilter | None = None  # experimental deprecated
+    waitForDebuggerOnStart: bool
+    filter: Target.TargetFilter | None = None  # experimental
 
 
-class AutoAttachRelated(CDPMethod[None]):  # experimental deprecated
+class AutoAttachRelated(CDPMethod[None]):  # experimental
     """ Adds the specified target to the list of targets that will be monitored for any related target
     creation (such as child frames, child workers and new versions of service worker) and reported
     through `attachedToTarget`. The specified target is also auto-attached.
@@ -443,11 +443,11 @@ class AutoAttachRelated(CDPMethod[None]):  # experimental deprecated
 
 class SetDiscoverTargetsInput(InputModel):
 
-    discover: bool  # deprecated
-    filter: Target.TargetFilter | None = None  # experimental deprecated
+    discover: bool
+    filter: Target.TargetFilter | None = None  # experimental
 
 
-class SetDiscoverTargets(CDPMethod[None]):  # deprecated
+class SetDiscoverTargets(CDPMethod[None]):
     """ Controls whether to discover available targets and notify via
     `targetCreated/targetInfoChanged/targetDestroyed` events. """
 
@@ -468,10 +468,10 @@ class SetDiscoverTargets(CDPMethod[None]):  # deprecated
 
 class SetRemoteLocationsInput(InputModel):
 
-    locations: list[Target.RemoteLocation]  # deprecated
+    locations: list[Target.RemoteLocation]
 
 
-class SetRemoteLocations(CDPMethod[None]):  # experimental deprecated
+class SetRemoteLocations(CDPMethod[None]):  # experimental
     """ Enables target discovery for the specified locations, when `setDiscoverTargets` was set to
     `true`. """
 

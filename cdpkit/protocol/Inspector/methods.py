@@ -13,14 +13,14 @@ from __future__ import annotations
 from cdpkit.protocol.base import CDPMethod
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables inspector domain notifications. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables inspector domain notifications. """
 
     INPUT_VALIDATOR = None

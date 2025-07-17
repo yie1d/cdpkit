@@ -24,6 +24,7 @@ from .methods import (
     DiscardSearchResults,
     Enable,
     Focus,
+    ForceShowPopover,
     GetAnchorElement,
     GetAttributes,
     GetBoxModel,
@@ -176,4 +177,5 @@ __all__ = [
     GetContainerForNode,
     GetQueryingDescendantsForContainer,
     GetAnchorElement,
+    ForceShowPopover,
 ]

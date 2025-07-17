@@ -16,7 +16,7 @@ from cdpkit.protocol.base import CDPEvent
 class Detached(CDPEvent):
     """ Fired when remote debugging connection is about to be terminated. Contains detach reason. """
 
-    reason: str  # deprecated
+    reason: str
 
 
 class TargetCrashed(CDPEvent):

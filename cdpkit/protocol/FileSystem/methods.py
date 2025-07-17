@@ -23,7 +23,7 @@ class GetDirectoryInput(InputModel):
 
 class GetDirectoryOutput(OutputModel):
 
-    directory: FileSystem.Directory  # deprecated
+    directory: FileSystem.Directory
 
 
 class GetDirectory(CDPMethod[GetDirectoryOutput]):

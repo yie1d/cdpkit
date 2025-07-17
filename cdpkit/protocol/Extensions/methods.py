@@ -18,15 +18,15 @@ from cdpkit.protocol.base import JSON_DICT, CDPMethod, InputModel, OutputModel
 
 class LoadUnpackedInput(InputModel):
 
-    path: str  # deprecated
+    path: str
 
 
 class LoadUnpackedOutput(OutputModel):
 
-    id: str  # deprecated
+    id: str
 
 
-class LoadUnpacked(CDPMethod[LoadUnpackedOutput]):  # deprecated
+class LoadUnpacked(CDPMethod[LoadUnpackedOutput]):
     """ Installs an unpacked extension from the filesystem similar to
     --load-extension CLI flags. Returns extension ID once the extension
     has been installed. Available if the client is connected using the
@@ -48,10 +48,10 @@ class LoadUnpacked(CDPMethod[LoadUnpackedOutput]):  # deprecated
 
 class UninstallInput(InputModel):
 
-    id: str  # deprecated
+    id: str
 
 
-class Uninstall(CDPMethod[None]):  # deprecated
+class Uninstall(CDPMethod[None]):
     """ Uninstalls an unpacked extension (others not supported) from the profile.
     Available if the client is connected using the --remote-debugging-pipe flag
     and the --enable-unsafe-extension-debugging. """
@@ -71,9 +71,9 @@ class Uninstall(CDPMethod[None]):  # deprecated
 
 class GetStorageItemsInput(InputModel):
 
-    id: str  # deprecated
-    storageArea: Extensions.StorageArea  # deprecated
-    keys: list[str] | None = None  # deprecated
+    id: str
+    storageArea: Extensions.StorageArea
+    keys: list[str] | None = None
 
 
 class GetStorageItemsOutput(OutputModel):
@@ -81,7 +81,7 @@ class GetStorageItemsOutput(OutputModel):
     data: JSON_DICT
 
 
-class GetStorageItems(CDPMethod[GetStorageItemsOutput]):  # deprecated
+class GetStorageItems(CDPMethod[GetStorageItemsOutput]):
     """ Gets data from extension storage in the given `storageArea`. If `keys` is
     specified, these are used to filter the result. """
 
@@ -104,12 +104,12 @@ class GetStorageItems(CDPMethod[GetStorageItemsOutput]):  # deprecated
 
 class RemoveStorageItemsInput(InputModel):
 
-    id: str  # deprecated
-    storageArea: Extensions.StorageArea  # deprecated
-    keys: list[str]  # deprecated
+    id: str
+    storageArea: Extensions.StorageArea
+    keys: list[str]
 
 
-class RemoveStorageItems(CDPMethod[None]):  # deprecated
+class RemoveStorageItems(CDPMethod[None]):
     """ Removes `keys` from extension storage in the given `storageArea`. """
 
     INPUT_VALIDATOR = RemoveStorageItemsInput
@@ -131,11 +131,11 @@ class RemoveStorageItems(CDPMethod[None]):  # deprecated
 
 class ClearStorageItemsInput(InputModel):
 
-    id: str  # deprecated
-    storageArea: Extensions.StorageArea  # deprecated
+    id: str
+    storageArea: Extensions.StorageArea
 
 
-class ClearStorageItems(CDPMethod[None]):  # deprecated
+class ClearStorageItems(CDPMethod[None]):
     """ Clears extension storage in the given `storageArea`. """
 
     INPUT_VALIDATOR = ClearStorageItemsInput
@@ -155,12 +155,12 @@ class ClearStorageItems(CDPMethod[None]):  # deprecated
 
 class SetStorageItemsInput(InputModel):
 
-    id: str  # deprecated
-    storageArea: Extensions.StorageArea  # deprecated
-    values: JSON_DICT  # deprecated
+    id: str
+    storageArea: Extensions.StorageArea
+    values: JSON_DICT
 
 
-class SetStorageItems(CDPMethod[None]):  # deprecated
+class SetStorageItems(CDPMethod[None]):
     """ Sets `values` in extension storage in the given `storageArea`. The provided `values`
     will be merged with existing values in the storage area. """
 

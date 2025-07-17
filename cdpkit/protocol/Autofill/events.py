@@ -19,5 +19,5 @@ from cdpkit.protocol.base import CDPEvent
 class AddressFormFilled(CDPEvent):
     """ Emitted when an address form is filled. """
 
-    filledFields: list[Autofill.FilledField]  # deprecated
-    addressUi: Autofill.AddressUI  # deprecated
+    filledFields: list[Autofill.FilledField]
+    addressUi: Autofill.AddressUI

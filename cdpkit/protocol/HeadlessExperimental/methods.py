@@ -18,19 +18,19 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class BeginFrameInput(InputModel):
 
-    frameTimeTicks: float | None = None  # deprecated
-    interval: float | None = None  # deprecated
-    noDisplayUpdates: bool | None = None  # deprecated
-    screenshot: HeadlessExperimental.ScreenshotParams | None = None  # deprecated
+    frameTimeTicks: float | None = None
+    interval: float | None = None
+    noDisplayUpdates: bool | None = None
+    screenshot: HeadlessExperimental.ScreenshotParams | None = None
 
 
 class BeginFrameOutput(OutputModel):
 
-    hasDamage: bool  # deprecated
-    screenshotData: str | None = None  # deprecated
+    hasDamage: bool
+    screenshotData: str | None = None
 
 
-class BeginFrame(CDPMethod[BeginFrameOutput]):  # deprecated
+class BeginFrame(CDPMethod[BeginFrameOutput]):
     """ Sends a BeginFrame to the target and returns when the frame was completed. Optionally captures a
     screenshot from the resulting frame. Requires that the target was created with enabled
     BeginFrameControl. Designed for use with --run-all-compositor-stages-before-draw, see also

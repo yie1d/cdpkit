@@ -16,10 +16,10 @@ from cdpkit.protocol.base import CDPMethod, InputModel
 
 class EnableInput(InputModel):
 
-    eventTypes: list[str]  # deprecated
+    eventTypes: list[str]
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Previously buffered events would be reported before method returns.
     See also: timelineEventAdded """
 

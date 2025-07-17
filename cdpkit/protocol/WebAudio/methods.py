@@ -17,14 +17,14 @@ from cdpkit.protocol._types import (
 from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables the WebAudio domain and starts sending context lifetime events. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables the WebAudio domain. """
 
     INPUT_VALIDATOR = None
@@ -41,7 +41,7 @@ class GetRealtimeDataOutput(OutputModel):
     realtimeData: WebAudio.ContextRealtimeData
 
 
-class GetRealtimeData(CDPMethod[GetRealtimeDataOutput]):  # deprecated
+class GetRealtimeData(CDPMethod[GetRealtimeDataOutput]):
     """ Fetch the realtime data from the registered contexts. """
 
     INPUT_VALIDATOR = GetRealtimeDataInput

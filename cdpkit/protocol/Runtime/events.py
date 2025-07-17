@@ -27,45 +27,45 @@ class BindingCalled(CDPEvent):
 
     name: str
     payload: str
-    executionContextId: Runtime.ExecutionContextId  # deprecated
+    executionContextId: Runtime.ExecutionContextId
 
 
 class ConsoleAPICalled(CDPEvent):
     """ Issued when console API was called. """
 
-    type: Literal['log', 'debug', 'info', 'error', 'warning', 'dir', 'dirxml', 'table', 'trace', 'clear', 'startGroup', 'startGroupCollapsed', 'endGroup', 'assert', 'profile', 'profileEnd', 'count', 'timeEnd']  # deprecated
-    args: list[Runtime.RemoteObject]  # deprecated
-    executionContextId: Runtime.ExecutionContextId  # deprecated
-    timestamp: Runtime.Timestamp  # deprecated
-    stackTrace: Runtime.StackTrace | None = None  # deprecated
-    context: str | None = None  # experimental deprecated
+    type: Literal['log', 'debug', 'info', 'error', 'warning', 'dir', 'dirxml', 'table', 'trace', 'clear', 'startGroup', 'startGroupCollapsed', 'endGroup', 'assert', 'profile', 'profileEnd', 'count', 'timeEnd']
+    args: list[Runtime.RemoteObject]
+    executionContextId: Runtime.ExecutionContextId
+    timestamp: Runtime.Timestamp
+    stackTrace: Runtime.StackTrace | None = None
+    context: str | None = None  # experimental
 
 
 class ExceptionRevoked(CDPEvent):
     """ Issued when unhandled exception was revoked. """
 
-    reason: str  # deprecated
-    exceptionId: int  # deprecated
+    reason: str
+    exceptionId: int
 
 
 class ExceptionThrown(CDPEvent):
     """ Issued when exception was thrown and unhandled. """
 
-    timestamp: Runtime.Timestamp  # deprecated
+    timestamp: Runtime.Timestamp
     exceptionDetails: Runtime.ExceptionDetails
 
 
 class ExecutionContextCreated(CDPEvent):
     """ Issued when new execution context is created. """
 
-    context: Runtime.ExecutionContextDescription  # deprecated
+    context: Runtime.ExecutionContextDescription
 
 
 class ExecutionContextDestroyed(CDPEvent):
     """ Issued when execution context is destroyed. """
 
     executionContextId: Runtime.ExecutionContextId  # deprecated
-    executionContextUniqueId: str | None = None  # experimental deprecated
+    executionContextUniqueId: str | None = None  # experimental
 
 
 class ExecutionContextsCleared(CDPEvent):
@@ -80,4 +80,4 @@ class InspectRequested(CDPEvent):
 
     object: Runtime.RemoteObject
     hints: JSON_DICT
-    executionContextId: Runtime.ExecutionContextId | None = None  # experimental deprecated
+    executionContextId: Runtime.ExecutionContextId | None = None  # experimental

@@ -31,24 +31,24 @@ class RequestPaused(CDPEvent):
     presence of the `location` header. Requests resulting from a redirect will
     have `redirectedRequestId` field set. """
 
-    requestId: Fetch.RequestId  # deprecated
-    request: Network.Request  # deprecated
-    frameId: Page.FrameId  # deprecated
-    resourceType: Network.ResourceType  # deprecated
-    responseErrorReason: Network.ErrorReason | None = None  # deprecated
-    responseStatusCode: int | None = None  # deprecated
-    responseStatusText: str | None = None  # deprecated
-    responseHeaders: list[Fetch.HeaderEntry] | None = None  # deprecated
-    networkId: Network.RequestId | None = None  # deprecated
-    redirectedRequestId: Fetch.RequestId | None = None  # experimental deprecated
+    requestId: Fetch.RequestId
+    request: Network.Request
+    frameId: Page.FrameId
+    resourceType: Network.ResourceType
+    responseErrorReason: Network.ErrorReason | None = None
+    responseStatusCode: int | None = None
+    responseStatusText: str | None = None
+    responseHeaders: list[Fetch.HeaderEntry] | None = None
+    networkId: Network.RequestId | None = None
+    redirectedRequestId: Fetch.RequestId | None = None  # experimental
 
 
 class AuthRequired(CDPEvent):
     """ Issued when the domain is enabled with handleAuthRequests set to true.
     The request is paused until client responds with continueWithAuth. """
 
-    requestId: Fetch.RequestId  # deprecated
-    request: Network.Request  # deprecated
-    frameId: Page.FrameId  # deprecated
-    resourceType: Network.ResourceType  # deprecated
-    authChallenge: Fetch.AuthChallenge  # deprecated
+    requestId: Fetch.RequestId
+    request: Network.Request
+    frameId: Page.FrameId
+    resourceType: Network.ResourceType
+    authChallenge: Fetch.AuthChallenge

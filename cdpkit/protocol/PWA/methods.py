@@ -19,7 +19,7 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class GetOsAppStateInput(InputModel):
 
-    manifestId: str  # deprecated
+    manifestId: str
 
 
 class GetOsAppStateOutput(OutputModel):
@@ -28,7 +28,7 @@ class GetOsAppStateOutput(OutputModel):
     fileHandlers: list[PWA.FileHandler]
 
 
-class GetOsAppState(CDPMethod[GetOsAppStateOutput]):  # deprecated
+class GetOsAppState(CDPMethod[GetOsAppStateOutput]):
     """ Returns the following OS state for the given manifest id. """
 
     INPUT_VALIDATOR = GetOsAppStateInput
@@ -47,10 +47,10 @@ class GetOsAppState(CDPMethod[GetOsAppStateOutput]):  # deprecated
 class InstallInput(InputModel):
 
     manifestId: str
-    installUrlOrBundleUrl: str | None = None  # deprecated
+    installUrlOrBundleUrl: str | None = None
 
 
-class Install(CDPMethod[None]):  # deprecated
+class Install(CDPMethod[None]):
     """ Installs the given manifest identity, optionally using the given installUrlOrBundleUrl
 
     IWA-specific install description:
@@ -97,7 +97,7 @@ class UninstallInput(InputModel):
     manifestId: str
 
 
-class Uninstall(CDPMethod[None]):  # deprecated
+class Uninstall(CDPMethod[None]):
     """ Uninstalls the given manifest_id and closes any opened app windows. """
 
     INPUT_VALIDATOR = UninstallInput
@@ -121,10 +121,10 @@ class LaunchInput(InputModel):
 
 class LaunchOutput(OutputModel):
 
-    targetId: Target.TargetID  # deprecated
+    targetId: Target.TargetID
 
 
-class Launch(CDPMethod[LaunchOutput]):  # deprecated
+class Launch(CDPMethod[LaunchOutput]):
     """ Launches the installed web app, or an url in the same web app instead of the
     default start url if it is provided. Returns a page Target.TargetID which
     can be used to attach to via Target.attachToTarget or similar APIs. """
@@ -152,10 +152,10 @@ class LaunchFilesInAppInput(InputModel):
 
 class LaunchFilesInAppOutput(OutputModel):
 
-    targetIds: list[Target.TargetID]  # deprecated
+    targetIds: list[Target.TargetID]
 
 
-class LaunchFilesInApp(CDPMethod[LaunchFilesInAppOutput]):  # deprecated
+class LaunchFilesInApp(CDPMethod[LaunchFilesInAppOutput]):
     """ Opens one or more local files from an installed web app identified by its
     manifestId. The web app needs to have file handlers registered to process
     the files. The API returns one or more page Target.TargetIDs which can be
@@ -190,7 +190,7 @@ class OpenCurrentPageInAppInput(InputModel):
     manifestId: str
 
 
-class OpenCurrentPageInApp(CDPMethod[None]):  # deprecated
+class OpenCurrentPageInApp(CDPMethod[None]):
     """ Opens the current page in its web app identified by the manifest id, needs
     to be called on a page target. This function returns immediately without
     waiting for the app to finish loading. """
@@ -211,11 +211,11 @@ class OpenCurrentPageInApp(CDPMethod[None]):  # deprecated
 class ChangeAppUserSettingsInput(InputModel):
 
     manifestId: str
-    linkCapturing: bool | None = None  # deprecated
+    linkCapturing: bool | None = None
     displayMode: PWA.DisplayMode | None = None
 
 
-class ChangeAppUserSettings(CDPMethod[None]):  # deprecated
+class ChangeAppUserSettings(CDPMethod[None]):
     """ Changes user settings of the web app identified by its manifestId. If the
     app was not installed, this command returns an error. Unset parameters will
     be ignored; unrecognized values will cause an error.

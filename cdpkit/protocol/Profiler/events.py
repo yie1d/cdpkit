@@ -20,17 +20,17 @@ from cdpkit.protocol.base import CDPEvent
 class ConsoleProfileFinished(CDPEvent):
 
     id: str
-    location: Debugger.Location  # deprecated
+    location: Debugger.Location
     profile: Profiler.Profile
-    title: str | None = None  # deprecated
+    title: str | None = None
 
 
 class ConsoleProfileStarted(CDPEvent):
     """ Sent when new profile recording is started using console.profile() call. """
 
     id: str
-    location: Debugger.Location  # deprecated
-    title: str | None = None  # deprecated
+    location: Debugger.Location
+    title: str | None = None
 
 
 class PreciseCoverageDeltaUpdate(CDPEvent):
@@ -39,6 +39,6 @@ class PreciseCoverageDeltaUpdate(CDPEvent):
     coverage has been started. This event can be trigged by the embedder to, for example,
     trigger collection of coverage data immediately at a certain point in time. """
 
-    timestamp: float  # deprecated
-    occasion: str  # deprecated
-    result: list[Profiler.ScriptCoverage]  # deprecated
+    timestamp: float
+    occasion: str
+    result: list[Profiler.ScriptCoverage]

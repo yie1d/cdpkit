@@ -28,15 +28,15 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class CollectClassNamesFromSubtreeInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
 class CollectClassNamesFromSubtreeOutput(OutputModel):
 
-    classNames: list[str]  # deprecated
+    classNames: list[str]
 
 
-class CollectClassNamesFromSubtree(CDPMethod[CollectClassNamesFromSubtreeOutput]):  # experimental deprecated
+class CollectClassNamesFromSubtree(CDPMethod[CollectClassNamesFromSubtreeOutput]):  # experimental
     """ Collects class names for the node with given id and all of it's child nodes. """
 
     INPUT_VALIDATOR = CollectClassNamesFromSubtreeInput
@@ -54,17 +54,17 @@ class CollectClassNamesFromSubtree(CDPMethod[CollectClassNamesFromSubtreeOutput]
 
 class CopyToInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    targetNodeId: DOM.NodeId  # deprecated
-    insertBeforeNodeId: DOM.NodeId | None = None  # deprecated
+    nodeId: DOM.NodeId
+    targetNodeId: DOM.NodeId
+    insertBeforeNodeId: DOM.NodeId | None = None
 
 
 class CopyToOutput(OutputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
-class CopyTo(CDPMethod[CopyToOutput]):  # experimental deprecated
+class CopyTo(CDPMethod[CopyToOutput]):  # experimental
     """ Creates a deep copy of the specified node and places it into the target container before the
     given anchor. """
 
@@ -87,19 +87,19 @@ class CopyTo(CDPMethod[CopyToOutput]):  # experimental deprecated
 
 class DescribeNodeInput(InputModel):
 
-    nodeId: DOM.NodeId | None = None  # deprecated
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
-    depth: int | None = None  # deprecated
-    pierce: bool | None = None  # deprecated
+    nodeId: DOM.NodeId | None = None
+    backendNodeId: DOM.BackendNodeId | None = None
+    objectId: Runtime.RemoteObjectId | None = None
+    depth: int | None = None
+    pierce: bool | None = None
 
 
 class DescribeNodeOutput(OutputModel):
 
-    node: DOM.Node  # deprecated
+    node: DOM.Node
 
 
-class DescribeNode(CDPMethod[DescribeNodeOutput]):  # deprecated
+class DescribeNode(CDPMethod[DescribeNodeOutput]):
     """ Describes node given its id, does not require domain to be enabled. Does not start tracking any
     objects, can be used for automation. """
 
@@ -126,13 +126,13 @@ class DescribeNode(CDPMethod[DescribeNodeOutput]):  # deprecated
 
 class ScrollIntoViewIfNeededInput(InputModel):
 
-    nodeId: DOM.NodeId | None = None  # deprecated
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
-    rect: DOM.Rect | None = None  # deprecated
+    nodeId: DOM.NodeId | None = None
+    backendNodeId: DOM.BackendNodeId | None = None
+    objectId: Runtime.RemoteObjectId | None = None
+    rect: DOM.Rect | None = None
 
 
-class ScrollIntoViewIfNeeded(CDPMethod[None]):  # deprecated
+class ScrollIntoViewIfNeeded(CDPMethod[None]):
     """ Scrolls the specified rect of the given node into view if not already visible.
     Note: exactly one between nodeId, backendNodeId and objectId should be passed
     to identify the node. """
@@ -156,7 +156,7 @@ class ScrollIntoViewIfNeeded(CDPMethod[None]):  # deprecated
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables DOM agent for the given page. """
 
     INPUT_VALIDATOR = None
@@ -165,10 +165,10 @@ class Disable(CDPMethod[None]):  # deprecated
 
 class DiscardSearchResultsInput(InputModel):
 
-    searchId: str  # deprecated
+    searchId: str
 
 
-class DiscardSearchResults(CDPMethod[None]):  # experimental deprecated
+class DiscardSearchResults(CDPMethod[None]):  # experimental
     """ Discards search results from the session with the given id. `getSearchResults` should no longer
     be called for that search. """
 
@@ -187,10 +187,10 @@ class DiscardSearchResults(CDPMethod[None]):  # experimental deprecated
 
 class EnableInput(InputModel):
 
-    includeWhitespace: Literal['none', 'all'] | None = None  # experimental deprecated
+    includeWhitespace: Literal['none', 'all'] | None = None  # experimental
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables DOM agent for the given page. """
 
     INPUT_VALIDATOR = EnableInput
@@ -208,12 +208,12 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class FocusInput(InputModel):
 
-    nodeId: DOM.NodeId | None = None  # deprecated
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
+    nodeId: DOM.NodeId | None = None
+    backendNodeId: DOM.BackendNodeId | None = None
+    objectId: Runtime.RemoteObjectId | None = None
 
 
-class Focus(CDPMethod[None]):  # deprecated
+class Focus(CDPMethod[None]):
     """ Focuses the given element. """
 
     INPUT_VALIDATOR = FocusInput
@@ -235,15 +235,15 @@ class Focus(CDPMethod[None]):  # deprecated
 
 class GetAttributesInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
 class GetAttributesOutput(OutputModel):
 
-    attributes: list[str]  # deprecated
+    attributes: list[str]
 
 
-class GetAttributes(CDPMethod[GetAttributesOutput]):  # deprecated
+class GetAttributes(CDPMethod[GetAttributesOutput]):
     """ Returns attributes for the specified node. """
 
     INPUT_VALIDATOR = GetAttributesInput
@@ -261,17 +261,17 @@ class GetAttributes(CDPMethod[GetAttributesOutput]):  # deprecated
 
 class GetBoxModelInput(InputModel):
 
-    nodeId: DOM.NodeId | None = None  # deprecated
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
+    nodeId: DOM.NodeId | None = None
+    backendNodeId: DOM.BackendNodeId | None = None
+    objectId: Runtime.RemoteObjectId | None = None
 
 
 class GetBoxModelOutput(OutputModel):
 
-    model: DOM.BoxModel  # deprecated
+    model: DOM.BoxModel
 
 
-class GetBoxModel(CDPMethod[GetBoxModelOutput]):  # deprecated
+class GetBoxModel(CDPMethod[GetBoxModelOutput]):
     """ Returns boxes for the given node. """
 
     INPUT_VALIDATOR = GetBoxModelInput
@@ -293,17 +293,17 @@ class GetBoxModel(CDPMethod[GetBoxModelOutput]):  # deprecated
 
 class GetContentQuadsInput(InputModel):
 
-    nodeId: DOM.NodeId | None = None  # deprecated
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
+    nodeId: DOM.NodeId | None = None
+    backendNodeId: DOM.BackendNodeId | None = None
+    objectId: Runtime.RemoteObjectId | None = None
 
 
 class GetContentQuadsOutput(OutputModel):
 
-    quads: list[DOM.Quad]  # deprecated
+    quads: list[DOM.Quad]
 
 
-class GetContentQuads(CDPMethod[GetContentQuadsOutput]):  # experimental deprecated
+class GetContentQuads(CDPMethod[GetContentQuadsOutput]):  # experimental
     """ Returns quads that describe node position on the page. This method
     might return multiple quads for inline nodes. """
 
@@ -326,16 +326,16 @@ class GetContentQuads(CDPMethod[GetContentQuadsOutput]):  # experimental depreca
 
 class GetDocumentInput(InputModel):
 
-    depth: int | None = None  # deprecated
-    pierce: bool | None = None  # deprecated
+    depth: int | None = None
+    pierce: bool | None = None
 
 
 class GetDocumentOutput(OutputModel):
 
-    root: DOM.Node  # deprecated
+    root: DOM.Node
 
 
-class GetDocument(CDPMethod[GetDocumentOutput]):  # deprecated
+class GetDocument(CDPMethod[GetDocumentOutput]):
     """ Returns the root DOM node (and optionally the subtree) to the caller.
     Implicitly enables the DOM domain events for the current target. """
 
@@ -356,13 +356,13 @@ class GetDocument(CDPMethod[GetDocumentOutput]):  # deprecated
 
 class GetFlattenedDocumentInput(InputModel):
 
-    depth: int | None = None  # deprecated
-    pierce: bool | None = None  # deprecated
+    depth: int | None = None
+    pierce: bool | None = None
 
 
 class GetFlattenedDocumentOutput(OutputModel):
 
-    nodes: list[DOM.Node]  # deprecated
+    nodes: list[DOM.Node]
 
 
 class GetFlattenedDocument(CDPMethod[GetFlattenedDocumentOutput]):  # deprecated
@@ -387,17 +387,17 @@ class GetFlattenedDocument(CDPMethod[GetFlattenedDocumentOutput]):  # deprecated
 
 class GetNodesForSubtreeByStyleInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    computedStyles: list[DOM.CSSComputedStyleProperty]  # deprecated
-    pierce: bool | None = None  # deprecated
+    nodeId: DOM.NodeId
+    computedStyles: list[DOM.CSSComputedStyleProperty]
+    pierce: bool | None = None
 
 
 class GetNodesForSubtreeByStyleOutput(OutputModel):
 
-    nodeIds: list[DOM.NodeId]  # deprecated
+    nodeIds: list[DOM.NodeId]
 
 
-class GetNodesForSubtreeByStyle(CDPMethod[GetNodesForSubtreeByStyleOutput]):  # experimental deprecated
+class GetNodesForSubtreeByStyle(CDPMethod[GetNodesForSubtreeByStyleOutput]):  # experimental
     """ Finds nodes with a given computed style in a subtree. """
 
     INPUT_VALIDATOR = GetNodesForSubtreeByStyleInput
@@ -419,20 +419,20 @@ class GetNodesForSubtreeByStyle(CDPMethod[GetNodesForSubtreeByStyleOutput]):  # 
 
 class GetNodeForLocationInput(InputModel):
 
-    x: int  # deprecated
-    y: int  # deprecated
-    includeUserAgentShadowDOM: bool | None = None  # deprecated
-    ignorePointerEventsNone: bool | None = None  # deprecated
+    x: int
+    y: int
+    includeUserAgentShadowDOM: bool | None = None
+    ignorePointerEventsNone: bool | None = None
 
 
 class GetNodeForLocationOutput(OutputModel):
 
-    backendNodeId: DOM.BackendNodeId  # deprecated
-    frameId: Page.FrameId  # deprecated
-    nodeId: DOM.NodeId | None = None  # deprecated
+    backendNodeId: DOM.BackendNodeId
+    frameId: Page.FrameId
+    nodeId: DOM.NodeId | None = None
 
 
-class GetNodeForLocation(CDPMethod[GetNodeForLocationOutput]):  # deprecated
+class GetNodeForLocation(CDPMethod[GetNodeForLocationOutput]):
     """ Returns node id at given location. Depending on whether DOM domain is enabled, nodeId is
     either returned or not. """
 
@@ -457,18 +457,18 @@ class GetNodeForLocation(CDPMethod[GetNodeForLocationOutput]):  # deprecated
 
 class GetOuterHTMLInput(InputModel):
 
-    nodeId: DOM.NodeId | None = None  # deprecated
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
-    includeShadowDOM: bool | None = None  # experimental deprecated
+    nodeId: DOM.NodeId | None = None
+    backendNodeId: DOM.BackendNodeId | None = None
+    objectId: Runtime.RemoteObjectId | None = None
+    includeShadowDOM: bool | None = None  # experimental
 
 
 class GetOuterHTMLOutput(OutputModel):
 
-    outerHTML: str  # deprecated
+    outerHTML: str
 
 
-class GetOuterHTML(CDPMethod[GetOuterHTMLOutput]):  # deprecated
+class GetOuterHTML(CDPMethod[GetOuterHTMLOutput]):
     """ Returns node's HTML markup. """
 
     INPUT_VALIDATOR = GetOuterHTMLInput
@@ -492,15 +492,15 @@ class GetOuterHTML(CDPMethod[GetOuterHTMLOutput]):  # deprecated
 
 class GetRelayoutBoundaryInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
 class GetRelayoutBoundaryOutput(OutputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
-class GetRelayoutBoundary(CDPMethod[GetRelayoutBoundaryOutput]):  # experimental deprecated
+class GetRelayoutBoundary(CDPMethod[GetRelayoutBoundaryOutput]):  # experimental
     """ Returns the id of the nearest ancestor that is a relayout boundary. """
 
     INPUT_VALIDATOR = GetRelayoutBoundaryInput
@@ -518,17 +518,17 @@ class GetRelayoutBoundary(CDPMethod[GetRelayoutBoundaryOutput]):  # experimental
 
 class GetSearchResultsInput(InputModel):
 
-    searchId: str  # deprecated
-    fromIndex: int  # deprecated
-    toIndex: int  # deprecated
+    searchId: str
+    fromIndex: int
+    toIndex: int
 
 
 class GetSearchResultsOutput(OutputModel):
 
-    nodeIds: list[DOM.NodeId]  # deprecated
+    nodeIds: list[DOM.NodeId]
 
 
-class GetSearchResults(CDPMethod[GetSearchResultsOutput]):  # experimental deprecated
+class GetSearchResults(CDPMethod[GetSearchResultsOutput]):  # experimental
     """ Returns search results from given `fromIndex` to given `toIndex` from the search with the given
     identifier. """
 
@@ -549,28 +549,28 @@ class GetSearchResults(CDPMethod[GetSearchResultsOutput]):  # experimental depre
         )
 
 
-class HideHighlight(CDPMethod[None]):  # deprecated
+class HideHighlight(CDPMethod[None]):
     """ Hides any highlight. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class HighlightNode(CDPMethod[None]):  # deprecated
+class HighlightNode(CDPMethod[None]):
     """ Highlights DOM node. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class HighlightRect(CDPMethod[None]):  # deprecated
+class HighlightRect(CDPMethod[None]):
     """ Highlights given rectangle. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class MarkUndoableState(CDPMethod[None]):  # experimental deprecated
+class MarkUndoableState(CDPMethod[None]):  # experimental
     """ Marks last undoable state. """
 
     INPUT_VALIDATOR = None
@@ -579,17 +579,17 @@ class MarkUndoableState(CDPMethod[None]):  # experimental deprecated
 
 class MoveToInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    targetNodeId: DOM.NodeId  # deprecated
-    insertBeforeNodeId: DOM.NodeId | None = None  # deprecated
+    nodeId: DOM.NodeId
+    targetNodeId: DOM.NodeId
+    insertBeforeNodeId: DOM.NodeId | None = None
 
 
 class MoveToOutput(OutputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
-class MoveTo(CDPMethod[MoveToOutput]):  # deprecated
+class MoveTo(CDPMethod[MoveToOutput]):
     """ Moves node into the new container, places it before the given anchor. """
 
     INPUT_VALIDATOR = MoveToInput
@@ -611,17 +611,17 @@ class MoveTo(CDPMethod[MoveToOutput]):  # deprecated
 
 class PerformSearchInput(InputModel):
 
-    query: str  # deprecated
-    includeUserAgentShadowDOM: bool | None = None  # deprecated
+    query: str
+    includeUserAgentShadowDOM: bool | None = None
 
 
 class PerformSearchOutput(OutputModel):
 
-    searchId: str  # deprecated
-    resultCount: int  # deprecated
+    searchId: str
+    resultCount: int
 
 
-class PerformSearch(CDPMethod[PerformSearchOutput]):  # experimental deprecated
+class PerformSearch(CDPMethod[PerformSearchOutput]):  # experimental
     """ Searches for a given string in the DOM tree. Use `getSearchResults` to access search results or
     `cancelSearch` to end this search session. """
 
@@ -642,15 +642,15 @@ class PerformSearch(CDPMethod[PerformSearchOutput]):  # experimental deprecated
 
 class PushNodeByPathToFrontendInput(InputModel):
 
-    path: str  # deprecated
+    path: str
 
 
 class PushNodeByPathToFrontendOutput(OutputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
-class PushNodeByPathToFrontend(CDPMethod[PushNodeByPathToFrontendOutput]):  # experimental deprecated
+class PushNodeByPathToFrontend(CDPMethod[PushNodeByPathToFrontendOutput]):  # experimental
     """ Requests that the node is sent to the caller given its path. // FIXME, use XPath """
 
     INPUT_VALIDATOR = PushNodeByPathToFrontendInput
@@ -668,15 +668,15 @@ class PushNodeByPathToFrontend(CDPMethod[PushNodeByPathToFrontendOutput]):  # ex
 
 class PushNodesByBackendIdsToFrontendInput(InputModel):
 
-    backendNodeIds: list[DOM.BackendNodeId]  # deprecated
+    backendNodeIds: list[DOM.BackendNodeId]
 
 
 class PushNodesByBackendIdsToFrontendOutput(OutputModel):
 
-    nodeIds: list[DOM.NodeId]  # deprecated
+    nodeIds: list[DOM.NodeId]
 
 
-class PushNodesByBackendIdsToFrontend(CDPMethod[PushNodesByBackendIdsToFrontendOutput]):  # experimental deprecated
+class PushNodesByBackendIdsToFrontend(CDPMethod[PushNodesByBackendIdsToFrontendOutput]):  # experimental
     """ Requests that a batch of nodes is sent to the caller given their backend node ids. """
 
     INPUT_VALIDATOR = PushNodesByBackendIdsToFrontendInput
@@ -694,16 +694,16 @@ class PushNodesByBackendIdsToFrontend(CDPMethod[PushNodesByBackendIdsToFrontendO
 
 class QuerySelectorInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    selector: str  # deprecated
+    nodeId: DOM.NodeId
+    selector: str
 
 
 class QuerySelectorOutput(OutputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
-class QuerySelector(CDPMethod[QuerySelectorOutput]):  # deprecated
+class QuerySelector(CDPMethod[QuerySelectorOutput]):
     """ Executes `querySelector` on a given node. """
 
     INPUT_VALIDATOR = QuerySelectorInput
@@ -723,16 +723,16 @@ class QuerySelector(CDPMethod[QuerySelectorOutput]):  # deprecated
 
 class QuerySelectorAllInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    selector: str  # deprecated
+    nodeId: DOM.NodeId
+    selector: str
 
 
 class QuerySelectorAllOutput(OutputModel):
 
-    nodeIds: list[DOM.NodeId]  # deprecated
+    nodeIds: list[DOM.NodeId]
 
 
-class QuerySelectorAll(CDPMethod[QuerySelectorAllOutput]):  # deprecated
+class QuerySelectorAll(CDPMethod[QuerySelectorAllOutput]):
     """ Executes `querySelectorAll` on a given node. """
 
     INPUT_VALIDATOR = QuerySelectorAllInput
@@ -752,10 +752,10 @@ class QuerySelectorAll(CDPMethod[QuerySelectorAllOutput]):  # deprecated
 
 class GetTopLayerElementsOutput(OutputModel):
 
-    nodeIds: list[DOM.NodeId]  # deprecated
+    nodeIds: list[DOM.NodeId]
 
 
-class GetTopLayerElements(CDPMethod[GetTopLayerElementsOutput]):  # experimental deprecated
+class GetTopLayerElements(CDPMethod[GetTopLayerElementsOutput]):  # experimental
     """ Returns NodeIds of current top layer elements.
     Top layer is rendered closest to the user within a viewport, therefore its elements always
     appear on top of all other content. """
@@ -766,16 +766,16 @@ class GetTopLayerElements(CDPMethod[GetTopLayerElementsOutput]):  # experimental
 
 class GetElementByRelationInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    relation: Literal['PopoverTarget', 'InterestTarget', 'CommandFor']  # deprecated
+    nodeId: DOM.NodeId
+    relation: Literal['PopoverTarget', 'InterestTarget', 'CommandFor']
 
 
 class GetElementByRelationOutput(OutputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
-class GetElementByRelation(CDPMethod[GetElementByRelationOutput]):  # experimental deprecated
+class GetElementByRelation(CDPMethod[GetElementByRelationOutput]):  # experimental
     """ Returns the NodeId of the matched element according to certain relations. """
 
     INPUT_VALIDATOR = GetElementByRelationInput
@@ -793,7 +793,7 @@ class GetElementByRelation(CDPMethod[GetElementByRelationOutput]):  # experiment
         )
 
 
-class Redo(CDPMethod[None]):  # experimental deprecated
+class Redo(CDPMethod[None]):  # experimental
     """ Re-does the last undone action. """
 
     INPUT_VALIDATOR = None
@@ -802,11 +802,11 @@ class Redo(CDPMethod[None]):  # experimental deprecated
 
 class RemoveAttributeInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    name: str  # deprecated
+    nodeId: DOM.NodeId
+    name: str
 
 
-class RemoveAttribute(CDPMethod[None]):  # deprecated
+class RemoveAttribute(CDPMethod[None]):
     """ Removes attribute with given name from an element with given id. """
 
     INPUT_VALIDATOR = RemoveAttributeInput
@@ -826,10 +826,10 @@ class RemoveAttribute(CDPMethod[None]):  # deprecated
 
 class RemoveNodeInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
-class RemoveNode(CDPMethod[None]):  # deprecated
+class RemoveNode(CDPMethod[None]):
     """ Removes node with given id. """
 
     INPUT_VALIDATOR = RemoveNodeInput
@@ -847,12 +847,12 @@ class RemoveNode(CDPMethod[None]):  # deprecated
 
 class RequestChildNodesInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    depth: int | None = None  # deprecated
-    pierce: bool | None = None  # deprecated
+    nodeId: DOM.NodeId
+    depth: int | None = None
+    pierce: bool | None = None
 
 
-class RequestChildNodes(CDPMethod[None]):  # deprecated
+class RequestChildNodes(CDPMethod[None]):
     """ Requests that children of the node with given id are returned to the caller in form of
     `setChildNodes` events where not only immediate children are retrieved, but all children down to
     the specified depth. """
@@ -876,15 +876,15 @@ class RequestChildNodes(CDPMethod[None]):  # deprecated
 
 class RequestNodeInput(InputModel):
 
-    objectId: Runtime.RemoteObjectId  # deprecated
+    objectId: Runtime.RemoteObjectId
 
 
 class RequestNodeOutput(OutputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
-class RequestNode(CDPMethod[RequestNodeOutput]):  # deprecated
+class RequestNode(CDPMethod[RequestNodeOutput]):
     """ Requests that the node is sent to the caller given the JavaScript node object reference. All
     nodes that form the path from the node to the root are also sent to the client as a series of
     `setChildNodes` notifications. """
@@ -904,18 +904,18 @@ class RequestNode(CDPMethod[RequestNodeOutput]):  # deprecated
 
 class ResolveNodeInput(InputModel):
 
-    nodeId: DOM.NodeId | None = None  # deprecated
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
-    objectGroup: str | None = None  # deprecated
-    executionContextId: Runtime.ExecutionContextId | None = None  # deprecated
+    nodeId: DOM.NodeId | None = None
+    backendNodeId: DOM.BackendNodeId | None = None
+    objectGroup: str | None = None
+    executionContextId: Runtime.ExecutionContextId | None = None
 
 
 class ResolveNodeOutput(OutputModel):
 
-    object: Runtime.RemoteObject  # deprecated
+    object: Runtime.RemoteObject
 
 
-class ResolveNode(CDPMethod[ResolveNodeOutput]):  # deprecated
+class ResolveNode(CDPMethod[ResolveNodeOutput]):
     """ Resolves the JavaScript node object for a given NodeId or BackendNodeId. """
 
     INPUT_VALIDATOR = ResolveNodeInput
@@ -939,12 +939,12 @@ class ResolveNode(CDPMethod[ResolveNodeOutput]):  # deprecated
 
 class SetAttributeValueInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    name: str  # deprecated
-    value: str  # deprecated
+    nodeId: DOM.NodeId
+    name: str
+    value: str
 
 
-class SetAttributeValue(CDPMethod[None]):  # deprecated
+class SetAttributeValue(CDPMethod[None]):
     """ Sets attribute for an element with given id. """
 
     INPUT_VALIDATOR = SetAttributeValueInput
@@ -966,12 +966,12 @@ class SetAttributeValue(CDPMethod[None]):  # deprecated
 
 class SetAttributesAsTextInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    text: str  # deprecated
-    name: str | None = None  # deprecated
+    nodeId: DOM.NodeId
+    text: str
+    name: str | None = None
 
 
-class SetAttributesAsText(CDPMethod[None]):  # deprecated
+class SetAttributesAsText(CDPMethod[None]):
     """ Sets attributes on element with given id. This method is useful when user edits some existing
     attribute value and types in several attribute name/value pairs. """
 
@@ -994,13 +994,13 @@ class SetAttributesAsText(CDPMethod[None]):  # deprecated
 
 class SetFileInputFilesInput(InputModel):
 
-    files: list[str]  # deprecated
-    nodeId: DOM.NodeId | None = None  # deprecated
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
+    files: list[str]
+    nodeId: DOM.NodeId | None = None
+    backendNodeId: DOM.BackendNodeId | None = None
+    objectId: Runtime.RemoteObjectId | None = None
 
 
-class SetFileInputFiles(CDPMethod[None]):  # deprecated
+class SetFileInputFiles(CDPMethod[None]):
     """ Sets files for the given file input element. """
 
     INPUT_VALIDATOR = SetFileInputFilesInput
@@ -1024,10 +1024,10 @@ class SetFileInputFiles(CDPMethod[None]):  # deprecated
 
 class SetNodeStackTracesEnabledInput(InputModel):
 
-    enable: bool  # deprecated
+    enable: bool
 
 
-class SetNodeStackTracesEnabled(CDPMethod[None]):  # experimental deprecated
+class SetNodeStackTracesEnabled(CDPMethod[None]):  # experimental
     """ Sets if stack traces should be captured for Nodes. See `Node.getNodeStackTraces`. Default is disabled. """
 
     INPUT_VALIDATOR = SetNodeStackTracesEnabledInput
@@ -1045,15 +1045,15 @@ class SetNodeStackTracesEnabled(CDPMethod[None]):  # experimental deprecated
 
 class GetNodeStackTracesInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
 class GetNodeStackTracesOutput(OutputModel):
 
-    creation: Runtime.StackTrace | None = None  # deprecated
+    creation: Runtime.StackTrace | None = None
 
 
-class GetNodeStackTraces(CDPMethod[GetNodeStackTracesOutput]):  # experimental deprecated
+class GetNodeStackTraces(CDPMethod[GetNodeStackTracesOutput]):  # experimental
     """ Gets stack traces associated with a Node. As of now, only provides stack trace for Node creation. """
 
     INPUT_VALIDATOR = GetNodeStackTracesInput
@@ -1071,7 +1071,7 @@ class GetNodeStackTraces(CDPMethod[GetNodeStackTracesOutput]):  # experimental d
 
 class GetFileInfoInput(InputModel):
 
-    objectId: Runtime.RemoteObjectId  # deprecated
+    objectId: Runtime.RemoteObjectId
 
 
 class GetFileInfoOutput(OutputModel):
@@ -1079,7 +1079,7 @@ class GetFileInfoOutput(OutputModel):
     path: str
 
 
-class GetFileInfo(CDPMethod[GetFileInfoOutput]):  # experimental deprecated
+class GetFileInfo(CDPMethod[GetFileInfoOutput]):  # experimental
     """ Returns file information for the given
     File wrapper. """
 
@@ -1098,10 +1098,10 @@ class GetFileInfo(CDPMethod[GetFileInfoOutput]):  # experimental deprecated
 
 class GetDetachedDomNodesOutput(OutputModel):
 
-    detachedNodes: list[DOM.DetachedElementInfo]  # deprecated
+    detachedNodes: list[DOM.DetachedElementInfo]
 
 
-class GetDetachedDomNodes(CDPMethod[GetDetachedDomNodesOutput]):  # experimental deprecated
+class GetDetachedDomNodes(CDPMethod[GetDetachedDomNodesOutput]):  # experimental
     """ Returns list of detached nodes """
 
     INPUT_VALIDATOR = None
@@ -1110,10 +1110,10 @@ class GetDetachedDomNodes(CDPMethod[GetDetachedDomNodesOutput]):  # experimental
 
 class SetInspectedNodeInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
-class SetInspectedNode(CDPMethod[None]):  # experimental deprecated
+class SetInspectedNode(CDPMethod[None]):  # experimental
     """ Enables console to refer to the node with given id via $x (see Command Line API for more details
     $x functions). """
 
@@ -1132,16 +1132,16 @@ class SetInspectedNode(CDPMethod[None]):  # experimental deprecated
 
 class SetNodeNameInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    name: str  # deprecated
+    nodeId: DOM.NodeId
+    name: str
 
 
 class SetNodeNameOutput(OutputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
-class SetNodeName(CDPMethod[SetNodeNameOutput]):  # deprecated
+class SetNodeName(CDPMethod[SetNodeNameOutput]):
     """ Sets node name for a node with given id. """
 
     INPUT_VALIDATOR = SetNodeNameInput
@@ -1161,11 +1161,11 @@ class SetNodeName(CDPMethod[SetNodeNameOutput]):  # deprecated
 
 class SetNodeValueInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    value: str  # deprecated
+    nodeId: DOM.NodeId
+    value: str
 
 
-class SetNodeValue(CDPMethod[None]):  # deprecated
+class SetNodeValue(CDPMethod[None]):
     """ Sets node value for a node with given id. """
 
     INPUT_VALIDATOR = SetNodeValueInput
@@ -1185,11 +1185,11 @@ class SetNodeValue(CDPMethod[None]):  # deprecated
 
 class SetOuterHTMLInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    outerHTML: str  # deprecated
+    nodeId: DOM.NodeId
+    outerHTML: str
 
 
-class SetOuterHTML(CDPMethod[None]):  # deprecated
+class SetOuterHTML(CDPMethod[None]):
     """ Sets node HTML markup, returns new node id. """
 
     INPUT_VALIDATOR = SetOuterHTMLInput
@@ -1207,7 +1207,7 @@ class SetOuterHTML(CDPMethod[None]):  # deprecated
         )
 
 
-class Undo(CDPMethod[None]):  # experimental deprecated
+class Undo(CDPMethod[None]):  # experimental
     """ Undoes the last performed action. """
 
     INPUT_VALIDATOR = None
@@ -1221,11 +1221,11 @@ class GetFrameOwnerInput(InputModel):
 
 class GetFrameOwnerOutput(OutputModel):
 
-    backendNodeId: DOM.BackendNodeId  # deprecated
-    nodeId: DOM.NodeId | None = None  # deprecated
+    backendNodeId: DOM.BackendNodeId
+    nodeId: DOM.NodeId | None = None
 
 
-class GetFrameOwner(CDPMethod[GetFrameOwnerOutput]):  # experimental deprecated
+class GetFrameOwner(CDPMethod[GetFrameOwnerOutput]):  # experimental
     """ Returns iframe node that owns iframe with the given domain. """
 
     INPUT_VALIDATOR = GetFrameOwnerInput
@@ -1252,10 +1252,10 @@ class GetContainerForNodeInput(InputModel):
 
 class GetContainerForNodeOutput(OutputModel):
 
-    nodeId: DOM.NodeId | None = None  # deprecated
+    nodeId: DOM.NodeId | None = None
 
 
-class GetContainerForNode(CDPMethod[GetContainerForNodeOutput]):  # experimental deprecated
+class GetContainerForNode(CDPMethod[GetContainerForNodeOutput]):  # experimental
     """ Returns the query container of the given node based on container query
     conditions: containerName, physical and logical axes, and whether it queries
     scroll-state. If no axes are provided and queriesScrollState is false, the
@@ -1285,15 +1285,15 @@ class GetContainerForNode(CDPMethod[GetContainerForNodeOutput]):  # experimental
 
 class GetQueryingDescendantsForContainerInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
 class GetQueryingDescendantsForContainerOutput(OutputModel):
 
-    nodeIds: list[DOM.NodeId]  # deprecated
+    nodeIds: list[DOM.NodeId]
 
 
-class GetQueryingDescendantsForContainer(CDPMethod[GetQueryingDescendantsForContainerOutput]):  # experimental deprecated
+class GetQueryingDescendantsForContainer(CDPMethod[GetQueryingDescendantsForContainerOutput]):  # experimental
     """ Returns the descendants of a container query container that have
     container queries against this container. """
 
@@ -1312,16 +1312,16 @@ class GetQueryingDescendantsForContainer(CDPMethod[GetQueryingDescendantsForCont
 
 class GetAnchorElementInput(InputModel):
 
-    nodeId: DOM.NodeId  # deprecated
-    anchorSpecifier: str | None = None  # deprecated
+    nodeId: DOM.NodeId
+    anchorSpecifier: str | None = None
 
 
 class GetAnchorElementOutput(OutputModel):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId
 
 
-class GetAnchorElement(CDPMethod[GetAnchorElementOutput]):  # experimental deprecated
+class GetAnchorElement(CDPMethod[GetAnchorElementOutput]):  # experimental
     """ Returns the target anchor element of the given anchor query according to
     https://www.w3.org/TR/css-anchor-position-1/#target. """
 
@@ -1337,4 +1337,34 @@ class GetAnchorElement(CDPMethod[GetAnchorElementOutput]):  # experimental depre
         super().__init__(
             nodeId=node_id,
             anchorSpecifier=anchor_specifier
+        )
+
+
+class ForceShowPopoverInput(InputModel):
+
+    nodeId: DOM.NodeId
+    enable: bool
+
+
+class ForceShowPopoverOutput(OutputModel):
+
+    nodeIds: list[DOM.NodeId]
+
+
+class ForceShowPopover(CDPMethod[ForceShowPopoverOutput]):  # experimental
+    """ When enabling, this API force-opens the popover identified by nodeId
+    and keeps it open until disabled. """
+
+    INPUT_VALIDATOR = ForceShowPopoverInput
+    OUTPUT_VALIDATOR = ForceShowPopoverOutput
+
+    def __init__(
+        self,
+        *,
+        node_id: DOM.NodeId,
+        enable: bool
+    ):
+        super().__init__(
+            nodeId=node_id,
+            enable=enable
         )

@@ -23,41 +23,41 @@ from cdpkit.protocol.base import CDPEvent
 class DataReceived(CDPEvent):
     """ Fired when data chunk was received over the network. """
 
-    requestId: Network.RequestId  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
-    dataLength: int  # deprecated
-    encodedDataLength: int  # deprecated
-    data: str | None = None  # experimental deprecated
+    requestId: Network.RequestId
+    timestamp: Network.MonotonicTime
+    dataLength: int
+    encodedDataLength: int
+    data: str | None = None  # experimental
 
 
 class EventSourceMessageReceived(CDPEvent):
     """ Fired when EventSource message is received. """
 
-    requestId: Network.RequestId  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
-    eventName: str  # deprecated
-    eventId: str  # deprecated
-    data: str  # deprecated
+    requestId: Network.RequestId
+    timestamp: Network.MonotonicTime
+    eventName: str
+    eventId: str
+    data: str
 
 
 class LoadingFailed(CDPEvent):
     """ Fired when HTTP request has failed to load. """
 
-    requestId: Network.RequestId  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
-    type: Network.ResourceType  # deprecated
-    errorText: str  # deprecated
-    canceled: bool | None = None  # deprecated
-    blockedReason: Network.BlockedReason | None = None  # deprecated
-    corsErrorStatus: Network.CorsErrorStatus | None = None  # deprecated
+    requestId: Network.RequestId
+    timestamp: Network.MonotonicTime
+    type: Network.ResourceType
+    errorText: str
+    canceled: bool | None = None
+    blockedReason: Network.BlockedReason | None = None
+    corsErrorStatus: Network.CorsErrorStatus | None = None
 
 
 class LoadingFinished(CDPEvent):
     """ Fired when HTTP request has finished loading. """
 
-    requestId: Network.RequestId  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
-    encodedDataLength: float  # deprecated
+    requestId: Network.RequestId
+    timestamp: Network.MonotonicTime
+    encodedDataLength: float
 
 
 class RequestIntercepted(CDPEvent):
@@ -65,147 +65,147 @@ class RequestIntercepted(CDPEvent):
     mocked.
     Deprecated, use Fetch.requestPaused instead. """
 
-    interceptionId: Network.InterceptionId  # deprecated
+    interceptionId: Network.InterceptionId
     request: Network.Request
-    frameId: Page.FrameId  # deprecated
-    resourceType: Network.ResourceType  # deprecated
-    isNavigationRequest: bool  # deprecated
-    isDownload: bool | None = None  # deprecated
-    redirectUrl: str | None = None  # deprecated
-    authChallenge: Network.AuthChallenge | None = None  # deprecated
-    responseErrorReason: Network.ErrorReason | None = None  # deprecated
-    responseStatusCode: int | None = None  # deprecated
-    responseHeaders: Network.Headers | None = None  # deprecated
-    requestId: Network.RequestId | None = None  # deprecated
+    frameId: Page.FrameId
+    resourceType: Network.ResourceType
+    isNavigationRequest: bool
+    isDownload: bool | None = None
+    redirectUrl: str | None = None
+    authChallenge: Network.AuthChallenge | None = None
+    responseErrorReason: Network.ErrorReason | None = None
+    responseStatusCode: int | None = None
+    responseHeaders: Network.Headers | None = None
+    requestId: Network.RequestId | None = None
 
 
 class RequestServedFromCache(CDPEvent):
     """ Fired if request ended up loading from cache. """
 
-    requestId: Network.RequestId  # deprecated
+    requestId: Network.RequestId
 
 
 class RequestWillBeSent(CDPEvent):
     """ Fired when page is about to send HTTP request. """
 
-    requestId: Network.RequestId  # deprecated
-    loaderId: Network.LoaderId  # deprecated
-    documentURL: str  # deprecated
-    request: Network.Request  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
-    wallTime: Network.TimeSinceEpoch  # deprecated
-    initiator: Network.Initiator  # deprecated
-    redirectHasExtraInfo: bool | None = None  # experimental deprecated
-    redirectResponse: Network.Response | None = None  # deprecated
-    type: Network.ResourceType | None = None  # deprecated
-    frameId: Page.FrameId | None = None  # deprecated
-    hasUserGesture: bool | None = None  # deprecated
+    requestId: Network.RequestId
+    loaderId: Network.LoaderId
+    documentURL: str
+    request: Network.Request
+    timestamp: Network.MonotonicTime
+    wallTime: Network.TimeSinceEpoch
+    initiator: Network.Initiator
+    redirectHasExtraInfo: bool | None = None  # experimental
+    redirectResponse: Network.Response | None = None
+    type: Network.ResourceType | None = None
+    frameId: Page.FrameId | None = None
+    hasUserGesture: bool | None = None
 
 
 class ResourceChangedPriority(CDPEvent):
     """ Fired when resource loading priority is changed """
 
-    requestId: Network.RequestId  # deprecated
-    newPriority: Network.ResourcePriority  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
+    requestId: Network.RequestId
+    newPriority: Network.ResourcePriority
+    timestamp: Network.MonotonicTime
 
 
 class SignedExchangeReceived(CDPEvent):
     """ Fired when a signed exchange was received over the network """
 
-    requestId: Network.RequestId  # deprecated
-    info: Network.SignedExchangeInfo  # deprecated
+    requestId: Network.RequestId
+    info: Network.SignedExchangeInfo
 
 
 class ResponseReceived(CDPEvent):
     """ Fired when HTTP response is available. """
 
-    requestId: Network.RequestId  # deprecated
-    loaderId: Network.LoaderId  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
-    type: Network.ResourceType  # deprecated
-    response: Network.Response  # deprecated
-    hasExtraInfo: bool | None = None  # experimental deprecated
-    frameId: Page.FrameId | None = None  # deprecated
+    requestId: Network.RequestId
+    loaderId: Network.LoaderId
+    timestamp: Network.MonotonicTime
+    type: Network.ResourceType
+    response: Network.Response
+    hasExtraInfo: bool | None = None  # experimental
+    frameId: Page.FrameId | None = None
 
 
 class WebSocketClosed(CDPEvent):
     """ Fired when WebSocket is closed. """
 
-    requestId: Network.RequestId  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
+    requestId: Network.RequestId
+    timestamp: Network.MonotonicTime
 
 
 class WebSocketCreated(CDPEvent):
     """ Fired upon WebSocket creation. """
 
-    requestId: Network.RequestId  # deprecated
-    url: str  # deprecated
-    initiator: Network.Initiator | None = None  # deprecated
+    requestId: Network.RequestId
+    url: str
+    initiator: Network.Initiator | None = None
 
 
 class WebSocketFrameError(CDPEvent):
     """ Fired when WebSocket message error occurs. """
 
-    requestId: Network.RequestId  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
-    errorMessage: str  # deprecated
+    requestId: Network.RequestId
+    timestamp: Network.MonotonicTime
+    errorMessage: str
 
 
 class WebSocketFrameReceived(CDPEvent):
     """ Fired when WebSocket message is received. """
 
-    requestId: Network.RequestId  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
-    response: Network.WebSocketFrame  # deprecated
+    requestId: Network.RequestId
+    timestamp: Network.MonotonicTime
+    response: Network.WebSocketFrame
 
 
 class WebSocketFrameSent(CDPEvent):
     """ Fired when WebSocket message is sent. """
 
-    requestId: Network.RequestId  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
-    response: Network.WebSocketFrame  # deprecated
+    requestId: Network.RequestId
+    timestamp: Network.MonotonicTime
+    response: Network.WebSocketFrame
 
 
 class WebSocketHandshakeResponseReceived(CDPEvent):
     """ Fired when WebSocket handshake response becomes available. """
 
-    requestId: Network.RequestId  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
-    response: Network.WebSocketResponse  # deprecated
+    requestId: Network.RequestId
+    timestamp: Network.MonotonicTime
+    response: Network.WebSocketResponse
 
 
 class WebSocketWillSendHandshakeRequest(CDPEvent):
     """ Fired when WebSocket is about to initiate handshake. """
 
-    requestId: Network.RequestId  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
-    wallTime: Network.TimeSinceEpoch  # deprecated
-    request: Network.WebSocketRequest  # deprecated
+    requestId: Network.RequestId
+    timestamp: Network.MonotonicTime
+    wallTime: Network.TimeSinceEpoch
+    request: Network.WebSocketRequest
 
 
 class WebTransportCreated(CDPEvent):
     """ Fired upon WebTransport creation. """
 
-    transportId: Network.RequestId  # deprecated
-    url: str  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
-    initiator: Network.Initiator | None = None  # deprecated
+    transportId: Network.RequestId
+    url: str
+    timestamp: Network.MonotonicTime
+    initiator: Network.Initiator | None = None
 
 
 class WebTransportConnectionEstablished(CDPEvent):
     """ Fired when WebTransport handshake is finished. """
 
-    transportId: Network.RequestId  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
+    transportId: Network.RequestId
+    timestamp: Network.MonotonicTime
 
 
 class WebTransportClosed(CDPEvent):
     """ Fired when WebTransport is disposed. """
 
-    transportId: Network.RequestId  # deprecated
-    timestamp: Network.MonotonicTime  # deprecated
+    transportId: Network.RequestId
+    timestamp: Network.MonotonicTime
 
 
 class DirectTCPSocketCreated(CDPEvent):
@@ -213,7 +213,7 @@ class DirectTCPSocketCreated(CDPEvent):
 
     identifier: Network.RequestId
     remoteAddr: str
-    remotePort: int  # deprecated
+    remotePort: int
     options: Network.DirectTCPSocketOptions
     timestamp: Network.MonotonicTime
     initiator: Network.Initiator | None = None
@@ -224,10 +224,10 @@ class DirectTCPSocketOpened(CDPEvent):
 
     identifier: Network.RequestId
     remoteAddr: str
-    remotePort: int  # deprecated
+    remotePort: int
     timestamp: Network.MonotonicTime
     localAddr: str | None = None
-    localPort: int | None = None  # deprecated
+    localPort: int | None = None
 
 
 class DirectTCPSocketAborted(CDPEvent):
@@ -275,10 +275,10 @@ class DirectUDPSocketOpened(CDPEvent):
 
     identifier: Network.RequestId
     localAddr: str
-    localPort: int  # deprecated
+    localPort: int
     timestamp: Network.MonotonicTime
     remoteAddr: str | None = None
-    remotePort: int | None = None  # deprecated
+    remotePort: int | None = None
 
 
 class DirectUDPSocketAborted(CDPEvent):
@@ -318,12 +318,12 @@ class RequestWillBeSentExtraInfo(CDPEvent):
     requestWillBeSentExtraInfo fired for it, and there is no guarantee whether requestWillBeSent
     or requestWillBeSentExtraInfo will be fired first for the same request. """
 
-    requestId: Network.RequestId  # deprecated
-    associatedCookies: list[Network.AssociatedCookie]  # deprecated
-    headers: Network.Headers  # deprecated
-    connectTiming: Network.ConnectTiming | None = None  # experimental deprecated
-    clientSecurityState: Network.ClientSecurityState | None = None  # deprecated
-    siteHasCookieInOtherPartition: bool | None = None  # deprecated
+    requestId: Network.RequestId
+    associatedCookies: list[Network.AssociatedCookie]
+    headers: Network.Headers
+    connectTiming: Network.ConnectTiming | None = None  # experimental
+    clientSecurityState: Network.ClientSecurityState | None = None
+    siteHasCookieInOtherPartition: bool | None = None
 
 
 class ResponseReceivedExtraInfo(CDPEvent):
@@ -331,15 +331,15 @@ class ResponseReceivedExtraInfo(CDPEvent):
     stack. Not every responseReceived event will have an additional responseReceivedExtraInfo for
     it, and responseReceivedExtraInfo may be fired before or after responseReceived. """
 
-    requestId: Network.RequestId  # deprecated
-    blockedCookies: list[Network.BlockedSetCookieWithReason]  # deprecated
-    headers: Network.Headers  # deprecated
-    resourceIPAddressSpace: Network.IPAddressSpace  # deprecated
-    statusCode: int  # deprecated
-    headersText: str | None = None  # deprecated
-    cookiePartitionKey: Network.CookiePartitionKey | None = None  # experimental deprecated
-    cookiePartitionKeyOpaque: bool | None = None  # deprecated
-    exemptedCookies: list[Network.ExemptedSetCookieWithReason] | None = None  # deprecated
+    requestId: Network.RequestId
+    blockedCookies: list[Network.BlockedSetCookieWithReason]
+    headers: Network.Headers
+    resourceIPAddressSpace: Network.IPAddressSpace
+    statusCode: int
+    headersText: str | None = None
+    cookiePartitionKey: Network.CookiePartitionKey | None = None  # experimental
+    cookiePartitionKeyOpaque: bool | None = None
+    exemptedCookies: list[Network.ExemptedSetCookieWithReason] | None = None
 
 
 class ResponseReceivedEarlyHints(CDPEvent):
@@ -347,8 +347,8 @@ class ResponseReceivedEarlyHints(CDPEvent):
     Not every responseReceived event will have an responseReceivedEarlyHints fired.
     Only one responseReceivedEarlyHints may be fired for eached responseReceived event. """
 
-    requestId: Network.RequestId  # deprecated
-    headers: Network.Headers  # deprecated
+    requestId: Network.RequestId
+    headers: Network.Headers
 
 
 class TrustTokenOperationDone(CDPEvent):
@@ -357,12 +357,12 @@ class TrustTokenOperationDone(CDPEvent):
     failed, the event is fired before the corresponding request was sent
     or after the response was received. """
 
-    status: Literal['Ok', 'InvalidArgument', 'MissingIssuerKeys', 'FailedPrecondition', 'ResourceExhausted', 'AlreadyExists', 'ResourceLimited', 'Unauthorized', 'BadResponse', 'InternalError', 'UnknownError', 'FulfilledLocally', 'SiteIssuerLimit']  # deprecated
+    status: Literal['Ok', 'InvalidArgument', 'MissingIssuerKeys', 'FailedPrecondition', 'ResourceExhausted', 'AlreadyExists', 'ResourceLimited', 'Unauthorized', 'BadResponse', 'InternalError', 'UnknownError', 'FulfilledLocally', 'SiteIssuerLimit']
     type: Network.TrustTokenOperationType
     requestId: Network.RequestId
-    topLevelOrigin: str | None = None  # deprecated
-    issuerOrigin: str | None = None  # deprecated
-    issuedTokenCount: int | None = None  # deprecated
+    topLevelOrigin: str | None = None
+    issuerOrigin: str | None = None
+    issuedTokenCount: int | None = None
 
 
 class PolicyUpdated(CDPEvent):
@@ -375,33 +375,33 @@ class SubresourceWebBundleMetadataReceived(CDPEvent):
     """ Fired once when parsing the .wbn file has succeeded.
     The event contains the information about the web bundle contents. """
 
-    requestId: Network.RequestId  # deprecated
-    urls: list[str]  # deprecated
+    requestId: Network.RequestId
+    urls: list[str]
 
 
 class SubresourceWebBundleMetadataError(CDPEvent):
     """ Fired once when parsing the .wbn file has failed. """
 
-    requestId: Network.RequestId  # deprecated
-    errorMessage: str  # deprecated
+    requestId: Network.RequestId
+    errorMessage: str
 
 
 class SubresourceWebBundleInnerResponseParsed(CDPEvent):
     """ Fired when handling requests for resources within a .wbn file.
     Note: this will only be fired for resources that are requested by the webpage. """
 
-    innerRequestId: Network.RequestId  # deprecated
-    innerRequestURL: str  # deprecated
-    bundleRequestId: Network.RequestId | None = None  # deprecated
+    innerRequestId: Network.RequestId
+    innerRequestURL: str
+    bundleRequestId: Network.RequestId | None = None
 
 
 class SubresourceWebBundleInnerResponseError(CDPEvent):
     """ Fired when request for resources within a .wbn file failed. """
 
-    innerRequestId: Network.RequestId  # deprecated
-    innerRequestURL: str  # deprecated
-    errorMessage: str  # deprecated
-    bundleRequestId: Network.RequestId | None = None  # deprecated
+    innerRequestId: Network.RequestId
+    innerRequestURL: str
+    errorMessage: str
+    bundleRequestId: Network.RequestId | None = None
 
 
 class ReportingApiReportAdded(CDPEvent):
@@ -418,5 +418,5 @@ class ReportingApiReportUpdated(CDPEvent):
 
 class ReportingApiEndpointsChangedForOrigin(CDPEvent):
 
-    origin: str  # deprecated
+    origin: str
     endpoints: list[Network.ReportingApiEndpoint]

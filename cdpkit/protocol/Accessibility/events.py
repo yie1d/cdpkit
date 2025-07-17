@@ -20,10 +20,10 @@ class LoadComplete(CDPEvent):
     """ The loadComplete event mirrors the load complete event sent by the browser to assistive
     technology when the web page has finished loading. """
 
-    root: Accessibility.AXNode  # deprecated
+    root: Accessibility.AXNode
 
 
 class NodesUpdated(CDPEvent):
     """ The nodesUpdated event is sent every time a previously requested node has changed the in tree. """
 
-    nodes: list[Accessibility.AXNode]  # deprecated
+    nodes: list[Accessibility.AXNode]

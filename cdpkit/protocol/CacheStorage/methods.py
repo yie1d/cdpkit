@@ -19,10 +19,10 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class DeleteCacheInput(InputModel):
 
-    cacheId: CacheStorage.CacheId  # deprecated
+    cacheId: CacheStorage.CacheId
 
 
-class DeleteCache(CDPMethod[None]):  # deprecated
+class DeleteCache(CDPMethod[None]):
     """ Deletes a cache. """
 
     INPUT_VALIDATOR = DeleteCacheInput
@@ -40,11 +40,11 @@ class DeleteCache(CDPMethod[None]):  # deprecated
 
 class DeleteEntryInput(InputModel):
 
-    cacheId: CacheStorage.CacheId  # deprecated
-    request: str  # deprecated
+    cacheId: CacheStorage.CacheId
+    request: str
 
 
-class DeleteEntry(CDPMethod[None]):  # deprecated
+class DeleteEntry(CDPMethod[None]):
     """ Deletes a cache entry. """
 
     INPUT_VALIDATOR = DeleteEntryInput
@@ -64,17 +64,17 @@ class DeleteEntry(CDPMethod[None]):  # deprecated
 
 class RequestCacheNamesInput(InputModel):
 
-    securityOrigin: str | None = None  # deprecated
-    storageKey: str | None = None  # deprecated
-    storageBucket: Storage.StorageBucket | None = None  # deprecated
+    securityOrigin: str | None = None
+    storageKey: str | None = None
+    storageBucket: Storage.StorageBucket | None = None
 
 
 class RequestCacheNamesOutput(OutputModel):
 
-    caches: list[CacheStorage.Cache]  # deprecated
+    caches: list[CacheStorage.Cache]
 
 
-class RequestCacheNames(CDPMethod[RequestCacheNamesOutput]):  # deprecated
+class RequestCacheNames(CDPMethod[RequestCacheNamesOutput]):
     """ Requests cache names. """
 
     INPUT_VALIDATOR = RequestCacheNamesInput
@@ -96,17 +96,17 @@ class RequestCacheNames(CDPMethod[RequestCacheNamesOutput]):  # deprecated
 
 class RequestCachedResponseInput(InputModel):
 
-    cacheId: CacheStorage.CacheId  # deprecated
-    requestURL: str  # deprecated
-    requestHeaders: list[CacheStorage.Header]  # deprecated
+    cacheId: CacheStorage.CacheId
+    requestURL: str
+    requestHeaders: list[CacheStorage.Header]
 
 
 class RequestCachedResponseOutput(OutputModel):
 
-    response: CacheStorage.CachedResponse  # deprecated
+    response: CacheStorage.CachedResponse
 
 
-class RequestCachedResponse(CDPMethod[RequestCachedResponseOutput]):  # deprecated
+class RequestCachedResponse(CDPMethod[RequestCachedResponseOutput]):
     """ Fetches cache entry. """
 
     INPUT_VALIDATOR = RequestCachedResponseInput
@@ -128,19 +128,19 @@ class RequestCachedResponse(CDPMethod[RequestCachedResponseOutput]):  # deprecat
 
 class RequestEntriesInput(InputModel):
 
-    cacheId: CacheStorage.CacheId  # deprecated
-    skipCount: int | None = None  # deprecated
-    pageSize: int | None = None  # deprecated
-    pathFilter: str | None = None  # deprecated
+    cacheId: CacheStorage.CacheId
+    skipCount: int | None = None
+    pageSize: int | None = None
+    pathFilter: str | None = None
 
 
 class RequestEntriesOutput(OutputModel):
 
-    cacheDataEntries: list[CacheStorage.DataEntry]  # deprecated
-    returnCount: float  # deprecated
+    cacheDataEntries: list[CacheStorage.DataEntry]
+    returnCount: float
 
 
-class RequestEntries(CDPMethod[RequestEntriesOutput]):  # deprecated
+class RequestEntries(CDPMethod[RequestEntriesOutput]):
     """ Requests data from cache. """
 
     INPUT_VALIDATOR = RequestEntriesInput

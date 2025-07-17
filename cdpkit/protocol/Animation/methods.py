@@ -16,14 +16,14 @@ from cdpkit.protocol._types import (
 from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables animation domain notifications. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables animation domain notifications. """
 
     INPUT_VALIDATOR = None
@@ -32,15 +32,15 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class GetCurrentTimeInput(InputModel):
 
-    id: str  # deprecated
+    id: str
 
 
 class GetCurrentTimeOutput(OutputModel):
 
-    currentTime: float  # deprecated
+    currentTime: float
 
 
-class GetCurrentTime(CDPMethod[GetCurrentTimeOutput]):  # deprecated
+class GetCurrentTime(CDPMethod[GetCurrentTimeOutput]):
     """ Returns the current time of the an animation. """
 
     INPUT_VALIDATOR = GetCurrentTimeInput
@@ -58,10 +58,10 @@ class GetCurrentTime(CDPMethod[GetCurrentTimeOutput]):  # deprecated
 
 class GetPlaybackRateOutput(OutputModel):
 
-    playbackRate: float  # deprecated
+    playbackRate: float
 
 
-class GetPlaybackRate(CDPMethod[GetPlaybackRateOutput]):  # deprecated
+class GetPlaybackRate(CDPMethod[GetPlaybackRateOutput]):
     """ Gets the playback rate of the document timeline. """
 
     INPUT_VALIDATOR = None
@@ -70,10 +70,10 @@ class GetPlaybackRate(CDPMethod[GetPlaybackRateOutput]):  # deprecated
 
 class ReleaseAnimationsInput(InputModel):
 
-    animations: list[str]  # deprecated
+    animations: list[str]
 
 
-class ReleaseAnimations(CDPMethod[None]):  # deprecated
+class ReleaseAnimations(CDPMethod[None]):
     """ Releases a set of animations to no longer be manipulated. """
 
     INPUT_VALIDATOR = ReleaseAnimationsInput
@@ -91,15 +91,15 @@ class ReleaseAnimations(CDPMethod[None]):  # deprecated
 
 class ResolveAnimationInput(InputModel):
 
-    animationId: str  # deprecated
+    animationId: str
 
 
 class ResolveAnimationOutput(OutputModel):
 
-    remoteObject: Runtime.RemoteObject  # deprecated
+    remoteObject: Runtime.RemoteObject
 
 
-class ResolveAnimation(CDPMethod[ResolveAnimationOutput]):  # deprecated
+class ResolveAnimation(CDPMethod[ResolveAnimationOutput]):
     """ Gets the remote object of the Animation. """
 
     INPUT_VALIDATOR = ResolveAnimationInput
@@ -117,11 +117,11 @@ class ResolveAnimation(CDPMethod[ResolveAnimationOutput]):  # deprecated
 
 class SeekAnimationsInput(InputModel):
 
-    animations: list[str]  # deprecated
-    currentTime: float  # deprecated
+    animations: list[str]
+    currentTime: float
 
 
-class SeekAnimations(CDPMethod[None]):  # deprecated
+class SeekAnimations(CDPMethod[None]):
     """ Seek a set of animations to a particular time within each animation. """
 
     INPUT_VALIDATOR = SeekAnimationsInput
@@ -141,11 +141,11 @@ class SeekAnimations(CDPMethod[None]):  # deprecated
 
 class SetPausedInput(InputModel):
 
-    animations: list[str]  # deprecated
-    paused: bool  # deprecated
+    animations: list[str]
+    paused: bool
 
 
-class SetPaused(CDPMethod[None]):  # deprecated
+class SetPaused(CDPMethod[None]):
     """ Sets the paused state of a set of animations. """
 
     INPUT_VALIDATOR = SetPausedInput
@@ -165,10 +165,10 @@ class SetPaused(CDPMethod[None]):  # deprecated
 
 class SetPlaybackRateInput(InputModel):
 
-    playbackRate: float  # deprecated
+    playbackRate: float
 
 
-class SetPlaybackRate(CDPMethod[None]):  # deprecated
+class SetPlaybackRate(CDPMethod[None]):
     """ Sets the playback rate of the document timeline. """
 
     INPUT_VALIDATOR = SetPlaybackRateInput
@@ -186,12 +186,12 @@ class SetPlaybackRate(CDPMethod[None]):  # deprecated
 
 class SetTimingInput(InputModel):
 
-    animationId: str  # deprecated
-    duration: float  # deprecated
-    delay: float  # deprecated
+    animationId: str
+    duration: float
+    delay: float
 
 
-class SetTiming(CDPMethod[None]):  # deprecated
+class SetTiming(CDPMethod[None]):
     """ Sets the timing of an animation node. """
 
     INPUT_VALIDATOR = SetTimingInput

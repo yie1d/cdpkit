@@ -19,9 +19,9 @@ from cdpkit.protocol.base import JSON_DICT, CDPEvent
 
 class BufferUsage(CDPEvent):
 
-    percentFull: float | None = None  # deprecated
-    eventCount: float | None = None  # deprecated
-    value: float | None = None  # deprecated
+    percentFull: float | None = None
+    eventCount: float | None = None
+    value: float | None = None
 
 
 class DataCollected(CDPEvent):
@@ -35,7 +35,7 @@ class TracingComplete(CDPEvent):
     """ Signals that tracing is stopped and there is no trace buffers pending flush, all data were
     delivered via dataCollected events. """
 
-    dataLossOccurred: bool  # deprecated
-    stream: IO.StreamHandle | None = None  # deprecated
-    traceFormat: Tracing.StreamFormat | None = None  # deprecated
-    streamCompression: Tracing.StreamCompression | None = None  # deprecated
+    dataLossOccurred: bool
+    stream: IO.StreamHandle | None = None
+    traceFormat: Tracing.StreamFormat | None = None
+    streamCompression: Tracing.StreamCompression | None = None

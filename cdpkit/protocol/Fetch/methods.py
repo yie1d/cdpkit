@@ -18,7 +18,7 @@ from cdpkit.protocol._types import (
 from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables the fetch domain. """
 
     INPUT_VALIDATOR = None
@@ -27,11 +27,11 @@ class Disable(CDPMethod[None]):  # deprecated
 
 class EnableInput(InputModel):
 
-    patterns: list[Fetch.RequestPattern] | None = None  # deprecated
-    handleAuthRequests: bool | None = None  # deprecated
+    patterns: list[Fetch.RequestPattern] | None = None
+    handleAuthRequests: bool | None = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables issuing of requestPaused events. A request will be paused until client
     calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth. """
 
@@ -52,11 +52,11 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class FailRequestInput(InputModel):
 
-    requestId: Fetch.RequestId  # deprecated
-    errorReason: Network.ErrorReason  # deprecated
+    requestId: Fetch.RequestId
+    errorReason: Network.ErrorReason
 
 
-class FailRequest(CDPMethod[None]):  # deprecated
+class FailRequest(CDPMethod[None]):
     """ Causes the request to fail with specified reason. """
 
     INPUT_VALIDATOR = FailRequestInput
@@ -76,15 +76,15 @@ class FailRequest(CDPMethod[None]):  # deprecated
 
 class FulfillRequestInput(InputModel):
 
-    requestId: Fetch.RequestId  # deprecated
-    responseCode: int  # deprecated
-    responseHeaders: list[Fetch.HeaderEntry] | None = None  # deprecated
-    binaryResponseHeaders: str | None = None  # deprecated
-    body: str | None = None  # deprecated
-    responsePhrase: str | None = None  # deprecated
+    requestId: Fetch.RequestId
+    responseCode: int
+    responseHeaders: list[Fetch.HeaderEntry] | None = None
+    binaryResponseHeaders: str | None = None
+    body: str | None = None
+    responsePhrase: str | None = None
 
 
-class FulfillRequest(CDPMethod[None]):  # deprecated
+class FulfillRequest(CDPMethod[None]):
     """ Provides response to the request. """
 
     INPUT_VALIDATOR = FulfillRequestInput
@@ -112,15 +112,15 @@ class FulfillRequest(CDPMethod[None]):  # deprecated
 
 class ContinueRequestInput(InputModel):
 
-    requestId: Fetch.RequestId  # deprecated
-    url: str | None = None  # deprecated
-    method: str | None = None  # deprecated
-    postData: str | None = None  # deprecated
-    headers: list[Fetch.HeaderEntry] | None = None  # deprecated
-    interceptResponse: bool | None = None  # experimental deprecated
+    requestId: Fetch.RequestId
+    url: str | None = None
+    method: str | None = None
+    postData: str | None = None
+    headers: list[Fetch.HeaderEntry] | None = None
+    interceptResponse: bool | None = None  # experimental
 
 
-class ContinueRequest(CDPMethod[None]):  # deprecated
+class ContinueRequest(CDPMethod[None]):
     """ Continues the request, optionally modifying some of its parameters. """
 
     INPUT_VALIDATOR = ContinueRequestInput
@@ -148,11 +148,11 @@ class ContinueRequest(CDPMethod[None]):  # deprecated
 
 class ContinueWithAuthInput(InputModel):
 
-    requestId: Fetch.RequestId  # deprecated
-    authChallengeResponse: Fetch.AuthChallengeResponse  # deprecated
+    requestId: Fetch.RequestId
+    authChallengeResponse: Fetch.AuthChallengeResponse
 
 
-class ContinueWithAuth(CDPMethod[None]):  # deprecated
+class ContinueWithAuth(CDPMethod[None]):
     """ Continues a request supplying authChallengeResponse following authRequired event. """
 
     INPUT_VALIDATOR = ContinueWithAuthInput
@@ -172,14 +172,14 @@ class ContinueWithAuth(CDPMethod[None]):  # deprecated
 
 class ContinueResponseInput(InputModel):
 
-    requestId: Fetch.RequestId  # deprecated
-    responseCode: int | None = None  # deprecated
-    responsePhrase: str | None = None  # deprecated
-    responseHeaders: list[Fetch.HeaderEntry] | None = None  # deprecated
-    binaryResponseHeaders: str | None = None  # deprecated
+    requestId: Fetch.RequestId
+    responseCode: int | None = None
+    responsePhrase: str | None = None
+    responseHeaders: list[Fetch.HeaderEntry] | None = None
+    binaryResponseHeaders: str | None = None
 
 
-class ContinueResponse(CDPMethod[None]):  # experimental deprecated
+class ContinueResponse(CDPMethod[None]):  # experimental
     """ Continues loading of the paused response, optionally modifying the
     response headers. If either responseCode or headers are modified, all of them
     must be present. """
@@ -207,16 +207,16 @@ class ContinueResponse(CDPMethod[None]):  # experimental deprecated
 
 class GetResponseBodyInput(InputModel):
 
-    requestId: Fetch.RequestId  # deprecated
+    requestId: Fetch.RequestId
 
 
 class GetResponseBodyOutput(OutputModel):
 
-    body: str  # deprecated
-    base64Encoded: bool  # deprecated
+    body: str
+    base64Encoded: bool
 
 
-class GetResponseBody(CDPMethod[GetResponseBodyOutput]):  # deprecated
+class GetResponseBody(CDPMethod[GetResponseBodyOutput]):
     """ Causes the body of the response to be received from the server and
     returned as a single string. May only be issued for a request that
     is paused in the Response stage and is mutually exclusive with
@@ -251,7 +251,7 @@ class TakeResponseBodyAsStreamOutput(OutputModel):
     stream: IO.StreamHandle
 
 
-class TakeResponseBodyAsStream(CDPMethod[TakeResponseBodyAsStreamOutput]):  # deprecated
+class TakeResponseBodyAsStream(CDPMethod[TakeResponseBodyAsStreamOutput]):
     """ Returns a handle to the stream representing the response body.
     The request must be paused in the HeadersReceived stage.
     Note that after this command the request can't be continued

@@ -29,29 +29,29 @@ class DomContentEventFired(CDPEvent):
 class FileChooserOpened(CDPEvent):
     """ Emitted only when `page.interceptFileChooser` is enabled. """
 
-    frameId: Page.FrameId | None = None  # experimental deprecated
-    mode: Literal['selectSingle', 'selectMultiple']  # deprecated
-    backendNodeId: DOM.BackendNodeId | None = None  # experimental deprecated
+    frameId: Page.FrameId | None = None  # experimental
+    mode: Literal['selectSingle', 'selectMultiple']
+    backendNodeId: DOM.BackendNodeId | None = None  # experimental
 
 
 class FrameAttached(CDPEvent):
     """ Fired when frame has been attached to its parent. """
 
-    frameId: Page.FrameId  # deprecated
-    parentFrameId: Page.FrameId  # deprecated
-    stack: Runtime.StackTrace | None = None  # deprecated
+    frameId: Page.FrameId
+    parentFrameId: Page.FrameId
+    stack: Runtime.StackTrace | None = None
 
 
 class FrameClearedScheduledNavigation(CDPEvent):
     """ Fired when frame no longer has a scheduled navigation. """
 
-    frameId: Page.FrameId  # deprecated
+    frameId: Page.FrameId
 
 
 class FrameDetached(CDPEvent):
     """ Fired when frame has been detached from its parent. """
 
-    frameId: Page.FrameId  # deprecated
+    frameId: Page.FrameId
     reason: Literal['remove', 'swap'] | None = None  # experimental
 
 
@@ -59,20 +59,20 @@ class FrameSubtreeWillBeDetached(CDPEvent):
     """ Fired before frame subtree is detached. Emitted before any frame of the
     subtree is actually detached. """
 
-    frameId: Page.FrameId  # deprecated
+    frameId: Page.FrameId
 
 
 class FrameNavigated(CDPEvent):
     """ Fired once navigation of the frame has completed. Frame is now associated with the new loader. """
 
-    frame: Page.Frame  # deprecated
+    frame: Page.Frame
     type: Page.NavigationType | None = None  # experimental
 
 
 class DocumentOpened(CDPEvent):
     """ Fired when opening document to write to. """
 
-    frame: Page.Frame  # deprecated
+    frame: Page.Frame
 
 
 class FrameResized(CDPEvent):
@@ -89,9 +89,9 @@ class FrameStartedNavigating(CDPEvent):
     navigation becomes a cross-document navigation (such as in the case of a
     frameset). """
 
-    frameId: Page.FrameId  # deprecated
-    url: str  # deprecated
-    loaderId: Network.LoaderId  # deprecated
+    frameId: Page.FrameId
+    url: str
+    loaderId: Network.LoaderId
     navigationType: Literal['reload', 'reloadBypassingCache', 'restore', 'restoreWithPost', 'historySameDocument', 'historyDifferentDocument', 'sameDocument', 'differentDocument']
 
 
@@ -99,51 +99,51 @@ class FrameRequestedNavigation(CDPEvent):
     """ Fired when a renderer-initiated navigation is requested.
     Navigation may still be cancelled after the event is issued. """
 
-    frameId: Page.FrameId  # deprecated
-    reason: Page.ClientNavigationReason  # deprecated
-    url: str  # deprecated
-    disposition: Page.ClientNavigationDisposition  # deprecated
+    frameId: Page.FrameId
+    reason: Page.ClientNavigationReason
+    url: str
+    disposition: Page.ClientNavigationDisposition
 
 
 class FrameScheduledNavigation(CDPEvent):
     """ Fired when frame schedules a potential navigation. """
 
-    frameId: Page.FrameId  # deprecated
-    delay: float  # deprecated
-    reason: Page.ClientNavigationReason  # deprecated
-    url: str  # deprecated
+    frameId: Page.FrameId
+    delay: float
+    reason: Page.ClientNavigationReason
+    url: str
 
 
 class FrameStartedLoading(CDPEvent):
     """ Fired when frame has started loading. """
 
-    frameId: Page.FrameId  # deprecated
+    frameId: Page.FrameId
 
 
 class FrameStoppedLoading(CDPEvent):
     """ Fired when frame has stopped loading. """
 
-    frameId: Page.FrameId  # deprecated
+    frameId: Page.FrameId
 
 
 class DownloadWillBegin(CDPEvent):
     """ Fired when page is about to start a download.
     Deprecated. Use Browser.downloadWillBegin instead. """
 
-    frameId: Page.FrameId  # deprecated
-    guid: str  # deprecated
-    url: str  # deprecated
-    suggestedFilename: str  # deprecated
+    frameId: Page.FrameId
+    guid: str
+    url: str
+    suggestedFilename: str
 
 
 class DownloadProgress(CDPEvent):
     """ Fired when download makes progress. Last call has |done| == true.
     Deprecated. Use Browser.downloadProgress instead. """
 
-    guid: str  # deprecated
-    totalBytes: float  # deprecated
-    receivedBytes: float  # deprecated
-    state: Literal['inProgress', 'completed', 'canceled']  # deprecated
+    guid: str
+    totalBytes: float
+    receivedBytes: float
+    state: Literal['inProgress', 'completed', 'canceled']
 
 
 class InterstitialHidden(CDPEvent):
@@ -162,29 +162,29 @@ class JavascriptDialogClosed(CDPEvent):
     """ Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been
     closed. """
 
-    frameId: Page.FrameId | None = None  # experimental deprecated
-    result: bool  # deprecated
-    userInput: str  # deprecated
+    frameId: Page.FrameId | None = None  # experimental
+    result: bool
+    userInput: str
 
 
 class JavascriptDialogOpening(CDPEvent):
     """ Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to
     open. """
 
-    url: str  # deprecated
-    frameId: Page.FrameId | None = None  # experimental deprecated
-    message: str  # deprecated
-    type: Page.DialogType  # deprecated
-    hasBrowserHandler: bool  # deprecated
-    defaultPrompt: str | None = None  # deprecated
+    url: str
+    frameId: Page.FrameId | None = None  # experimental
+    message: str
+    type: Page.DialogType
+    hasBrowserHandler: bool
+    defaultPrompt: str | None = None
 
 
 class LifecycleEvent(CDPEvent):
     """ Fired for lifecycle events (navigation, load, paint, etc) in the current
     target (including local frames). """
 
-    frameId: Page.FrameId  # deprecated
-    loaderId: Network.LoaderId  # deprecated
+    frameId: Page.FrameId
+    loaderId: Network.LoaderId
     name: str
     timestamp: Network.MonotonicTime
 
@@ -195,10 +195,10 @@ class BackForwardCacheNotUsed(CDPEvent):
     main-frame history navigation where the document changes (non-same-document navigations),
     when bfcache navigation fails. """
 
-    loaderId: Network.LoaderId  # deprecated
-    frameId: Page.FrameId  # deprecated
-    notRestoredExplanations: list[Page.BackForwardCacheNotRestoredExplanation]  # deprecated
-    notRestoredExplanationsTree: Page.BackForwardCacheNotRestoredExplanationTree | None = None  # deprecated
+    loaderId: Network.LoaderId
+    frameId: Page.FrameId
+    notRestoredExplanations: list[Page.BackForwardCacheNotRestoredExplanation]
+    notRestoredExplanationsTree: Page.BackForwardCacheNotRestoredExplanationTree | None = None
 
 
 class LoadEventFired(CDPEvent):
@@ -209,33 +209,33 @@ class LoadEventFired(CDPEvent):
 class NavigatedWithinDocument(CDPEvent):
     """ Fired when same-document navigation happens, e.g. due to history API usage or anchor navigation. """
 
-    frameId: Page.FrameId  # deprecated
-    url: str  # deprecated
-    navigationType: Literal['fragment', 'historyApi', 'other']  # deprecated
+    frameId: Page.FrameId
+    url: str
+    navigationType: Literal['fragment', 'historyApi', 'other']
 
 
 class ScreencastFrame(CDPEvent):
     """ Compressed image data requested by the `startScreencast`. """
 
-    data: str  # deprecated
-    metadata: Page.ScreencastFrameMetadata  # deprecated
-    sessionId: int  # deprecated
+    data: str
+    metadata: Page.ScreencastFrameMetadata
+    sessionId: int
 
 
 class ScreencastVisibilityChanged(CDPEvent):
     """ Fired when the page with currently enabled screencast was shown or hidden `. """
 
-    visible: bool  # deprecated
+    visible: bool
 
 
 class WindowOpen(CDPEvent):
     """ Fired when a new window is going to be opened, via window.open(), link click, form submission,
     etc. """
 
-    url: str  # deprecated
-    windowName: str  # deprecated
-    windowFeatures: list[str]  # deprecated
-    userGesture: bool  # deprecated
+    url: str
+    windowName: str
+    windowFeatures: list[str]
+    userGesture: bool
 
 
 class CompilationCacheProduced(CDPEvent):
@@ -243,4 +243,4 @@ class CompilationCacheProduced(CDPEvent):
     if Page.setGenerateCompilationCache is enabled. """
 
     url: str
-    data: str  # deprecated
+    data: str

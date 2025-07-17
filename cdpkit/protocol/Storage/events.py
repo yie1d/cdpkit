@@ -22,36 +22,36 @@ from cdpkit.protocol.base import JSON_DICT, CDPEvent
 class CacheStorageContentUpdated(CDPEvent):
     """ A cache's contents have been modified. """
 
-    origin: str  # deprecated
-    storageKey: str  # deprecated
-    bucketId: str  # deprecated
-    cacheName: str  # deprecated
+    origin: str
+    storageKey: str
+    bucketId: str
+    cacheName: str
 
 
 class CacheStorageListUpdated(CDPEvent):
     """ A cache has been added/deleted. """
 
-    origin: str  # deprecated
-    storageKey: str  # deprecated
-    bucketId: str  # deprecated
+    origin: str
+    storageKey: str
+    bucketId: str
 
 
 class IndexedDBContentUpdated(CDPEvent):
     """ The origin's IndexedDB object store has been modified. """
 
-    origin: str  # deprecated
-    storageKey: str  # deprecated
-    bucketId: str  # deprecated
-    databaseName: str  # deprecated
-    objectStoreName: str  # deprecated
+    origin: str
+    storageKey: str
+    bucketId: str
+    databaseName: str
+    objectStoreName: str
 
 
 class IndexedDBListUpdated(CDPEvent):
     """ The origin's IndexedDB database list has been modified. """
 
-    origin: str  # deprecated
-    storageKey: str  # deprecated
-    bucketId: str  # deprecated
+    origin: str
+    storageKey: str
+    bucketId: str
 
 
 class InterestGroupAccessed(CDPEvent):
@@ -62,10 +62,10 @@ class InterestGroupAccessed(CDPEvent):
     type: Storage.InterestGroupAccessType
     ownerOrigin: str
     name: str
-    componentSellerOrigin: str | None = None  # deprecated
-    bid: float | None = None  # deprecated
+    componentSellerOrigin: str | None = None
+    bid: float | None = None
     bidCurrency: str | None = None
-    uniqueAuctionId: Storage.InterestGroupAuctionId | None = None  # deprecated
+    uniqueAuctionId: Storage.InterestGroupAuctionId | None = None
 
 
 class InterestGroupAuctionEventOccurred(CDPEvent):
@@ -75,8 +75,8 @@ class InterestGroupAuctionEventOccurred(CDPEvent):
     eventTime: Network.TimeSinceEpoch
     type: Storage.InterestGroupAuctionEventType
     uniqueAuctionId: Storage.InterestGroupAuctionId
-    parentAuctionId: Storage.InterestGroupAuctionId | None = None  # deprecated
-    auctionConfig: JSON_DICT | None = None  # deprecated
+    parentAuctionId: Storage.InterestGroupAuctionId | None = None
+    auctionConfig: JSON_DICT | None = None
 
 
 class InterestGroupAuctionNetworkRequestCreated(CDPEvent):
@@ -87,33 +87,33 @@ class InterestGroupAuctionNetworkRequestCreated(CDPEvent):
 
     type: Storage.InterestGroupAuctionFetchType
     requestId: Network.RequestId
-    auctions: list[Storage.InterestGroupAuctionId]  # deprecated
+    auctions: list[Storage.InterestGroupAuctionId]
 
 
 class SharedStorageAccessed(CDPEvent):
     """ Shared storage was accessed by the associated page.
     The following parameters are included in all events. """
 
-    accessTime: Network.TimeSinceEpoch  # deprecated
-    scope: Storage.SharedStorageAccessScope  # deprecated
-    method: Storage.SharedStorageAccessMethod  # deprecated
-    mainFrameId: Page.FrameId  # deprecated
-    ownerOrigin: str  # deprecated
-    ownerSite: str  # deprecated
-    params: Storage.SharedStorageAccessParams  # deprecated
+    accessTime: Network.TimeSinceEpoch
+    scope: Storage.SharedStorageAccessScope
+    method: Storage.SharedStorageAccessMethod
+    mainFrameId: Page.FrameId
+    ownerOrigin: str
+    ownerSite: str
+    params: Storage.SharedStorageAccessParams
 
 
 class SharedStorageWorkletOperationExecutionFinished(CDPEvent):
     """ A shared storage run or selectURL operation finished its execution.
     The following parameters are included in all events. """
 
-    finishedTime: Network.TimeSinceEpoch  # deprecated
-    executionTime: int  # deprecated
-    method: Storage.SharedStorageAccessMethod  # deprecated
-    operationId: str  # deprecated
-    workletTargetId: Target.TargetID  # deprecated
-    mainFrameId: Page.FrameId  # deprecated
-    ownerOrigin: str  # deprecated
+    finishedTime: Network.TimeSinceEpoch
+    executionTime: int
+    method: Storage.SharedStorageAccessMethod
+    operationId: str
+    workletTargetId: Target.TargetID
+    mainFrameId: Page.FrameId
+    ownerOrigin: str
 
 
 class StorageBucketCreatedOrUpdated(CDPEvent):
@@ -144,7 +144,7 @@ class AttributionReportingReportSent(CDPEvent):
     url: str
     body: JSON_DICT
     result: Storage.AttributionReportingReportResult
-    netError: int | None = None  # deprecated
+    netError: int | None = None
     netErrorName: str | None = None
     httpStatusCode: int | None = None
 

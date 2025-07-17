@@ -22,11 +22,11 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class ContinueToLocationInput(InputModel):
 
-    location: Debugger.Location  # deprecated
+    location: Debugger.Location
     targetCallFrames: Literal['any', 'current'] | None = None
 
 
-class ContinueToLocation(CDPMethod[None]):  # deprecated
+class ContinueToLocation(CDPMethod[None]):
     """ Continues execution until specific location is reached. """
 
     INPUT_VALIDATOR = ContinueToLocationInput
@@ -44,7 +44,7 @@ class ContinueToLocation(CDPMethod[None]):  # deprecated
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables debugger for given page. """
 
     INPUT_VALIDATOR = None
@@ -53,15 +53,15 @@ class Disable(CDPMethod[None]):  # deprecated
 
 class EnableInput(InputModel):
 
-    maxScriptsCacheSize: float | None = None  # experimental deprecated
+    maxScriptsCacheSize: float | None = None  # experimental
 
 
 class EnableOutput(OutputModel):
 
-    debuggerId: Runtime.UniqueDebuggerId | None = None  # experimental deprecated
+    debuggerId: Runtime.UniqueDebuggerId | None = None  # experimental
 
 
-class Enable(CDPMethod[EnableOutput]):  # deprecated
+class Enable(CDPMethod[EnableOutput]):
     """ Enables debugger for the given page. Clients should not assume that the debugging has been
     enabled until the result for this command is received. """
 
@@ -80,24 +80,24 @@ class Enable(CDPMethod[EnableOutput]):  # deprecated
 
 class EvaluateOnCallFrameInput(InputModel):
 
-    callFrameId: Debugger.CallFrameId  # deprecated
-    expression: str  # deprecated
-    objectGroup: str | None = None  # deprecated
-    includeCommandLineAPI: bool | None = None  # deprecated
-    silent: bool | None = None  # deprecated
-    returnByValue: bool | None = None  # deprecated
-    generatePreview: bool | None = None  # experimental deprecated
-    throwOnSideEffect: bool | None = None  # deprecated
-    timeout: Runtime.TimeDelta | None = None  # experimental deprecated
+    callFrameId: Debugger.CallFrameId
+    expression: str
+    objectGroup: str | None = None
+    includeCommandLineAPI: bool | None = None
+    silent: bool | None = None
+    returnByValue: bool | None = None
+    generatePreview: bool | None = None  # experimental
+    throwOnSideEffect: bool | None = None
+    timeout: Runtime.TimeDelta | None = None  # experimental
 
 
 class EvaluateOnCallFrameOutput(OutputModel):
 
-    result: Runtime.RemoteObject  # deprecated
-    exceptionDetails: Runtime.ExceptionDetails | None = None  # deprecated
+    result: Runtime.RemoteObject
+    exceptionDetails: Runtime.ExceptionDetails | None = None
 
 
-class EvaluateOnCallFrame(CDPMethod[EvaluateOnCallFrameOutput]):  # deprecated
+class EvaluateOnCallFrame(CDPMethod[EvaluateOnCallFrameOutput]):
     """ Evaluates expression on a given call frame. """
 
     INPUT_VALIDATOR = EvaluateOnCallFrameInput
@@ -131,17 +131,17 @@ class EvaluateOnCallFrame(CDPMethod[EvaluateOnCallFrameOutput]):  # deprecated
 
 class GetPossibleBreakpointsInput(InputModel):
 
-    start: Debugger.Location  # deprecated
-    end: Debugger.Location | None = None  # deprecated
-    restrictToFunction: bool | None = None  # deprecated
+    start: Debugger.Location
+    end: Debugger.Location | None = None
+    restrictToFunction: bool | None = None
 
 
 class GetPossibleBreakpointsOutput(OutputModel):
 
-    locations: list[Debugger.BreakLocation]  # deprecated
+    locations: list[Debugger.BreakLocation]
 
 
-class GetPossibleBreakpoints(CDPMethod[GetPossibleBreakpointsOutput]):  # deprecated
+class GetPossibleBreakpoints(CDPMethod[GetPossibleBreakpointsOutput]):
     """ Returns possible locations for breakpoint. scriptId in start and end range locations should be
     the same. """
 
@@ -164,16 +164,16 @@ class GetPossibleBreakpoints(CDPMethod[GetPossibleBreakpointsOutput]):  # deprec
 
 class GetScriptSourceInput(InputModel):
 
-    scriptId: Runtime.ScriptId  # deprecated
+    scriptId: Runtime.ScriptId
 
 
 class GetScriptSourceOutput(OutputModel):
 
-    scriptSource: str  # deprecated
-    bytecode: str | None = None  # deprecated
+    scriptSource: str
+    bytecode: str | None = None
 
 
-class GetScriptSource(CDPMethod[GetScriptSourceOutput]):  # deprecated
+class GetScriptSource(CDPMethod[GetScriptSourceOutput]):
     """ Returns source for the script with given id. """
 
     INPUT_VALIDATOR = GetScriptSourceInput
@@ -191,15 +191,15 @@ class GetScriptSource(CDPMethod[GetScriptSourceOutput]):  # deprecated
 
 class DisassembleWasmModuleInput(InputModel):
 
-    scriptId: Runtime.ScriptId  # deprecated
+    scriptId: Runtime.ScriptId
 
 
 class DisassembleWasmModuleOutput(OutputModel):
 
-    streamId: str | None = None  # deprecated
-    totalNumberOfLines: int  # deprecated
-    functionBodyOffsets: list[int]  # deprecated
-    chunk: Debugger.WasmDisassemblyChunk  # deprecated
+    streamId: str | None = None
+    totalNumberOfLines: int
+    functionBodyOffsets: list[int]
+    chunk: Debugger.WasmDisassemblyChunk
 
 
 class DisassembleWasmModule(CDPMethod[DisassembleWasmModuleOutput]):  # experimental
@@ -224,10 +224,10 @@ class NextWasmDisassemblyChunkInput(InputModel):
 
 class NextWasmDisassemblyChunkOutput(OutputModel):
 
-    chunk: Debugger.WasmDisassemblyChunk  # deprecated
+    chunk: Debugger.WasmDisassemblyChunk
 
 
-class NextWasmDisassemblyChunk(CDPMethod[NextWasmDisassemblyChunkOutput]):  # experimental deprecated
+class NextWasmDisassemblyChunk(CDPMethod[NextWasmDisassemblyChunkOutput]):  # experimental
     """ Disassemble the next chunk of lines for the module corresponding to the
     stream. If disassembly is complete, this API will invalidate the streamId
     and return an empty chunk. Any subsequent calls for the now invalid stream
@@ -248,12 +248,12 @@ class NextWasmDisassemblyChunk(CDPMethod[NextWasmDisassemblyChunkOutput]):  # ex
 
 class GetWasmBytecodeInput(InputModel):
 
-    scriptId: Runtime.ScriptId  # deprecated
+    scriptId: Runtime.ScriptId
 
 
 class GetWasmBytecodeOutput(OutputModel):
 
-    bytecode: str  # deprecated
+    bytecode: str
 
 
 class GetWasmBytecode(CDPMethod[GetWasmBytecodeOutput]):  # deprecated
@@ -282,7 +282,7 @@ class GetStackTraceOutput(OutputModel):
     stackTrace: Runtime.StackTrace
 
 
-class GetStackTrace(CDPMethod[GetStackTraceOutput]):  # experimental deprecated
+class GetStackTrace(CDPMethod[GetStackTraceOutput]):  # experimental
     """ Returns stack trace with given `stackTraceId`. """
 
     INPUT_VALIDATOR = GetStackTraceInput
@@ -298,7 +298,7 @@ class GetStackTrace(CDPMethod[GetStackTraceOutput]):  # experimental deprecated
         )
 
 
-class Pause(CDPMethod[None]):  # deprecated
+class Pause(CDPMethod[None]):
     """ Stops on the next JavaScript statement. """
 
     INPUT_VALIDATOR = None
@@ -307,10 +307,10 @@ class Pause(CDPMethod[None]):  # deprecated
 
 class PauseOnAsyncCallInput(InputModel):
 
-    parentStackTraceId: Runtime.StackTraceId  # deprecated
+    parentStackTraceId: Runtime.StackTraceId
 
 
-class PauseOnAsyncCall(CDPMethod[None]):  # experimental
+class PauseOnAsyncCall(CDPMethod[None]):  # experimental deprecated
 
     INPUT_VALIDATOR = PauseOnAsyncCallInput
     OUTPUT_VALIDATOR = None
@@ -330,7 +330,7 @@ class RemoveBreakpointInput(InputModel):
     breakpointId: Debugger.BreakpointId
 
 
-class RemoveBreakpoint(CDPMethod[None]):  # deprecated
+class RemoveBreakpoint(CDPMethod[None]):
     """ Removes JavaScript breakpoint. """
 
     INPUT_VALIDATOR = RemoveBreakpointInput
@@ -348,8 +348,8 @@ class RemoveBreakpoint(CDPMethod[None]):  # deprecated
 
 class RestartFrameInput(InputModel):
 
-    callFrameId: Debugger.CallFrameId  # deprecated
-    mode: Literal['StepInto'] | None = None  # experimental deprecated
+    callFrameId: Debugger.CallFrameId
+    mode: Literal['StepInto'] | None = None  # experimental
 
 
 class RestartFrameOutput(OutputModel):
@@ -359,7 +359,7 @@ class RestartFrameOutput(OutputModel):
     asyncStackTraceId: Runtime.StackTraceId | None = None  # deprecated
 
 
-class RestartFrame(CDPMethod[RestartFrameOutput]):  # deprecated
+class RestartFrame(CDPMethod[RestartFrameOutput]):
     """ Restarts particular call frame from the beginning. The old, deprecated
     behavior of `restartFrame` is to stay paused and allow further CDP commands
     after a restart was scheduled. This can cause problems with restarting, so
@@ -391,10 +391,10 @@ class RestartFrame(CDPMethod[RestartFrameOutput]):  # deprecated
 
 class ResumeInput(InputModel):
 
-    terminateOnResume: bool | None = None  # deprecated
+    terminateOnResume: bool | None = None
 
 
-class Resume(CDPMethod[None]):  # deprecated
+class Resume(CDPMethod[None]):
     """ Resumes JavaScript execution. """
 
     INPUT_VALIDATOR = ResumeInput
@@ -412,18 +412,18 @@ class Resume(CDPMethod[None]):  # deprecated
 
 class SearchInContentInput(InputModel):
 
-    scriptId: Runtime.ScriptId  # deprecated
-    query: str  # deprecated
-    caseSensitive: bool | None = None  # deprecated
-    isRegex: bool | None = None  # deprecated
+    scriptId: Runtime.ScriptId
+    query: str
+    caseSensitive: bool | None = None
+    isRegex: bool | None = None
 
 
 class SearchInContentOutput(OutputModel):
 
-    result: list[Debugger.SearchMatch]  # deprecated
+    result: list[Debugger.SearchMatch]
 
 
-class SearchInContent(CDPMethod[SearchInContentOutput]):  # deprecated
+class SearchInContent(CDPMethod[SearchInContentOutput]):
     """ Searches for given string in script content. """
 
     INPUT_VALIDATOR = SearchInContentInput
@@ -447,10 +447,10 @@ class SearchInContent(CDPMethod[SearchInContentOutput]):  # deprecated
 
 class SetAsyncCallStackDepthInput(InputModel):
 
-    maxDepth: int  # deprecated
+    maxDepth: int
 
 
-class SetAsyncCallStackDepth(CDPMethod[None]):  # deprecated
+class SetAsyncCallStackDepth(CDPMethod[None]):
     """ Enables or disables async call stacks tracking. """
 
     INPUT_VALIDATOR = SetAsyncCallStackDepthInput
@@ -468,10 +468,10 @@ class SetAsyncCallStackDepth(CDPMethod[None]):  # deprecated
 
 class SetBlackboxExecutionContextsInput(InputModel):
 
-    uniqueIds: list[str]  # deprecated
+    uniqueIds: list[str]
 
 
-class SetBlackboxExecutionContexts(CDPMethod[None]):  # experimental deprecated
+class SetBlackboxExecutionContexts(CDPMethod[None]):  # experimental
     """ Replace previous blackbox execution contexts with passed ones. Forces backend to skip
     stepping/pausing in scripts in these execution contexts. VM will try to leave blackboxed script by
     performing 'step in' several times, finally resorting to 'step out' if unsuccessful. """
@@ -491,11 +491,11 @@ class SetBlackboxExecutionContexts(CDPMethod[None]):  # experimental deprecated
 
 class SetBlackboxPatternsInput(InputModel):
 
-    patterns: list[str]  # deprecated
-    skipAnonymous: bool | None = None  # deprecated
+    patterns: list[str]
+    skipAnonymous: bool | None = None
 
 
-class SetBlackboxPatterns(CDPMethod[None]):  # experimental deprecated
+class SetBlackboxPatterns(CDPMethod[None]):  # experimental
     """ Replace previous blackbox patterns with passed ones. Forces backend to skip stepping/pausing in
     scripts with url matching one of the patterns. VM will try to leave blackboxed script by
     performing 'step in' several times, finally resorting to 'step out' if unsuccessful. """
@@ -517,11 +517,11 @@ class SetBlackboxPatterns(CDPMethod[None]):  # experimental deprecated
 
 class SetBlackboxedRangesInput(InputModel):
 
-    scriptId: Runtime.ScriptId  # deprecated
+    scriptId: Runtime.ScriptId
     positions: list[Debugger.ScriptPosition]
 
 
-class SetBlackboxedRanges(CDPMethod[None]):  # experimental deprecated
+class SetBlackboxedRanges(CDPMethod[None]):  # experimental
     """ Makes backend skip steps in the script in blackboxed ranges. VM will try leave blacklisted
     scripts by performing 'step in' several times, finally resorting to 'step out' if unsuccessful.
     Positions array contains positions where blackbox state is changed. First interval isn't
@@ -544,17 +544,17 @@ class SetBlackboxedRanges(CDPMethod[None]):  # experimental deprecated
 
 class SetBreakpointInput(InputModel):
 
-    location: Debugger.Location  # deprecated
-    condition: str | None = None  # deprecated
+    location: Debugger.Location
+    condition: str | None = None
 
 
 class SetBreakpointOutput(OutputModel):
 
-    breakpointId: Debugger.BreakpointId  # deprecated
-    actualLocation: Debugger.Location  # deprecated
+    breakpointId: Debugger.BreakpointId
+    actualLocation: Debugger.Location
 
 
-class SetBreakpoint(CDPMethod[SetBreakpointOutput]):  # deprecated
+class SetBreakpoint(CDPMethod[SetBreakpointOutput]):
     """ Sets JavaScript breakpoint at a given location. """
 
     INPUT_VALIDATOR = SetBreakpointInput
@@ -574,15 +574,15 @@ class SetBreakpoint(CDPMethod[SetBreakpointOutput]):  # deprecated
 
 class SetInstrumentationBreakpointInput(InputModel):
 
-    instrumentation: Literal['beforeScriptExecution', 'beforeScriptWithSourceMapExecution']  # deprecated
+    instrumentation: Literal['beforeScriptExecution', 'beforeScriptWithSourceMapExecution']
 
 
 class SetInstrumentationBreakpointOutput(OutputModel):
 
-    breakpointId: Debugger.BreakpointId  # deprecated
+    breakpointId: Debugger.BreakpointId
 
 
-class SetInstrumentationBreakpoint(CDPMethod[SetInstrumentationBreakpointOutput]):  # deprecated
+class SetInstrumentationBreakpoint(CDPMethod[SetInstrumentationBreakpointOutput]):
     """ Sets instrumentation breakpoint. """
 
     INPUT_VALIDATOR = SetInstrumentationBreakpointInput
@@ -600,21 +600,21 @@ class SetInstrumentationBreakpoint(CDPMethod[SetInstrumentationBreakpointOutput]
 
 class SetBreakpointByUrlInput(InputModel):
 
-    lineNumber: int  # deprecated
-    url: str | None = None  # deprecated
-    urlRegex: str | None = None  # deprecated
-    scriptHash: str | None = None  # deprecated
-    columnNumber: int | None = None  # deprecated
-    condition: str | None = None  # deprecated
+    lineNumber: int
+    url: str | None = None
+    urlRegex: str | None = None
+    scriptHash: str | None = None
+    columnNumber: int | None = None
+    condition: str | None = None
 
 
 class SetBreakpointByUrlOutput(OutputModel):
 
-    breakpointId: Debugger.BreakpointId  # deprecated
-    locations: list[Debugger.Location]  # deprecated
+    breakpointId: Debugger.BreakpointId
+    locations: list[Debugger.Location]
 
 
-class SetBreakpointByUrl(CDPMethod[SetBreakpointByUrlOutput]):  # deprecated
+class SetBreakpointByUrl(CDPMethod[SetBreakpointByUrlOutput]):
     """ Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this
     command is issued, all existing parsed scripts will have breakpoints resolved and returned in
     `locations` property. Further matching script parsing will result in subsequent
@@ -645,16 +645,16 @@ class SetBreakpointByUrl(CDPMethod[SetBreakpointByUrlOutput]):  # deprecated
 
 class SetBreakpointOnFunctionCallInput(InputModel):
 
-    objectId: Runtime.RemoteObjectId  # deprecated
-    condition: str | None = None  # deprecated
+    objectId: Runtime.RemoteObjectId
+    condition: str | None = None
 
 
 class SetBreakpointOnFunctionCallOutput(OutputModel):
 
-    breakpointId: Debugger.BreakpointId  # deprecated
+    breakpointId: Debugger.BreakpointId
 
 
-class SetBreakpointOnFunctionCall(CDPMethod[SetBreakpointOnFunctionCallOutput]):  # experimental deprecated
+class SetBreakpointOnFunctionCall(CDPMethod[SetBreakpointOnFunctionCallOutput]):  # experimental
     """ Sets JavaScript breakpoint before each call to the given function.
     If another function was created from the same source as a given one,
     calling it will also trigger the breakpoint. """
@@ -676,10 +676,10 @@ class SetBreakpointOnFunctionCall(CDPMethod[SetBreakpointOnFunctionCallOutput]):
 
 class SetBreakpointsActiveInput(InputModel):
 
-    active: bool  # deprecated
+    active: bool
 
 
-class SetBreakpointsActive(CDPMethod[None]):  # deprecated
+class SetBreakpointsActive(CDPMethod[None]):
     """ Activates / deactivates all breakpoints on the page. """
 
     INPUT_VALIDATOR = SetBreakpointsActiveInput
@@ -697,10 +697,10 @@ class SetBreakpointsActive(CDPMethod[None]):  # deprecated
 
 class SetPauseOnExceptionsInput(InputModel):
 
-    state: Literal['none', 'caught', 'uncaught', 'all']  # deprecated
+    state: Literal['none', 'caught', 'uncaught', 'all']
 
 
-class SetPauseOnExceptions(CDPMethod[None]):  # deprecated
+class SetPauseOnExceptions(CDPMethod[None]):
     """ Defines pause on exceptions state. Can be set to stop on all exceptions, uncaught exceptions,
     or caught exceptions, no exceptions. Initial pause on exceptions state is `none`. """
 
@@ -719,10 +719,10 @@ class SetPauseOnExceptions(CDPMethod[None]):  # deprecated
 
 class SetReturnValueInput(InputModel):
 
-    newValue: Runtime.CallArgument  # deprecated
+    newValue: Runtime.CallArgument
 
 
-class SetReturnValue(CDPMethod[None]):  # experimental deprecated
+class SetReturnValue(CDPMethod[None]):  # experimental
     """ Changes return value in top frame. Available only at return break position. """
 
     INPUT_VALIDATOR = SetReturnValueInput
@@ -740,10 +740,10 @@ class SetReturnValue(CDPMethod[None]):  # experimental deprecated
 
 class SetScriptSourceInput(InputModel):
 
-    scriptId: Runtime.ScriptId  # deprecated
-    scriptSource: str  # deprecated
-    dryRun: bool | None = None  # deprecated
-    allowTopFrameEditing: bool | None = None  # experimental deprecated
+    scriptId: Runtime.ScriptId
+    scriptSource: str
+    dryRun: bool | None = None
+    allowTopFrameEditing: bool | None = None  # experimental
 
 
 class SetScriptSourceOutput(OutputModel):
@@ -752,11 +752,11 @@ class SetScriptSourceOutput(OutputModel):
     stackChanged: bool | None = None  # deprecated
     asyncStackTrace: Runtime.StackTrace | None = None  # deprecated
     asyncStackTraceId: Runtime.StackTraceId | None = None  # deprecated
-    status: Literal['Ok', 'CompileError', 'BlockedByActiveGenerator', 'BlockedByActiveFunction', 'BlockedByTopLevelEsModuleChange'] | None = None  # experimental deprecated
-    exceptionDetails: Runtime.ExceptionDetails | None = None  # deprecated
+    status: Literal['Ok', 'CompileError', 'BlockedByActiveGenerator', 'BlockedByActiveFunction', 'BlockedByTopLevelEsModuleChange'] | None = None  # experimental
+    exceptionDetails: Runtime.ExceptionDetails | None = None
 
 
-class SetScriptSource(CDPMethod[SetScriptSourceOutput]):  # deprecated
+class SetScriptSource(CDPMethod[SetScriptSourceOutput]):
     """ Edits JavaScript source live.
 
     In general, functions that are currently on the stack can not be edited with
@@ -786,10 +786,10 @@ class SetScriptSource(CDPMethod[SetScriptSourceOutput]):  # deprecated
 
 class SetSkipAllPausesInput(InputModel):
 
-    skip: bool  # deprecated
+    skip: bool
 
 
-class SetSkipAllPauses(CDPMethod[None]):  # deprecated
+class SetSkipAllPauses(CDPMethod[None]):
     """ Makes page not interrupt on any pauses (breakpoint, exception, dom exception etc). """
 
     INPUT_VALIDATOR = SetSkipAllPausesInput
@@ -807,13 +807,13 @@ class SetSkipAllPauses(CDPMethod[None]):  # deprecated
 
 class SetVariableValueInput(InputModel):
 
-    scopeNumber: int  # deprecated
-    variableName: str  # deprecated
-    newValue: Runtime.CallArgument  # deprecated
-    callFrameId: Debugger.CallFrameId  # deprecated
+    scopeNumber: int
+    variableName: str
+    newValue: Runtime.CallArgument
+    callFrameId: Debugger.CallFrameId
 
 
-class SetVariableValue(CDPMethod[None]):  # deprecated
+class SetVariableValue(CDPMethod[None]):
     """ Changes value of variable in a callframe. Object-based scopes are not supported and must be
     mutated manually. """
 
@@ -838,11 +838,11 @@ class SetVariableValue(CDPMethod[None]):  # deprecated
 
 class StepIntoInput(InputModel):
 
-    breakOnAsyncCall: bool | None = None  # experimental deprecated
-    skipList: list[Debugger.LocationRange] | None = None  # experimental deprecated
+    breakOnAsyncCall: bool | None = None  # experimental
+    skipList: list[Debugger.LocationRange] | None = None  # experimental
 
 
-class StepInto(CDPMethod[None]):  # deprecated
+class StepInto(CDPMethod[None]):
     """ Steps into the function call. """
 
     INPUT_VALIDATOR = StepIntoInput
@@ -860,7 +860,7 @@ class StepInto(CDPMethod[None]):  # deprecated
         )
 
 
-class StepOut(CDPMethod[None]):  # deprecated
+class StepOut(CDPMethod[None]):
     """ Steps out of the function call. """
 
     INPUT_VALIDATOR = None
@@ -869,10 +869,10 @@ class StepOut(CDPMethod[None]):  # deprecated
 
 class StepOverInput(InputModel):
 
-    skipList: list[Debugger.LocationRange] | None = None  # experimental deprecated
+    skipList: list[Debugger.LocationRange] | None = None  # experimental
 
 
-class StepOver(CDPMethod[None]):  # deprecated
+class StepOver(CDPMethod[None]):
     """ Steps over the statement. """
 
     INPUT_VALIDATOR = StepOverInput

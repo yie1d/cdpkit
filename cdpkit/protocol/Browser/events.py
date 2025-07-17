@@ -21,17 +21,17 @@ from cdpkit.protocol.base import CDPEvent
 class DownloadWillBegin(CDPEvent):
     """ Fired when page is about to start a download. """
 
-    frameId: Page.FrameId  # deprecated
-    guid: str  # deprecated
-    url: str  # deprecated
-    suggestedFilename: str  # deprecated
+    frameId: Page.FrameId
+    guid: str
+    url: str
+    suggestedFilename: str
 
 
 class DownloadProgress(CDPEvent):
     """ Fired when download makes progress. Last call has |done| == true. """
 
-    guid: str  # deprecated
-    totalBytes: float  # deprecated
-    receivedBytes: float  # deprecated
-    state: Literal['inProgress', 'completed', 'canceled']  # deprecated
-    filePath: str | None = None  # experimental deprecated
+    guid: str
+    totalBytes: float
+    receivedBytes: float
+    state: Literal['inProgress', 'completed', 'canceled']
+    filePath: str | None = None  # experimental

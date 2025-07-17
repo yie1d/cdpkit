@@ -13,21 +13,21 @@ from __future__ import annotations
 from cdpkit.protocol.base import CDPMethod
 
 
-class ClearMessages(CDPMethod[None]):  # deprecated
+class ClearMessages(CDPMethod[None]):
     """ Does nothing. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables console domain, prevents further console messages from being reported to the client. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables console domain, sends the messages collected so far to the client by means of the
     `messageAdded` notification. """
 

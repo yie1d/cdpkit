@@ -21,7 +21,7 @@ class StartObservingInput(InputModel):
     service: BackgroundService.ServiceName
 
 
-class StartObserving(CDPMethod[None]):  # deprecated
+class StartObserving(CDPMethod[None]):
     """ Enables event updates for the service. """
 
     INPUT_VALIDATOR = StartObservingInput
@@ -42,7 +42,7 @@ class StopObservingInput(InputModel):
     service: BackgroundService.ServiceName
 
 
-class StopObserving(CDPMethod[None]):  # deprecated
+class StopObserving(CDPMethod[None]):
     """ Disables event updates for the service. """
 
     INPUT_VALIDATOR = StopObservingInput
@@ -64,7 +64,7 @@ class SetRecordingInput(InputModel):
     service: BackgroundService.ServiceName
 
 
-class SetRecording(CDPMethod[None]):  # deprecated
+class SetRecording(CDPMethod[None]):
     """ Set the recording state for the service. """
 
     INPUT_VALIDATOR = SetRecordingInput
@@ -87,7 +87,7 @@ class ClearEventsInput(InputModel):
     service: BackgroundService.ServiceName
 
 
-class ClearEvents(CDPMethod[None]):  # deprecated
+class ClearEvents(CDPMethod[None]):
     """ Clears all stored data for the service. """
 
     INPUT_VALIDATOR = ClearEventsInput

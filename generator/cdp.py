@@ -147,7 +147,7 @@ class CDPCommonObject(CodeBase):
         _tips = ''
         if self.experimental:
             _tips += 'experimental'
-        if self.description:
+        if self.deprecated:
             if _tips:
                 _tips += ' deprecated'
             else:

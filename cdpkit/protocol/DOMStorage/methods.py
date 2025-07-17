@@ -36,14 +36,14 @@ class Clear(CDPMethod[None]):
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables storage tracking, prevents storage events from being sent to the client. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables storage tracking, storage events will now be delivered to the client. """
 
     INPUT_VALIDATOR = None

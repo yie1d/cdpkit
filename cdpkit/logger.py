@@ -54,4 +54,4 @@ def set_logger(
     return _loguru_logger
 
 
-logger = set_logger(LogLevel.CRITICAL)
+logger = set_logger(LogLevel.DEBUG)

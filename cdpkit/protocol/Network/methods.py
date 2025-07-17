@@ -23,10 +23,10 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class SetAcceptedEncodingsInput(InputModel):
 
-    encodings: list[Network.ContentEncoding]  # deprecated
+    encodings: list[Network.ContentEncoding]
 
 
-class SetAcceptedEncodings(CDPMethod[None]):  # experimental deprecated
+class SetAcceptedEncodings(CDPMethod[None]):  # experimental
     """ Sets a list of content encodings that will be accepted. Empty list means no encoding is accepted. """
 
     INPUT_VALIDATOR = SetAcceptedEncodingsInput
@@ -42,7 +42,7 @@ class SetAcceptedEncodings(CDPMethod[None]):  # experimental deprecated
         )
 
 
-class ClearAcceptedEncodingsOverride(CDPMethod[None]):  # experimental deprecated
+class ClearAcceptedEncodingsOverride(CDPMethod[None]):  # experimental
     """ Clears accepted encodings set by setAcceptedEncodings """
 
     INPUT_VALIDATOR = None
@@ -51,7 +51,7 @@ class ClearAcceptedEncodingsOverride(CDPMethod[None]):  # experimental deprecate
 
 class CanClearBrowserCacheOutput(OutputModel):
 
-    result: bool  # deprecated
+    result: bool
 
 
 class CanClearBrowserCache(CDPMethod[CanClearBrowserCacheOutput]):  # deprecated
@@ -63,7 +63,7 @@ class CanClearBrowserCache(CDPMethod[CanClearBrowserCacheOutput]):  # deprecated
 
 class CanClearBrowserCookiesOutput(OutputModel):
 
-    result: bool  # deprecated
+    result: bool
 
 
 class CanClearBrowserCookies(CDPMethod[CanClearBrowserCookiesOutput]):  # deprecated
@@ -75,7 +75,7 @@ class CanClearBrowserCookies(CDPMethod[CanClearBrowserCookiesOutput]):  # deprec
 
 class CanEmulateNetworkConditionsOutput(OutputModel):
 
-    result: bool  # deprecated
+    result: bool
 
 
 class CanEmulateNetworkConditions(CDPMethod[CanEmulateNetworkConditionsOutput]):  # deprecated
@@ -85,14 +85,14 @@ class CanEmulateNetworkConditions(CDPMethod[CanEmulateNetworkConditionsOutput]):
     OUTPUT_VALIDATOR = CanEmulateNetworkConditionsOutput
 
 
-class ClearBrowserCache(CDPMethod[None]):  # deprecated
+class ClearBrowserCache(CDPMethod[None]):
     """ Clears browser cache. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class ClearBrowserCookies(CDPMethod[None]):  # deprecated
+class ClearBrowserCookies(CDPMethod[None]):
     """ Clears browser cookies. """
 
     INPUT_VALIDATOR = None
@@ -102,13 +102,13 @@ class ClearBrowserCookies(CDPMethod[None]):  # deprecated
 class ContinueInterceptedRequestInput(InputModel):
 
     interceptionId: Network.InterceptionId
-    errorReason: Network.ErrorReason | None = None  # deprecated
-    rawResponse: str | None = None  # deprecated
-    url: str | None = None  # deprecated
-    method: str | None = None  # deprecated
-    postData: str | None = None  # deprecated
-    headers: Network.Headers | None = None  # deprecated
-    authChallengeResponse: Network.AuthChallengeResponse | None = None  # deprecated
+    errorReason: Network.ErrorReason | None = None
+    rawResponse: str | None = None
+    url: str | None = None
+    method: str | None = None
+    postData: str | None = None
+    headers: Network.Headers | None = None
+    authChallengeResponse: Network.AuthChallengeResponse | None = None
 
 
 class ContinueInterceptedRequest(CDPMethod[None]):  # experimental deprecated
@@ -147,14 +147,14 @@ class ContinueInterceptedRequest(CDPMethod[None]):  # experimental deprecated
 
 class DeleteCookiesInput(InputModel):
 
-    name: str  # deprecated
-    url: str | None = None  # deprecated
-    domain: str | None = None  # deprecated
-    path: str | None = None  # deprecated
-    partitionKey: Network.CookiePartitionKey | None = None  # experimental deprecated
+    name: str
+    url: str | None = None
+    domain: str | None = None
+    path: str | None = None
+    partitionKey: Network.CookiePartitionKey | None = None  # experimental
 
 
-class DeleteCookies(CDPMethod[None]):  # deprecated
+class DeleteCookies(CDPMethod[None]):
     """ Deletes browser cookies with matching name and url or domain/path/partitionKey pair. """
 
     INPUT_VALIDATOR = DeleteCookiesInput
@@ -178,7 +178,7 @@ class DeleteCookies(CDPMethod[None]):  # deprecated
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables network tracking, prevents network events from being sent to the client. """
 
     INPUT_VALIDATOR = None
@@ -187,17 +187,17 @@ class Disable(CDPMethod[None]):  # deprecated
 
 class EmulateNetworkConditionsInput(InputModel):
 
-    offline: bool  # deprecated
-    latency: float  # deprecated
-    downloadThroughput: float  # deprecated
-    uploadThroughput: float  # deprecated
-    connectionType: Network.ConnectionType | None = None  # deprecated
-    packetLoss: float | None = None  # experimental deprecated
-    packetQueueLength: int | None = None  # experimental deprecated
-    packetReordering: bool | None = None  # experimental deprecated
+    offline: bool
+    latency: float
+    downloadThroughput: float
+    uploadThroughput: float
+    connectionType: Network.ConnectionType | None = None
+    packetLoss: float | None = None  # experimental
+    packetQueueLength: int | None = None  # experimental
+    packetReordering: bool | None = None  # experimental
 
 
-class EmulateNetworkConditions(CDPMethod[None]):  # deprecated
+class EmulateNetworkConditions(CDPMethod[None]):
     """ Activates emulation of network conditions. """
 
     INPUT_VALIDATOR = EmulateNetworkConditionsInput
@@ -229,13 +229,13 @@ class EmulateNetworkConditions(CDPMethod[None]):  # deprecated
 
 class EnableInput(InputModel):
 
-    maxTotalBufferSize: int | None = None  # experimental deprecated
-    maxResourceBufferSize: int | None = None  # experimental deprecated
-    maxPostDataSize: int | None = None  # deprecated
-    reportDirectSocketTraffic: bool | None = None  # experimental deprecated
+    maxTotalBufferSize: int | None = None  # experimental
+    maxResourceBufferSize: int | None = None  # experimental
+    maxPostDataSize: int | None = None
+    reportDirectSocketTraffic: bool | None = None  # experimental
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables network tracking, network events will now be delivered to the client. """
 
     INPUT_VALIDATOR = EnableInput
@@ -259,7 +259,7 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class GetAllCookiesOutput(OutputModel):
 
-    cookies: list[Network.Cookie]  # deprecated
+    cookies: list[Network.Cookie]
 
 
 class GetAllCookies(CDPMethod[GetAllCookiesOutput]):  # deprecated
@@ -273,7 +273,7 @@ class GetAllCookies(CDPMethod[GetAllCookiesOutput]):  # deprecated
 
 class GetCertificateInput(InputModel):
 
-    origin: str  # deprecated
+    origin: str
 
 
 class GetCertificateOutput(OutputModel):
@@ -281,7 +281,7 @@ class GetCertificateOutput(OutputModel):
     tableNames: list[str]
 
 
-class GetCertificate(CDPMethod[GetCertificateOutput]):  # experimental deprecated
+class GetCertificate(CDPMethod[GetCertificateOutput]):  # experimental
     """ Returns the DER-encoded certificate. """
 
     INPUT_VALIDATOR = GetCertificateInput
@@ -299,15 +299,15 @@ class GetCertificate(CDPMethod[GetCertificateOutput]):  # experimental deprecate
 
 class GetCookiesInput(InputModel):
 
-    urls: list[str] | None = None  # deprecated
+    urls: list[str] | None = None
 
 
 class GetCookiesOutput(OutputModel):
 
-    cookies: list[Network.Cookie]  # deprecated
+    cookies: list[Network.Cookie]
 
 
-class GetCookies(CDPMethod[GetCookiesOutput]):  # deprecated
+class GetCookies(CDPMethod[GetCookiesOutput]):
     """ Returns all browser cookies for the current URL. Depending on the backend support, will return
     detailed cookie information in the `cookies` field. """
 
@@ -326,16 +326,16 @@ class GetCookies(CDPMethod[GetCookiesOutput]):  # deprecated
 
 class GetResponseBodyInput(InputModel):
 
-    requestId: Network.RequestId  # deprecated
+    requestId: Network.RequestId
 
 
 class GetResponseBodyOutput(OutputModel):
 
-    body: str  # deprecated
-    base64Encoded: bool  # deprecated
+    body: str
+    base64Encoded: bool
 
 
-class GetResponseBody(CDPMethod[GetResponseBodyOutput]):  # deprecated
+class GetResponseBody(CDPMethod[GetResponseBodyOutput]):
     """ Returns content served for the given request. """
 
     INPUT_VALIDATOR = GetResponseBodyInput
@@ -353,15 +353,15 @@ class GetResponseBody(CDPMethod[GetResponseBodyOutput]):  # deprecated
 
 class GetRequestPostDataInput(InputModel):
 
-    requestId: Network.RequestId  # deprecated
+    requestId: Network.RequestId
 
 
 class GetRequestPostDataOutput(OutputModel):
 
-    postData: str  # deprecated
+    postData: str
 
 
-class GetRequestPostData(CDPMethod[GetRequestPostDataOutput]):  # deprecated
+class GetRequestPostData(CDPMethod[GetRequestPostDataOutput]):
     """ Returns post data sent with the request. Returns an error when no data was sent with the request. """
 
     INPUT_VALIDATOR = GetRequestPostDataInput
@@ -379,16 +379,16 @@ class GetRequestPostData(CDPMethod[GetRequestPostDataOutput]):  # deprecated
 
 class GetResponseBodyForInterceptionInput(InputModel):
 
-    interceptionId: Network.InterceptionId  # deprecated
+    interceptionId: Network.InterceptionId
 
 
 class GetResponseBodyForInterceptionOutput(OutputModel):
 
-    body: str  # deprecated
-    base64Encoded: bool  # deprecated
+    body: str
+    base64Encoded: bool
 
 
-class GetResponseBodyForInterception(CDPMethod[GetResponseBodyForInterceptionOutput]):  # experimental deprecated
+class GetResponseBodyForInterception(CDPMethod[GetResponseBodyForInterceptionOutput]):  # experimental
     """ Returns content served for the given currently intercepted request. """
 
     INPUT_VALIDATOR = GetResponseBodyForInterceptionInput
@@ -414,7 +414,7 @@ class TakeResponseBodyForInterceptionAsStreamOutput(OutputModel):
     stream: IO.StreamHandle
 
 
-class TakeResponseBodyForInterceptionAsStream(CDPMethod[TakeResponseBodyForInterceptionAsStreamOutput]):  # experimental deprecated
+class TakeResponseBodyForInterceptionAsStream(CDPMethod[TakeResponseBodyForInterceptionAsStreamOutput]):  # experimental
     """ Returns a handle to the stream representing the response body. Note that after this command,
     the intercepted request can't be continued as is -- you either need to cancel it or to provide
     the response body. The stream only supports sequential read, IO.read will fail if the position
@@ -435,10 +435,10 @@ class TakeResponseBodyForInterceptionAsStream(CDPMethod[TakeResponseBodyForInter
 
 class ReplayXHRInput(InputModel):
 
-    requestId: Network.RequestId  # deprecated
+    requestId: Network.RequestId
 
 
-class ReplayXHR(CDPMethod[None]):  # experimental deprecated
+class ReplayXHR(CDPMethod[None]):  # experimental
     """ This method sends a new XMLHttpRequest which is identical to the original one. The following
     parameters should be identical: method, url, async, request body, extra headers, withCredentials
     attribute, user, password. """
@@ -458,18 +458,18 @@ class ReplayXHR(CDPMethod[None]):  # experimental deprecated
 
 class SearchInResponseBodyInput(InputModel):
 
-    requestId: Network.RequestId  # deprecated
-    query: str  # deprecated
-    caseSensitive: bool | None = None  # deprecated
-    isRegex: bool | None = None  # deprecated
+    requestId: Network.RequestId
+    query: str
+    caseSensitive: bool | None = None
+    isRegex: bool | None = None
 
 
 class SearchInResponseBodyOutput(OutputModel):
 
-    result: list[Debugger.SearchMatch]  # deprecated
+    result: list[Debugger.SearchMatch]
 
 
-class SearchInResponseBody(CDPMethod[SearchInResponseBodyOutput]):  # experimental deprecated
+class SearchInResponseBody(CDPMethod[SearchInResponseBodyOutput]):  # experimental
     """ Searches for given string in response content. """
 
     INPUT_VALIDATOR = SearchInResponseBodyInput
@@ -493,10 +493,10 @@ class SearchInResponseBody(CDPMethod[SearchInResponseBodyOutput]):  # experiment
 
 class SetBlockedURLsInput(InputModel):
 
-    urls: list[str]  # deprecated
+    urls: list[str]
 
 
-class SetBlockedURLs(CDPMethod[None]):  # experimental deprecated
+class SetBlockedURLs(CDPMethod[None]):  # experimental
     """ Blocks URLs from loading. """
 
     INPUT_VALIDATOR = SetBlockedURLsInput
@@ -514,10 +514,10 @@ class SetBlockedURLs(CDPMethod[None]):  # experimental deprecated
 
 class SetBypassServiceWorkerInput(InputModel):
 
-    bypass: bool  # deprecated
+    bypass: bool
 
 
-class SetBypassServiceWorker(CDPMethod[None]):  # deprecated
+class SetBypassServiceWorker(CDPMethod[None]):
     """ Toggles ignoring of service worker for each request. """
 
     INPUT_VALIDATOR = SetBypassServiceWorkerInput
@@ -535,10 +535,10 @@ class SetBypassServiceWorker(CDPMethod[None]):  # deprecated
 
 class SetCacheDisabledInput(InputModel):
 
-    cacheDisabled: bool  # deprecated
+    cacheDisabled: bool
 
 
-class SetCacheDisabled(CDPMethod[None]):  # deprecated
+class SetCacheDisabled(CDPMethod[None]):
     """ Toggles ignoring cache for each request. If `true`, cache will not be used. """
 
     INPUT_VALIDATOR = SetCacheDisabledInput
@@ -556,20 +556,20 @@ class SetCacheDisabled(CDPMethod[None]):  # deprecated
 
 class SetCookieInput(InputModel):
 
-    name: str  # deprecated
-    value: str  # deprecated
-    url: str | None = None  # deprecated
-    domain: str | None = None  # deprecated
-    path: str | None = None  # deprecated
-    secure: bool | None = None  # deprecated
-    httpOnly: bool | None = None  # deprecated
-    sameSite: Network.CookieSameSite | None = None  # deprecated
-    expires: Network.TimeSinceEpoch | None = None  # deprecated
-    priority: Network.CookiePriority | None = None  # experimental deprecated
-    sameParty: bool | None = None  # experimental deprecated
-    sourceScheme: Network.CookieSourceScheme | None = None  # experimental deprecated
-    sourcePort: int | None = None  # experimental deprecated
-    partitionKey: Network.CookiePartitionKey | None = None  # experimental deprecated
+    name: str
+    value: str
+    url: str | None = None
+    domain: str | None = None
+    path: str | None = None
+    secure: bool | None = None
+    httpOnly: bool | None = None
+    sameSite: Network.CookieSameSite | None = None
+    expires: Network.TimeSinceEpoch | None = None
+    priority: Network.CookiePriority | None = None  # experimental
+    sameParty: bool | None = None  # experimental
+    sourceScheme: Network.CookieSourceScheme | None = None  # experimental
+    sourcePort: int | None = None  # experimental
+    partitionKey: Network.CookiePartitionKey | None = None  # experimental
 
 
 class SetCookieOutput(OutputModel):
@@ -577,7 +577,7 @@ class SetCookieOutput(OutputModel):
     success: bool  # deprecated
 
 
-class SetCookie(CDPMethod[SetCookieOutput]):  # deprecated
+class SetCookie(CDPMethod[SetCookieOutput]):
     """ Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist. """
 
     INPUT_VALIDATOR = SetCookieInput
@@ -621,10 +621,10 @@ class SetCookie(CDPMethod[SetCookieOutput]):  # deprecated
 
 class SetCookiesInput(InputModel):
 
-    cookies: list[Network.CookieParam]  # deprecated
+    cookies: list[Network.CookieParam]
 
 
-class SetCookies(CDPMethod[None]):  # deprecated
+class SetCookies(CDPMethod[None]):
     """ Sets given cookies. """
 
     INPUT_VALIDATOR = SetCookiesInput
@@ -642,10 +642,10 @@ class SetCookies(CDPMethod[None]):  # deprecated
 
 class SetExtraHTTPHeadersInput(InputModel):
 
-    headers: Network.Headers  # deprecated
+    headers: Network.Headers
 
 
-class SetExtraHTTPHeaders(CDPMethod[None]):  # deprecated
+class SetExtraHTTPHeaders(CDPMethod[None]):
     """ Specifies whether to always send extra HTTP headers with the requests from this page. """
 
     INPUT_VALIDATOR = SetExtraHTTPHeadersInput
@@ -663,10 +663,10 @@ class SetExtraHTTPHeaders(CDPMethod[None]):  # deprecated
 
 class SetAttachDebugStackInput(InputModel):
 
-    enabled: bool  # deprecated
+    enabled: bool
 
 
-class SetAttachDebugStack(CDPMethod[None]):  # experimental deprecated
+class SetAttachDebugStack(CDPMethod[None]):  # experimental
     """ Specifies whether to attach a page script stack id in requests """
 
     INPUT_VALIDATOR = SetAttachDebugStackInput
@@ -684,7 +684,7 @@ class SetAttachDebugStack(CDPMethod[None]):  # experimental deprecated
 
 class SetRequestInterceptionInput(InputModel):
 
-    patterns: list[Network.RequestPattern]  # deprecated
+    patterns: list[Network.RequestPattern]
 
 
 class SetRequestInterception(CDPMethod[None]):  # experimental deprecated
@@ -706,13 +706,13 @@ class SetRequestInterception(CDPMethod[None]):  # experimental deprecated
 
 class SetUserAgentOverrideInput(InputModel):
 
-    userAgent: str  # deprecated
-    acceptLanguage: str | None = None  # deprecated
-    platform: str | None = None  # deprecated
-    userAgentMetadata: Emulation.UserAgentMetadata | None = None  # experimental deprecated
+    userAgent: str
+    acceptLanguage: str | None = None
+    platform: str | None = None
+    userAgentMetadata: Emulation.UserAgentMetadata | None = None  # experimental
 
 
-class SetUserAgentOverride(CDPMethod[None]):  # deprecated
+class SetUserAgentOverride(CDPMethod[None]):
     """ Allows overriding user agent with the given string. """
 
     INPUT_VALIDATOR = SetUserAgentOverrideInput
@@ -736,15 +736,15 @@ class SetUserAgentOverride(CDPMethod[None]):  # deprecated
 
 class StreamResourceContentInput(InputModel):
 
-    requestId: Network.RequestId  # deprecated
+    requestId: Network.RequestId
 
 
 class StreamResourceContentOutput(OutputModel):
 
-    bufferedData: str  # deprecated
+    bufferedData: str
 
 
-class StreamResourceContent(CDPMethod[StreamResourceContentOutput]):  # experimental deprecated
+class StreamResourceContent(CDPMethod[StreamResourceContentOutput]):  # experimental
     """ Enables streaming of the response for the given requestId.
     If enabled, the dataReceived event contains the data that was received during streaming. """
 
@@ -763,7 +763,7 @@ class StreamResourceContent(CDPMethod[StreamResourceContentOutput]):  # experime
 
 class GetSecurityIsolationStatusInput(InputModel):
 
-    frameId: Page.FrameId | None = None  # deprecated
+    frameId: Page.FrameId | None = None
 
 
 class GetSecurityIsolationStatusOutput(OutputModel):
@@ -771,7 +771,7 @@ class GetSecurityIsolationStatusOutput(OutputModel):
     status: Network.SecurityIsolationStatus
 
 
-class GetSecurityIsolationStatus(CDPMethod[GetSecurityIsolationStatusOutput]):  # experimental deprecated
+class GetSecurityIsolationStatus(CDPMethod[GetSecurityIsolationStatusOutput]):  # experimental
     """ Returns information about the COEP/COOP isolation status. """
 
     INPUT_VALIDATOR = GetSecurityIsolationStatusInput
@@ -789,10 +789,10 @@ class GetSecurityIsolationStatus(CDPMethod[GetSecurityIsolationStatusOutput]):  
 
 class EnableReportingApiInput(InputModel):
 
-    enable: bool  # deprecated
+    enable: bool
 
 
-class EnableReportingApi(CDPMethod[None]):  # experimental deprecated
+class EnableReportingApi(CDPMethod[None]):  # experimental
     """ Enables tracking for the Reporting API, events generated by the Reporting API will now be delivered to the client.
     Enabling triggers 'reportingApiReportAdded' for all existing reports. """
 
@@ -811,9 +811,9 @@ class EnableReportingApi(CDPMethod[None]):  # experimental deprecated
 
 class LoadNetworkResourceInput(InputModel):
 
-    frameId: Page.FrameId | None = None  # deprecated
-    url: str  # deprecated
-    options: Network.LoadNetworkResourceOptions  # deprecated
+    frameId: Page.FrameId | None = None
+    url: str
+    options: Network.LoadNetworkResourceOptions
 
 
 class LoadNetworkResourceOutput(OutputModel):
@@ -821,7 +821,7 @@ class LoadNetworkResourceOutput(OutputModel):
     resource: Network.LoadNetworkResourcePageResult
 
 
-class LoadNetworkResource(CDPMethod[LoadNetworkResourceOutput]):  # experimental deprecated
+class LoadNetworkResource(CDPMethod[LoadNetworkResourceOutput]):  # experimental
     """ Fetches the resource and returns the content. """
 
     INPUT_VALIDATOR = LoadNetworkResourceInput
@@ -843,12 +843,12 @@ class LoadNetworkResource(CDPMethod[LoadNetworkResourceOutput]):  # experimental
 
 class SetCookieControlsInput(InputModel):
 
-    enableThirdPartyCookieRestriction: bool  # deprecated
-    disableThirdPartyCookieMetadata: bool  # deprecated
-    disableThirdPartyCookieHeuristics: bool  # deprecated
+    enableThirdPartyCookieRestriction: bool
+    disableThirdPartyCookieMetadata: bool
+    disableThirdPartyCookieHeuristics: bool
 
 
-class SetCookieControls(CDPMethod[None]):  # experimental deprecated
+class SetCookieControls(CDPMethod[None]):  # experimental
     """ Sets Controls for third-party cookie access
     Page reload is required before the new cookie behavior will be observed """
 

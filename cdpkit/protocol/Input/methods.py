@@ -20,14 +20,14 @@ from cdpkit.protocol.base import CDPMethod, InputModel
 
 class DispatchDragEventInput(InputModel):
 
-    type: Literal['dragEnter', 'dragOver', 'drop', 'dragCancel']  # deprecated
-    x: float  # deprecated
-    y: float  # deprecated
+    type: Literal['dragEnter', 'dragOver', 'drop', 'dragCancel']
+    x: float
+    y: float
     data: Input.DragData
-    modifiers: int | None = None  # deprecated
+    modifiers: int | None = None
 
 
-class DispatchDragEvent(CDPMethod[None]):  # experimental deprecated
+class DispatchDragEvent(CDPMethod[None]):  # experimental
     """ Dispatches a drag event into the page. """
 
     INPUT_VALIDATOR = DispatchDragEventInput
@@ -53,24 +53,24 @@ class DispatchDragEvent(CDPMethod[None]):  # experimental deprecated
 
 class DispatchKeyEventInput(InputModel):
 
-    type: Literal['keyDown', 'keyUp', 'rawKeyDown', 'char']  # deprecated
-    modifiers: int | None = None  # deprecated
-    timestamp: Input.TimeSinceEpoch | None = None  # deprecated
-    text: str | None = None  # deprecated
-    unmodifiedText: str | None = None  # deprecated
-    keyIdentifier: str | None = None  # deprecated
-    code: str | None = None  # deprecated
-    key: str | None = None  # deprecated
-    windowsVirtualKeyCode: int | None = None  # deprecated
-    nativeVirtualKeyCode: int | None = None  # deprecated
-    autoRepeat: bool | None = None  # deprecated
-    isKeypad: bool | None = None  # deprecated
-    isSystemKey: bool | None = None  # deprecated
-    location: int | None = None  # deprecated
-    commands: list[str] | None = None  # experimental deprecated
+    type: Literal['keyDown', 'keyUp', 'rawKeyDown', 'char']
+    modifiers: int | None = None
+    timestamp: Input.TimeSinceEpoch | None = None
+    text: str | None = None
+    unmodifiedText: str | None = None
+    keyIdentifier: str | None = None
+    code: str | None = None
+    key: str | None = None
+    windowsVirtualKeyCode: int | None = None
+    nativeVirtualKeyCode: int | None = None
+    autoRepeat: bool | None = None
+    isKeypad: bool | None = None
+    isSystemKey: bool | None = None
+    location: int | None = None
+    commands: list[str] | None = None  # experimental
 
 
-class DispatchKeyEvent(CDPMethod[None]):  # deprecated
+class DispatchKeyEvent(CDPMethod[None]):
     """ Dispatches a key event to the page. """
 
     INPUT_VALIDATOR = DispatchKeyEventInput
@@ -116,10 +116,10 @@ class DispatchKeyEvent(CDPMethod[None]):  # deprecated
 
 class InsertTextInput(InputModel):
 
-    text: str  # deprecated
+    text: str
 
 
-class InsertText(CDPMethod[None]):  # experimental deprecated
+class InsertText(CDPMethod[None]):  # experimental
     """ This method emulates inserting text that doesn't come from a key press,
     for example an emoji keyboard or an IME. """
 
@@ -138,14 +138,14 @@ class InsertText(CDPMethod[None]):  # experimental deprecated
 
 class ImeSetCompositionInput(InputModel):
 
-    text: str  # deprecated
-    selectionStart: int  # deprecated
-    selectionEnd: int  # deprecated
-    replacementStart: int | None = None  # deprecated
-    replacementEnd: int | None = None  # deprecated
+    text: str
+    selectionStart: int
+    selectionEnd: int
+    replacementStart: int | None = None
+    replacementEnd: int | None = None
 
 
-class ImeSetComposition(CDPMethod[None]):  # experimental deprecated
+class ImeSetComposition(CDPMethod[None]):  # experimental
     """ This method sets the current candidate text for IME.
     Use imeCommitComposition to commit the final text.
     Use imeSetComposition with empty string as text to cancel composition. """
@@ -173,25 +173,25 @@ class ImeSetComposition(CDPMethod[None]):  # experimental deprecated
 
 class DispatchMouseEventInput(InputModel):
 
-    type: Literal['mousePressed', 'mouseReleased', 'mouseMoved', 'mouseWheel']  # deprecated
-    x: float  # deprecated
-    y: float  # deprecated
-    modifiers: int | None = None  # deprecated
-    timestamp: Input.TimeSinceEpoch | None = None  # deprecated
-    button: Input.MouseButton | None = None  # deprecated
-    buttons: int | None = None  # deprecated
-    clickCount: int | None = None  # deprecated
-    force: float | None = None  # experimental deprecated
-    tangentialPressure: float | None = None  # experimental deprecated
-    tiltX: float | None = None  # deprecated
-    tiltY: float | None = None  # deprecated
-    twist: int | None = None  # experimental deprecated
-    deltaX: float | None = None  # deprecated
-    deltaY: float | None = None  # deprecated
-    pointerType: Literal['mouse', 'pen'] | None = None  # deprecated
+    type: Literal['mousePressed', 'mouseReleased', 'mouseMoved', 'mouseWheel']
+    x: float
+    y: float
+    modifiers: int | None = None
+    timestamp: Input.TimeSinceEpoch | None = None
+    button: Input.MouseButton | None = None
+    buttons: int | None = None
+    clickCount: int | None = None
+    force: float | None = None  # experimental
+    tangentialPressure: float | None = None  # experimental
+    tiltX: float | None = None
+    tiltY: float | None = None
+    twist: int | None = None  # experimental
+    deltaX: float | None = None
+    deltaY: float | None = None
+    pointerType: Literal['mouse', 'pen'] | None = None
 
 
-class DispatchMouseEvent(CDPMethod[None]):  # deprecated
+class DispatchMouseEvent(CDPMethod[None]):
     """ Dispatches a mouse event to the page. """
 
     INPUT_VALIDATOR = DispatchMouseEventInput
@@ -239,13 +239,13 @@ class DispatchMouseEvent(CDPMethod[None]):  # deprecated
 
 class DispatchTouchEventInput(InputModel):
 
-    type: Literal['touchStart', 'touchEnd', 'touchMove', 'touchCancel']  # deprecated
-    touchPoints: list[Input.TouchPoint]  # deprecated
-    modifiers: int | None = None  # deprecated
-    timestamp: Input.TimeSinceEpoch | None = None  # deprecated
+    type: Literal['touchStart', 'touchEnd', 'touchMove', 'touchCancel']
+    touchPoints: list[Input.TouchPoint]
+    modifiers: int | None = None
+    timestamp: Input.TimeSinceEpoch | None = None
 
 
-class DispatchTouchEvent(CDPMethod[None]):  # deprecated
+class DispatchTouchEvent(CDPMethod[None]):
     """ Dispatches a touch event to the page. """
 
     INPUT_VALIDATOR = DispatchTouchEventInput
@@ -267,7 +267,7 @@ class DispatchTouchEvent(CDPMethod[None]):  # deprecated
         )
 
 
-class CancelDragging(CDPMethod[None]):  # deprecated
+class CancelDragging(CDPMethod[None]):
     """ Cancels any active dragging in the page. """
 
     INPUT_VALIDATOR = None
@@ -276,18 +276,18 @@ class CancelDragging(CDPMethod[None]):  # deprecated
 
 class EmulateTouchFromMouseEventInput(InputModel):
 
-    type: Literal['mousePressed', 'mouseReleased', 'mouseMoved', 'mouseWheel']  # deprecated
-    x: int  # deprecated
-    y: int  # deprecated
-    button: Input.MouseButton  # deprecated
-    timestamp: Input.TimeSinceEpoch | None = None  # deprecated
-    deltaX: float | None = None  # deprecated
-    deltaY: float | None = None  # deprecated
-    modifiers: int | None = None  # deprecated
-    clickCount: int | None = None  # deprecated
+    type: Literal['mousePressed', 'mouseReleased', 'mouseMoved', 'mouseWheel']
+    x: int
+    y: int
+    button: Input.MouseButton
+    timestamp: Input.TimeSinceEpoch | None = None
+    deltaX: float | None = None
+    deltaY: float | None = None
+    modifiers: int | None = None
+    clickCount: int | None = None
 
 
-class EmulateTouchFromMouseEvent(CDPMethod[None]):  # experimental deprecated
+class EmulateTouchFromMouseEvent(CDPMethod[None]):  # experimental
     """ Emulates touch event from the mouse event parameters. """
 
     INPUT_VALIDATOR = EmulateTouchFromMouseEventInput
@@ -321,10 +321,10 @@ class EmulateTouchFromMouseEvent(CDPMethod[None]):  # experimental deprecated
 
 class SetIgnoreInputEventsInput(InputModel):
 
-    ignore: bool  # deprecated
+    ignore: bool
 
 
-class SetIgnoreInputEvents(CDPMethod[None]):  # deprecated
+class SetIgnoreInputEvents(CDPMethod[None]):
     """ Ignores input events (useful while auditing page). """
 
     INPUT_VALIDATOR = SetIgnoreInputEventsInput
@@ -345,7 +345,7 @@ class SetInterceptDragsInput(InputModel):
     enabled: bool
 
 
-class SetInterceptDrags(CDPMethod[None]):  # experimental deprecated
+class SetInterceptDrags(CDPMethod[None]):  # experimental
     """ Prevents default drag and drop behavior and instead emits `Input.dragIntercepted` events.
     Drag and drop behavior can be directly controlled via `Input.dispatchDragEvent`. """
 
@@ -364,14 +364,14 @@ class SetInterceptDrags(CDPMethod[None]):  # experimental deprecated
 
 class SynthesizePinchGestureInput(InputModel):
 
-    x: float  # deprecated
-    y: float  # deprecated
-    scaleFactor: float  # deprecated
-    relativeSpeed: int | None = None  # deprecated
-    gestureSourceType: Input.GestureSourceType | None = None  # deprecated
+    x: float
+    y: float
+    scaleFactor: float
+    relativeSpeed: int | None = None
+    gestureSourceType: Input.GestureSourceType | None = None
 
 
-class SynthesizePinchGesture(CDPMethod[None]):  # experimental deprecated
+class SynthesizePinchGesture(CDPMethod[None]):  # experimental
     """ Synthesizes a pinch gesture over a time period by issuing appropriate touch events. """
 
     INPUT_VALIDATOR = SynthesizePinchGestureInput
@@ -397,21 +397,21 @@ class SynthesizePinchGesture(CDPMethod[None]):  # experimental deprecated
 
 class SynthesizeScrollGestureInput(InputModel):
 
-    x: float  # deprecated
-    y: float  # deprecated
-    xDistance: float | None = None  # deprecated
-    yDistance: float | None = None  # deprecated
-    xOverscroll: float | None = None  # deprecated
-    yOverscroll: float | None = None  # deprecated
-    preventFling: bool | None = None  # deprecated
-    speed: int | None = None  # deprecated
-    gestureSourceType: Input.GestureSourceType | None = None  # deprecated
-    repeatCount: int | None = None  # deprecated
-    repeatDelayMs: int | None = None  # deprecated
-    interactionMarkerName: str | None = None  # deprecated
+    x: float
+    y: float
+    xDistance: float | None = None
+    yDistance: float | None = None
+    xOverscroll: float | None = None
+    yOverscroll: float | None = None
+    preventFling: bool | None = None
+    speed: int | None = None
+    gestureSourceType: Input.GestureSourceType | None = None
+    repeatCount: int | None = None
+    repeatDelayMs: int | None = None
+    interactionMarkerName: str | None = None
 
 
-class SynthesizeScrollGesture(CDPMethod[None]):  # experimental deprecated
+class SynthesizeScrollGesture(CDPMethod[None]):  # experimental
     """ Synthesizes a scroll gesture over a time period by issuing appropriate touch events. """
 
     INPUT_VALIDATOR = SynthesizeScrollGestureInput
@@ -451,14 +451,14 @@ class SynthesizeScrollGesture(CDPMethod[None]):  # experimental deprecated
 
 class SynthesizeTapGestureInput(InputModel):
 
-    x: float  # deprecated
-    y: float  # deprecated
-    duration: int | None = None  # deprecated
-    tapCount: int | None = None  # deprecated
-    gestureSourceType: Input.GestureSourceType | None = None  # deprecated
+    x: float
+    y: float
+    duration: int | None = None
+    tapCount: int | None = None
+    gestureSourceType: Input.GestureSourceType | None = None
 
 
-class SynthesizeTapGesture(CDPMethod[None]):  # experimental deprecated
+class SynthesizeTapGesture(CDPMethod[None]):  # experimental
     """ Synthesizes a tap gesture over a time period by issuing appropriate touch events. """
 
     INPUT_VALIDATOR = SynthesizeTapGestureInput

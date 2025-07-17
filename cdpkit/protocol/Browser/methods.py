@@ -21,13 +21,13 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class SetPermissionInput(InputModel):
 
-    permission: Browser.PermissionDescriptor  # deprecated
-    setting: Browser.PermissionSetting  # deprecated
-    origin: str | None = None  # deprecated
-    browserContextId: Browser.BrowserContextID | None = None  # deprecated
+    permission: Browser.PermissionDescriptor
+    setting: Browser.PermissionSetting
+    origin: str | None = None
+    browserContextId: Browser.BrowserContextID | None = None
 
 
-class SetPermission(CDPMethod[None]):  # experimental deprecated
+class SetPermission(CDPMethod[None]):  # experimental
     """ Set permission settings for given origin. """
 
     INPUT_VALIDATOR = SetPermissionInput
@@ -52,11 +52,11 @@ class SetPermission(CDPMethod[None]):  # experimental deprecated
 class GrantPermissionsInput(InputModel):
 
     permissions: list[Browser.PermissionType]
-    origin: str | None = None  # deprecated
-    browserContextId: Browser.BrowserContextID | None = None  # deprecated
+    origin: str | None = None
+    browserContextId: Browser.BrowserContextID | None = None
 
 
-class GrantPermissions(CDPMethod[None]):  # experimental deprecated
+class GrantPermissions(CDPMethod[None]):  # experimental
     """ Grant specific permissions to the given origin and reject all others. """
 
     INPUT_VALIDATOR = GrantPermissionsInput
@@ -78,10 +78,10 @@ class GrantPermissions(CDPMethod[None]):  # experimental deprecated
 
 class ResetPermissionsInput(InputModel):
 
-    browserContextId: Browser.BrowserContextID | None = None  # deprecated
+    browserContextId: Browser.BrowserContextID | None = None
 
 
-class ResetPermissions(CDPMethod[None]):  # deprecated
+class ResetPermissions(CDPMethod[None]):
     """ Reset all permission management for all origins. """
 
     INPUT_VALIDATOR = ResetPermissionsInput
@@ -99,13 +99,13 @@ class ResetPermissions(CDPMethod[None]):  # deprecated
 
 class SetDownloadBehaviorInput(InputModel):
 
-    behavior: Literal['deny', 'allow', 'allowAndName', 'default']  # deprecated
-    browserContextId: Browser.BrowserContextID | None = None  # deprecated
-    downloadPath: str | None = None  # deprecated
-    eventsEnabled: bool | None = None  # deprecated
+    behavior: Literal['deny', 'allow', 'allowAndName', 'default']
+    browserContextId: Browser.BrowserContextID | None = None
+    downloadPath: str | None = None
+    eventsEnabled: bool | None = None
 
 
-class SetDownloadBehavior(CDPMethod[None]):  # experimental deprecated
+class SetDownloadBehavior(CDPMethod[None]):  # experimental
     """ Set the behavior when downloading a file. """
 
     INPUT_VALIDATOR = SetDownloadBehaviorInput
@@ -129,11 +129,11 @@ class SetDownloadBehavior(CDPMethod[None]):  # experimental deprecated
 
 class CancelDownloadInput(InputModel):
 
-    guid: str  # deprecated
-    browserContextId: Browser.BrowserContextID | None = None  # deprecated
+    guid: str
+    browserContextId: Browser.BrowserContextID | None = None
 
 
-class CancelDownload(CDPMethod[None]):  # experimental deprecated
+class CancelDownload(CDPMethod[None]):  # experimental
     """ Cancel a download if in progress """
 
     INPUT_VALIDATOR = CancelDownloadInput
@@ -151,21 +151,21 @@ class CancelDownload(CDPMethod[None]):  # experimental deprecated
         )
 
 
-class Close(CDPMethod[None]):  # deprecated
+class Close(CDPMethod[None]):
     """ Close browser gracefully. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Crash(CDPMethod[None]):  # experimental deprecated
+class Crash(CDPMethod[None]):  # experimental
     """ Crashes browser on the main thread. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class CrashGpuProcess(CDPMethod[None]):  # experimental deprecated
+class CrashGpuProcess(CDPMethod[None]):  # experimental
     """ Crashes GPU process. """
 
     INPUT_VALIDATOR = None
@@ -174,14 +174,14 @@ class CrashGpuProcess(CDPMethod[None]):  # experimental deprecated
 
 class GetVersionOutput(OutputModel):
 
-    protocolVersion: str  # deprecated
-    product: str  # deprecated
-    revision: str  # deprecated
-    userAgent: str  # deprecated
-    jsVersion: str  # deprecated
+    protocolVersion: str
+    product: str
+    revision: str
+    userAgent: str
+    jsVersion: str
 
 
-class GetVersion(CDPMethod[GetVersionOutput]):  # deprecated
+class GetVersion(CDPMethod[GetVersionOutput]):
     """ Returns version information. """
 
     INPUT_VALIDATOR = None
@@ -190,10 +190,10 @@ class GetVersion(CDPMethod[GetVersionOutput]):  # deprecated
 
 class GetBrowserCommandLineOutput(OutputModel):
 
-    arguments: list[str]  # deprecated
+    arguments: list[str]
 
 
-class GetBrowserCommandLine(CDPMethod[GetBrowserCommandLineOutput]):  # experimental deprecated
+class GetBrowserCommandLine(CDPMethod[GetBrowserCommandLineOutput]):  # experimental
     """ Returns the command line switches for the browser process if, and only if
     --enable-automation is on the commandline. """
 
@@ -203,16 +203,16 @@ class GetBrowserCommandLine(CDPMethod[GetBrowserCommandLineOutput]):  # experime
 
 class GetHistogramsInput(InputModel):
 
-    query: str | None = None  # deprecated
-    delta: bool | None = None  # deprecated
+    query: str | None = None
+    delta: bool | None = None
 
 
 class GetHistogramsOutput(OutputModel):
 
-    histograms: list[Browser.Histogram]  # deprecated
+    histograms: list[Browser.Histogram]
 
 
-class GetHistograms(CDPMethod[GetHistogramsOutput]):  # experimental deprecated
+class GetHistograms(CDPMethod[GetHistogramsOutput]):  # experimental
     """ Get Chrome histograms. """
 
     INPUT_VALIDATOR = GetHistogramsInput
@@ -232,16 +232,16 @@ class GetHistograms(CDPMethod[GetHistogramsOutput]):  # experimental deprecated
 
 class GetHistogramInput(InputModel):
 
-    name: str  # deprecated
-    delta: bool | None = None  # deprecated
+    name: str
+    delta: bool | None = None
 
 
 class GetHistogramOutput(OutputModel):
 
-    histogram: Browser.Histogram  # deprecated
+    histogram: Browser.Histogram
 
 
-class GetHistogram(CDPMethod[GetHistogramOutput]):  # experimental deprecated
+class GetHistogram(CDPMethod[GetHistogramOutput]):  # experimental
     """ Get a Chrome histogram by name. """
 
     INPUT_VALIDATOR = GetHistogramInput
@@ -261,15 +261,15 @@ class GetHistogram(CDPMethod[GetHistogramOutput]):  # experimental deprecated
 
 class GetWindowBoundsInput(InputModel):
 
-    windowId: Browser.WindowID  # deprecated
+    windowId: Browser.WindowID
 
 
 class GetWindowBoundsOutput(OutputModel):
 
-    bounds: Browser.Bounds  # deprecated
+    bounds: Browser.Bounds
 
 
-class GetWindowBounds(CDPMethod[GetWindowBoundsOutput]):  # experimental deprecated
+class GetWindowBounds(CDPMethod[GetWindowBoundsOutput]):  # experimental
     """ Get position and size of the browser window. """
 
     INPUT_VALIDATOR = GetWindowBoundsInput
@@ -287,16 +287,16 @@ class GetWindowBounds(CDPMethod[GetWindowBoundsOutput]):  # experimental depreca
 
 class GetWindowForTargetInput(InputModel):
 
-    targetId: Target.TargetID | None = None  # deprecated
+    targetId: Target.TargetID | None = None
 
 
 class GetWindowForTargetOutput(OutputModel):
 
-    windowId: Browser.WindowID  # deprecated
-    bounds: Browser.Bounds  # deprecated
+    windowId: Browser.WindowID
+    bounds: Browser.Bounds
 
 
-class GetWindowForTarget(CDPMethod[GetWindowForTargetOutput]):  # experimental deprecated
+class GetWindowForTarget(CDPMethod[GetWindowForTargetOutput]):  # experimental
     """ Get the browser window that contains the devtools target. """
 
     INPUT_VALIDATOR = GetWindowForTargetInput
@@ -314,11 +314,11 @@ class GetWindowForTarget(CDPMethod[GetWindowForTargetOutput]):  # experimental d
 
 class SetWindowBoundsInput(InputModel):
 
-    windowId: Browser.WindowID  # deprecated
-    bounds: Browser.Bounds  # deprecated
+    windowId: Browser.WindowID
+    bounds: Browser.Bounds
 
 
-class SetWindowBounds(CDPMethod[None]):  # experimental deprecated
+class SetWindowBounds(CDPMethod[None]):  # experimental
     """ Set position and/or size of the browser window. """
 
     INPUT_VALIDATOR = SetWindowBoundsInput
@@ -338,12 +338,12 @@ class SetWindowBounds(CDPMethod[None]):  # experimental deprecated
 
 class SetContentsSizeInput(InputModel):
 
-    windowId: Browser.WindowID  # deprecated
-    width: int | None = None  # deprecated
-    height: int | None = None  # deprecated
+    windowId: Browser.WindowID
+    width: int | None = None
+    height: int | None = None
 
 
-class SetContentsSize(CDPMethod[None]):  # experimental deprecated
+class SetContentsSize(CDPMethod[None]):  # experimental
     """ Set size of the browser contents resizing browser window as necessary. """
 
     INPUT_VALIDATOR = SetContentsSizeInput
@@ -366,10 +366,10 @@ class SetContentsSize(CDPMethod[None]):  # experimental deprecated
 class SetDockTileInput(InputModel):
 
     badgeLabel: str | None = None
-    image: str | None = None  # deprecated
+    image: str | None = None
 
 
-class SetDockTile(CDPMethod[None]):  # experimental deprecated
+class SetDockTile(CDPMethod[None]):  # experimental
     """ Set dock tile details, platform-specific. """
 
     INPUT_VALIDATOR = SetDockTileInput
@@ -392,7 +392,7 @@ class ExecuteBrowserCommandInput(InputModel):
     commandId: Browser.BrowserCommandId
 
 
-class ExecuteBrowserCommand(CDPMethod[None]):  # experimental deprecated
+class ExecuteBrowserCommand(CDPMethod[None]):  # experimental
     """ Invoke custom browser commands used by telemetry. """
 
     INPUT_VALIDATOR = ExecuteBrowserCommandInput
@@ -413,7 +413,7 @@ class AddPrivacySandboxEnrollmentOverrideInput(InputModel):
     url: str
 
 
-class AddPrivacySandboxEnrollmentOverride(CDPMethod[None]):  # deprecated
+class AddPrivacySandboxEnrollmentOverride(CDPMethod[None]):
     """ Allows a site to use privacy sandbox features that require enrollment
     without the site actually being enrolled. Only supported on page targets. """
 
@@ -435,10 +435,10 @@ class AddPrivacySandboxCoordinatorKeyConfigInput(InputModel):
     api: Browser.PrivacySandboxAPI
     coordinatorOrigin: str
     keyConfig: str
-    browserContextId: Browser.BrowserContextID | None = None  # deprecated
+    browserContextId: Browser.BrowserContextID | None = None
 
 
-class AddPrivacySandboxCoordinatorKeyConfig(CDPMethod[None]):  # deprecated
+class AddPrivacySandboxCoordinatorKeyConfig(CDPMethod[None]):
     """ Configures encryption keys used with a given privacy sandbox API to talk
     to a trusted coordinator.  Since this is intended for test automation only,
     coordinatorOrigin must be a .test domain. No existing coordinator

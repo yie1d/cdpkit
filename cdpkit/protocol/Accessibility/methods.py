@@ -19,14 +19,14 @@ from cdpkit.protocol._types import (
 from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables the accessibility domain. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables the accessibility domain which causes `AXNodeId`s to remain consistent between method calls.
     This turns on accessibility for the page, which can impact performance until accessibility is disabled. """
 
@@ -36,18 +36,18 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class GetPartialAXTreeInput(InputModel):
 
-    nodeId: DOM.NodeId | None = None  # deprecated
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
-    fetchRelatives: bool | None = None  # deprecated
+    nodeId: DOM.NodeId | None = None
+    backendNodeId: DOM.BackendNodeId | None = None
+    objectId: Runtime.RemoteObjectId | None = None
+    fetchRelatives: bool | None = None
 
 
 class GetPartialAXTreeOutput(OutputModel):
 
-    nodes: list[Accessibility.AXNode]  # deprecated
+    nodes: list[Accessibility.AXNode]
 
 
-class GetPartialAXTree(CDPMethod[GetPartialAXTreeOutput]):  # experimental deprecated
+class GetPartialAXTree(CDPMethod[GetPartialAXTreeOutput]):  # experimental
     """ Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists. """
 
     INPUT_VALIDATOR = GetPartialAXTreeInput
@@ -71,8 +71,8 @@ class GetPartialAXTree(CDPMethod[GetPartialAXTreeOutput]):  # experimental depre
 
 class GetFullAXTreeInput(InputModel):
 
-    depth: int | None = None  # deprecated
-    frameId: Page.FrameId | None = None  # deprecated
+    depth: int | None = None
+    frameId: Page.FrameId | None = None
 
 
 class GetFullAXTreeOutput(OutputModel):
@@ -80,7 +80,7 @@ class GetFullAXTreeOutput(OutputModel):
     nodes: list[Accessibility.AXNode]
 
 
-class GetFullAXTree(CDPMethod[GetFullAXTreeOutput]):  # experimental deprecated
+class GetFullAXTree(CDPMethod[GetFullAXTreeOutput]):  # experimental
     """ Fetches the entire accessibility tree for the root Document """
 
     INPUT_VALIDATOR = GetFullAXTreeInput
@@ -100,7 +100,7 @@ class GetFullAXTree(CDPMethod[GetFullAXTreeOutput]):  # experimental deprecated
 
 class GetRootAXNodeInput(InputModel):
 
-    frameId: Page.FrameId | None = None  # deprecated
+    frameId: Page.FrameId | None = None
 
 
 class GetRootAXNodeOutput(OutputModel):
@@ -108,7 +108,7 @@ class GetRootAXNodeOutput(OutputModel):
     node: Accessibility.AXNode
 
 
-class GetRootAXNode(CDPMethod[GetRootAXNodeOutput]):  # experimental deprecated
+class GetRootAXNode(CDPMethod[GetRootAXNodeOutput]):  # experimental
     """ Fetches the root node.
     Requires `enable()` to have been called previously. """
 
@@ -127,9 +127,9 @@ class GetRootAXNode(CDPMethod[GetRootAXNodeOutput]):  # experimental deprecated
 
 class GetAXNodeAndAncestorsInput(InputModel):
 
-    nodeId: DOM.NodeId | None = None  # deprecated
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
+    nodeId: DOM.NodeId | None = None
+    backendNodeId: DOM.BackendNodeId | None = None
+    objectId: Runtime.RemoteObjectId | None = None
 
 
 class GetAXNodeAndAncestorsOutput(OutputModel):
@@ -137,7 +137,7 @@ class GetAXNodeAndAncestorsOutput(OutputModel):
     nodes: list[Accessibility.AXNode]
 
 
-class GetAXNodeAndAncestors(CDPMethod[GetAXNodeAndAncestorsOutput]):  # experimental deprecated
+class GetAXNodeAndAncestors(CDPMethod[GetAXNodeAndAncestorsOutput]):  # experimental
     """ Fetches a node and all ancestors up to and including the root.
     Requires `enable()` to have been called previously. """
 
@@ -161,7 +161,7 @@ class GetAXNodeAndAncestors(CDPMethod[GetAXNodeAndAncestorsOutput]):  # experime
 class GetChildAXNodesInput(InputModel):
 
     id: Accessibility.AXNodeId
-    frameId: Page.FrameId | None = None  # deprecated
+    frameId: Page.FrameId | None = None
 
 
 class GetChildAXNodesOutput(OutputModel):
@@ -169,7 +169,7 @@ class GetChildAXNodesOutput(OutputModel):
     nodes: list[Accessibility.AXNode]
 
 
-class GetChildAXNodes(CDPMethod[GetChildAXNodesOutput]):  # experimental deprecated
+class GetChildAXNodes(CDPMethod[GetChildAXNodesOutput]):  # experimental
     """ Fetches a particular accessibility node by AXNodeId.
     Requires `enable()` to have been called previously. """
 
@@ -190,19 +190,19 @@ class GetChildAXNodes(CDPMethod[GetChildAXNodesOutput]):  # experimental depreca
 
 class QueryAXTreeInput(InputModel):
 
-    nodeId: DOM.NodeId | None = None  # deprecated
-    backendNodeId: DOM.BackendNodeId | None = None  # deprecated
-    objectId: Runtime.RemoteObjectId | None = None  # deprecated
-    accessibleName: str | None = None  # deprecated
-    role: str | None = None  # deprecated
+    nodeId: DOM.NodeId | None = None
+    backendNodeId: DOM.BackendNodeId | None = None
+    objectId: Runtime.RemoteObjectId | None = None
+    accessibleName: str | None = None
+    role: str | None = None
 
 
 class QueryAXTreeOutput(OutputModel):
 
-    nodes: list[Accessibility.AXNode]  # deprecated
+    nodes: list[Accessibility.AXNode]
 
 
-class QueryAXTree(CDPMethod[QueryAXTreeOutput]):  # experimental deprecated
+class QueryAXTree(CDPMethod[QueryAXTreeOutput]):  # experimental
     """ Query a DOM node's accessibility subtree for accessible name and role.
     This command computes the name and role for all nodes in the subtree, including those that are
     ignored for accessibility, and returns those that match the specified name and role. If no DOM

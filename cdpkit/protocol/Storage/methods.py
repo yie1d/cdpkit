@@ -29,7 +29,7 @@ class GetStorageKeyForFrameOutput(OutputModel):
     storageKey: Storage.SerializedStorageKey
 
 
-class GetStorageKeyForFrame(CDPMethod[GetStorageKeyForFrameOutput]):  # deprecated
+class GetStorageKeyForFrame(CDPMethod[GetStorageKeyForFrameOutput]):
     """ Returns a storage key given a frame id. """
 
     INPUT_VALIDATOR = GetStorageKeyForFrameInput
@@ -47,11 +47,11 @@ class GetStorageKeyForFrame(CDPMethod[GetStorageKeyForFrameOutput]):  # deprecat
 
 class ClearDataForOriginInput(InputModel):
 
-    origin: str  # deprecated
-    storageTypes: str  # deprecated
+    origin: str
+    storageTypes: str
 
 
-class ClearDataForOrigin(CDPMethod[None]):  # deprecated
+class ClearDataForOrigin(CDPMethod[None]):
     """ Clears storage for origin. """
 
     INPUT_VALIDATOR = ClearDataForOriginInput
@@ -71,11 +71,11 @@ class ClearDataForOrigin(CDPMethod[None]):  # deprecated
 
 class ClearDataForStorageKeyInput(InputModel):
 
-    storageKey: str  # deprecated
-    storageTypes: str  # deprecated
+    storageKey: str
+    storageTypes: str
 
 
-class ClearDataForStorageKey(CDPMethod[None]):  # deprecated
+class ClearDataForStorageKey(CDPMethod[None]):
     """ Clears storage for storage key. """
 
     INPUT_VALIDATOR = ClearDataForStorageKeyInput
@@ -95,15 +95,15 @@ class ClearDataForStorageKey(CDPMethod[None]):  # deprecated
 
 class GetCookiesInput(InputModel):
 
-    browserContextId: Browser.BrowserContextID | None = None  # deprecated
+    browserContextId: Browser.BrowserContextID | None = None
 
 
 class GetCookiesOutput(OutputModel):
 
-    cookies: list[Network.Cookie]  # deprecated
+    cookies: list[Network.Cookie]
 
 
-class GetCookies(CDPMethod[GetCookiesOutput]):  # deprecated
+class GetCookies(CDPMethod[GetCookiesOutput]):
     """ Returns all browser cookies. """
 
     INPUT_VALIDATOR = GetCookiesInput
@@ -121,11 +121,11 @@ class GetCookies(CDPMethod[GetCookiesOutput]):  # deprecated
 
 class SetCookiesInput(InputModel):
 
-    cookies: list[Network.CookieParam]  # deprecated
-    browserContextId: Browser.BrowserContextID | None = None  # deprecated
+    cookies: list[Network.CookieParam]
+    browserContextId: Browser.BrowserContextID | None = None
 
 
-class SetCookies(CDPMethod[None]):  # deprecated
+class SetCookies(CDPMethod[None]):
     """ Sets given cookies. """
 
     INPUT_VALIDATOR = SetCookiesInput
@@ -145,10 +145,10 @@ class SetCookies(CDPMethod[None]):  # deprecated
 
 class ClearCookiesInput(InputModel):
 
-    browserContextId: Browser.BrowserContextID | None = None  # deprecated
+    browserContextId: Browser.BrowserContextID | None = None
 
 
-class ClearCookies(CDPMethod[None]):  # deprecated
+class ClearCookies(CDPMethod[None]):
     """ Clears cookies. """
 
     INPUT_VALIDATOR = ClearCookiesInput
@@ -166,18 +166,18 @@ class ClearCookies(CDPMethod[None]):  # deprecated
 
 class GetUsageAndQuotaInput(InputModel):
 
-    origin: str  # deprecated
+    origin: str
 
 
 class GetUsageAndQuotaOutput(OutputModel):
 
-    usage: float  # deprecated
-    quota: float  # deprecated
-    overrideActive: bool  # deprecated
-    usageBreakdown: list[Storage.UsageForType]  # deprecated
+    usage: float
+    quota: float
+    overrideActive: bool
+    usageBreakdown: list[Storage.UsageForType]
 
 
-class GetUsageAndQuota(CDPMethod[GetUsageAndQuotaOutput]):  # deprecated
+class GetUsageAndQuota(CDPMethod[GetUsageAndQuotaOutput]):
     """ Returns usage and quota in bytes. """
 
     INPUT_VALIDATOR = GetUsageAndQuotaInput
@@ -195,11 +195,11 @@ class GetUsageAndQuota(CDPMethod[GetUsageAndQuotaOutput]):  # deprecated
 
 class OverrideQuotaForOriginInput(InputModel):
 
-    origin: str  # deprecated
-    quotaSize: float | None = None  # deprecated
+    origin: str
+    quotaSize: float | None = None
 
 
-class OverrideQuotaForOrigin(CDPMethod[None]):  # experimental deprecated
+class OverrideQuotaForOrigin(CDPMethod[None]):  # experimental
     """ Override quota for the specified origin """
 
     INPUT_VALIDATOR = OverrideQuotaForOriginInput
@@ -219,10 +219,10 @@ class OverrideQuotaForOrigin(CDPMethod[None]):  # experimental deprecated
 
 class TrackCacheStorageForOriginInput(InputModel):
 
-    origin: str  # deprecated
+    origin: str
 
 
-class TrackCacheStorageForOrigin(CDPMethod[None]):  # deprecated
+class TrackCacheStorageForOrigin(CDPMethod[None]):
     """ Registers origin to be notified when an update occurs to its cache storage list. """
 
     INPUT_VALIDATOR = TrackCacheStorageForOriginInput
@@ -240,10 +240,10 @@ class TrackCacheStorageForOrigin(CDPMethod[None]):  # deprecated
 
 class TrackCacheStorageForStorageKeyInput(InputModel):
 
-    storageKey: str  # deprecated
+    storageKey: str
 
 
-class TrackCacheStorageForStorageKey(CDPMethod[None]):  # deprecated
+class TrackCacheStorageForStorageKey(CDPMethod[None]):
     """ Registers storage key to be notified when an update occurs to its cache storage list. """
 
     INPUT_VALIDATOR = TrackCacheStorageForStorageKeyInput
@@ -261,10 +261,10 @@ class TrackCacheStorageForStorageKey(CDPMethod[None]):  # deprecated
 
 class TrackIndexedDBForOriginInput(InputModel):
 
-    origin: str  # deprecated
+    origin: str
 
 
-class TrackIndexedDBForOrigin(CDPMethod[None]):  # deprecated
+class TrackIndexedDBForOrigin(CDPMethod[None]):
     """ Registers origin to be notified when an update occurs to its IndexedDB. """
 
     INPUT_VALIDATOR = TrackIndexedDBForOriginInput
@@ -282,10 +282,10 @@ class TrackIndexedDBForOrigin(CDPMethod[None]):  # deprecated
 
 class TrackIndexedDBForStorageKeyInput(InputModel):
 
-    storageKey: str  # deprecated
+    storageKey: str
 
 
-class TrackIndexedDBForStorageKey(CDPMethod[None]):  # deprecated
+class TrackIndexedDBForStorageKey(CDPMethod[None]):
     """ Registers storage key to be notified when an update occurs to its IndexedDB. """
 
     INPUT_VALIDATOR = TrackIndexedDBForStorageKeyInput
@@ -303,10 +303,10 @@ class TrackIndexedDBForStorageKey(CDPMethod[None]):  # deprecated
 
 class UntrackCacheStorageForOriginInput(InputModel):
 
-    origin: str  # deprecated
+    origin: str
 
 
-class UntrackCacheStorageForOrigin(CDPMethod[None]):  # deprecated
+class UntrackCacheStorageForOrigin(CDPMethod[None]):
     """ Unregisters origin from receiving notifications for cache storage. """
 
     INPUT_VALIDATOR = UntrackCacheStorageForOriginInput
@@ -324,10 +324,10 @@ class UntrackCacheStorageForOrigin(CDPMethod[None]):  # deprecated
 
 class UntrackCacheStorageForStorageKeyInput(InputModel):
 
-    storageKey: str  # deprecated
+    storageKey: str
 
 
-class UntrackCacheStorageForStorageKey(CDPMethod[None]):  # deprecated
+class UntrackCacheStorageForStorageKey(CDPMethod[None]):
     """ Unregisters storage key from receiving notifications for cache storage. """
 
     INPUT_VALIDATOR = UntrackCacheStorageForStorageKeyInput
@@ -345,10 +345,10 @@ class UntrackCacheStorageForStorageKey(CDPMethod[None]):  # deprecated
 
 class UntrackIndexedDBForOriginInput(InputModel):
 
-    origin: str  # deprecated
+    origin: str
 
 
-class UntrackIndexedDBForOrigin(CDPMethod[None]):  # deprecated
+class UntrackIndexedDBForOrigin(CDPMethod[None]):
     """ Unregisters origin from receiving notifications for IndexedDB. """
 
     INPUT_VALIDATOR = UntrackIndexedDBForOriginInput
@@ -366,10 +366,10 @@ class UntrackIndexedDBForOrigin(CDPMethod[None]):  # deprecated
 
 class UntrackIndexedDBForStorageKeyInput(InputModel):
 
-    storageKey: str  # deprecated
+    storageKey: str
 
 
-class UntrackIndexedDBForStorageKey(CDPMethod[None]):  # deprecated
+class UntrackIndexedDBForStorageKey(CDPMethod[None]):
     """ Unregisters storage key from receiving notifications for IndexedDB. """
 
     INPUT_VALIDATOR = UntrackIndexedDBForStorageKeyInput
@@ -390,7 +390,7 @@ class GetTrustTokensOutput(OutputModel):
     tokens: list[Storage.TrustTokens]
 
 
-class GetTrustTokens(CDPMethod[GetTrustTokensOutput]):  # experimental deprecated
+class GetTrustTokens(CDPMethod[GetTrustTokensOutput]):  # experimental
     """ Returns the number of stored Trust Tokens per issuer for the
     current browsing context. """
 
@@ -405,10 +405,10 @@ class ClearTrustTokensInput(InputModel):
 
 class ClearTrustTokensOutput(OutputModel):
 
-    didDeleteTokens: bool  # deprecated
+    didDeleteTokens: bool
 
 
-class ClearTrustTokens(CDPMethod[ClearTrustTokensOutput]):  # experimental deprecated
+class ClearTrustTokens(CDPMethod[ClearTrustTokensOutput]):  # experimental
     """ Removes all Trust Tokens issued by the provided issuerOrigin.
     Leaves other stored data, including the issuer's Redemption Records, intact. """
 
@@ -433,10 +433,10 @@ class GetInterestGroupDetailsInput(InputModel):
 
 class GetInterestGroupDetailsOutput(OutputModel):
 
-    details: JSON_DICT  # deprecated
+    details: JSON_DICT
 
 
-class GetInterestGroupDetails(CDPMethod[GetInterestGroupDetailsOutput]):  # experimental deprecated
+class GetInterestGroupDetails(CDPMethod[GetInterestGroupDetailsOutput]):  # experimental
     """ Gets details for a named interest group. """
 
     INPUT_VALIDATOR = GetInterestGroupDetailsInput
@@ -459,7 +459,7 @@ class SetInterestGroupTrackingInput(InputModel):
     enable: bool
 
 
-class SetInterestGroupTracking(CDPMethod[None]):  # experimental deprecated
+class SetInterestGroupTracking(CDPMethod[None]):  # experimental
     """ Enables/Disables issuing of interestGroupAccessed events. """
 
     INPUT_VALIDATOR = SetInterestGroupTrackingInput
@@ -480,7 +480,7 @@ class SetInterestGroupAuctionTrackingInput(InputModel):
     enable: bool
 
 
-class SetInterestGroupAuctionTracking(CDPMethod[None]):  # experimental deprecated
+class SetInterestGroupAuctionTracking(CDPMethod[None]):  # experimental
     """ Enables/Disables issuing of interestGroupAuctionEventOccurred and
     interestGroupAuctionNetworkRequestCreated. """
 
@@ -507,7 +507,7 @@ class GetSharedStorageMetadataOutput(OutputModel):
     metadata: Storage.SharedStorageMetadata
 
 
-class GetSharedStorageMetadata(CDPMethod[GetSharedStorageMetadataOutput]):  # experimental deprecated
+class GetSharedStorageMetadata(CDPMethod[GetSharedStorageMetadataOutput]):  # experimental
     """ Gets metadata for an origin's shared storage. """
 
     INPUT_VALIDATOR = GetSharedStorageMetadataInput
@@ -533,7 +533,7 @@ class GetSharedStorageEntriesOutput(OutputModel):
     entries: list[Storage.SharedStorageEntry]
 
 
-class GetSharedStorageEntries(CDPMethod[GetSharedStorageEntriesOutput]):  # experimental deprecated
+class GetSharedStorageEntries(CDPMethod[GetSharedStorageEntriesOutput]):  # experimental
     """ Gets the entries in an given origin's shared storage. """
 
     INPUT_VALIDATOR = GetSharedStorageEntriesInput
@@ -554,10 +554,10 @@ class SetSharedStorageEntryInput(InputModel):
     ownerOrigin: str
     key: str
     value: str
-    ignoreIfPresent: bool | None = None  # deprecated
+    ignoreIfPresent: bool | None = None
 
 
-class SetSharedStorageEntry(CDPMethod[None]):  # experimental deprecated
+class SetSharedStorageEntry(CDPMethod[None]):  # experimental
     """ Sets entry with `key` and `value` for a given origin's shared storage. """
 
     INPUT_VALIDATOR = SetSharedStorageEntryInput
@@ -585,7 +585,7 @@ class DeleteSharedStorageEntryInput(InputModel):
     key: str
 
 
-class DeleteSharedStorageEntry(CDPMethod[None]):  # experimental deprecated
+class DeleteSharedStorageEntry(CDPMethod[None]):  # experimental
     """ Deletes entry for `key` (if it exists) for a given origin's shared storage. """
 
     INPUT_VALIDATOR = DeleteSharedStorageEntryInput
@@ -608,7 +608,7 @@ class ClearSharedStorageEntriesInput(InputModel):
     ownerOrigin: str
 
 
-class ClearSharedStorageEntries(CDPMethod[None]):  # experimental deprecated
+class ClearSharedStorageEntries(CDPMethod[None]):  # experimental
     """ Clears all entries for a given origin's shared storage. """
 
     INPUT_VALIDATOR = ClearSharedStorageEntriesInput
@@ -629,7 +629,7 @@ class ResetSharedStorageBudgetInput(InputModel):
     ownerOrigin: str
 
 
-class ResetSharedStorageBudget(CDPMethod[None]):  # experimental deprecated
+class ResetSharedStorageBudget(CDPMethod[None]):  # experimental
     """ Resets the budget for `ownerOrigin` by clearing all budget withdrawals. """
 
     INPUT_VALIDATOR = ResetSharedStorageBudgetInput
@@ -650,7 +650,7 @@ class SetSharedStorageTrackingInput(InputModel):
     enable: bool
 
 
-class SetSharedStorageTracking(CDPMethod[None]):  # experimental deprecated
+class SetSharedStorageTracking(CDPMethod[None]):  # experimental
     """ Enables/disables issuing of sharedStorageAccessed events. """
 
     INPUT_VALIDATOR = SetSharedStorageTrackingInput
@@ -672,7 +672,7 @@ class SetStorageBucketTrackingInput(InputModel):
     enable: bool
 
 
-class SetStorageBucketTracking(CDPMethod[None]):  # experimental deprecated
+class SetStorageBucketTracking(CDPMethod[None]):  # experimental
     """ Set tracking for a storage key's buckets. """
 
     INPUT_VALIDATOR = SetStorageBucketTrackingInput
@@ -695,7 +695,7 @@ class DeleteStorageBucketInput(InputModel):
     bucket: Storage.StorageBucket
 
 
-class DeleteStorageBucket(CDPMethod[None]):  # experimental deprecated
+class DeleteStorageBucket(CDPMethod[None]):  # experimental
     """ Deletes the Storage Bucket with the given storage key and bucket name. """
 
     INPUT_VALIDATOR = DeleteStorageBucketInput
@@ -716,7 +716,7 @@ class RunBounceTrackingMitigationsOutput(OutputModel):
     deletedSites: list[str]
 
 
-class RunBounceTrackingMitigations(CDPMethod[RunBounceTrackingMitigationsOutput]):  # experimental deprecated
+class RunBounceTrackingMitigations(CDPMethod[RunBounceTrackingMitigationsOutput]):  # experimental
     """ Deletes state for sites identified as potential bounce trackers, immediately. """
 
     INPUT_VALIDATOR = None
@@ -725,10 +725,10 @@ class RunBounceTrackingMitigations(CDPMethod[RunBounceTrackingMitigationsOutput]
 
 class SetAttributionReportingLocalTestingModeInput(InputModel):
 
-    enabled: bool  # deprecated
+    enabled: bool
 
 
-class SetAttributionReportingLocalTestingMode(CDPMethod[None]):  # experimental deprecated
+class SetAttributionReportingLocalTestingMode(CDPMethod[None]):  # experimental
     """ https://wicg.github.io/attribution-reporting-api/ """
 
     INPUT_VALIDATOR = SetAttributionReportingLocalTestingModeInput
@@ -749,7 +749,7 @@ class SetAttributionReportingTrackingInput(InputModel):
     enable: bool
 
 
-class SetAttributionReportingTracking(CDPMethod[None]):  # experimental deprecated
+class SetAttributionReportingTracking(CDPMethod[None]):  # experimental
     """ Enables/disables issuing of Attribution Reporting events. """
 
     INPUT_VALIDATOR = SetAttributionReportingTrackingInput
@@ -767,10 +767,10 @@ class SetAttributionReportingTracking(CDPMethod[None]):  # experimental deprecat
 
 class SendPendingAttributionReportsOutput(OutputModel):
 
-    numSent: int  # deprecated
+    numSent: int
 
 
-class SendPendingAttributionReports(CDPMethod[SendPendingAttributionReportsOutput]):  # experimental deprecated
+class SendPendingAttributionReports(CDPMethod[SendPendingAttributionReportsOutput]):  # experimental
     """ Sends all pending Attribution Reports immediately, regardless of their
     scheduled report time. """
 
@@ -783,7 +783,7 @@ class GetRelatedWebsiteSetsOutput(OutputModel):
     sets: list[Storage.RelatedWebsiteSet]
 
 
-class GetRelatedWebsiteSets(CDPMethod[GetRelatedWebsiteSetsOutput]):  # experimental deprecated
+class GetRelatedWebsiteSets(CDPMethod[GetRelatedWebsiteSetsOutput]):  # experimental
     """ Returns the effective Related Website Sets in use by this profile for the browser
     session. The effective Related Website Sets will not change during a browser session. """
 
@@ -793,16 +793,16 @@ class GetRelatedWebsiteSets(CDPMethod[GetRelatedWebsiteSetsOutput]):  # experime
 
 class GetAffectedUrlsForThirdPartyCookieMetadataInput(InputModel):
 
-    firstPartyUrl: str  # deprecated
-    thirdPartyUrls: list[str]  # deprecated
+    firstPartyUrl: str
+    thirdPartyUrls: list[str]
 
 
 class GetAffectedUrlsForThirdPartyCookieMetadataOutput(OutputModel):
 
-    matchedUrls: list[str]  # deprecated
+    matchedUrls: list[str]
 
 
-class GetAffectedUrlsForThirdPartyCookieMetadata(CDPMethod[GetAffectedUrlsForThirdPartyCookieMetadataOutput]):  # experimental deprecated
+class GetAffectedUrlsForThirdPartyCookieMetadata(CDPMethod[GetAffectedUrlsForThirdPartyCookieMetadataOutput]):  # experimental
     """ Returns the list of URLs from a page and its embedded resources that match
     existing grace period URL pattern rules.
     https://developers.google.com/privacy-sandbox/cookies/temporary-exceptions/grace-period """

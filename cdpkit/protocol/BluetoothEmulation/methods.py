@@ -19,11 +19,11 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class EnableInput(InputModel):
 
-    state: BluetoothEmulation.CentralState  # deprecated
-    leSupported: bool  # deprecated
+    state: BluetoothEmulation.CentralState
+    leSupported: bool
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enable the BluetoothEmulation domain. """
 
     INPUT_VALIDATOR = EnableInput
@@ -43,10 +43,10 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class SetSimulatedCentralStateInput(InputModel):
 
-    state: BluetoothEmulation.CentralState  # deprecated
+    state: BluetoothEmulation.CentralState
 
 
-class SetSimulatedCentralState(CDPMethod[None]):  # deprecated
+class SetSimulatedCentralState(CDPMethod[None]):
     """ Set the state of the simulated central. """
 
     INPUT_VALIDATOR = SetSimulatedCentralStateInput
@@ -62,7 +62,7 @@ class SetSimulatedCentralState(CDPMethod[None]):  # deprecated
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disable the BluetoothEmulation domain. """
 
     INPUT_VALIDATOR = None
@@ -77,7 +77,7 @@ class SimulatePreconnectedPeripheralInput(InputModel):
     knownServiceUuids: list[str]
 
 
-class SimulatePreconnectedPeripheral(CDPMethod[None]):  # deprecated
+class SimulatePreconnectedPeripheral(CDPMethod[None]):
     """ Simulates a peripheral with |address|, |name| and |knownServiceUuids|
     that has already been connected to the system. """
 
@@ -105,7 +105,7 @@ class SimulateAdvertisementInput(InputModel):
     entry: BluetoothEmulation.ScanEntry
 
 
-class SimulateAdvertisement(CDPMethod[None]):  # deprecated
+class SimulateAdvertisement(CDPMethod[None]):
     """ Simulates an advertisement packet described in |entry| being received by
     the central. """
 
@@ -129,7 +129,7 @@ class SimulateGATTOperationResponseInput(InputModel):
     code: int
 
 
-class SimulateGATTOperationResponse(CDPMethod[None]):  # deprecated
+class SimulateGATTOperationResponse(CDPMethod[None]):
     """ Simulates the response code from the peripheral with |address| for a
     GATT operation of |type|. The |code| value follows the HCI Error Codes from
     Bluetooth Core Specification Vol 2 Part D 1.3 List Of Error Codes. """
@@ -159,7 +159,7 @@ class SimulateCharacteristicOperationResponseInput(InputModel):
     data: str | None = None
 
 
-class SimulateCharacteristicOperationResponse(CDPMethod[None]):  # deprecated
+class SimulateCharacteristicOperationResponse(CDPMethod[None]):
     """ Simulates the response from the characteristic with |characteristicId| for a
     characteristic operation of |type|. The |code| value follows the Error
     Codes from Bluetooth Core Specification Vol 3 Part F 3.4.1.1 Error Response.
@@ -193,7 +193,7 @@ class SimulateDescriptorOperationResponseInput(InputModel):
     data: str | None = None
 
 
-class SimulateDescriptorOperationResponse(CDPMethod[None]):  # deprecated
+class SimulateDescriptorOperationResponse(CDPMethod[None]):
     """ Simulates the response from the descriptor with |descriptorId| for a
     descriptor operation of |type|. The |code| value follows the Error
     Codes from Bluetooth Core Specification Vol 3 Part F 3.4.1.1 Error Response.
@@ -227,10 +227,10 @@ class AddServiceInput(InputModel):
 
 class AddServiceOutput(OutputModel):
 
-    serviceId: str  # deprecated
+    serviceId: str
 
 
-class AddService(CDPMethod[AddServiceOutput]):  # deprecated
+class AddService(CDPMethod[AddServiceOutput]):
     """ Adds a service with |serviceUuid| to the peripheral with |address|. """
 
     INPUT_VALIDATOR = AddServiceInput
@@ -253,7 +253,7 @@ class RemoveServiceInput(InputModel):
     serviceId: str
 
 
-class RemoveService(CDPMethod[None]):  # deprecated
+class RemoveService(CDPMethod[None]):
     """ Removes the service respresented by |serviceId| from the simulated central. """
 
     INPUT_VALIDATOR = RemoveServiceInput
@@ -278,10 +278,10 @@ class AddCharacteristicInput(InputModel):
 
 class AddCharacteristicOutput(OutputModel):
 
-    characteristicId: str  # deprecated
+    characteristicId: str
 
 
-class AddCharacteristic(CDPMethod[AddCharacteristicOutput]):  # deprecated
+class AddCharacteristic(CDPMethod[AddCharacteristicOutput]):
     """ Adds a characteristic with |characteristicUuid| and |properties| to the
     service represented by |serviceId|. """
 
@@ -307,7 +307,7 @@ class RemoveCharacteristicInput(InputModel):
     characteristicId: str
 
 
-class RemoveCharacteristic(CDPMethod[None]):  # deprecated
+class RemoveCharacteristic(CDPMethod[None]):
     """ Removes the characteristic respresented by |characteristicId| from the
     simulated central. """
 
@@ -332,10 +332,10 @@ class AddDescriptorInput(InputModel):
 
 class AddDescriptorOutput(OutputModel):
 
-    descriptorId: str  # deprecated
+    descriptorId: str
 
 
-class AddDescriptor(CDPMethod[AddDescriptorOutput]):  # deprecated
+class AddDescriptor(CDPMethod[AddDescriptorOutput]):
     """ Adds a descriptor with |descriptorUuid| to the characteristic respresented
     by |characteristicId|. """
 
@@ -359,7 +359,7 @@ class RemoveDescriptorInput(InputModel):
     descriptorId: str
 
 
-class RemoveDescriptor(CDPMethod[None]):  # deprecated
+class RemoveDescriptor(CDPMethod[None]):
     """ Removes the descriptor with |descriptorId| from the simulated central. """
 
     INPUT_VALIDATOR = RemoveDescriptorInput
@@ -380,7 +380,7 @@ class SimulateGATTDisconnectionInput(InputModel):
     address: str
 
 
-class SimulateGATTDisconnection(CDPMethod[None]):  # deprecated
+class SimulateGATTDisconnection(CDPMethod[None]):
     """ Simulates a GATT disconnection from the peripheral with |address|. """
 
     INPUT_VALIDATOR = SimulateGATTDisconnectionInput

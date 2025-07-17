@@ -24,19 +24,19 @@ class BreakpointResolved(CDPEvent):
     """ Fired when breakpoint is resolved to an actual script and location.
     Deprecated in favor of `resolvedBreakpoints` in the `scriptParsed` event. """
 
-    breakpointId: Debugger.BreakpointId  # deprecated
-    location: Debugger.Location  # deprecated
+    breakpointId: Debugger.BreakpointId
+    location: Debugger.Location
 
 
 class Paused(CDPEvent):
     """ Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria. """
 
-    callFrames: list[Debugger.CallFrame]  # deprecated
-    reason: Literal['ambiguous', 'assert', 'CSPViolation', 'debugCommand', 'DOM', 'EventListener', 'exception', 'instrumentation', 'OOM', 'other', 'promiseRejection', 'XHR', 'step']  # deprecated
-    data: JSON_DICT | None = None  # deprecated
-    hitBreakpoints: list[str] | None = None  # deprecated
-    asyncStackTrace: Runtime.StackTrace | None = None  # deprecated
-    asyncStackTraceId: Runtime.StackTraceId | None = None  # experimental deprecated
+    callFrames: list[Debugger.CallFrame]
+    reason: Literal['ambiguous', 'assert', 'CSPViolation', 'debugCommand', 'DOM', 'EventListener', 'exception', 'instrumentation', 'OOM', 'other', 'promiseRejection', 'XHR', 'step']
+    data: JSON_DICT | None = None
+    hitBreakpoints: list[str] | None = None
+    asyncStackTrace: Runtime.StackTrace | None = None
+    asyncStackTraceId: Runtime.StackTraceId | None = None  # experimental
     asyncCallStackTraceId: Runtime.StackTraceId | None = None  # experimental deprecated
 
 
@@ -49,48 +49,48 @@ class Resumed(CDPEvent):
 class ScriptFailedToParse(CDPEvent):
     """ Fired when virtual machine fails to parse the script. """
 
-    scriptId: Runtime.ScriptId  # deprecated
-    url: str  # deprecated
-    startLine: int  # deprecated
-    startColumn: int  # deprecated
-    endLine: int  # deprecated
-    endColumn: int  # deprecated
-    executionContextId: Runtime.ExecutionContextId  # deprecated
-    hash: str  # deprecated
-    buildId: str  # deprecated
-    executionContextAuxData: JSON_DICT | None = None  # deprecated
-    sourceMapURL: str | None = None  # deprecated
-    hasSourceURL: bool | None = None  # deprecated
-    isModule: bool | None = None  # deprecated
-    length: int | None = None  # deprecated
-    stackTrace: Runtime.StackTrace | None = None  # experimental deprecated
-    codeOffset: int | None = None  # experimental deprecated
-    scriptLanguage: Debugger.ScriptLanguage | None = None  # experimental deprecated
-    embedderName: str | None = None  # experimental deprecated
+    scriptId: Runtime.ScriptId
+    url: str
+    startLine: int
+    startColumn: int
+    endLine: int
+    endColumn: int
+    executionContextId: Runtime.ExecutionContextId
+    hash: str
+    buildId: str
+    executionContextAuxData: JSON_DICT | None = None
+    sourceMapURL: str | None = None
+    hasSourceURL: bool | None = None
+    isModule: bool | None = None
+    length: int | None = None
+    stackTrace: Runtime.StackTrace | None = None  # experimental
+    codeOffset: int | None = None  # experimental
+    scriptLanguage: Debugger.ScriptLanguage | None = None  # experimental
+    embedderName: str | None = None  # experimental
 
 
 class ScriptParsed(CDPEvent):
     """ Fired when virtual machine parses script. This event is also fired for all known and uncollected
     scripts upon enabling debugger. """
 
-    scriptId: Runtime.ScriptId  # deprecated
-    url: str  # deprecated
-    startLine: int  # deprecated
-    startColumn: int  # deprecated
-    endLine: int  # deprecated
-    endColumn: int  # deprecated
-    executionContextId: Runtime.ExecutionContextId  # deprecated
-    hash: str  # deprecated
-    buildId: str  # deprecated
-    executionContextAuxData: JSON_DICT | None = None  # deprecated
-    isLiveEdit: bool | None = None  # experimental deprecated
-    sourceMapURL: str | None = None  # deprecated
-    hasSourceURL: bool | None = None  # deprecated
-    isModule: bool | None = None  # deprecated
-    length: int | None = None  # deprecated
-    stackTrace: Runtime.StackTrace | None = None  # experimental deprecated
-    codeOffset: int | None = None  # experimental deprecated
-    scriptLanguage: Debugger.ScriptLanguage | None = None  # experimental deprecated
-    debugSymbols: list[Debugger.DebugSymbols] | None = None  # experimental deprecated
-    embedderName: str | None = None  # experimental deprecated
-    resolvedBreakpoints: list[Debugger.ResolvedBreakpoint] | None = None  # experimental deprecated
+    scriptId: Runtime.ScriptId
+    url: str
+    startLine: int
+    startColumn: int
+    endLine: int
+    endColumn: int
+    executionContextId: Runtime.ExecutionContextId
+    hash: str
+    buildId: str
+    executionContextAuxData: JSON_DICT | None = None
+    isLiveEdit: bool | None = None  # experimental
+    sourceMapURL: str | None = None
+    hasSourceURL: bool | None = None
+    isModule: bool | None = None
+    length: int | None = None
+    stackTrace: Runtime.StackTrace | None = None  # experimental
+    codeOffset: int | None = None  # experimental
+    scriptLanguage: Debugger.ScriptLanguage | None = None  # experimental
+    debugSymbols: list[Debugger.DebugSymbols] | None = None  # experimental
+    embedderName: str | None = None  # experimental
+    resolvedBreakpoints: list[Debugger.ResolvedBreakpoint] | None = None  # experimental

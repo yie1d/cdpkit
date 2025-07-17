@@ -22,21 +22,21 @@ class CertificateError(CDPEvent):
     certificate error has been allowed internally. Only one client per target should override
     certificate errors at the same time. """
 
-    eventId: int  # deprecated
-    errorType: str  # deprecated
-    requestURL: str  # deprecated
+    eventId: int
+    errorType: str
+    requestURL: str
 
 
 class VisibleSecurityStateChanged(CDPEvent):
     """ The security state of the page changed. """
 
-    visibleSecurityState: Security.VisibleSecurityState  # deprecated
+    visibleSecurityState: Security.VisibleSecurityState
 
 
 class SecurityStateChanged(CDPEvent):
     """ The security state of the page changed. No longer being sent. """
 
-    securityState: Security.SecurityState  # deprecated
+    securityState: Security.SecurityState
     schemeIsCryptographic: bool  # deprecated
     explanations: list[Security.SecurityStateExplanation]  # deprecated
     insecureContentStatus: Security.InsecureContentStatus  # deprecated

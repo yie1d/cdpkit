@@ -16,21 +16,21 @@ from cdpkit.protocol._types import (
 from cdpkit.protocol.base import CDPMethod, InputModel
 
 
-class Clear(CDPMethod[None]):  # deprecated
+class Clear(CDPMethod[None]):
     """ Clears the log. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables log domain, prevents further log entries from being reported to the client. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables log domain, sends the entries collected so far to the client by means of the
     `entryAdded` notification. """
 
@@ -40,10 +40,10 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class StartViolationsReportInput(InputModel):
 
-    config: list[Log.ViolationSetting]  # deprecated
+    config: list[Log.ViolationSetting]
 
 
-class StartViolationsReport(CDPMethod[None]):  # deprecated
+class StartViolationsReport(CDPMethod[None]):
     """ start violation reporting. """
 
     INPUT_VALIDATOR = StartViolationsReportInput
@@ -59,7 +59,7 @@ class StartViolationsReport(CDPMethod[None]):  # deprecated
         )
 
 
-class StopViolationsReport(CDPMethod[None]):  # deprecated
+class StopViolationsReport(CDPMethod[None]):
     """ Stop violation reporting. """
 
     INPUT_VALIDATOR = None

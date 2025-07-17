@@ -19,7 +19,7 @@ class EnableInput(InputModel):
     presentationUrl: str | None = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Starts observing for sinks that can be used for tab mirroring, and if set,
     sinks compatible with |presentationUrl| as well. When sinks are found, a
     |sinksUpdated| event is fired.
@@ -39,7 +39,7 @@ class Enable(CDPMethod[None]):  # deprecated
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Stops observing for sinks and issues. """
 
     INPUT_VALIDATOR = None
@@ -51,7 +51,7 @@ class SetSinkToUseInput(InputModel):
     sinkName: str
 
 
-class SetSinkToUse(CDPMethod[None]):  # deprecated
+class SetSinkToUse(CDPMethod[None]):
     """ Sets a sink to be used when the web page requests the browser to choose a
     sink via Presentation API, Remote Playback API, or Cast SDK. """
 
@@ -73,7 +73,7 @@ class StartDesktopMirroringInput(InputModel):
     sinkName: str
 
 
-class StartDesktopMirroring(CDPMethod[None]):  # deprecated
+class StartDesktopMirroring(CDPMethod[None]):
     """ Starts mirroring the desktop to the sink. """
 
     INPUT_VALIDATOR = StartDesktopMirroringInput
@@ -94,7 +94,7 @@ class StartTabMirroringInput(InputModel):
     sinkName: str
 
 
-class StartTabMirroring(CDPMethod[None]):  # deprecated
+class StartTabMirroring(CDPMethod[None]):
     """ Starts mirroring the tab to the sink. """
 
     INPUT_VALIDATOR = StartTabMirroringInput
@@ -115,7 +115,7 @@ class StopCastingInput(InputModel):
     sinkName: str
 
 
-class StopCasting(CDPMethod[None]):  # deprecated
+class StopCasting(CDPMethod[None]):
     """ Stops the active Cast session on the sink. """
 
     INPUT_VALIDATOR = StopCastingInput

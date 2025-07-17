@@ -16,5 +16,5 @@ from cdpkit.protocol.base import CDPEvent
 class Accepted(CDPEvent):
     """ Informs that port was successfully bound and got a specified connection id. """
 
-    port: int  # deprecated
-    connectionId: str  # deprecated
+    port: int
+    connectionId: str

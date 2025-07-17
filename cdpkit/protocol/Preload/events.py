@@ -44,7 +44,7 @@ class PrefetchStatusUpdated(CDPEvent):
 
     key: Preload.PreloadingAttemptKey
     pipelineId: Preload.PreloadPipelineId
-    initiatingFrameId: Page.FrameId  # deprecated
+    initiatingFrameId: Page.FrameId
     prefetchUrl: str
     status: Preload.PreloadingStatus
     prefetchStatus: Preload.PrefetchStatus
@@ -58,7 +58,7 @@ class PrerenderStatusUpdated(CDPEvent):
     pipelineId: Preload.PreloadPipelineId
     status: Preload.PreloadingStatus
     prerenderStatus: Preload.PrerenderFinalStatus | None = None
-    disallowedMojoInterface: str | None = None  # deprecated
+    disallowedMojoInterface: str | None = None
     mismatchedHeaders: list[Preload.PrerenderMismatchedHeaders] | None = None
 
 

@@ -25,52 +25,52 @@ from cdpkit.protocol.base import CDPEvent
 class AttributeModified(CDPEvent):
     """ Fired when `Element`'s attribute is modified. """
 
-    nodeId: DOM.NodeId  # deprecated
-    name: str  # deprecated
-    value: str  # deprecated
+    nodeId: DOM.NodeId
+    name: str
+    value: str
 
 
 class AttributeRemoved(CDPEvent):
     """ Fired when `Element`'s attribute is removed. """
 
-    nodeId: DOM.NodeId  # deprecated
-    name: str  # deprecated
+    nodeId: DOM.NodeId
+    name: str
 
 
 class CharacterDataModified(CDPEvent):
     """ Mirrors `DOMCharacterDataModified` event. """
 
-    nodeId: DOM.NodeId  # deprecated
-    characterData: str  # deprecated
+    nodeId: DOM.NodeId
+    characterData: str
 
 
 class ChildNodeCountUpdated(CDPEvent):
     """ Fired when `Container`'s child node count has changed. """
 
-    nodeId: DOM.NodeId  # deprecated
-    childNodeCount: int  # deprecated
+    nodeId: DOM.NodeId
+    childNodeCount: int
 
 
 class ChildNodeInserted(CDPEvent):
     """ Mirrors `DOMNodeInserted` event. """
 
-    parentNodeId: DOM.NodeId  # deprecated
-    previousNodeId: DOM.NodeId  # deprecated
-    node: DOM.Node  # deprecated
+    parentNodeId: DOM.NodeId
+    previousNodeId: DOM.NodeId
+    node: DOM.Node
 
 
 class ChildNodeRemoved(CDPEvent):
     """ Mirrors `DOMNodeRemoved` event. """
 
-    parentNodeId: DOM.NodeId  # deprecated
-    nodeId: DOM.NodeId  # deprecated
+    parentNodeId: DOM.NodeId
+    nodeId: DOM.NodeId
 
 
 class DistributedNodesUpdated(CDPEvent):
     """ Called when distribution is changed. """
 
-    insertionPointId: DOM.NodeId  # deprecated
-    distributedNodes: list[DOM.BackendNode]  # deprecated
+    insertionPointId: DOM.NodeId
+    distributedNodes: list[DOM.BackendNode]
 
 
 class DocumentUpdated(CDPEvent):
@@ -82,14 +82,14 @@ class DocumentUpdated(CDPEvent):
 class InlineStyleInvalidated(CDPEvent):
     """ Fired when `Element`'s inline style is modified via a CSS property modification. """
 
-    nodeIds: list[DOM.NodeId]  # deprecated
+    nodeIds: list[DOM.NodeId]
 
 
 class PseudoElementAdded(CDPEvent):
     """ Called when a pseudo element is added to an element. """
 
-    parentId: DOM.NodeId  # deprecated
-    pseudoElement: DOM.Node  # deprecated
+    parentId: DOM.NodeId
+    pseudoElement: DOM.Node
 
 
 class TopLayerElementsUpdated(CDPEvent):
@@ -101,34 +101,34 @@ class TopLayerElementsUpdated(CDPEvent):
 class ScrollableFlagUpdated(CDPEvent):
     """ Fired when a node's scrollability state changes. """
 
-    nodeId: DOM.NodeId  # deprecated
-    isScrollable: bool  # deprecated
+    nodeId: DOM.NodeId
+    isScrollable: bool
 
 
 class PseudoElementRemoved(CDPEvent):
     """ Called when a pseudo element is removed from an element. """
 
-    parentId: DOM.NodeId  # deprecated
-    pseudoElementId: DOM.NodeId  # deprecated
+    parentId: DOM.NodeId
+    pseudoElementId: DOM.NodeId
 
 
 class SetChildNodes(CDPEvent):
     """ Fired when backend wants to provide client with the missing DOM structure. This happens upon
     most of the calls requesting node ids. """
 
-    parentId: DOM.NodeId  # deprecated
-    nodes: list[DOM.Node]  # deprecated
+    parentId: DOM.NodeId
+    nodes: list[DOM.Node]
 
 
 class ShadowRootPopped(CDPEvent):
     """ Called when shadow root is popped from the element. """
 
-    hostId: DOM.NodeId  # deprecated
-    rootId: DOM.NodeId  # deprecated
+    hostId: DOM.NodeId
+    rootId: DOM.NodeId
 
 
 class ShadowRootPushed(CDPEvent):
     """ Called when shadow root is pushed into the element. """
 
-    hostId: DOM.NodeId  # deprecated
-    root: DOM.Node  # deprecated
+    hostId: DOM.NodeId
+    root: DOM.Node

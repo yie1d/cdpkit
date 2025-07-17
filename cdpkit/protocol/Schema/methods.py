@@ -18,10 +18,10 @@ from cdpkit.protocol.base import CDPMethod, OutputModel
 
 class GetDomainsOutput(OutputModel):
 
-    domains: list[Schema.Domain]  # deprecated
+    domains: list[Schema.Domain]
 
 
-class GetDomains(CDPMethod[GetDomainsOutput]):  # deprecated
+class GetDomains(CDPMethod[GetDomainsOutput]):
     """ Returns supported domains. """
 
     INPUT_VALIDATOR = None

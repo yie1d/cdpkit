@@ -17,10 +17,10 @@ from cdpkit.protocol.base import CDPMethod, InputModel
 
 class SetInstrumentationBreakpointInput(InputModel):
 
-    eventName: str  # deprecated
+    eventName: str
 
 
-class SetInstrumentationBreakpoint(CDPMethod[None]):  # deprecated
+class SetInstrumentationBreakpoint(CDPMethod[None]):
     """ Sets breakpoint on particular native event. """
 
     INPUT_VALIDATOR = SetInstrumentationBreakpointInput
@@ -38,10 +38,10 @@ class SetInstrumentationBreakpoint(CDPMethod[None]):  # deprecated
 
 class RemoveInstrumentationBreakpointInput(InputModel):
 
-    eventName: str  # deprecated
+    eventName: str
 
 
-class RemoveInstrumentationBreakpoint(CDPMethod[None]):  # deprecated
+class RemoveInstrumentationBreakpoint(CDPMethod[None]):
     """ Removes breakpoint on particular native event. """
 
     INPUT_VALIDATOR = RemoveInstrumentationBreakpointInput
@@ -57,7 +57,7 @@ class RemoveInstrumentationBreakpoint(CDPMethod[None]):  # deprecated
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Removes all breakpoints """
 
     INPUT_VALIDATOR = None

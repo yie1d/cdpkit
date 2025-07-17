@@ -19,16 +19,16 @@ from cdpkit.protocol.base import JSON_DICT, CDPMethod, InputModel, OutputModel
 
 class CompositingReasonsInput(InputModel):
 
-    layerId: LayerTree.LayerId  # deprecated
+    layerId: LayerTree.LayerId
 
 
 class CompositingReasonsOutput(OutputModel):
 
-    compositingReasons: list[str]  # deprecated
-    compositingReasonIds: list[str]  # deprecated
+    compositingReasons: list[str]
+    compositingReasonIds: list[str]
 
 
-class CompositingReasons(CDPMethod[CompositingReasonsOutput]):  # deprecated
+class CompositingReasons(CDPMethod[CompositingReasonsOutput]):
     """ Provides the reasons why the given layer was composited. """
 
     INPUT_VALIDATOR = CompositingReasonsInput
@@ -44,14 +44,14 @@ class CompositingReasons(CDPMethod[CompositingReasonsOutput]):  # deprecated
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables compositing tree inspection. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables compositing tree inspection. """
 
     INPUT_VALIDATOR = None
@@ -60,15 +60,15 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class LoadSnapshotInput(InputModel):
 
-    tiles: list[LayerTree.PictureTile]  # deprecated
+    tiles: list[LayerTree.PictureTile]
 
 
 class LoadSnapshotOutput(OutputModel):
 
-    snapshotId: LayerTree.SnapshotId  # deprecated
+    snapshotId: LayerTree.SnapshotId
 
 
-class LoadSnapshot(CDPMethod[LoadSnapshotOutput]):  # deprecated
+class LoadSnapshot(CDPMethod[LoadSnapshotOutput]):
     """ Returns the snapshot identifier. """
 
     INPUT_VALIDATOR = LoadSnapshotInput
@@ -86,15 +86,15 @@ class LoadSnapshot(CDPMethod[LoadSnapshotOutput]):  # deprecated
 
 class MakeSnapshotInput(InputModel):
 
-    layerId: LayerTree.LayerId  # deprecated
+    layerId: LayerTree.LayerId
 
 
 class MakeSnapshotOutput(OutputModel):
 
-    snapshotId: LayerTree.SnapshotId  # deprecated
+    snapshotId: LayerTree.SnapshotId
 
 
-class MakeSnapshot(CDPMethod[MakeSnapshotOutput]):  # deprecated
+class MakeSnapshot(CDPMethod[MakeSnapshotOutput]):
     """ Returns the layer snapshot identifier. """
 
     INPUT_VALIDATOR = MakeSnapshotInput
@@ -112,15 +112,15 @@ class MakeSnapshot(CDPMethod[MakeSnapshotOutput]):  # deprecated
 
 class ProfileSnapshotInput(InputModel):
 
-    snapshotId: LayerTree.SnapshotId  # deprecated
-    minRepeatCount: int | None = None  # deprecated
-    minDuration: float | None = None  # deprecated
-    clipRect: DOM.Rect | None = None  # deprecated
+    snapshotId: LayerTree.SnapshotId
+    minRepeatCount: int | None = None
+    minDuration: float | None = None
+    clipRect: DOM.Rect | None = None
 
 
 class ProfileSnapshotOutput(OutputModel):
 
-    timings: list[LayerTree.PaintProfile]  # deprecated
+    timings: list[LayerTree.PaintProfile]
 
 
 class ProfileSnapshot(CDPMethod[ProfileSnapshotOutput]):
@@ -146,10 +146,10 @@ class ProfileSnapshot(CDPMethod[ProfileSnapshotOutput]):
 
 class ReleaseSnapshotInput(InputModel):
 
-    snapshotId: LayerTree.SnapshotId  # deprecated
+    snapshotId: LayerTree.SnapshotId
 
 
-class ReleaseSnapshot(CDPMethod[None]):  # deprecated
+class ReleaseSnapshot(CDPMethod[None]):
     """ Releases layer snapshot captured by the back-end. """
 
     INPUT_VALIDATOR = ReleaseSnapshotInput
@@ -167,18 +167,18 @@ class ReleaseSnapshot(CDPMethod[None]):  # deprecated
 
 class ReplaySnapshotInput(InputModel):
 
-    snapshotId: LayerTree.SnapshotId  # deprecated
-    fromStep: int | None = None  # deprecated
-    toStep: int | None = None  # deprecated
-    scale: float | None = None  # deprecated
+    snapshotId: LayerTree.SnapshotId
+    fromStep: int | None = None
+    toStep: int | None = None
+    scale: float | None = None
 
 
 class ReplaySnapshotOutput(OutputModel):
 
-    dataURL: str  # deprecated
+    dataURL: str
 
 
-class ReplaySnapshot(CDPMethod[ReplaySnapshotOutput]):  # deprecated
+class ReplaySnapshot(CDPMethod[ReplaySnapshotOutput]):
     """ Replays the layer snapshot and returns the resulting bitmap. """
 
     INPUT_VALIDATOR = ReplaySnapshotInput
@@ -202,15 +202,15 @@ class ReplaySnapshot(CDPMethod[ReplaySnapshotOutput]):  # deprecated
 
 class SnapshotCommandLogInput(InputModel):
 
-    snapshotId: LayerTree.SnapshotId  # deprecated
+    snapshotId: LayerTree.SnapshotId
 
 
 class SnapshotCommandLogOutput(OutputModel):
 
-    commandLog: list[JSON_DICT]  # deprecated
+    commandLog: list[JSON_DICT]
 
 
-class SnapshotCommandLog(CDPMethod[SnapshotCommandLogOutput]):  # deprecated
+class SnapshotCommandLog(CDPMethod[SnapshotCommandLogOutput]):
     """ Replays the layer snapshot and returns canvas log. """
 
     INPUT_VALIDATOR = SnapshotCommandLogInput

@@ -18,13 +18,13 @@ from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 class GetInfoOutput(OutputModel):
 
-    gpu: SystemInfo.GPUInfo  # deprecated
-    modelName: str  # deprecated
-    modelVersion: str  # deprecated
-    commandLine: str  # deprecated
+    gpu: SystemInfo.GPUInfo
+    modelName: str
+    modelVersion: str
+    commandLine: str
 
 
-class GetInfo(CDPMethod[GetInfoOutput]):  # deprecated
+class GetInfo(CDPMethod[GetInfoOutput]):
     """ Returns information about the system. """
 
     INPUT_VALIDATOR = None
@@ -41,7 +41,7 @@ class GetFeatureStateOutput(OutputModel):
     featureEnabled: bool
 
 
-class GetFeatureState(CDPMethod[GetFeatureStateOutput]):  # deprecated
+class GetFeatureState(CDPMethod[GetFeatureStateOutput]):
     """ Returns information about the feature state. """
 
     INPUT_VALIDATOR = GetFeatureStateInput
@@ -59,10 +59,10 @@ class GetFeatureState(CDPMethod[GetFeatureStateOutput]):  # deprecated
 
 class GetProcessInfoOutput(OutputModel):
 
-    processInfo: list[SystemInfo.ProcessInfo]  # deprecated
+    processInfo: list[SystemInfo.ProcessInfo]
 
 
-class GetProcessInfo(CDPMethod[GetProcessInfoOutput]):  # deprecated
+class GetProcessInfo(CDPMethod[GetProcessInfoOutput]):
     """ Returns information about all running processes. """
 
     INPUT_VALIDATOR = None

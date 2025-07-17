@@ -26,7 +26,7 @@ class FontsUpdated(CDPEvent):
     """ Fires whenever a web font is updated.  A non-empty font parameter indicates a successfully loaded
     web font. """
 
-    font: CSS.FontFace | None = None  # deprecated
+    font: CSS.FontFace | None = None
 
 
 class MediaQueryResultChanged(CDPEvent):
@@ -39,7 +39,7 @@ class MediaQueryResultChanged(CDPEvent):
 class StyleSheetAdded(CDPEvent):
     """ Fired whenever an active document stylesheet is added. """
 
-    header: CSS.CSSStyleSheetHeader  # deprecated
+    header: CSS.CSSStyleSheetHeader
 
 
 class StyleSheetChanged(CDPEvent):
@@ -51,9 +51,9 @@ class StyleSheetChanged(CDPEvent):
 class StyleSheetRemoved(CDPEvent):
     """ Fired whenever an active document stylesheet is removed. """
 
-    styleSheetId: CSS.StyleSheetId  # deprecated
+    styleSheetId: CSS.StyleSheetId
 
 
 class ComputedStyleUpdated(CDPEvent):
 
-    nodeId: DOM.NodeId  # deprecated
+    nodeId: DOM.NodeId

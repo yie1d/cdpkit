@@ -19,7 +19,7 @@ from cdpkit.protocol.base import CDPEvent
 class AttachedToTarget(CDPEvent):
     """ Issued when attached to target because of auto-attach or `attachToTarget` command. """
 
-    sessionId: Target.SessionID  # deprecated
+    sessionId: Target.SessionID
     targetInfo: Target.TargetInfo
     waitingForDebugger: bool
 
@@ -28,7 +28,7 @@ class DetachedFromTarget(CDPEvent):
     """ Issued when detached from target for any reason (including `detachFromTarget` command). Can be
     issued multiple times per target if multiple sessions have been attached to it. """
 
-    sessionId: Target.SessionID  # deprecated
+    sessionId: Target.SessionID
     targetId: Target.TargetID | None = None  # deprecated
 
 
@@ -36,7 +36,7 @@ class ReceivedMessageFromTarget(CDPEvent):
     """ Notifies about a new protocol message received from the session (as reported in
     `attachedToTarget` event). """
 
-    sessionId: Target.SessionID  # deprecated
+    sessionId: Target.SessionID
     message: str
     targetId: Target.TargetID | None = None  # deprecated
 
@@ -57,8 +57,8 @@ class TargetCrashed(CDPEvent):
     """ Issued when a target has crashed. """
 
     targetId: Target.TargetID
-    status: str  # deprecated
-    errorCode: int  # deprecated
+    status: str
+    errorCode: int
 
 
 class TargetInfoChanged(CDPEvent):

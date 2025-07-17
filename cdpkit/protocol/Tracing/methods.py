@@ -18,7 +18,7 @@ from cdpkit.protocol._types import (
 from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
-class End(CDPMethod[None]):  # deprecated
+class End(CDPMethod[None]):
     """ Stop trace events collection. """
 
     INPUT_VALIDATOR = None
@@ -27,10 +27,10 @@ class End(CDPMethod[None]):  # deprecated
 
 class GetCategoriesOutput(OutputModel):
 
-    categories: list[str]  # deprecated
+    categories: list[str]
 
 
-class GetCategories(CDPMethod[GetCategoriesOutput]):  # experimental deprecated
+class GetCategories(CDPMethod[GetCategoriesOutput]):  # experimental
     """ Gets supported tracing categories. """
 
     INPUT_VALIDATOR = None
@@ -39,10 +39,10 @@ class GetCategories(CDPMethod[GetCategoriesOutput]):  # experimental deprecated
 
 class RecordClockSyncMarkerInput(InputModel):
 
-    syncId: str  # deprecated
+    syncId: str
 
 
-class RecordClockSyncMarker(CDPMethod[None]):  # experimental deprecated
+class RecordClockSyncMarker(CDPMethod[None]):  # experimental
     """ Record a clock sync marker in the trace. """
 
     INPUT_VALIDATOR = RecordClockSyncMarkerInput
@@ -60,17 +60,17 @@ class RecordClockSyncMarker(CDPMethod[None]):  # experimental deprecated
 
 class RequestMemoryDumpInput(InputModel):
 
-    deterministic: bool | None = None  # deprecated
-    levelOfDetail: Tracing.MemoryDumpLevelOfDetail | None = None  # deprecated
+    deterministic: bool | None = None
+    levelOfDetail: Tracing.MemoryDumpLevelOfDetail | None = None
 
 
 class RequestMemoryDumpOutput(OutputModel):
 
-    dumpGuid: str  # deprecated
-    success: bool  # deprecated
+    dumpGuid: str
+    success: bool
 
 
-class RequestMemoryDump(CDPMethod[RequestMemoryDumpOutput]):  # experimental deprecated
+class RequestMemoryDump(CDPMethod[RequestMemoryDumpOutput]):  # experimental
     """ Request a global memory dump. """
 
     INPUT_VALIDATOR = RequestMemoryDumpInput
@@ -92,16 +92,16 @@ class StartInput(InputModel):
 
     categories: str | None = None  # experimental deprecated
     options: str | None = None  # experimental deprecated
-    bufferUsageReportingInterval: float | None = None  # experimental deprecated
-    transferMode: Literal['ReportEvents', 'ReturnAsStream'] | None = None  # deprecated
-    streamFormat: Tracing.StreamFormat | None = None  # deprecated
-    streamCompression: Tracing.StreamCompression | None = None  # experimental deprecated
+    bufferUsageReportingInterval: float | None = None  # experimental
+    transferMode: Literal['ReportEvents', 'ReturnAsStream'] | None = None
+    streamFormat: Tracing.StreamFormat | None = None
+    streamCompression: Tracing.StreamCompression | None = None  # experimental
     traceConfig: Tracing.TraceConfig | None = None
-    perfettoConfig: str | None = None  # experimental deprecated
-    tracingBackend: Tracing.TracingBackend | None = None  # experimental deprecated
+    perfettoConfig: str | None = None  # experimental
+    tracingBackend: Tracing.TracingBackend | None = None  # experimental
 
 
-class Start(CDPMethod[None]):  # deprecated
+class Start(CDPMethod[None]):
     """ Start trace events collection. """
 
     INPUT_VALIDATOR = StartInput

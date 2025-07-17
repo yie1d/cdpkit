@@ -13,7 +13,7 @@ from __future__ import annotations
 from cdpkit.protocol.base import CDPMethod, InputModel
 
 
-class ClearDeviceOrientationOverride(CDPMethod[None]):  # deprecated
+class ClearDeviceOrientationOverride(CDPMethod[None]):
     """ Clears the overridden Device Orientation. """
 
     INPUT_VALIDATOR = None
@@ -22,12 +22,12 @@ class ClearDeviceOrientationOverride(CDPMethod[None]):  # deprecated
 
 class SetDeviceOrientationOverrideInput(InputModel):
 
-    alpha: float  # deprecated
-    beta: float  # deprecated
-    gamma: float  # deprecated
+    alpha: float
+    beta: float
+    gamma: float
 
 
-class SetDeviceOrientationOverride(CDPMethod[None]):  # deprecated
+class SetDeviceOrientationOverride(CDPMethod[None]):
     """ Overrides the Device Orientation. """
 
     INPUT_VALIDATOR = SetDeviceOrientationOverrideInput

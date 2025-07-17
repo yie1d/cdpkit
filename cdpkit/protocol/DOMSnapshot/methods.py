@@ -16,14 +16,14 @@ from cdpkit.protocol._types import (
 from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables DOM snapshot agent for the given page. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables DOM snapshot agent for the given page. """
 
     INPUT_VALIDATOR = None
@@ -32,17 +32,17 @@ class Enable(CDPMethod[None]):  # deprecated
 
 class GetSnapshotInput(InputModel):
 
-    computedStyleWhitelist: list[str]  # deprecated
-    includeEventListeners: bool | None = None  # deprecated
-    includePaintOrder: bool | None = None  # deprecated
-    includeUserAgentShadowTree: bool | None = None  # deprecated
+    computedStyleWhitelist: list[str]
+    includeEventListeners: bool | None = None
+    includePaintOrder: bool | None = None
+    includeUserAgentShadowTree: bool | None = None
 
 
 class GetSnapshotOutput(OutputModel):
 
-    domNodes: list[DOMSnapshot.DOMNode]  # deprecated
-    layoutTreeNodes: list[DOMSnapshot.LayoutTreeNode]  # deprecated
-    computedStyles: list[DOMSnapshot.ComputedStyle]  # deprecated
+    domNodes: list[DOMSnapshot.DOMNode]
+    layoutTreeNodes: list[DOMSnapshot.LayoutTreeNode]
+    computedStyles: list[DOMSnapshot.ComputedStyle]
 
 
 class GetSnapshot(CDPMethod[GetSnapshotOutput]):  # deprecated
@@ -72,20 +72,20 @@ class GetSnapshot(CDPMethod[GetSnapshotOutput]):  # deprecated
 
 class CaptureSnapshotInput(InputModel):
 
-    computedStyles: list[str]  # deprecated
-    includePaintOrder: bool | None = None  # deprecated
-    includeDOMRects: bool | None = None  # deprecated
-    includeBlendedBackgroundColors: bool | None = None  # experimental deprecated
-    includeTextColorOpacities: bool | None = None  # experimental deprecated
+    computedStyles: list[str]
+    includePaintOrder: bool | None = None
+    includeDOMRects: bool | None = None
+    includeBlendedBackgroundColors: bool | None = None  # experimental
+    includeTextColorOpacities: bool | None = None  # experimental
 
 
 class CaptureSnapshotOutput(OutputModel):
 
-    documents: list[DOMSnapshot.DocumentSnapshot]  # deprecated
-    strings: list[str]  # deprecated
+    documents: list[DOMSnapshot.DocumentSnapshot]
+    strings: list[str]
 
 
-class CaptureSnapshot(CDPMethod[CaptureSnapshotOutput]):  # deprecated
+class CaptureSnapshot(CDPMethod[CaptureSnapshotOutput]):
     """ Returns a document snapshot, including the full DOM tree of the root node (including iframes,
     template contents, and imported documents) in a flattened array, as well as layout and
     white-listed computed style information for the nodes. Shadow DOM in the returned DOM tree is

@@ -16,14 +16,14 @@ from cdpkit.protocol._types import (
 from cdpkit.protocol.base import CDPMethod, InputModel
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enable events in this domain. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disable events in this domain. """
 
     INPUT_VALIDATOR = None
@@ -36,7 +36,7 @@ class SelectPromptInput(InputModel):
     deviceId: DeviceAccess.DeviceId
 
 
-class SelectPrompt(CDPMethod[None]):  # deprecated
+class SelectPrompt(CDPMethod[None]):
     """ Select a device in response to a DeviceAccess.deviceRequestPrompted event. """
 
     INPUT_VALIDATOR = SelectPromptInput
@@ -59,7 +59,7 @@ class CancelPromptInput(InputModel):
     id: DeviceAccess.RequestId
 
 
-class CancelPrompt(CDPMethod[None]):  # deprecated
+class CancelPrompt(CDPMethod[None]):
     """ Cancel a prompt in response to a DeviceAccess.deviceRequestPrompted event. """
 
     INPUT_VALIDATOR = CancelPromptInput

@@ -21,7 +21,7 @@ class InspectNodeRequested(CDPEvent):
     """ Fired when the node should be inspected. This happens after call to `setInspectMode` or when
     user manually inspects an element. """
 
-    backendNodeId: DOM.BackendNodeId  # deprecated
+    backendNodeId: DOM.BackendNodeId
 
 
 class NodeHighlightRequested(CDPEvent):
@@ -33,7 +33,7 @@ class NodeHighlightRequested(CDPEvent):
 class ScreenshotRequested(CDPEvent):
     """ Fired when user asks to capture screenshot of some area on the page. """
 
-    viewport: Page.Viewport  # deprecated
+    viewport: Page.Viewport
 
 
 class InspectModeCanceled(CDPEvent):

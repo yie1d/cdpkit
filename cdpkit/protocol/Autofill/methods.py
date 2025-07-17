@@ -20,12 +20,12 @@ from cdpkit.protocol.base import CDPMethod, InputModel
 
 class TriggerInput(InputModel):
 
-    fieldId: DOM.BackendNodeId  # deprecated
-    frameId: Page.FrameId | None = None  # deprecated
-    card: Autofill.CreditCard  # deprecated
+    fieldId: DOM.BackendNodeId
+    frameId: Page.FrameId | None = None
+    card: Autofill.CreditCard
 
 
-class Trigger(CDPMethod[None]):  # deprecated
+class Trigger(CDPMethod[None]):
     """ Trigger autofill on a form identified by the fieldId.
     If the field and related form cannot be autofilled, returns an error. """
 
@@ -51,7 +51,7 @@ class SetAddressesInput(InputModel):
     addresses: list[Autofill.Address]
 
 
-class SetAddresses(CDPMethod[None]):  # deprecated
+class SetAddresses(CDPMethod[None]):
     """ Set addresses so that developers can verify their forms implementation. """
 
     INPUT_VALIDATOR = SetAddressesInput
@@ -67,14 +67,14 @@ class SetAddresses(CDPMethod[None]):  # deprecated
         )
 
 
-class Disable(CDPMethod[None]):  # deprecated
+class Disable(CDPMethod[None]):
     """ Disables autofill domain notifications. """
 
     INPUT_VALIDATOR = None
     OUTPUT_VALIDATOR = None
 
 
-class Enable(CDPMethod[None]):  # deprecated
+class Enable(CDPMethod[None]):
     """ Enables autofill domain notifications. """
 
     INPUT_VALIDATOR = None
