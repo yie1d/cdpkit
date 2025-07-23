@@ -20,7 +20,7 @@ from cdpkit.protocol._types import (
     DOM,
     Page,
 )
-from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
+from cdpkit.protocol.base import JSON_DICT, CDPMethod, InputModel, OutputModel
 
 
 class AddRuleInput(InputModel):
@@ -399,6 +399,18 @@ class GetMatchedStylesForNode(CDPMethod[GetMatchedStylesForNodeOutput]):
         super().__init__(
             nodeId=node_id
         )
+
+
+class GetEnvironmentVariablesOutput(OutputModel):
+
+    environmentVariables: JSON_DICT
+
+
+class GetEnvironmentVariables(CDPMethod[GetEnvironmentVariablesOutput]):  # experimental
+    """ Returns the values of the default UA-defined environment variables used in env() """
+
+    INPUT_VALIDATOR = None
+    OUTPUT_VALIDATOR = GetEnvironmentVariablesOutput
 
 
 class GetMediaQueriesOutput(OutputModel):

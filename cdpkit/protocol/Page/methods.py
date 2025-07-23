@@ -490,6 +490,7 @@ class NavigateOutput(OutputModel):
     frameId: Page.FrameId
     loaderId: Network.LoaderId | None = None
     errorText: str | None = None
+    isDownload: bool | None = None  # experimental
 
 
 class Navigate(CDPMethod[NavigateOutput]):

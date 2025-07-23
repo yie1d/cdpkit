@@ -4637,7 +4637,7 @@ class NetworkPrivateNetworkRequestPolicy(enum.StrEnum):
 class NetworkIPAddressSpace(enum.StrEnum):
 
     LOOPBACK = "Loopback"
-    PRIVATE = "Private"
+    LOCAL = "Local"
     PUBLIC = "Public"
     UNKNOWN = "Unknown"
 
@@ -7716,6 +7716,7 @@ class PreloadRuleSetErrorType(enum.StrEnum):
 
     SOURCEISNOTJSONOBJECT = "SourceIsNotJsonObject"
     INVALIDRULESSKIPPED = "InvalidRulesSkipped"
+    INVALIDRULESETLEVELTAG = "InvalidRulesetLevelTag"
 
 
 class PreloadSpeculationAction(enum.StrEnum):
