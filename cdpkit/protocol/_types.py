@@ -4116,6 +4116,9 @@ class NetworkResponse(CDPObject):
     # Security details for the request.
     securityDetails: Network.SecurityDetails | None = None
 
+    # Indicates whether the request was sent through IP Protection proxies. Ifset to true, the request used the IP Protection privacy feature.
+    isIpProtectionUsed: bool | None = None  # experimental
+
 
 class NetworkWebSocketRequest(CDPObject):
     """ WebSocket request data. """
