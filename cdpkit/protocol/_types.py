@@ -1848,6 +1848,9 @@ class CSSCSSContainerQuery(CDPObject):
     # true if the query contains scroll-state() queries.
     queriesScrollState: bool | None = None
 
+    # true if the query contains anchored() queries.
+    queriesAnchored: bool | None = None
+
 
 class CSSCSSSupports(CDPObject):
     """ CSS Supports at-rule descriptor. """
@@ -7857,6 +7860,7 @@ class PreloadPrerenderFinalStatus(enum.StrEnum):
     V8OPTIMIZERDISABLED = "V8OptimizerDisabled"
     PRERENDERFAILEDDURINGPREFETCH = "PrerenderFailedDuringPrefetch"
     BROWSINGDATAREMOVED = "BrowsingDataRemoved"
+    PRERENDERHOSTREUSED = "PrerenderHostReused"
 
 
 class PreloadPreloadingStatus(enum.StrEnum):

@@ -1248,6 +1248,7 @@ class GetContainerForNodeInput(InputModel):
     physicalAxes: DOM.PhysicalAxes | None = None
     logicalAxes: DOM.LogicalAxes | None = None
     queriesScrollState: bool | None = None
+    queriesAnchored: bool | None = None
 
 
 class GetContainerForNodeOutput(OutputModel):
@@ -1258,9 +1259,9 @@ class GetContainerForNodeOutput(OutputModel):
 class GetContainerForNode(CDPMethod[GetContainerForNodeOutput]):  # experimental
     """ Returns the query container of the given node based on container query
     conditions: containerName, physical and logical axes, and whether it queries
-    scroll-state. If no axes are provided and queriesScrollState is false, the
-    style container is returned, which is the direct parent or the closest
-    element with a matching container-name. """
+    scroll-state or anchored elements. If no axes are provided and
+    queriesScrollState is false, the style container is returned, which is the
+    direct parent or the closest element with a matching container-name. """
 
     INPUT_VALIDATOR = GetContainerForNodeInput
     OUTPUT_VALIDATOR = GetContainerForNodeOutput
@@ -1272,14 +1273,16 @@ class GetContainerForNode(CDPMethod[GetContainerForNodeOutput]):  # experimental
         container_name: str | None = None,
         physical_axes: DOM.PhysicalAxes | None = None,
         logical_axes: DOM.LogicalAxes | None = None,
-        queries_scroll_state: bool | None = None
+        queries_scroll_state: bool | None = None,
+        queries_anchored: bool | None = None
     ):
         super().__init__(
             nodeId=node_id,
             containerName=container_name,
             physicalAxes=physical_axes,
             logicalAxes=logical_axes,
-            queriesScrollState=queries_scroll_state
+            queriesScrollState=queries_scroll_state,
+            queriesAnchored=queries_anchored
         )
 
 
