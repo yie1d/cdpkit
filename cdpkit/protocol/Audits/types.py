@@ -67,6 +67,8 @@ from cdpkit.protocol._types import (
     AuditsSRIMessageSignatureIssueDetails,
     AuditsStylesheetLoadingIssueDetails,
     AuditsStyleSheetLoadingIssueReason,
+    AuditsUnencodedDigestError,
+    AuditsUnencodedDigestIssueDetails,
     AuditsUserReidentificationIssueDetails,
     AuditsUserReidentificationIssueType,
 )
@@ -98,11 +100,13 @@ CorsIssueDetails = AuditsCorsIssueDetails
 AttributionReportingIssueType = AuditsAttributionReportingIssueType
 SharedDictionaryError = AuditsSharedDictionaryError
 SRIMessageSignatureError = AuditsSRIMessageSignatureError
+UnencodedDigestError = AuditsUnencodedDigestError
 AttributionReportingIssueDetails = AuditsAttributionReportingIssueDetails
 QuirksModeIssueDetails = AuditsQuirksModeIssueDetails
 NavigatorUserAgentIssueDetails = AuditsNavigatorUserAgentIssueDetails
 SharedDictionaryIssueDetails = AuditsSharedDictionaryIssueDetails
 SRIMessageSignatureIssueDetails = AuditsSRIMessageSignatureIssueDetails
+UnencodedDigestIssueDetails = AuditsUnencodedDigestIssueDetails
 GenericIssueErrorType = AuditsGenericIssueErrorType
 GenericIssueDetails = AuditsGenericIssueDetails
 DeprecationIssueDetails = AuditsDeprecationIssueDetails

@@ -239,8 +239,7 @@ class WindowOpen(CDPEvent):
 
 
 class CompilationCacheProduced(CDPEvent):
-    """ Issued for every compilation cache generated. Is only available
-    if Page.setGenerateCompilationCache is enabled. """
+    """ Issued for every compilation cache generated. """
 
     url: str
     data: str

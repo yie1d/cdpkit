@@ -486,3 +486,29 @@ class SetRemoteLocations(CDPMethod[None]):  # experimental
         super().__init__(
             locations=locations
         )
+
+
+class OpenDevToolsInput(InputModel):
+
+    targetId: Target.TargetID
+
+
+class OpenDevToolsOutput(OutputModel):
+
+    targetId: Target.TargetID
+
+
+class OpenDevTools(CDPMethod[OpenDevToolsOutput]):  # experimental
+    """ Opens a DevTools window for the target. """
+
+    INPUT_VALIDATOR = OpenDevToolsInput
+    OUTPUT_VALIDATOR = OpenDevToolsOutput
+
+    def __init__(
+        self,
+        *,
+        target_id: Target.TargetID
+    ):
+        super().__init__(
+            targetId=target_id
+        )

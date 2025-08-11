@@ -731,6 +731,14 @@ class AuditsSRIMessageSignatureError(enum.StrEnum):
     VALIDATIONFAILEDINTEGRITYMISMATCH = "ValidationFailedIntegrityMismatch"
 
 
+class AuditsUnencodedDigestError(enum.StrEnum):
+
+    MALFORMEDDICTIONARY = "MalformedDictionary"
+    UNKNOWNALGORITHM = "UnknownAlgorithm"
+    INCORRECTDIGESTTYPE = "IncorrectDigestType"
+    INCORRECTDIGESTLENGTH = "IncorrectDigestLength"
+
+
 class AuditsAttributionReportingIssueDetails(CDPObject):
     """ Details for issues around "Attribution Reporting API" usage.
     Explainer: https://github.com/WICG/attribution-reporting-api """
@@ -781,6 +789,13 @@ class AuditsSRIMessageSignatureIssueDetails(CDPObject):
     signatureBase: str
 
     integrityAssertions: list[str]
+
+    request: Audits.AffectedRequest
+
+
+class AuditsUnencodedDigestIssueDetails(CDPObject):
+
+    error: Audits.UnencodedDigestError
 
     request: Audits.AffectedRequest
 
@@ -1041,6 +1056,7 @@ class AuditsUserReidentificationIssueType(enum.StrEnum):
 
     BLOCKEDFRAMENAVIGATION = "BlockedFrameNavigation"
     BLOCKEDSUBRESOURCE = "BlockedSubresource"
+    NOISEDCANVASREADBACK = "NoisedCanvasReadback"
 
 
 class AuditsUserReidentificationIssueDetails(CDPObject):
@@ -1051,6 +1067,9 @@ class AuditsUserReidentificationIssueDetails(CDPObject):
 
     # Applies to BlockedFrameNavigation and BlockedSubresource issue types.
     request: Audits.AffectedRequest | None = None
+
+    # Applies to NoisedCanvasReadback issue type.
+    sourceCodeLocation: Audits.SourceCodeLocation | None = None
 
 
 class AuditsInspectorIssueCode(enum.StrEnum):
@@ -1082,6 +1101,7 @@ class AuditsInspectorIssueCode(enum.StrEnum):
     SHAREDDICTIONARYISSUE = "SharedDictionaryIssue"
     ELEMENTACCESSIBILITYISSUE = "ElementAccessibilityIssue"
     SRIMESSAGESIGNATUREISSUE = "SRIMessageSignatureIssue"
+    UNENCODEDDIGESTISSUE = "UnencodedDigestIssue"
     USERREIDENTIFICATIONISSUE = "UserReidentificationIssue"
 
 
@@ -1137,6 +1157,8 @@ class AuditsInspectorIssueDetails(CDPObject):
     elementAccessibilityIssueDetails: Audits.ElementAccessibilityIssueDetails | None = None
 
     sriMessageSignatureIssueDetails: Audits.SRIMessageSignatureIssueDetails | None = None
+
+    unencodedDigestIssueDetails: Audits.UnencodedDigestIssueDetails | None = None
 
     userReidentificationIssueDetails: Audits.UserReidentificationIssueDetails | None = None
 
@@ -2276,6 +2298,7 @@ class DOMPseudoType(enum.StrEnum):
     BEFORE = "before"
     AFTER = "after"
     PICKER_ICON = "picker-icon"
+    INTEREST_HINT = "interest-hint"
     MARKER = "marker"
     BACKDROP = "backdrop"
     COLUMN = "column"
@@ -5254,6 +5277,7 @@ class PagePermissionsPolicyFeature(enum.StrEnum):
     DEFERRED_FETCH = "deferred-fetch"
     DEFERRED_FETCH_MINIMAL = "deferred-fetch-minimal"
     DEVICE_ATTRIBUTES = "device-attributes"
+    DIGITAL_CREDENTIALS_CREATE = "digital-credentials-create"
     DIGITAL_CREDENTIALS_GET = "digital-credentials-get"
     DIRECT_SOCKETS = "direct-sockets"
     DIRECT_SOCKETS_PRIVATE = "direct-sockets-private"
@@ -8788,11 +8812,13 @@ class Audits:
     AttributionReportingIssueType = AuditsAttributionReportingIssueType
     SharedDictionaryError = AuditsSharedDictionaryError
     SRIMessageSignatureError = AuditsSRIMessageSignatureError
+    UnencodedDigestError = AuditsUnencodedDigestError
     AttributionReportingIssueDetails = AuditsAttributionReportingIssueDetails
     QuirksModeIssueDetails = AuditsQuirksModeIssueDetails
     NavigatorUserAgentIssueDetails = AuditsNavigatorUserAgentIssueDetails
     SharedDictionaryIssueDetails = AuditsSharedDictionaryIssueDetails
     SRIMessageSignatureIssueDetails = AuditsSRIMessageSignatureIssueDetails
+    UnencodedDigestIssueDetails = AuditsUnencodedDigestIssueDetails
     GenericIssueErrorType = AuditsGenericIssueErrorType
     GenericIssueDetails = AuditsGenericIssueDetails
     DeprecationIssueDetails = AuditsDeprecationIssueDetails
