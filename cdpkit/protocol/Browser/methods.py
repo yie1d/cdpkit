@@ -24,11 +24,12 @@ class SetPermissionInput(InputModel):
     permission: Browser.PermissionDescriptor
     setting: Browser.PermissionSetting
     origin: str | None = None
+    embeddingOrigin: str | None = None
     browserContextId: Browser.BrowserContextID | None = None
 
 
 class SetPermission(CDPMethod[None]):  # experimental
-    """ Set permission settings for given origin. """
+    """ Set permission settings for given requesting and embedding origins. """
 
     INPUT_VALIDATOR = SetPermissionInput
     OUTPUT_VALIDATOR = None
@@ -39,12 +40,14 @@ class SetPermission(CDPMethod[None]):  # experimental
         permission: Browser.PermissionDescriptor,
         setting: Browser.PermissionSetting,
         origin: str | None = None,
+        embedding_origin: str | None = None,
         browser_context_id: Browser.BrowserContextID | None = None
     ):
         super().__init__(
             permission=permission,
             setting=setting,
             origin=origin,
+            embeddingOrigin=embedding_origin,
             browserContextId=browser_context_id
         )
 

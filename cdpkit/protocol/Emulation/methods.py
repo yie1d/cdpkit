@@ -978,3 +978,89 @@ class SetSmallViewportHeightDifferenceOverride(CDPMethod[None]):  # experimental
         super().__init__(
             difference=difference
         )
+
+
+class GetScreenInfosOutput(OutputModel):
+
+    screenInfos: list[Emulation.ScreenInfo]
+
+
+class GetScreenInfos(CDPMethod[GetScreenInfosOutput]):  # experimental
+    """ Returns device's screen configuration. """
+
+    INPUT_VALIDATOR = None
+    OUTPUT_VALIDATOR = GetScreenInfosOutput
+
+
+class AddScreenInput(InputModel):
+
+    left: int
+    top: int
+    width: int
+    height: int
+    workAreaInsets: Emulation.WorkAreaInsets | None = None
+    devicePixelRatio: float | None = None
+    rotation: int | None = None
+    colorDepth: int | None = None
+    label: str | None = None
+    isInternal: bool | None = None
+
+
+class AddScreenOutput(OutputModel):
+
+    screenInfo: Emulation.ScreenInfo
+
+
+class AddScreen(CDPMethod[AddScreenOutput]):  # experimental
+    """ Add a new screen to the device. Only supported in headless mode. """
+
+    INPUT_VALIDATOR = AddScreenInput
+    OUTPUT_VALIDATOR = AddScreenOutput
+
+    def __init__(
+        self,
+        *,
+        left: int,
+        top: int,
+        width: int,
+        height: int,
+        work_area_insets: Emulation.WorkAreaInsets | None = None,
+        device_pixel_ratio: float | None = None,
+        rotation: int | None = None,
+        color_depth: int | None = None,
+        label: str | None = None,
+        is_internal: bool | None = None
+    ):
+        super().__init__(
+            left=left,
+            top=top,
+            width=width,
+            height=height,
+            workAreaInsets=work_area_insets,
+            devicePixelRatio=device_pixel_ratio,
+            rotation=rotation,
+            colorDepth=color_depth,
+            label=label,
+            isInternal=is_internal
+        )
+
+
+class RemoveScreenInput(InputModel):
+
+    screenId: Emulation.ScreenId
+
+
+class RemoveScreen(CDPMethod[None]):  # experimental
+    """ Remove screen from the device. Only supported in headless mode. """
+
+    INPUT_VALIDATOR = RemoveScreenInput
+    OUTPUT_VALIDATOR = None
+
+    def __init__(
+        self,
+        *,
+        screen_id: Emulation.ScreenId
+    ):
+        super().__init__(
+            screenId=screen_id
+        )

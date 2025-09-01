@@ -213,6 +213,7 @@ class GetComputedStyleForNodeInput(InputModel):
 class GetComputedStyleForNodeOutput(OutputModel):
 
     computedStyle: list[CSS.CSSComputedStyleProperty]
+    extraFields: CSS.ComputedStyleExtraFields | None = None  # experimental
 
 
 class GetComputedStyleForNode(CDPMethod[GetComputedStyleForNodeOutput]):

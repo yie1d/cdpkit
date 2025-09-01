@@ -46,6 +46,7 @@ from .methods import (
     TrackComputedStyleUpdatesForNode,
 )
 from .types import (
+    ComputedStyleExtraFields,
     CSSAnimationStyle,
     CSSComputedStyleProperty,
     CSSContainerQuery,
@@ -111,6 +112,7 @@ __all__ = [
     SourceRange,
     ShorthandEntry,
     CSSComputedStyleProperty,
+    ComputedStyleExtraFields,
     CSSStyle,
     CSSProperty,
     CSSMedia,

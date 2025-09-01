@@ -19,6 +19,8 @@ from cdpkit.protocol._types import (
     EmulationPressureSource,
     EmulationPressureState,
     EmulationSafeAreaInsets,
+    EmulationScreenId,
+    EmulationScreenInfo,
     EmulationScreenOrientation,
     EmulationSensorMetadata,
     EmulationSensorReading,
@@ -29,6 +31,7 @@ from cdpkit.protocol._types import (
     EmulationUserAgentBrandVersion,
     EmulationUserAgentMetadata,
     EmulationVirtualTimePolicy,
+    EmulationWorkAreaInsets,
 )
 
 SafeAreaInsets = EmulationSafeAreaInsets
@@ -48,4 +51,7 @@ SensorReading = EmulationSensorReading
 PressureSource = EmulationPressureSource
 PressureState = EmulationPressureState
 PressureMetadata = EmulationPressureMetadata
+WorkAreaInsets = EmulationWorkAreaInsets
+ScreenId = EmulationScreenId
+ScreenInfo = EmulationScreenInfo
 DisabledImageType = EmulationDisabledImageType

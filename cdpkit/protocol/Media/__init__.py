@@ -1,6 +1,7 @@
-from .events import PlayerErrorsRaised, PlayerEventsAdded, PlayerMessagesLogged, PlayerPropertiesChanged, PlayersCreated
+from .events import PlayerCreated, PlayerErrorsRaised, PlayerEventsAdded, PlayerMessagesLogged, PlayerPropertiesChanged
 from .methods import Disable, Enable
 from .types import (
+    Player,
     PlayerError,
     PlayerErrorSourceLocation,
     PlayerEvent,
@@ -18,11 +19,12 @@ __all__ = [
     PlayerEvent,
     PlayerErrorSourceLocation,
     PlayerError,
+    Player,
     PlayerPropertiesChanged,
     PlayerEventsAdded,
     PlayerMessagesLogged,
     PlayerErrorsRaised,
-    PlayersCreated,
+    PlayerCreated,
     Enable,
     Disable,
 ]

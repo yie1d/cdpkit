@@ -51,6 +51,7 @@ from cdpkit.protocol._types import (
     NetworkInterceptionId,
     NetworkInterceptionStage,
     NetworkIPAddressSpace,
+    NetworkIpProxyStatus,
     NetworkLoaderId,
     NetworkLoadNetworkResourceOptions,
     NetworkLoadNetworkResourcePageResult,
@@ -108,6 +109,7 @@ SignedCertificateTimestamp = NetworkSignedCertificateTimestamp
 SecurityDetails = NetworkSecurityDetails
 CertificateTransparencyCompliance = NetworkCertificateTransparencyCompliance
 BlockedReason = NetworkBlockedReason
+IpProxyStatus = NetworkIpProxyStatus
 CorsError = NetworkCorsError
 CorsErrorStatus = NetworkCorsErrorStatus
 ServiceWorkerResponseSource = NetworkServiceWorkerResponseSource

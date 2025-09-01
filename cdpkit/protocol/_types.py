@@ -1180,15 +1180,6 @@ class AuditsInspectorIssue(CDPObject):
     issueId: Audits.IssueId | None = None
 
 
-class ExtensionsStorageArea(enum.StrEnum):
-    """ Storage areas. """
-
-    SESSION = "session"
-    LOCAL = "local"
-    SYNC = "sync"
-    MANAGED = "managed"
-
-
 class AutofillCreditCard(CDPObject):
 
     # 16-digit credit card number.
@@ -1321,6 +1312,103 @@ class BackgroundServiceBackgroundServiceEvent(CDPObject):
 
     # Storage key this event belongs to.
     storageKey: str
+
+
+class BluetoothEmulationCentralState(enum.StrEnum):
+    """ Indicates the various states of Central. """
+
+    ABSENT = "absent"
+    POWERED_OFF = "powered-off"
+    POWERED_ON = "powered-on"
+
+
+class BluetoothEmulationGATTOperationType(enum.StrEnum):
+    """ Indicates the various types of GATT event. """
+
+    CONNECTION = "connection"
+    DISCOVERY = "discovery"
+
+
+class BluetoothEmulationCharacteristicWriteType(enum.StrEnum):
+    """ Indicates the various types of characteristic write. """
+
+    WRITE_DEFAULT_DEPRECATED = "write-default-deprecated"
+    WRITE_WITH_RESPONSE = "write-with-response"
+    WRITE_WITHOUT_RESPONSE = "write-without-response"
+
+
+class BluetoothEmulationCharacteristicOperationType(enum.StrEnum):
+    """ Indicates the various types of characteristic operation. """
+
+    READ = "read"
+    WRITE = "write"
+    SUBSCRIBE_TO_NOTIFICATIONS = "subscribe-to-notifications"
+    UNSUBSCRIBE_FROM_NOTIFICATIONS = "unsubscribe-from-notifications"
+
+
+class BluetoothEmulationDescriptorOperationType(enum.StrEnum):
+    """ Indicates the various types of descriptor operation. """
+
+    READ = "read"
+    WRITE = "write"
+
+
+class BluetoothEmulationManufacturerData(CDPObject):
+    """ Stores the manufacturer data """
+
+    # Company identifier https://bitbucket.org/bluetooth-SIG/public/src/main/assigned_numbers/company_identifiers/company_identifiers.yamlhttps://usb.org/developers
+    key: int
+
+    # Manufacturer-specific data (Encoded as a base64 string when passed overJSON)
+    data: str
+
+
+class BluetoothEmulationScanRecord(CDPObject):
+    """ Stores the byte data of the advertisement packet sent by a Bluetooth device. """
+
+    name: str | None = None
+
+    uuids: list[str] | None = None
+
+    # Stores the external appearance description of the device.
+    appearance: int | None = None
+
+    # Stores the transmission power of a broadcasting device.
+    txPower: int | None = None
+
+    # Key is the company identifier and the value is an array of bytes ofmanufacturer specific data.
+    manufacturerData: list[BluetoothEmulation.ManufacturerData] | None = None
+
+
+class BluetoothEmulationScanEntry(CDPObject):
+    """ Stores the advertisement packet information that is sent by a Bluetooth device. """
+
+    deviceAddress: str
+
+    rssi: int
+
+    scanRecord: BluetoothEmulation.ScanRecord
+
+
+class BluetoothEmulationCharacteristicProperties(CDPObject):
+    """ Describes the properties of a characteristic. This follows Bluetooth Core
+    Specification BT 4.2 Vol 3 Part G 3.3.1. Characteristic Properties. """
+
+    broadcast: bool | None = None
+
+    read: bool | None = None
+
+    writeWithoutResponse: bool | None = None
+
+    write: bool | None = None
+
+    notify: bool | None = None
+
+    indicate: bool | None = None
+
+    authenticatedSignedWrites: bool | None = None
+
+    extendedProperties: bool | None = None
 
 
 BrowserBrowserContextID = str
@@ -1743,6 +1831,12 @@ class CSSCSSComputedStyleProperty(CDPObject):
 
     # Computed style property value.
     value: str
+
+
+class CSSComputedStyleExtraFields(CDPObject):
+
+    # Returns whether or not this node is being rendered with base appearance,which happens when it has its appearance property set to base/base-select or itis in the subtree of an element being rendered with base appearance.
+    isAppearanceBase: bool
 
 
 class CSSCSSStyle(CDPObject):
@@ -2962,6 +3056,21 @@ class DOMStorageStorageId(CDPObject):
 """ DOM Storage item. """
 
 DOMStorageItem = list[str]
+""" Device request id. """
+
+DeviceAccessRequestId = str
+""" A device id. """
+
+DeviceAccessDeviceId = str
+
+
+class DeviceAccessPromptDevice(CDPObject):
+    """ Device information displayed in a user prompt to select a device. """
+
+    id: DeviceAccess.DeviceId
+
+    # Display name as it appears in a device request user prompt.
+    name: str
 
 
 class EmulationSafeAreaInsets(CDPObject):
@@ -3150,6 +3259,77 @@ class EmulationPressureMetadata(CDPObject):
     available: bool | None = None
 
 
+class EmulationWorkAreaInsets(CDPObject):
+
+    # Work area top inset in pixels. Default is 0;
+    top: int | None = None
+
+    # Work area left inset in pixels. Default is 0;
+    left: int | None = None
+
+    # Work area bottom inset in pixels. Default is 0;
+    bottom: int | None = None
+
+    # Work area right inset in pixels. Default is 0;
+    right: int | None = None
+
+
+EmulationScreenId = str
+
+
+class EmulationScreenInfo(CDPObject):
+    """ Screen information similar to the one returned by window.getScreenDetails() method,
+    see https://w3c.github.io/window-management/#screendetailed. """
+
+    # Offset of the left edge of the screen.
+    left: int
+
+    # Offset of the top edge of the screen.
+    top: int
+
+    # Width of the screen.
+    width: int
+
+    # Height of the screen.
+    height: int
+
+    # Offset of the left edge of the available screen area.
+    availLeft: int
+
+    # Offset of the top edge of the available screen area.
+    availTop: int
+
+    # Width of the available screen area.
+    availWidth: int
+
+    # Height of the available screen area.
+    availHeight: int
+
+    # Specifies the screen's device pixel ratio.
+    devicePixelRatio: float
+
+    # Specifies the screen's orientation.
+    orientation: Emulation.ScreenOrientation
+
+    # Specifies the screen's color depth in bits.
+    colorDepth: int
+
+    # Indicates whether the device has multiple screens.
+    isExtended: bool
+
+    # Indicates whether the screen is internal to the device or external,attached to the device.
+    isInternal: bool
+
+    # Indicates whether the screen is set as the the operating system primaryscreen.
+    isPrimary: bool
+
+    # Specifies the descriptive label for the screen.
+    label: str
+
+    # Specifies the unique identifier of the screen.
+    id: Emulation.ScreenId
+
+
 class EmulationDisabledImageType(enum.StrEnum):
     """ Enum of image types that can be disabled. """
 
@@ -3157,23 +3337,135 @@ class EmulationDisabledImageType(enum.StrEnum):
     WEBP = "webp"
 
 
-class HeadlessExperimentalScreenshotParams(CDPObject):
-    """ Encoding options for a screenshot. """
+class ExtensionsStorageArea(enum.StrEnum):
+    """ Storage areas. """
 
-    # Image compression format (defaults to png).
-    format: Literal['jpeg', 'png', 'webp'] | None = None
-
-    # Compression quality from range [0..100] (jpeg and webp only).
-    quality: int | None = None
-
-    # Optimize image encoding for speed, not for resulting size (defaults tofalse)
-    optimizeForSpeed: bool | None = None
+    SESSION = "session"
+    LOCAL = "local"
+    SYNC = "sync"
+    MANAGED = "managed"
 
 
-""" This is either obtained from another method or specified as `blob:<uuid>` where
-`<uuid>` is an UUID of a Blob. """
+class FedCmLoginState(enum.StrEnum):
+    """ Whether this is a sign-up or sign-in action for this account, i.e.
+    whether this account has ever been used to sign in to this RP before. """
 
-IOStreamHandle = str
+    SIGNIN = "SignIn"
+    SIGNUP = "SignUp"
+
+
+class FedCmDialogType(enum.StrEnum):
+    """ The types of FedCM dialogs. """
+
+    ACCOUNTCHOOSER = "AccountChooser"
+    AUTOREAUTHN = "AutoReauthn"
+    CONFIRMIDPLOGIN = "ConfirmIdpLogin"
+    ERROR = "Error"
+
+
+class FedCmDialogButton(enum.StrEnum):
+    """ The buttons on the FedCM dialog. """
+
+    CONFIRMIDPLOGINCONTINUE = "ConfirmIdpLoginContinue"
+    ERRORGOTIT = "ErrorGotIt"
+    ERRORMOREDETAILS = "ErrorMoreDetails"
+
+
+class FedCmAccountUrlType(enum.StrEnum):
+    """ The URLs that each account has """
+
+    TERMSOFSERVICE = "TermsOfService"
+    PRIVACYPOLICY = "PrivacyPolicy"
+
+
+class FedCmAccount(CDPObject):
+    """ Corresponds to IdentityRequestAccount """
+
+    accountId: str
+
+    email: str
+
+    name: str
+
+    givenName: str
+
+    pictureUrl: str
+
+    idpConfigUrl: str
+
+    idpLoginUrl: str
+
+    loginState: FedCm.LoginState
+
+    # These two are only set if the loginState is signUp
+    termsOfServiceUrl: str | None = None
+
+    privacyPolicyUrl: str | None = None
+
+
+""" Unique request identifier.
+Note that this does not identify individual HTTP requests that are part of
+a network request. """
+
+FetchRequestId = str
+
+
+class FetchRequestStage(enum.StrEnum):
+    """ Stages of the request to handle. Request will intercept before the request is
+    sent. Response will intercept after the response is received (but before response
+    body is received). """
+
+    REQUEST = "Request"
+    RESPONSE = "Response"
+
+
+class FetchRequestPattern(CDPObject):
+
+    # Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed.Escape character is backslash. Omitting is equivalent to `"*"`.
+    urlPattern: str | None = None
+
+    # If set, only requests for matching resource types will be intercepted.
+    resourceType: Network.ResourceType | None = None
+
+    # Stage at which to begin intercepting requests. Default is Request.
+    requestStage: Fetch.RequestStage | None = None
+
+
+class FetchHeaderEntry(CDPObject):
+    """ Response HTTP header entry """
+
+    name: str
+
+    value: str
+
+
+class FetchAuthChallenge(CDPObject):
+    """ Authorization challenge for HTTP status code 401 or 407. """
+
+    # Source of the authentication challenge.
+    source: Literal['Server', 'Proxy'] | None = None
+
+    # Origin of the challenger.
+    origin: str
+
+    # The authentication scheme used, such as basic or digest
+    scheme: str
+
+    # The realm of the challenge. May be empty.
+    realm: str
+
+
+class FetchAuthChallengeResponse(CDPObject):
+    """ Response to an AuthChallenge. """
+
+    # The decision on what to do in response to the authorization challenge.Default means deferring to the default behavior of the net stack, which willlikely either the Cancel authentication or display a popup dialog box.
+    response: Literal['Default', 'CancelAuth', 'ProvideCredentials']
+
+    # The username to provide, possibly empty. Should only be set if response isProvideCredentials.
+    username: str | None = None
+
+    # The password to provide, possibly empty. Should only be set if response isProvideCredentials.
+    password: str | None = None
 
 
 class FileSystemFile(CDPObject):
@@ -3209,6 +3501,25 @@ class FileSystemBucketFileSystemLocator(CDPObject):
 
     # Path to the directory using each path component as an array item.
     pathComponents: list[str]
+
+
+class HeadlessExperimentalScreenshotParams(CDPObject):
+    """ Encoding options for a screenshot. """
+
+    # Image compression format (defaults to png).
+    format: Literal['jpeg', 'png', 'webp'] | None = None
+
+    # Compression quality from range [0..100] (jpeg and webp only).
+    quality: int | None = None
+
+    # Optimize image encoding for speed, not for resulting size (defaults tofalse)
+    optimizeForSpeed: bool | None = None
+
+
+""" This is either obtained from another method or specified as `blob:<uuid>` where
+`<uuid>` is an UUID of a Blob. """
+
+IOStreamHandle = str
 
 
 class IndexedDBDatabaseWithObjectStores(CDPObject):
@@ -3549,6 +3860,73 @@ class LogViolationSetting(CDPObject):
 
     # Time threshold to trigger upon.
     threshold: float
+
+
+""" Players will get an ID that is unique within the agent context. """
+
+MediaPlayerId = str
+
+MediaTimestamp = float
+
+
+class MediaPlayerMessage(CDPObject):
+    """ Have one type per entry in MediaLogRecord::Type
+    Corresponds to kMessage """
+
+    # Keep in sync with MediaLogMessageLevel We are currently keeping themessage level 'error' separate from the PlayerError type because right now theyrepresent different things, this one being a DVLOG(ERROR) style log message thatgets printed based on what log level is selected in the UI, and the other is arepresentation of a media::PipelineStatus object. Soon however we're going to bemoving away from using PipelineStatus for errors and introducing a new errortype which should hopefully let us integrate the error log level into thePlayerError type.
+    level: Literal['error', 'warning', 'info', 'debug']
+
+    message: str
+
+
+class MediaPlayerProperty(CDPObject):
+    """ Corresponds to kMediaPropertyChange """
+
+    name: str
+
+    value: str
+
+
+class MediaPlayerEvent(CDPObject):
+    """ Corresponds to kMediaEventTriggered """
+
+    timestamp: Media.Timestamp
+
+    value: str
+
+
+class MediaPlayerErrorSourceLocation(CDPObject):
+    """ Represents logged source line numbers reported in an error.
+    NOTE: file and line are from chromium c++ implementation code, not js. """
+
+    file: str
+
+    line: int
+
+
+class MediaPlayerError(CDPObject):
+    """ Corresponds to kMediaError """
+
+    errorType: str
+
+    # Code is the numeric enum entry for a specific set of error codes, such asPipelineStatusCodes in media/base/pipeline_status.h
+    code: int
+
+    # A trace of where this error was caused / where it passed through.
+    stack: list[Media.PlayerErrorSourceLocation]
+
+    # Errors potentially have a root cause error, ie, a DecoderError might becaused by an WindowsError
+    cause: list[Media.PlayerError]
+
+    # Extra data attached to an error, such as an HRESULT, Video Codec, etc.
+    data: JSON_DICT
+
+
+class MediaPlayer(CDPObject):
+
+    playerId: Media.PlayerId
+
+    domNodeId: DOM.BackendNodeId | None = None
 
 
 class MemoryPressureLevel(enum.StrEnum):
@@ -3944,6 +4322,19 @@ class NetworkBlockedReason(enum.StrEnum):
     CORP_NOT_SAME_ORIGIN_AFTER_DEFAULTED_TO_SAME_ORIGIN_BY_COEP_AND_DIP = "corp-not-same-origin-after-defaulted-to-same-origin-by-coep-and-dip"
     CORP_NOT_SAME_SITE = "corp-not-same-site"
     SRI_MESSAGE_SIGNATURE_MISMATCH = "sri-message-signature-mismatch"
+
+
+class NetworkIpProxyStatus(enum.StrEnum):
+    """ Sets Controls for IP Proxy of requests.
+    Page reload is required before the new behavior will be observed. """
+
+    AVAILABLE = "Available"
+    FEATURENOTENABLED = "FeatureNotEnabled"
+    MASKEDDOMAINLISTNOTENABLED = "MaskedDomainListNotEnabled"
+    MASKEDDOMAINLISTNOTPOPULATED = "MaskedDomainListNotPopulated"
+    AUTHTOKENSUNAVAILABLE = "AuthTokensUnavailable"
+    UNAVAILABLE = "Unavailable"
+    BYPASSEDBYDEVTOOLS = "BypassedByDevTools"
 
 
 class NetworkCorsError(enum.StrEnum):
@@ -5154,6 +5545,32 @@ class OverlayInspectMode(enum.StrEnum):
     NONE = "none"
 
 
+class PWAFileHandlerAccept(CDPObject):
+    """ The following types are the replica of
+    https://crsrc.org/c/chrome/browser/web_applications/proto/web_app_os_integration_state.proto;drc=9910d3be894c8f142c977ba1023f30a656bc13fc;l=67 """
+
+    # New name of the mimetype according tohttps://www.iana.org/assignments/media-types/media-types.xhtml
+    mediaType: str
+
+    fileExtensions: list[str]
+
+
+class PWAFileHandler(CDPObject):
+
+    action: str
+
+    accepts: list[PWA.FileHandlerAccept]
+
+    displayName: str
+
+
+class PWADisplayMode(enum.StrEnum):
+    """ If user prefers opening the app in browser or an app window. """
+
+    STANDALONE = "standalone"
+    BROWSER = "browser"
+
+
 """ Unique frame identifier. """
 
 PageFrameId = str
@@ -6238,6 +6655,243 @@ class PerformanceTimelineTimelineEvent(CDPObject):
     layoutShiftDetails: PerformanceTimeline.LayoutShift | None = None
 
 
+""" Unique id """
+
+PreloadRuleSetId = str
+
+
+class PreloadRuleSet(CDPObject):
+    """ Corresponds to SpeculationRuleSet """
+
+    id: Preload.RuleSetId
+
+    # Identifies a document which the rule set is associated with.
+    loaderId: Network.LoaderId
+
+    # Source text of JSON representing the rule set. If it comes from `<script>`tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md
+    sourceText: str
+
+    # A speculation rule set is either added through an inline `<script>` tag orthrough an external resource via the 'Speculation-Rules' HTTP header. For thefirst case, we include the BackendNodeId of the relevant `<script>` tag. For thesecond case, we include the external URL where the rule set was loaded from, andalso RequestId if Network domain is enabled.  See also: -https://wicg.github.io/nav-speculation/speculation-rules.html#speculation-rules-script - https://wicg.github.io/nav-speculation/speculation-rules.html#speculation-rules-header
+    backendNodeId: DOM.BackendNodeId | None = None
+
+    url: str | None = None
+
+    requestId: Network.RequestId | None = None
+
+    # Error information `errorMessage` is null iff `errorType` is null.
+    errorType: Preload.RuleSetErrorType | None = None
+
+    # TODO(https://crbug.com/1425354): Replace this property with structurederror.
+    errorMessage: str | None = None  # deprecated
+
+
+class PreloadRuleSetErrorType(enum.StrEnum):
+
+    SOURCEISNOTJSONOBJECT = "SourceIsNotJsonObject"
+    INVALIDRULESSKIPPED = "InvalidRulesSkipped"
+    INVALIDRULESETLEVELTAG = "InvalidRulesetLevelTag"
+
+
+class PreloadSpeculationAction(enum.StrEnum):
+    """ The type of preloading attempted. It corresponds to
+    mojom::SpeculationAction (although PrefetchWithSubresources is omitted as it
+    isn't being used by clients). """
+
+    PREFETCH = "Prefetch"
+    PRERENDER = "Prerender"
+
+
+class PreloadSpeculationTargetHint(enum.StrEnum):
+    """ Corresponds to mojom::SpeculationTargetHint.
+    See https://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints """
+
+    BLANK = "Blank"
+    SELF = "Self"
+
+
+class PreloadPreloadingAttemptKey(CDPObject):
+    """ A key that identifies a preloading attempt.
+
+    The url used is the url specified by the trigger (i.e. the initial URL), and
+    not the final url that is navigated to. For example, prerendering allows
+    same-origin main frame navigations during the attempt, but the attempt is
+    still keyed with the initial URL. """
+
+    loaderId: Network.LoaderId
+
+    action: Preload.SpeculationAction
+
+    url: str
+
+    targetHint: Preload.SpeculationTargetHint | None = None
+
+
+class PreloadPreloadingAttemptSource(CDPObject):
+    """ Lists sources for a preloading attempt, specifically the ids of rule sets
+    that had a speculation rule that triggered the attempt, and the
+    BackendNodeIds of <a href> or <area href> elements that triggered the
+    attempt (in the case of attempts triggered by a document rule). It is
+    possible for multiple rule sets and links to trigger a single attempt. """
+
+    key: Preload.PreloadingAttemptKey
+
+    ruleSetIds: list[Preload.RuleSetId]
+
+    nodeIds: list[DOM.BackendNodeId]
+
+
+""" Chrome manages different types of preloads together using a
+concept of preloading pipeline. For example, if a site uses a
+SpeculationRules for prerender, Chrome first starts a prefetch and
+then upgrades it to prerender.
+
+CDP events for them are emitted separately but they share
+`PreloadPipelineId`. """
+
+PreloadPreloadPipelineId = str
+
+
+class PreloadPrerenderFinalStatus(enum.StrEnum):
+    """ List of FinalStatus reasons for Prerender2. """
+
+    ACTIVATED = "Activated"
+    DESTROYED = "Destroyed"
+    LOWENDDEVICE = "LowEndDevice"
+    INVALIDSCHEMEREDIRECT = "InvalidSchemeRedirect"
+    INVALIDSCHEMENAVIGATION = "InvalidSchemeNavigation"
+    NAVIGATIONREQUESTBLOCKEDBYCSP = "NavigationRequestBlockedByCsp"
+    MOJOBINDERPOLICY = "MojoBinderPolicy"
+    RENDERERPROCESSCRASHED = "RendererProcessCrashed"
+    RENDERERPROCESSKILLED = "RendererProcessKilled"
+    DOWNLOAD = "Download"
+    TRIGGERDESTROYED = "TriggerDestroyed"
+    NAVIGATIONNOTCOMMITTED = "NavigationNotCommitted"
+    NAVIGATIONBADHTTPSTATUS = "NavigationBadHttpStatus"
+    CLIENTCERTREQUESTED = "ClientCertRequested"
+    NAVIGATIONREQUESTNETWORKERROR = "NavigationRequestNetworkError"
+    CANCELALLHOSTSFORTESTING = "CancelAllHostsForTesting"
+    DIDFAILLOAD = "DidFailLoad"
+    STOP = "Stop"
+    SSLCERTIFICATEERROR = "SslCertificateError"
+    LOGINAUTHREQUESTED = "LoginAuthRequested"
+    UACHANGEREQUIRESRELOAD = "UaChangeRequiresReload"
+    BLOCKEDBYCLIENT = "BlockedByClient"
+    AUDIOOUTPUTDEVICEREQUESTED = "AudioOutputDeviceRequested"
+    MIXEDCONTENT = "MixedContent"
+    TRIGGERBACKGROUNDED = "TriggerBackgrounded"
+    MEMORYLIMITEXCEEDED = "MemoryLimitExceeded"
+    DATASAVERENABLED = "DataSaverEnabled"
+    TRIGGERURLHASEFFECTIVEURL = "TriggerUrlHasEffectiveUrl"
+    ACTIVATEDBEFORESTARTED = "ActivatedBeforeStarted"
+    INACTIVEPAGERESTRICTION = "InactivePageRestriction"
+    STARTFAILED = "StartFailed"
+    TIMEOUTBACKGROUNDED = "TimeoutBackgrounded"
+    CROSSSITEREDIRECTININITIALNAVIGATION = "CrossSiteRedirectInInitialNavigation"
+    CROSSSITENAVIGATIONININITIALNAVIGATION = "CrossSiteNavigationInInitialNavigation"
+    SAMESITECROSSORIGINREDIRECTNOTOPTINININITIALNAVIGATION = "SameSiteCrossOriginRedirectNotOptInInInitialNavigation"
+    SAMESITECROSSORIGINNAVIGATIONNOTOPTINININITIALNAVIGATION = "SameSiteCrossOriginNavigationNotOptInInInitialNavigation"
+    ACTIVATIONNAVIGATIONPARAMETERMISMATCH = "ActivationNavigationParameterMismatch"
+    ACTIVATEDINBACKGROUND = "ActivatedInBackground"
+    EMBEDDERHOSTDISALLOWED = "EmbedderHostDisallowed"
+    ACTIVATIONNAVIGATIONDESTROYEDBEFORESUCCESS = "ActivationNavigationDestroyedBeforeSuccess"
+    TABCLOSEDBYUSERGESTURE = "TabClosedByUserGesture"
+    TABCLOSEDWITHOUTUSERGESTURE = "TabClosedWithoutUserGesture"
+    PRIMARYMAINFRAMERENDERERPROCESSCRASHED = "PrimaryMainFrameRendererProcessCrashed"
+    PRIMARYMAINFRAMERENDERERPROCESSKILLED = "PrimaryMainFrameRendererProcessKilled"
+    ACTIVATIONFRAMEPOLICYNOTCOMPATIBLE = "ActivationFramePolicyNotCompatible"
+    PRELOADINGDISABLED = "PreloadingDisabled"
+    BATTERYSAVERENABLED = "BatterySaverEnabled"
+    ACTIVATEDDURINGMAINFRAMENAVIGATION = "ActivatedDuringMainFrameNavigation"
+    PRELOADINGUNSUPPORTEDBYWEBCONTENTS = "PreloadingUnsupportedByWebContents"
+    CROSSSITEREDIRECTINMAINFRAMENAVIGATION = "CrossSiteRedirectInMainFrameNavigation"
+    CROSSSITENAVIGATIONINMAINFRAMENAVIGATION = "CrossSiteNavigationInMainFrameNavigation"
+    SAMESITECROSSORIGINREDIRECTNOTOPTININMAINFRAMENAVIGATION = "SameSiteCrossOriginRedirectNotOptInInMainFrameNavigation"
+    SAMESITECROSSORIGINNAVIGATIONNOTOPTININMAINFRAMENAVIGATION = "SameSiteCrossOriginNavigationNotOptInInMainFrameNavigation"
+    MEMORYPRESSUREONTRIGGER = "MemoryPressureOnTrigger"
+    MEMORYPRESSUREAFTERTRIGGERED = "MemoryPressureAfterTriggered"
+    PRERENDERINGDISABLEDBYDEVTOOLS = "PrerenderingDisabledByDevTools"
+    SPECULATIONRULEREMOVED = "SpeculationRuleRemoved"
+    ACTIVATEDWITHAUXILIARYBROWSINGCONTEXTS = "ActivatedWithAuxiliaryBrowsingContexts"
+    MAXNUMOFRUNNINGEAGERPRERENDERSEXCEEDED = "MaxNumOfRunningEagerPrerendersExceeded"
+    MAXNUMOFRUNNINGNONEAGERPRERENDERSEXCEEDED = "MaxNumOfRunningNonEagerPrerendersExceeded"
+    MAXNUMOFRUNNINGEMBEDDERPRERENDERSEXCEEDED = "MaxNumOfRunningEmbedderPrerendersExceeded"
+    PRERENDERINGURLHASEFFECTIVEURL = "PrerenderingUrlHasEffectiveUrl"
+    REDIRECTEDPRERENDERINGURLHASEFFECTIVEURL = "RedirectedPrerenderingUrlHasEffectiveUrl"
+    ACTIVATIONURLHASEFFECTIVEURL = "ActivationUrlHasEffectiveUrl"
+    JAVASCRIPTINTERFACEADDED = "JavaScriptInterfaceAdded"
+    JAVASCRIPTINTERFACEREMOVED = "JavaScriptInterfaceRemoved"
+    ALLPRERENDERINGCANCELED = "AllPrerenderingCanceled"
+    WINDOWCLOSED = "WindowClosed"
+    SLOWNETWORK = "SlowNetwork"
+    OTHERPRERENDEREDPAGEACTIVATED = "OtherPrerenderedPageActivated"
+    V8OPTIMIZERDISABLED = "V8OptimizerDisabled"
+    PRERENDERFAILEDDURINGPREFETCH = "PrerenderFailedDuringPrefetch"
+    BROWSINGDATAREMOVED = "BrowsingDataRemoved"
+    PRERENDERHOSTREUSED = "PrerenderHostReused"
+
+
+class PreloadPreloadingStatus(enum.StrEnum):
+    """ Preloading status values, see also PreloadingTriggeringOutcome. This
+    status is shared by prefetchStatusUpdated and prerenderStatusUpdated. """
+
+    PENDING = "Pending"
+    RUNNING = "Running"
+    READY = "Ready"
+    SUCCESS = "Success"
+    FAILURE = "Failure"
+    NOTSUPPORTED = "NotSupported"
+
+
+class PreloadPrefetchStatus(enum.StrEnum):
+    """ TODO(https://crbug.com/1384419): revisit the list of PrefetchStatus and
+    filter out the ones that aren't necessary to the developers. """
+
+    PREFETCHALLOWED = "PrefetchAllowed"
+    PREFETCHFAILEDINELIGIBLEREDIRECT = "PrefetchFailedIneligibleRedirect"
+    PREFETCHFAILEDINVALIDREDIRECT = "PrefetchFailedInvalidRedirect"
+    PREFETCHFAILEDMIMENOTSUPPORTED = "PrefetchFailedMIMENotSupported"
+    PREFETCHFAILEDNETERROR = "PrefetchFailedNetError"
+    PREFETCHFAILEDNON2XX = "PrefetchFailedNon2XX"
+    PREFETCHEVICTEDAFTERBROWSINGDATAREMOVED = "PrefetchEvictedAfterBrowsingDataRemoved"
+    PREFETCHEVICTEDAFTERCANDIDATEREMOVED = "PrefetchEvictedAfterCandidateRemoved"
+    PREFETCHEVICTEDFORNEWERPREFETCH = "PrefetchEvictedForNewerPrefetch"
+    PREFETCHHELDBACK = "PrefetchHeldback"
+    PREFETCHINELIGIBLERETRYAFTER = "PrefetchIneligibleRetryAfter"
+    PREFETCHISPRIVACYDECOY = "PrefetchIsPrivacyDecoy"
+    PREFETCHISSTALE = "PrefetchIsStale"
+    PREFETCHNOTELIGIBLEBROWSERCONTEXTOFFTHERECORD = "PrefetchNotEligibleBrowserContextOffTheRecord"
+    PREFETCHNOTELIGIBLEDATASAVERENABLED = "PrefetchNotEligibleDataSaverEnabled"
+    PREFETCHNOTELIGIBLEEXISTINGPROXY = "PrefetchNotEligibleExistingProxy"
+    PREFETCHNOTELIGIBLEHOSTISNONUNIQUE = "PrefetchNotEligibleHostIsNonUnique"
+    PREFETCHNOTELIGIBLENONDEFAULTSTORAGEPARTITION = "PrefetchNotEligibleNonDefaultStoragePartition"
+    PREFETCHNOTELIGIBLESAMESITECROSSORIGINPREFETCHREQUIREDPROXY = "PrefetchNotEligibleSameSiteCrossOriginPrefetchRequiredProxy"
+    PREFETCHNOTELIGIBLESCHEMEISNOTHTTPS = "PrefetchNotEligibleSchemeIsNotHttps"
+    PREFETCHNOTELIGIBLEUSERHASCOOKIES = "PrefetchNotEligibleUserHasCookies"
+    PREFETCHNOTELIGIBLEUSERHASSERVICEWORKER = "PrefetchNotEligibleUserHasServiceWorker"
+    PREFETCHNOTELIGIBLEUSERHASSERVICEWORKERNOFETCHHANDLER = "PrefetchNotEligibleUserHasServiceWorkerNoFetchHandler"
+    PREFETCHNOTELIGIBLEREDIRECTFROMSERVICEWORKER = "PrefetchNotEligibleRedirectFromServiceWorker"
+    PREFETCHNOTELIGIBLEREDIRECTTOSERVICEWORKER = "PrefetchNotEligibleRedirectToServiceWorker"
+    PREFETCHNOTELIGIBLEBATTERYSAVERENABLED = "PrefetchNotEligibleBatterySaverEnabled"
+    PREFETCHNOTELIGIBLEPRELOADINGDISABLED = "PrefetchNotEligiblePreloadingDisabled"
+    PREFETCHNOTFINISHEDINTIME = "PrefetchNotFinishedInTime"
+    PREFETCHNOTSTARTED = "PrefetchNotStarted"
+    PREFETCHNOTUSEDCOOKIESCHANGED = "PrefetchNotUsedCookiesChanged"
+    PREFETCHPROXYNOTAVAILABLE = "PrefetchProxyNotAvailable"
+    PREFETCHRESPONSEUSED = "PrefetchResponseUsed"
+    PREFETCHSUCCESSFULBUTNOTUSED = "PrefetchSuccessfulButNotUsed"
+    PREFETCHNOTUSEDPROBEFAILED = "PrefetchNotUsedProbeFailed"
+
+
+class PreloadPrerenderMismatchedHeaders(CDPObject):
+    """ Information of headers to be displayed when the header mismatch occurred. """
+
+    headerName: str
+
+    initialValue: str | None = None
+
+    activationValue: str | None = None
+
+
 """ An internal certificate ID value. """
 
 SecurityCertificateId = int
@@ -7220,6 +7874,9 @@ class TargetTargetInfo(CDPObject):
     # Frame id of originating window (is only set if target has an opener).
     openerFrameId: Page.FrameId | None = None  # experimental
 
+    # Id of the parent frame, only present for the "iframe" targets.
+    parentFrameId: Page.FrameId | None = None  # experimental
+
     browserContextId: Browser.BrowserContextID | None = None  # experimental
 
     # Provides additional details for specific target types. For example, forthe type of "page", this may be set to "prerender".
@@ -7332,71 +7989,6 @@ class TracingTracingBackend(enum.StrEnum):
     AUTO = "auto"
     CHROME = "chrome"
     SYSTEM = "system"
-
-
-""" Unique request identifier.
-Note that this does not identify individual HTTP requests that are part of
-a network request. """
-
-FetchRequestId = str
-
-
-class FetchRequestStage(enum.StrEnum):
-    """ Stages of the request to handle. Request will intercept before the request is
-    sent. Response will intercept after the response is received (but before response
-    body is received). """
-
-    REQUEST = "Request"
-    RESPONSE = "Response"
-
-
-class FetchRequestPattern(CDPObject):
-
-    # Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed.Escape character is backslash. Omitting is equivalent to `"*"`.
-    urlPattern: str | None = None
-
-    # If set, only requests for matching resource types will be intercepted.
-    resourceType: Network.ResourceType | None = None
-
-    # Stage at which to begin intercepting requests. Default is Request.
-    requestStage: Fetch.RequestStage | None = None
-
-
-class FetchHeaderEntry(CDPObject):
-    """ Response HTTP header entry """
-
-    name: str
-
-    value: str
-
-
-class FetchAuthChallenge(CDPObject):
-    """ Authorization challenge for HTTP status code 401 or 407. """
-
-    # Source of the authentication challenge.
-    source: Literal['Server', 'Proxy'] | None = None
-
-    # Origin of the challenger.
-    origin: str
-
-    # The authentication scheme used, such as basic or digest
-    scheme: str
-
-    # The realm of the challenge. May be empty.
-    realm: str
-
-
-class FetchAuthChallengeResponse(CDPObject):
-    """ Response to an AuthChallenge. """
-
-    # The decision on what to do in response to the authorization challenge.Default means deferring to the default behavior of the net stack, which willlikely either the Cancel authentication or display a popup dialog box.
-    response: Literal['Default', 'CancelAuth', 'ProvideCredentials']
-
-    # The username to provide, possibly empty. Should only be set if response isProvideCredentials.
-    username: str | None = None
-
-    # The password to provide, possibly empty. Should only be set if response isProvideCredentials.
-    password: str | None = None
 
 
 """ An unique ID for a graph object (AudioContext, AudioNode, AudioParam) in Web Audio API """
@@ -7633,500 +8225,6 @@ class WebAuthnCredential(CDPObject):
 
     # The credential's user.displayName property. Equivalent to empty if notset. https://w3c.github.io/webauthn/#dom-publickeycredentialuserentity-displayname
     userDisplayName: str | None = None
-
-
-""" Players will get an ID that is unique within the agent context. """
-
-MediaPlayerId = str
-
-MediaTimestamp = float
-
-
-class MediaPlayerMessage(CDPObject):
-    """ Have one type per entry in MediaLogRecord::Type
-    Corresponds to kMessage """
-
-    # Keep in sync with MediaLogMessageLevel We are currently keeping themessage level 'error' separate from the PlayerError type because right now theyrepresent different things, this one being a DVLOG(ERROR) style log message thatgets printed based on what log level is selected in the UI, and the other is arepresentation of a media::PipelineStatus object. Soon however we're going to bemoving away from using PipelineStatus for errors and introducing a new errortype which should hopefully let us integrate the error log level into thePlayerError type.
-    level: Literal['error', 'warning', 'info', 'debug']
-
-    message: str
-
-
-class MediaPlayerProperty(CDPObject):
-    """ Corresponds to kMediaPropertyChange """
-
-    name: str
-
-    value: str
-
-
-class MediaPlayerEvent(CDPObject):
-    """ Corresponds to kMediaEventTriggered """
-
-    timestamp: Media.Timestamp
-
-    value: str
-
-
-class MediaPlayerErrorSourceLocation(CDPObject):
-    """ Represents logged source line numbers reported in an error.
-    NOTE: file and line are from chromium c++ implementation code, not js. """
-
-    file: str
-
-    line: int
-
-
-class MediaPlayerError(CDPObject):
-    """ Corresponds to kMediaError """
-
-    errorType: str
-
-    # Code is the numeric enum entry for a specific set of error codes, such asPipelineStatusCodes in media/base/pipeline_status.h
-    code: int
-
-    # A trace of where this error was caused / where it passed through.
-    stack: list[Media.PlayerErrorSourceLocation]
-
-    # Errors potentially have a root cause error, ie, a DecoderError might becaused by an WindowsError
-    cause: list[Media.PlayerError]
-
-    # Extra data attached to an error, such as an HRESULT, Video Codec, etc.
-    data: JSON_DICT
-
-
-""" Device request id. """
-
-DeviceAccessRequestId = str
-""" A device id. """
-
-DeviceAccessDeviceId = str
-
-
-class DeviceAccessPromptDevice(CDPObject):
-    """ Device information displayed in a user prompt to select a device. """
-
-    id: DeviceAccess.DeviceId
-
-    # Display name as it appears in a device request user prompt.
-    name: str
-
-
-""" Unique id """
-
-PreloadRuleSetId = str
-
-
-class PreloadRuleSet(CDPObject):
-    """ Corresponds to SpeculationRuleSet """
-
-    id: Preload.RuleSetId
-
-    # Identifies a document which the rule set is associated with.
-    loaderId: Network.LoaderId
-
-    # Source text of JSON representing the rule set. If it comes from `<script>`tag, it is the textContent of the node. Note that it is a JSON for valid case.See also: - https://wicg.github.io/nav-speculation/speculation-rules.html -https://github.com/WICG/nav-speculation/blob/main/triggers.md
-    sourceText: str
-
-    # A speculation rule set is either added through an inline `<script>` tag orthrough an external resource via the 'Speculation-Rules' HTTP header. For thefirst case, we include the BackendNodeId of the relevant `<script>` tag. For thesecond case, we include the external URL where the rule set was loaded from, andalso RequestId if Network domain is enabled.  See also: -https://wicg.github.io/nav-speculation/speculation-rules.html#speculation-rules-script - https://wicg.github.io/nav-speculation/speculation-rules.html#speculation-rules-header
-    backendNodeId: DOM.BackendNodeId | None = None
-
-    url: str | None = None
-
-    requestId: Network.RequestId | None = None
-
-    # Error information `errorMessage` is null iff `errorType` is null.
-    errorType: Preload.RuleSetErrorType | None = None
-
-    # TODO(https://crbug.com/1425354): Replace this property with structurederror.
-    errorMessage: str | None = None  # deprecated
-
-
-class PreloadRuleSetErrorType(enum.StrEnum):
-
-    SOURCEISNOTJSONOBJECT = "SourceIsNotJsonObject"
-    INVALIDRULESSKIPPED = "InvalidRulesSkipped"
-    INVALIDRULESETLEVELTAG = "InvalidRulesetLevelTag"
-
-
-class PreloadSpeculationAction(enum.StrEnum):
-    """ The type of preloading attempted. It corresponds to
-    mojom::SpeculationAction (although PrefetchWithSubresources is omitted as it
-    isn't being used by clients). """
-
-    PREFETCH = "Prefetch"
-    PRERENDER = "Prerender"
-
-
-class PreloadSpeculationTargetHint(enum.StrEnum):
-    """ Corresponds to mojom::SpeculationTargetHint.
-    See https://github.com/WICG/nav-speculation/blob/main/triggers.md#window-name-targeting-hints """
-
-    BLANK = "Blank"
-    SELF = "Self"
-
-
-class PreloadPreloadingAttemptKey(CDPObject):
-    """ A key that identifies a preloading attempt.
-
-    The url used is the url specified by the trigger (i.e. the initial URL), and
-    not the final url that is navigated to. For example, prerendering allows
-    same-origin main frame navigations during the attempt, but the attempt is
-    still keyed with the initial URL. """
-
-    loaderId: Network.LoaderId
-
-    action: Preload.SpeculationAction
-
-    url: str
-
-    targetHint: Preload.SpeculationTargetHint | None = None
-
-
-class PreloadPreloadingAttemptSource(CDPObject):
-    """ Lists sources for a preloading attempt, specifically the ids of rule sets
-    that had a speculation rule that triggered the attempt, and the
-    BackendNodeIds of <a href> or <area href> elements that triggered the
-    attempt (in the case of attempts triggered by a document rule). It is
-    possible for multiple rule sets and links to trigger a single attempt. """
-
-    key: Preload.PreloadingAttemptKey
-
-    ruleSetIds: list[Preload.RuleSetId]
-
-    nodeIds: list[DOM.BackendNodeId]
-
-
-""" Chrome manages different types of preloads together using a
-concept of preloading pipeline. For example, if a site uses a
-SpeculationRules for prerender, Chrome first starts a prefetch and
-then upgrades it to prerender.
-
-CDP events for them are emitted separately but they share
-`PreloadPipelineId`. """
-
-PreloadPreloadPipelineId = str
-
-
-class PreloadPrerenderFinalStatus(enum.StrEnum):
-    """ List of FinalStatus reasons for Prerender2. """
-
-    ACTIVATED = "Activated"
-    DESTROYED = "Destroyed"
-    LOWENDDEVICE = "LowEndDevice"
-    INVALIDSCHEMEREDIRECT = "InvalidSchemeRedirect"
-    INVALIDSCHEMENAVIGATION = "InvalidSchemeNavigation"
-    NAVIGATIONREQUESTBLOCKEDBYCSP = "NavigationRequestBlockedByCsp"
-    MOJOBINDERPOLICY = "MojoBinderPolicy"
-    RENDERERPROCESSCRASHED = "RendererProcessCrashed"
-    RENDERERPROCESSKILLED = "RendererProcessKilled"
-    DOWNLOAD = "Download"
-    TRIGGERDESTROYED = "TriggerDestroyed"
-    NAVIGATIONNOTCOMMITTED = "NavigationNotCommitted"
-    NAVIGATIONBADHTTPSTATUS = "NavigationBadHttpStatus"
-    CLIENTCERTREQUESTED = "ClientCertRequested"
-    NAVIGATIONREQUESTNETWORKERROR = "NavigationRequestNetworkError"
-    CANCELALLHOSTSFORTESTING = "CancelAllHostsForTesting"
-    DIDFAILLOAD = "DidFailLoad"
-    STOP = "Stop"
-    SSLCERTIFICATEERROR = "SslCertificateError"
-    LOGINAUTHREQUESTED = "LoginAuthRequested"
-    UACHANGEREQUIRESRELOAD = "UaChangeRequiresReload"
-    BLOCKEDBYCLIENT = "BlockedByClient"
-    AUDIOOUTPUTDEVICEREQUESTED = "AudioOutputDeviceRequested"
-    MIXEDCONTENT = "MixedContent"
-    TRIGGERBACKGROUNDED = "TriggerBackgrounded"
-    MEMORYLIMITEXCEEDED = "MemoryLimitExceeded"
-    DATASAVERENABLED = "DataSaverEnabled"
-    TRIGGERURLHASEFFECTIVEURL = "TriggerUrlHasEffectiveUrl"
-    ACTIVATEDBEFORESTARTED = "ActivatedBeforeStarted"
-    INACTIVEPAGERESTRICTION = "InactivePageRestriction"
-    STARTFAILED = "StartFailed"
-    TIMEOUTBACKGROUNDED = "TimeoutBackgrounded"
-    CROSSSITEREDIRECTININITIALNAVIGATION = "CrossSiteRedirectInInitialNavigation"
-    CROSSSITENAVIGATIONININITIALNAVIGATION = "CrossSiteNavigationInInitialNavigation"
-    SAMESITECROSSORIGINREDIRECTNOTOPTINININITIALNAVIGATION = "SameSiteCrossOriginRedirectNotOptInInInitialNavigation"
-    SAMESITECROSSORIGINNAVIGATIONNOTOPTINININITIALNAVIGATION = "SameSiteCrossOriginNavigationNotOptInInInitialNavigation"
-    ACTIVATIONNAVIGATIONPARAMETERMISMATCH = "ActivationNavigationParameterMismatch"
-    ACTIVATEDINBACKGROUND = "ActivatedInBackground"
-    EMBEDDERHOSTDISALLOWED = "EmbedderHostDisallowed"
-    ACTIVATIONNAVIGATIONDESTROYEDBEFORESUCCESS = "ActivationNavigationDestroyedBeforeSuccess"
-    TABCLOSEDBYUSERGESTURE = "TabClosedByUserGesture"
-    TABCLOSEDWITHOUTUSERGESTURE = "TabClosedWithoutUserGesture"
-    PRIMARYMAINFRAMERENDERERPROCESSCRASHED = "PrimaryMainFrameRendererProcessCrashed"
-    PRIMARYMAINFRAMERENDERERPROCESSKILLED = "PrimaryMainFrameRendererProcessKilled"
-    ACTIVATIONFRAMEPOLICYNOTCOMPATIBLE = "ActivationFramePolicyNotCompatible"
-    PRELOADINGDISABLED = "PreloadingDisabled"
-    BATTERYSAVERENABLED = "BatterySaverEnabled"
-    ACTIVATEDDURINGMAINFRAMENAVIGATION = "ActivatedDuringMainFrameNavigation"
-    PRELOADINGUNSUPPORTEDBYWEBCONTENTS = "PreloadingUnsupportedByWebContents"
-    CROSSSITEREDIRECTINMAINFRAMENAVIGATION = "CrossSiteRedirectInMainFrameNavigation"
-    CROSSSITENAVIGATIONINMAINFRAMENAVIGATION = "CrossSiteNavigationInMainFrameNavigation"
-    SAMESITECROSSORIGINREDIRECTNOTOPTININMAINFRAMENAVIGATION = "SameSiteCrossOriginRedirectNotOptInInMainFrameNavigation"
-    SAMESITECROSSORIGINNAVIGATIONNOTOPTININMAINFRAMENAVIGATION = "SameSiteCrossOriginNavigationNotOptInInMainFrameNavigation"
-    MEMORYPRESSUREONTRIGGER = "MemoryPressureOnTrigger"
-    MEMORYPRESSUREAFTERTRIGGERED = "MemoryPressureAfterTriggered"
-    PRERENDERINGDISABLEDBYDEVTOOLS = "PrerenderingDisabledByDevTools"
-    SPECULATIONRULEREMOVED = "SpeculationRuleRemoved"
-    ACTIVATEDWITHAUXILIARYBROWSINGCONTEXTS = "ActivatedWithAuxiliaryBrowsingContexts"
-    MAXNUMOFRUNNINGEAGERPRERENDERSEXCEEDED = "MaxNumOfRunningEagerPrerendersExceeded"
-    MAXNUMOFRUNNINGNONEAGERPRERENDERSEXCEEDED = "MaxNumOfRunningNonEagerPrerendersExceeded"
-    MAXNUMOFRUNNINGEMBEDDERPRERENDERSEXCEEDED = "MaxNumOfRunningEmbedderPrerendersExceeded"
-    PRERENDERINGURLHASEFFECTIVEURL = "PrerenderingUrlHasEffectiveUrl"
-    REDIRECTEDPRERENDERINGURLHASEFFECTIVEURL = "RedirectedPrerenderingUrlHasEffectiveUrl"
-    ACTIVATIONURLHASEFFECTIVEURL = "ActivationUrlHasEffectiveUrl"
-    JAVASCRIPTINTERFACEADDED = "JavaScriptInterfaceAdded"
-    JAVASCRIPTINTERFACEREMOVED = "JavaScriptInterfaceRemoved"
-    ALLPRERENDERINGCANCELED = "AllPrerenderingCanceled"
-    WINDOWCLOSED = "WindowClosed"
-    SLOWNETWORK = "SlowNetwork"
-    OTHERPRERENDEREDPAGEACTIVATED = "OtherPrerenderedPageActivated"
-    V8OPTIMIZERDISABLED = "V8OptimizerDisabled"
-    PRERENDERFAILEDDURINGPREFETCH = "PrerenderFailedDuringPrefetch"
-    BROWSINGDATAREMOVED = "BrowsingDataRemoved"
-    PRERENDERHOSTREUSED = "PrerenderHostReused"
-
-
-class PreloadPreloadingStatus(enum.StrEnum):
-    """ Preloading status values, see also PreloadingTriggeringOutcome. This
-    status is shared by prefetchStatusUpdated and prerenderStatusUpdated. """
-
-    PENDING = "Pending"
-    RUNNING = "Running"
-    READY = "Ready"
-    SUCCESS = "Success"
-    FAILURE = "Failure"
-    NOTSUPPORTED = "NotSupported"
-
-
-class PreloadPrefetchStatus(enum.StrEnum):
-    """ TODO(https://crbug.com/1384419): revisit the list of PrefetchStatus and
-    filter out the ones that aren't necessary to the developers. """
-
-    PREFETCHALLOWED = "PrefetchAllowed"
-    PREFETCHFAILEDINELIGIBLEREDIRECT = "PrefetchFailedIneligibleRedirect"
-    PREFETCHFAILEDINVALIDREDIRECT = "PrefetchFailedInvalidRedirect"
-    PREFETCHFAILEDMIMENOTSUPPORTED = "PrefetchFailedMIMENotSupported"
-    PREFETCHFAILEDNETERROR = "PrefetchFailedNetError"
-    PREFETCHFAILEDNON2XX = "PrefetchFailedNon2XX"
-    PREFETCHEVICTEDAFTERBROWSINGDATAREMOVED = "PrefetchEvictedAfterBrowsingDataRemoved"
-    PREFETCHEVICTEDAFTERCANDIDATEREMOVED = "PrefetchEvictedAfterCandidateRemoved"
-    PREFETCHEVICTEDFORNEWERPREFETCH = "PrefetchEvictedForNewerPrefetch"
-    PREFETCHHELDBACK = "PrefetchHeldback"
-    PREFETCHINELIGIBLERETRYAFTER = "PrefetchIneligibleRetryAfter"
-    PREFETCHISPRIVACYDECOY = "PrefetchIsPrivacyDecoy"
-    PREFETCHISSTALE = "PrefetchIsStale"
-    PREFETCHNOTELIGIBLEBROWSERCONTEXTOFFTHERECORD = "PrefetchNotEligibleBrowserContextOffTheRecord"
-    PREFETCHNOTELIGIBLEDATASAVERENABLED = "PrefetchNotEligibleDataSaverEnabled"
-    PREFETCHNOTELIGIBLEEXISTINGPROXY = "PrefetchNotEligibleExistingProxy"
-    PREFETCHNOTELIGIBLEHOSTISNONUNIQUE = "PrefetchNotEligibleHostIsNonUnique"
-    PREFETCHNOTELIGIBLENONDEFAULTSTORAGEPARTITION = "PrefetchNotEligibleNonDefaultStoragePartition"
-    PREFETCHNOTELIGIBLESAMESITECROSSORIGINPREFETCHREQUIREDPROXY = "PrefetchNotEligibleSameSiteCrossOriginPrefetchRequiredProxy"
-    PREFETCHNOTELIGIBLESCHEMEISNOTHTTPS = "PrefetchNotEligibleSchemeIsNotHttps"
-    PREFETCHNOTELIGIBLEUSERHASCOOKIES = "PrefetchNotEligibleUserHasCookies"
-    PREFETCHNOTELIGIBLEUSERHASSERVICEWORKER = "PrefetchNotEligibleUserHasServiceWorker"
-    PREFETCHNOTELIGIBLEUSERHASSERVICEWORKERNOFETCHHANDLER = "PrefetchNotEligibleUserHasServiceWorkerNoFetchHandler"
-    PREFETCHNOTELIGIBLEREDIRECTFROMSERVICEWORKER = "PrefetchNotEligibleRedirectFromServiceWorker"
-    PREFETCHNOTELIGIBLEREDIRECTTOSERVICEWORKER = "PrefetchNotEligibleRedirectToServiceWorker"
-    PREFETCHNOTELIGIBLEBATTERYSAVERENABLED = "PrefetchNotEligibleBatterySaverEnabled"
-    PREFETCHNOTELIGIBLEPRELOADINGDISABLED = "PrefetchNotEligiblePreloadingDisabled"
-    PREFETCHNOTFINISHEDINTIME = "PrefetchNotFinishedInTime"
-    PREFETCHNOTSTARTED = "PrefetchNotStarted"
-    PREFETCHNOTUSEDCOOKIESCHANGED = "PrefetchNotUsedCookiesChanged"
-    PREFETCHPROXYNOTAVAILABLE = "PrefetchProxyNotAvailable"
-    PREFETCHRESPONSEUSED = "PrefetchResponseUsed"
-    PREFETCHSUCCESSFULBUTNOTUSED = "PrefetchSuccessfulButNotUsed"
-    PREFETCHNOTUSEDPROBEFAILED = "PrefetchNotUsedProbeFailed"
-
-
-class PreloadPrerenderMismatchedHeaders(CDPObject):
-    """ Information of headers to be displayed when the header mismatch occurred. """
-
-    headerName: str
-
-    initialValue: str | None = None
-
-    activationValue: str | None = None
-
-
-class FedCmLoginState(enum.StrEnum):
-    """ Whether this is a sign-up or sign-in action for this account, i.e.
-    whether this account has ever been used to sign in to this RP before. """
-
-    SIGNIN = "SignIn"
-    SIGNUP = "SignUp"
-
-
-class FedCmDialogType(enum.StrEnum):
-    """ The types of FedCM dialogs. """
-
-    ACCOUNTCHOOSER = "AccountChooser"
-    AUTOREAUTHN = "AutoReauthn"
-    CONFIRMIDPLOGIN = "ConfirmIdpLogin"
-    ERROR = "Error"
-
-
-class FedCmDialogButton(enum.StrEnum):
-    """ The buttons on the FedCM dialog. """
-
-    CONFIRMIDPLOGINCONTINUE = "ConfirmIdpLoginContinue"
-    ERRORGOTIT = "ErrorGotIt"
-    ERRORMOREDETAILS = "ErrorMoreDetails"
-
-
-class FedCmAccountUrlType(enum.StrEnum):
-    """ The URLs that each account has """
-
-    TERMSOFSERVICE = "TermsOfService"
-    PRIVACYPOLICY = "PrivacyPolicy"
-
-
-class FedCmAccount(CDPObject):
-    """ Corresponds to IdentityRequestAccount """
-
-    accountId: str
-
-    email: str
-
-    name: str
-
-    givenName: str
-
-    pictureUrl: str
-
-    idpConfigUrl: str
-
-    idpLoginUrl: str
-
-    loginState: FedCm.LoginState
-
-    # These two are only set if the loginState is signUp
-    termsOfServiceUrl: str | None = None
-
-    privacyPolicyUrl: str | None = None
-
-
-class PWAFileHandlerAccept(CDPObject):
-    """ The following types are the replica of
-    https://crsrc.org/c/chrome/browser/web_applications/proto/web_app_os_integration_state.proto;drc=9910d3be894c8f142c977ba1023f30a656bc13fc;l=67 """
-
-    # New name of the mimetype according tohttps://www.iana.org/assignments/media-types/media-types.xhtml
-    mediaType: str
-
-    fileExtensions: list[str]
-
-
-class PWAFileHandler(CDPObject):
-
-    action: str
-
-    accepts: list[PWA.FileHandlerAccept]
-
-    displayName: str
-
-
-class PWADisplayMode(enum.StrEnum):
-    """ If user prefers opening the app in browser or an app window. """
-
-    STANDALONE = "standalone"
-    BROWSER = "browser"
-
-
-class BluetoothEmulationCentralState(enum.StrEnum):
-    """ Indicates the various states of Central. """
-
-    ABSENT = "absent"
-    POWERED_OFF = "powered-off"
-    POWERED_ON = "powered-on"
-
-
-class BluetoothEmulationGATTOperationType(enum.StrEnum):
-    """ Indicates the various types of GATT event. """
-
-    CONNECTION = "connection"
-    DISCOVERY = "discovery"
-
-
-class BluetoothEmulationCharacteristicWriteType(enum.StrEnum):
-    """ Indicates the various types of characteristic write. """
-
-    WRITE_DEFAULT_DEPRECATED = "write-default-deprecated"
-    WRITE_WITH_RESPONSE = "write-with-response"
-    WRITE_WITHOUT_RESPONSE = "write-without-response"
-
-
-class BluetoothEmulationCharacteristicOperationType(enum.StrEnum):
-    """ Indicates the various types of characteristic operation. """
-
-    READ = "read"
-    WRITE = "write"
-    SUBSCRIBE_TO_NOTIFICATIONS = "subscribe-to-notifications"
-    UNSUBSCRIBE_FROM_NOTIFICATIONS = "unsubscribe-from-notifications"
-
-
-class BluetoothEmulationDescriptorOperationType(enum.StrEnum):
-    """ Indicates the various types of descriptor operation. """
-
-    READ = "read"
-    WRITE = "write"
-
-
-class BluetoothEmulationManufacturerData(CDPObject):
-    """ Stores the manufacturer data """
-
-    # Company identifier https://bitbucket.org/bluetooth-SIG/public/src/main/assigned_numbers/company_identifiers/company_identifiers.yamlhttps://usb.org/developers
-    key: int
-
-    # Manufacturer-specific data (Encoded as a base64 string when passed overJSON)
-    data: str
-
-
-class BluetoothEmulationScanRecord(CDPObject):
-    """ Stores the byte data of the advertisement packet sent by a Bluetooth device. """
-
-    name: str | None = None
-
-    uuids: list[str] | None = None
-
-    # Stores the external appearance description of the device.
-    appearance: int | None = None
-
-    # Stores the transmission power of a broadcasting device.
-    txPower: int | None = None
-
-    # Key is the company identifier and the value is an array of bytes ofmanufacturer specific data.
-    manufacturerData: list[BluetoothEmulation.ManufacturerData] | None = None
-
-
-class BluetoothEmulationScanEntry(CDPObject):
-    """ Stores the advertisement packet information that is sent by a Bluetooth device. """
-
-    deviceAddress: str
-
-    rssi: int
-
-    scanRecord: BluetoothEmulation.ScanRecord
-
-
-class BluetoothEmulationCharacteristicProperties(CDPObject):
-    """ Describes the properties of a characteristic. This follows Bluetooth Core
-    Specification BT 4.2 Vol 3 Part G 3.3.1. Characteristic Properties. """
-
-    broadcast: bool | None = None
-
-    read: bool | None = None
-
-    writeWithoutResponse: bool | None = None
-
-    write: bool | None = None
-
-    notify: bool | None = None
-
-    indicate: bool | None = None
-
-    authenticatedSignedWrites: bool | None = None
-
-    extendedProperties: bool | None = None
 
 
 class ConsoleConsoleMessage(CDPObject):
@@ -8847,11 +8945,6 @@ class Audits:
     InspectorIssue = AuditsInspectorIssue
 
 
-class Extensions:
-
-    StorageArea = ExtensionsStorageArea
-
-
 class Autofill:
 
     CreditCard = AutofillCreditCard
@@ -8868,6 +8961,19 @@ class BackgroundService:
     ServiceName = BackgroundServiceServiceName
     EventMetadata = BackgroundServiceEventMetadata
     BackgroundServiceEvent = BackgroundServiceBackgroundServiceEvent
+
+
+class BluetoothEmulation:
+
+    CentralState = BluetoothEmulationCentralState
+    GATTOperationType = BluetoothEmulationGATTOperationType
+    CharacteristicWriteType = BluetoothEmulationCharacteristicWriteType
+    CharacteristicOperationType = BluetoothEmulationCharacteristicOperationType
+    DescriptorOperationType = BluetoothEmulationDescriptorOperationType
+    ManufacturerData = BluetoothEmulationManufacturerData
+    ScanRecord = BluetoothEmulationScanRecord
+    ScanEntry = BluetoothEmulationScanEntry
+    CharacteristicProperties = BluetoothEmulationCharacteristicProperties
 
 
 class Browser:
@@ -8905,6 +9011,7 @@ class CSS:
     SourceRange = CSSSourceRange
     ShorthandEntry = CSSShorthandEntry
     CSSComputedStyleProperty = CSSCSSComputedStyleProperty
+    ComputedStyleExtraFields = CSSComputedStyleExtraFields
     CSSStyle = CSSCSSStyle
     CSSProperty = CSSCSSProperty
     CSSMedia = CSSCSSMedia
@@ -9002,6 +9109,13 @@ class DOMStorage:
     Item = DOMStorageItem
 
 
+class DeviceAccess:
+
+    RequestId = DeviceAccessRequestId
+    DeviceId = DeviceAccessDeviceId
+    PromptDevice = DeviceAccessPromptDevice
+
+
 class Emulation:
 
     SafeAreaInsets = EmulationSafeAreaInsets
@@ -9021,7 +9135,41 @@ class Emulation:
     PressureSource = EmulationPressureSource
     PressureState = EmulationPressureState
     PressureMetadata = EmulationPressureMetadata
+    WorkAreaInsets = EmulationWorkAreaInsets
+    ScreenId = EmulationScreenId
+    ScreenInfo = EmulationScreenInfo
     DisabledImageType = EmulationDisabledImageType
+
+
+class Extensions:
+
+    StorageArea = ExtensionsStorageArea
+
+
+class FedCm:
+
+    LoginState = FedCmLoginState
+    DialogType = FedCmDialogType
+    DialogButton = FedCmDialogButton
+    AccountUrlType = FedCmAccountUrlType
+    Account = FedCmAccount
+
+
+class Fetch:
+
+    RequestId = FetchRequestId
+    RequestStage = FetchRequestStage
+    RequestPattern = FetchRequestPattern
+    HeaderEntry = FetchHeaderEntry
+    AuthChallenge = FetchAuthChallenge
+    AuthChallengeResponse = FetchAuthChallengeResponse
+
+
+class FileSystem:
+
+    File = FileSystemFile
+    Directory = FileSystemDirectory
+    BucketFileSystemLocator = FileSystemBucketFileSystemLocator
 
 
 class HeadlessExperimental:
@@ -9032,13 +9180,6 @@ class HeadlessExperimental:
 class IO:
 
     StreamHandle = IOStreamHandle
-
-
-class FileSystem:
-
-    File = FileSystemFile
-    Directory = FileSystemDirectory
-    BucketFileSystemLocator = FileSystemBucketFileSystemLocator
 
 
 class IndexedDB:
@@ -9079,6 +9220,18 @@ class Log:
     ViolationSetting = LogViolationSetting
 
 
+class Media:
+
+    PlayerId = MediaPlayerId
+    Timestamp = MediaTimestamp
+    PlayerMessage = MediaPlayerMessage
+    PlayerProperty = MediaPlayerProperty
+    PlayerEvent = MediaPlayerEvent
+    PlayerErrorSourceLocation = MediaPlayerErrorSourceLocation
+    PlayerError = MediaPlayerError
+    Player = MediaPlayer
+
+
 class Memory:
 
     PressureLevel = MemoryPressureLevel
@@ -9110,6 +9263,7 @@ class Network:
     SecurityDetails = NetworkSecurityDetails
     CertificateTransparencyCompliance = NetworkCertificateTransparencyCompliance
     BlockedReason = NetworkBlockedReason
+    IpProxyStatus = NetworkIpProxyStatus
     CorsError = NetworkCorsError
     CorsErrorStatus = NetworkCorsErrorStatus
     ServiceWorkerResponseSource = NetworkServiceWorkerResponseSource
@@ -9190,6 +9344,13 @@ class Overlay:
     InspectMode = OverlayInspectMode
 
 
+class PWA:
+
+    FileHandlerAccept = PWAFileHandlerAccept
+    FileHandler = PWAFileHandler
+    DisplayMode = PWADisplayMode
+
+
 class Page:
 
     FrameId = PageFrameId
@@ -9265,6 +9426,22 @@ class PerformanceTimeline:
     LayoutShiftAttribution = PerformanceTimelineLayoutShiftAttribution
     LayoutShift = PerformanceTimelineLayoutShift
     TimelineEvent = PerformanceTimelineTimelineEvent
+
+
+class Preload:
+
+    RuleSetId = PreloadRuleSetId
+    RuleSet = PreloadRuleSet
+    RuleSetErrorType = PreloadRuleSetErrorType
+    SpeculationAction = PreloadSpeculationAction
+    SpeculationTargetHint = PreloadSpeculationTargetHint
+    PreloadingAttemptKey = PreloadPreloadingAttemptKey
+    PreloadingAttemptSource = PreloadPreloadingAttemptSource
+    PreloadPipelineId = PreloadPreloadPipelineId
+    PrerenderFinalStatus = PreloadPrerenderFinalStatus
+    PreloadingStatus = PreloadPreloadingStatus
+    PrefetchStatus = PreloadPrefetchStatus
+    PrerenderMismatchedHeaders = PreloadPrerenderMismatchedHeaders
 
 
 class Security:
@@ -9376,16 +9553,6 @@ class Tracing:
     TracingBackend = TracingTracingBackend
 
 
-class Fetch:
-
-    RequestId = FetchRequestId
-    RequestStage = FetchRequestStage
-    RequestPattern = FetchRequestPattern
-    HeaderEntry = FetchHeaderEntry
-    AuthChallenge = FetchAuthChallenge
-    AuthChallengeResponse = FetchAuthChallengeResponse
-
-
 class WebAudio:
 
     GraphObjectId = WebAudioGraphObjectId
@@ -9411,69 +9578,6 @@ class WebAuthn:
     AuthenticatorTransport = WebAuthnAuthenticatorTransport
     VirtualAuthenticatorOptions = WebAuthnVirtualAuthenticatorOptions
     Credential = WebAuthnCredential
-
-
-class Media:
-
-    PlayerId = MediaPlayerId
-    Timestamp = MediaTimestamp
-    PlayerMessage = MediaPlayerMessage
-    PlayerProperty = MediaPlayerProperty
-    PlayerEvent = MediaPlayerEvent
-    PlayerErrorSourceLocation = MediaPlayerErrorSourceLocation
-    PlayerError = MediaPlayerError
-
-
-class DeviceAccess:
-
-    RequestId = DeviceAccessRequestId
-    DeviceId = DeviceAccessDeviceId
-    PromptDevice = DeviceAccessPromptDevice
-
-
-class Preload:
-
-    RuleSetId = PreloadRuleSetId
-    RuleSet = PreloadRuleSet
-    RuleSetErrorType = PreloadRuleSetErrorType
-    SpeculationAction = PreloadSpeculationAction
-    SpeculationTargetHint = PreloadSpeculationTargetHint
-    PreloadingAttemptKey = PreloadPreloadingAttemptKey
-    PreloadingAttemptSource = PreloadPreloadingAttemptSource
-    PreloadPipelineId = PreloadPreloadPipelineId
-    PrerenderFinalStatus = PreloadPrerenderFinalStatus
-    PreloadingStatus = PreloadPreloadingStatus
-    PrefetchStatus = PreloadPrefetchStatus
-    PrerenderMismatchedHeaders = PreloadPrerenderMismatchedHeaders
-
-
-class FedCm:
-
-    LoginState = FedCmLoginState
-    DialogType = FedCmDialogType
-    DialogButton = FedCmDialogButton
-    AccountUrlType = FedCmAccountUrlType
-    Account = FedCmAccount
-
-
-class PWA:
-
-    FileHandlerAccept = PWAFileHandlerAccept
-    FileHandler = PWAFileHandler
-    DisplayMode = PWADisplayMode
-
-
-class BluetoothEmulation:
-
-    CentralState = BluetoothEmulationCentralState
-    GATTOperationType = BluetoothEmulationGATTOperationType
-    CharacteristicWriteType = BluetoothEmulationCharacteristicWriteType
-    CharacteristicOperationType = BluetoothEmulationCharacteristicOperationType
-    DescriptorOperationType = BluetoothEmulationDescriptorOperationType
-    ManufacturerData = BluetoothEmulationManufacturerData
-    ScanRecord = BluetoothEmulationScanRecord
-    ScanEntry = BluetoothEmulationScanEntry
-    CharacteristicProperties = BluetoothEmulationCharacteristicProperties
 
 
 class Console:

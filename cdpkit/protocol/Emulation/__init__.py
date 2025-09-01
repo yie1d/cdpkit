@@ -1,5 +1,6 @@
 from .events import VirtualTimeBudgetExpired
 from .methods import (
+    AddScreen,
     CanEmulate,
     ClearDeviceMetricsOverride,
     ClearDevicePostureOverride,
@@ -7,6 +8,8 @@ from .methods import (
     ClearGeolocationOverride,
     ClearIdleOverride,
     GetOverriddenSensorInformation,
+    GetScreenInfos,
+    RemoveScreen,
     ResetPageScaleFactor,
     SetAutoDarkModeOverride,
     SetAutomationOverride,
@@ -53,6 +56,8 @@ from .types import (
     PressureSource,
     PressureState,
     SafeAreaInsets,
+    ScreenId,
+    ScreenInfo,
     ScreenOrientation,
     SensorMetadata,
     SensorReading,
@@ -63,6 +68,7 @@ from .types import (
     UserAgentBrandVersion,
     UserAgentMetadata,
     VirtualTimePolicy,
+    WorkAreaInsets,
 )
 
 __all__ = [
@@ -83,6 +89,9 @@ __all__ = [
     PressureSource,
     PressureState,
     PressureMetadata,
+    WorkAreaInsets,
+    ScreenId,
+    ScreenInfo,
     DisabledImageType,
     VirtualTimeBudgetExpired,
     CanEmulate,
@@ -128,4 +137,7 @@ __all__ = [
     SetUserAgentOverride,
     SetAutomationOverride,
     SetSmallViewportHeightDifferenceOverride,
+    GetScreenInfos,
+    AddScreen,
+    RemoveScreen,
 ]

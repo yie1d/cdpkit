@@ -232,7 +232,10 @@ class HighlightRectInput(InputModel):
 
 
 class HighlightRect(CDPMethod[None]):
-    """ Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport. """
+    """ Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
+    Issue: the method does not handle device pixel ratio (DPR) correctly.
+    The coordinates currently have to be adjusted by the client
+    if DPR is not 1 (see crbug.com/437807128). """
 
     INPUT_VALIDATOR = HighlightRectInput
     OUTPUT_VALIDATOR = None

@@ -21,6 +21,19 @@ from cdpkit.protocol._types import (
 from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
+class GetIPProtectionProxyStatusOutput(OutputModel):
+
+    status: Network.IpProxyStatus
+
+
+class GetIPProtectionProxyStatus(CDPMethod[GetIPProtectionProxyStatusOutput]):  # experimental
+    """ Returns enum representing if IP Proxy of requests is available
+    or reason it is not active. """
+
+    INPUT_VALIDATOR = None
+    OUTPUT_VALIDATOR = GetIPProtectionProxyStatusOutput
+
+
 class SetAcceptedEncodingsInput(InputModel):
 
     encodings: list[Network.ContentEncoding]
@@ -233,6 +246,7 @@ class EnableInput(InputModel):
     maxResourceBufferSize: int | None = None  # experimental
     maxPostDataSize: int | None = None
     reportDirectSocketTraffic: bool | None = None  # experimental
+    enableDurableMessages: bool | None = None  # experimental
 
 
 class Enable(CDPMethod[None]):
@@ -247,13 +261,15 @@ class Enable(CDPMethod[None]):
         max_total_buffer_size: int | None = None,
         max_resource_buffer_size: int | None = None,
         max_post_data_size: int | None = None,
-        report_direct_socket_traffic: bool | None = None
+        report_direct_socket_traffic: bool | None = None,
+        enable_durable_messages: bool | None = None
     ):
         super().__init__(
             maxTotalBufferSize=max_total_buffer_size,
             maxResourceBufferSize=max_resource_buffer_size,
             maxPostDataSize=max_post_data_size,
-            reportDirectSocketTraffic=report_direct_socket_traffic
+            reportDirectSocketTraffic=report_direct_socket_traffic,
+            enableDurableMessages=enable_durable_messages
         )
 
 

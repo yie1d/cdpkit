@@ -16,6 +16,7 @@ https://chromedevtools.github.io/devtools-protocol/tot/CSS/
 from __future__ import annotations
 
 from cdpkit.protocol._types import (
+    CSSComputedStyleExtraFields,
     CSSCSSAnimationStyle,
     CSSCSSComputedStyleProperty,
     CSSCSSContainerQuery,
@@ -80,6 +81,7 @@ RuleUsage = CSSRuleUsage
 SourceRange = CSSSourceRange
 ShorthandEntry = CSSShorthandEntry
 CSSComputedStyleProperty = CSSCSSComputedStyleProperty
+ComputedStyleExtraFields = CSSComputedStyleExtraFields
 CSSStyle = CSSCSSStyle
 CSSProperty = CSSCSSProperty
 CSSMedia = CSSCSSMedia
