@@ -1200,7 +1200,7 @@ class AutofillCreditCard(CDPObject):
 
 class AutofillAddressField(CDPObject):
 
-    # address field name, for example GIVEN_NAME.
+    # address field name, for example GIVEN_NAME. The full list of supportedfield names: https://source.chromium.org/chromium/chromium/src/+/main:components/autofill/core/browser/field_types.cc;l=38
     name: str
 
     # address field value, for example Jon Doe.
@@ -5697,6 +5697,7 @@ class PagePermissionsPolicyFeature(enum.StrEnum):
     DIGITAL_CREDENTIALS_CREATE = "digital-credentials-create"
     DIGITAL_CREDENTIALS_GET = "digital-credentials-get"
     DIRECT_SOCKETS = "direct-sockets"
+    DIRECT_SOCKETS_MULTICAST = "direct-sockets-multicast"
     DIRECT_SOCKETS_PRIVATE = "direct-sockets-private"
     DISPLAY_CAPTURE = "display-capture"
     DOCUMENT_DOMAIN = "document-domain"
@@ -6493,9 +6494,9 @@ class PageBackForwardCacheNotRestoredReason(enum.StrEnum):
     INDEXEDDBEVENT = "IndexedDBEvent"
     DUMMY = "Dummy"
     JSNETWORKREQUESTRECEIVEDCACHECONTROLNOSTORERESOURCE = "JsNetworkRequestReceivedCacheControlNoStoreResource"
-    WEBRTCSTICKY = "WebRTCSticky"
-    WEBTRANSPORTSTICKY = "WebTransportSticky"
-    WEBSOCKETSTICKY = "WebSocketSticky"
+    WEBRTCUSEDWITHCCNS = "WebRTCUsedWithCCNS"
+    WEBTRANSPORTUSEDWITHCCNS = "WebTransportUsedWithCCNS"
+    WEBSOCKETUSEDWITHCCNS = "WebSocketUsedWithCCNS"
     SMARTCARD = "SmartCard"
     LIVEMEDIASTREAMTRACK = "LiveMediaStreamTrack"
     UNLOADHANDLER = "UnloadHandler"

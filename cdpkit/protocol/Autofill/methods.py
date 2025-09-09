@@ -22,7 +22,8 @@ class TriggerInput(InputModel):
 
     fieldId: DOM.BackendNodeId
     frameId: Page.FrameId | None = None
-    card: Autofill.CreditCard
+    card: Autofill.CreditCard | None = None
+    address: Autofill.Address | None = None
 
 
 class Trigger(CDPMethod[None]):
@@ -37,12 +38,14 @@ class Trigger(CDPMethod[None]):
         *,
         field_id: DOM.BackendNodeId,
         frame_id: Page.FrameId | None = None,
-        card: Autofill.CreditCard
+        card: Autofill.CreditCard | None = None,
+        address: Autofill.Address | None = None
     ):
         super().__init__(
             fieldId=field_id,
             frameId=frame_id,
-            card=card
+            card=card,
+            address=address
         )
 
 

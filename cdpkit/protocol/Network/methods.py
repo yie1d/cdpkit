@@ -34,6 +34,27 @@ class GetIPProtectionProxyStatus(CDPMethod[GetIPProtectionProxyStatusOutput]):  
     OUTPUT_VALIDATOR = GetIPProtectionProxyStatusOutput
 
 
+class SetIPProtectionProxyBypassEnabledInput(InputModel):
+
+    enabled: bool
+
+
+class SetIPProtectionProxyBypassEnabled(CDPMethod[None]):  # experimental
+    """ Sets bypass IP Protection Proxy boolean. """
+
+    INPUT_VALIDATOR = SetIPProtectionProxyBypassEnabledInput
+    OUTPUT_VALIDATOR = None
+
+    def __init__(
+        self,
+        *,
+        enabled: bool
+    ):
+        super().__init__(
+            enabled=enabled
+        )
+
+
 class SetAcceptedEncodingsInput(InputModel):
 
     encodings: list[Network.ContentEncoding]
