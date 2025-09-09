@@ -67,7 +67,7 @@ class CDPItem(CodeBase):
             if ref_imports_set:
                 ref_imports_set.add(parse_ref(_type)[0])
         else:
-            _type = CDPVariableType[self.type].value
+            _type = getattr(CDPVariableType, self.type).value
         return _type
 
 
@@ -132,6 +132,7 @@ class CDPCommonObject(CodeBase):
         """
         if self.class_name_ is None:
             if self.name:
+                self.name: str
                 self.class_name_ = self.name[0].upper() + self.name[1:]
             else:
                 self.class_name_ = self.id
@@ -230,7 +231,7 @@ class CDPType(CDPCommonObject):
             if self.type == 'array':
                 _type = f'list[{_type}]'
         else:
-            _type = CDPVariableType[self.type].value
+            _type = getattr(CDPVariableType, self.type).value
         return _type
 
 

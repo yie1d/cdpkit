@@ -2,7 +2,7 @@ import asyncio
 from pathlib import Path
 from typing import Any
 
-from generator.cdp import CDPTopDomain
+from generator.cdp import CDPDomain, CDPTopDomain
 from generator.generate import generate_to_dir
 from generator.utils import request_protocol_json, update_cdp_version, update_pyproject_version
 
@@ -20,7 +20,7 @@ def write_cdp_protocol(dir_path: Path, protocol_domains_data: list[dict[str, Any
     """
     dir_path.mkdir(parents=True, exist_ok=True)
 
-    top_domain = CDPTopDomain(domains=protocol_domains_data)
+    top_domain = CDPTopDomain(domains=[CDPDomain(**_) for _ in protocol_domains_data])
     generate_to_dir(top_domain, dir_path)
 
 

@@ -71,7 +71,7 @@ class GenerateContext:
         """
         if self.files_all is None:
             return
-
+        self.files_all: dict[str, list[str]]
         self.files_all[file_type.lower()].append(var_name)
 
 
@@ -197,7 +197,8 @@ class GenerateType(CodeGenerator):
                 value=f'"{enum_item}"'
             )))
 
-        enum_item_type = CDPVariableType[self._type_obj.type]
+        enum_item_type = getattr(CDPVariableType, self._type_obj.type)
+        enum_parent = ''
 
         match enum_item_type:
             case CDPVariableType.string:
