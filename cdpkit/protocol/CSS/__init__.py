@@ -48,6 +48,7 @@ from .methods import (
 from .types import (
     ComputedStyleExtraFields,
     CSSAnimationStyle,
+    CSSAtRule,
     CSSComputedStyleProperty,
     CSSContainerQuery,
     CSSFontPaletteValuesRule,
@@ -132,6 +133,7 @@ __all__ = [
     CSSKeyframesRule,
     CSSPropertyRegistration,
     CSSFontPaletteValuesRule,
+    CSSAtRule,
     CSSPropertyRule,
     CSSFunctionParameter,
     CSSFunctionConditionNode,

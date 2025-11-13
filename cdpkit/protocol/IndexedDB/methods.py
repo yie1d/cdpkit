@@ -137,7 +137,7 @@ class RequestDataInput(InputModel):
     storageBucket: Storage.StorageBucket | None = None
     databaseName: str
     objectStoreName: str
-    indexName: str
+    indexName: str | None = None
     skipCount: int
     pageSize: int
     keyRange: IndexedDB.KeyRange | None = None
@@ -163,7 +163,7 @@ class RequestData(CDPMethod[RequestDataOutput]):
         storage_bucket: Storage.StorageBucket | None = None,
         database_name: str,
         object_store_name: str,
-        index_name: str,
+        index_name: str | None = None,
         skip_count: int,
         page_size: int,
         key_range: IndexedDB.KeyRange | None = None

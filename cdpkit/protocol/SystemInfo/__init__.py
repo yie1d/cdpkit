@@ -2,7 +2,6 @@ from .methods import GetFeatureState, GetInfo, GetProcessInfo
 from .types import (
     GPUDevice,
     GPUInfo,
-    ImageDecodeAcceleratorCapability,
     ImageType,
     ProcessInfo,
     Size,
@@ -18,7 +17,6 @@ __all__ = [
     VideoEncodeAcceleratorCapability,
     SubsamplingFormat,
     ImageType,
-    ImageDecodeAcceleratorCapability,
     GPUInfo,
     ProcessInfo,
     GetInfo,

@@ -18,6 +18,7 @@ from cdpkit.protocol._types import (
     NetworkAuthChallengeResponse,
     NetworkBlockedReason,
     NetworkBlockedSetCookieWithReason,
+    NetworkBlockPattern,
     NetworkCachedResource,
     NetworkCertificateTransparencyCompliance,
     NetworkClientSecurityState,
@@ -56,6 +57,7 @@ from cdpkit.protocol._types import (
     NetworkLoadNetworkResourceOptions,
     NetworkLoadNetworkResourcePageResult,
     NetworkMonotonicTime,
+    NetworkNetworkConditions,
     NetworkPostDataEntry,
     NetworkPrivateNetworkRequestPolicy,
     NetworkReportId,
@@ -143,6 +145,8 @@ SignedExchangeErrorField = NetworkSignedExchangeErrorField
 SignedExchangeError = NetworkSignedExchangeError
 SignedExchangeInfo = NetworkSignedExchangeInfo
 ContentEncoding = NetworkContentEncoding
+NetworkConditions = NetworkNetworkConditions
+BlockPattern = NetworkBlockPattern
 DirectSocketDnsQueryType = NetworkDirectSocketDnsQueryType
 DirectTCPSocketOptions = NetworkDirectTCPSocketOptions
 DirectUDPSocketOptions = NetworkDirectUDPSocketOptions

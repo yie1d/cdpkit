@@ -24,12 +24,12 @@ class SetPermissionInput(InputModel):
     permission: Browser.PermissionDescriptor
     setting: Browser.PermissionSetting
     origin: str | None = None
-    embeddingOrigin: str | None = None
+    embeddedOrigin: str | None = None
     browserContextId: Browser.BrowserContextID | None = None
 
 
 class SetPermission(CDPMethod[None]):  # experimental
-    """ Set permission settings for given requesting and embedding origins. """
+    """ Set permission settings for given embedding and embedded origins. """
 
     INPUT_VALIDATOR = SetPermissionInput
     OUTPUT_VALIDATOR = None
@@ -40,14 +40,14 @@ class SetPermission(CDPMethod[None]):  # experimental
         permission: Browser.PermissionDescriptor,
         setting: Browser.PermissionSetting,
         origin: str | None = None,
-        embedding_origin: str | None = None,
+        embedded_origin: str | None = None,
         browser_context_id: Browser.BrowserContextID | None = None
     ):
         super().__init__(
             permission=permission,
             setting=setting,
             origin=origin,
-            embeddingOrigin=embedding_origin,
+            embeddedOrigin=embedded_origin,
             browserContextId=browser_context_id
         )
 
@@ -59,8 +59,9 @@ class GrantPermissionsInput(InputModel):
     browserContextId: Browser.BrowserContextID | None = None
 
 
-class GrantPermissions(CDPMethod[None]):  # experimental
-    """ Grant specific permissions to the given origin and reject all others. """
+class GrantPermissions(CDPMethod[None]):  # experimental deprecated
+    """ Grant specific permissions to the given origin and reject all others. Deprecated. Use
+    setPermission instead. """
 
     INPUT_VALIDATOR = GrantPermissionsInput
     OUTPUT_VALIDATOR = None

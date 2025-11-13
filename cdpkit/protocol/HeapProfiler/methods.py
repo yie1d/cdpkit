@@ -124,6 +124,7 @@ class GetSamplingProfile(CDPMethod[GetSamplingProfileOutput]):
 class StartSamplingInput(InputModel):
 
     samplingInterval: float | None = None
+    stackDepth: float | None = None
     includeObjectsCollectedByMajorGC: bool | None = None
     includeObjectsCollectedByMinorGC: bool | None = None
 
@@ -137,11 +138,13 @@ class StartSampling(CDPMethod[None]):
         self,
         *,
         sampling_interval: float | None = None,
+        stack_depth: float | None = None,
         include_objects_collected_by_major_gc: bool | None = None,
         include_objects_collected_by_minor_gc: bool | None = None
     ):
         super().__init__(
             samplingInterval=sampling_interval,
+            stackDepth=stack_depth,
             includeObjectsCollectedByMajorGC=include_objects_collected_by_major_gc,
             includeObjectsCollectedByMinorGC=include_objects_collected_by_minor_gc
         )

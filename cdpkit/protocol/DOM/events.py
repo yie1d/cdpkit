@@ -105,6 +105,13 @@ class ScrollableFlagUpdated(CDPEvent):
     isScrollable: bool
 
 
+class AffectedByStartingStylesFlagUpdated(CDPEvent):
+    """ Fired when a node's starting styles changes. """
+
+    nodeId: DOM.NodeId
+    affectedByStartingStyles: bool
+
+
 class PseudoElementRemoved(CDPEvent):
     """ Called when a pseudo element is removed from an element. """
 

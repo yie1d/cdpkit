@@ -139,7 +139,8 @@ class AccessibilityAXPropertyName(enum.StrEnum):
     - from 'live' to 'root': attributes which apply to nodes in live regions
     - from 'autocomplete' to 'valuetext': attributes which apply to widgets
     - from 'checked' to 'selected': states which apply to widgets
-    - from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling. """
+    - from 'activedescendant' to 'owns': relationships between elements other than parent/child/sibling
+    - from 'activeFullscreenElement' to 'uninteresting': reasons why this noode is hidden """
 
     ACTIONS = "actions"
     BUSY = "busy"
@@ -182,6 +183,23 @@ class AccessibilityAXPropertyName(enum.StrEnum):
     LABELLEDBY = "labelledby"
     OWNS = "owns"
     URL = "url"
+    ACTIVEFULLSCREENELEMENT = "activeFullscreenElement"
+    ACTIVEMODALDIALOG = "activeModalDialog"
+    ACTIVEARIAMODALDIALOG = "activeAriaModalDialog"
+    ARIAHIDDENELEMENT = "ariaHiddenElement"
+    ARIAHIDDENSUBTREE = "ariaHiddenSubtree"
+    EMPTYALT = "emptyAlt"
+    EMPTYTEXT = "emptyText"
+    INERTELEMENT = "inertElement"
+    INERTSUBTREE = "inertSubtree"
+    LABELCONTAINER = "labelContainer"
+    LABELFOR = "labelFor"
+    NOTRENDERED = "notRendered"
+    NOTVISIBLE = "notVisible"
+    PRESENTATIONALROLE = "presentationalRole"
+    PROBABLYPRESENTATIONAL = "probablyPresentational"
+    INACTIVECAROUSELTABCONTENT = "inactiveCarouselTabContent"
+    UNINTERESTING = "uninteresting"
 
 
 class AccessibilityAXNode(CDPObject):
@@ -295,8 +313,8 @@ class AnimationAnimationEffect(CDPObject):
     # `AnimationEffect`'s iteration start.
     iterationStart: float
 
-    # `AnimationEffect`'s iterations.
-    iterations: float
+    # `AnimationEffect`'s iterations. Omitted if the value is infinite.
+    iterations: float | None = None
 
     # `AnimationEffect`'s iteration duration. Milliseconds for time basedanimations and percentage [0 - 100] for scroll driven animations (i.e. whenviewOrScrollTimeline exists).
     duration: float
@@ -692,8 +710,10 @@ class AuditsSharedDictionaryError(enum.StrEnum):
     WRITEERRORINSUFFICIENTRESOURCES = "WriteErrorInsufficientResources"
     WRITEERRORINVALIDMATCHFIELD = "WriteErrorInvalidMatchField"
     WRITEERRORINVALIDSTRUCTUREDHEADER = "WriteErrorInvalidStructuredHeader"
+    WRITEERRORINVALIDTTLFIELD = "WriteErrorInvalidTTLField"
     WRITEERRORNAVIGATIONREQUEST = "WriteErrorNavigationRequest"
     WRITEERRORNOMATCHFIELD = "WriteErrorNoMatchField"
+    WRITEERRORNONINTEGERTTLFIELD = "WriteErrorNonIntegerTTLField"
     WRITEERRORNONLISTMATCHDESTFIELD = "WriteErrorNonListMatchDestField"
     WRITEERRORNONSECURECONTEXT = "WriteErrorNonSecureContext"
     WRITEERRORNONSTRINGIDFIELD = "WriteErrorNonStringIdField"
@@ -1745,6 +1765,9 @@ class CSSCSSRule(CDPObject):
     # Associated style declaration.
     style: CSS.CSSStyle
 
+    # The BackendNodeId of the DOM node that constitutes the origin tree scopeof this rule.
+    originTreeScopeNodeId: DOM.BackendNodeId | None = None  # experimental
+
     # Media list array (for rules involving media queries). The array enumeratesmedia queries starting with the innermost one, going outwards.
     media: list[CSS.CSSMedia] | None = None
 
@@ -2172,6 +2195,28 @@ class CSSCSSFontPaletteValuesRule(CDPObject):
     style: CSS.CSSStyle
 
 
+class CSSCSSAtRule(CDPObject):
+    """ CSS generic @rule representation. """
+
+    # Type of at-rule.
+    type: Literal['font-face', 'font-feature-values', 'font-palette-values']
+
+    # Subsection of font-feature-values, if this is a subsection.
+    subsection: Literal['swash', 'annotation', 'ornaments', 'stylistic', 'styleset', 'character-variant'] | None = None
+
+    # LINT.ThenChange(//third_party/blink/renderer/core/inspector/inspector_style_sheet.cc:FontVariantAlternatesFeatureType,//third_party/blink/renderer/core/inspector/inspector_css_agent.cc:FontVariantAlternatesFeatureType) Associatedname, if applicable.
+    name: CSS.Value | None = None
+
+    # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
+    styleSheetId: CSS.StyleSheetId | None = None
+
+    # Parent stylesheet's origin.
+    origin: CSS.StyleSheetOrigin
+
+    # Associated style declaration.
+    style: CSS.CSSStyle
+
+
 class CSSCSSPropertyRule(CDPObject):
     """ CSS property at-rule representation. """
 
@@ -2425,6 +2470,8 @@ class DOMPseudoType(enum.StrEnum):
     DETAILS_CONTENT = "details-content"
     PICKER = "picker"
     PERMISSION_ICON = "permission-icon"
+    OVERSCROLL_AREA_PARENT = "overscroll-area-parent"
+    OVERSCROLL_CLIENT_AREA = "overscroll-client-area"
 
 
 class DOMShadowRootType(enum.StrEnum):
@@ -2562,6 +2609,8 @@ class DOMNode(CDPObject):
     assignedSlot: DOM.BackendNode | None = None
 
     isScrollable: bool | None = None  # experimental
+
+    affectedByStartingStyles: bool | None = None  # experimental
 
 
 class DOMDetachedElementInfo(CDPObject):
@@ -4217,6 +4266,9 @@ class NetworkRequest(CDPObject):
     # True if this resource request is considered to be the 'same site' as therequest corresponding to the main frame.
     isSameSite: bool | None = None  # experimental
 
+    # True when the resource request is ad-related.
+    isAdRelated: bool | None = None  # experimental
+
 
 class NetworkSignedCertificateTimestamp(CDPObject):
     """ Details of a signed certificate timestamp (SCT). """
@@ -4599,7 +4651,7 @@ class NetworkInitiator(CDPObject):
     """ Information about the request initiator. """
 
     # Type of this initiator.
-    type: Literal['parser', 'script', 'preload', 'SignedExchange', 'preflight', 'other']
+    type: Literal['parser', 'script', 'preload', 'SignedExchange', 'preflight', 'FedCM', 'other']
 
     # Initiator JavaScript stack trace, set for Script only. Requires theDebugger domain to be enabled.
     stack: Runtime.StackTrace | None = None
@@ -4643,7 +4695,7 @@ class NetworkCookie(CDPObject):
     # Cookie path.
     path: str
 
-    # Cookie expiration date as the number of seconds since the UNIX epoch.
+    # Cookie expiration date as the number of seconds since the UNIX epoch. Thevalue is set to -1 if the expiry date is not set. The value can be null forvalues that cannot be represented in JSON (±Inf).
     expires: float
 
     # Cookie size.
@@ -4988,6 +5040,42 @@ class NetworkContentEncoding(enum.StrEnum):
     ZSTD = "zstd"
 
 
+class NetworkNetworkConditions(CDPObject):
+
+    # Only matching requests will be affected by these conditions. Patterns usethe URLPattern constructor string syntax (https://urlpattern.spec.whatwg.org/)and must be absolute. If the pattern is empty, all requests are matched(including p2p connections).
+    urlPattern: str
+
+    # Minimum latency from request sent to response headers received (ms).
+    latency: float
+
+    # Maximal aggregated download throughput (bytes/sec). -1 disables downloadthrottling.
+    downloadThroughput: float
+
+    # Maximal aggregated upload throughput (bytes/sec).  -1 disables uploadthrottling.
+    uploadThroughput: float
+
+    # Connection type if known.
+    connectionType: Network.ConnectionType | None = None
+
+    # WebRTC packet loss (percent, 0-100). 0 disables packet loss emulation, 100drops all the packets.
+    packetLoss: float | None = None
+
+    # WebRTC packet queue length (packet). 0 removes any queue lengthlimitations.
+    packetQueueLength: int | None = None
+
+    # WebRTC packetReordering feature.
+    packetReordering: bool | None = None
+
+
+class NetworkBlockPattern(CDPObject):
+
+    # URL pattern to match. Patterns use the URLPattern constructor stringsyntax (https://urlpattern.spec.whatwg.org/) and must be absolute. Example:`*://*:*/*.css`.
+    urlPattern: str
+
+    # Whether or not to block the pattern. If false, a matching request will notbe blocked even if it matches a later `BlockPattern`.
+    block: bool
+
+
 class NetworkDirectSocketDnsQueryType(enum.StrEnum):
 
     IPV4 = "ipv4"
@@ -5048,8 +5136,6 @@ class NetworkPrivateNetworkRequestPolicy(enum.StrEnum):
     ALLOW = "Allow"
     BLOCKFROMINSECURETOMOREPRIVATE = "BlockFromInsecureToMorePrivate"
     WARNFROMINSECURETOMOREPRIVATE = "WarnFromInsecureToMorePrivate"
-    PREFLIGHTBLOCK = "PreflightBlock"
-    PREFLIGHTWARN = "PreflightWarn"
     PERMISSIONBLOCK = "PermissionBlock"
     PERMISSIONWARN = "PermissionWarn"
 
@@ -5729,7 +5815,6 @@ class PagePermissionsPolicyFeature(enum.StrEnum):
     OTP_CREDENTIALS = "otp-credentials"
     PAYMENT = "payment"
     PICTURE_IN_PICTURE = "picture-in-picture"
-    POPINS = "popins"
     PRIVATE_AGGREGATION = "private-aggregation"
     PRIVATE_STATE_TOKEN_ISSUANCE = "private-state-token-issuance"
     PRIVATE_STATE_TOKEN_REDEMPTION = "private-state-token-redemption"
@@ -6470,8 +6555,10 @@ class PageBackForwardCacheNotRestoredReason(enum.StrEnum):
     WEBXR = "WebXR"
     SHAREDWORKER = "SharedWorker"
     SHAREDWORKERMESSAGE = "SharedWorkerMessage"
+    SHAREDWORKERWITHNOACTIVECLIENT = "SharedWorkerWithNoActiveClient"
     WEBLOCKS = "WebLocks"
     WEBHID = "WebHID"
+    WEBBLUETOOTH = "WebBluetooth"
     WEBSHARE = "WebShare"
     REQUESTEDSTORAGEACCESSGRANT = "RequestedStorageAccessGrant"
     WEBNFC = "WebNfc"
@@ -6685,6 +6772,9 @@ class PreloadRuleSet(CDPObject):
     # TODO(https://crbug.com/1425354): Replace this property with structurederror.
     errorMessage: str | None = None  # deprecated
 
+    # For more details, see: https://github.com/WICG/nav-speculation/blob/main/speculation-rules-tags.md
+    tag: str | None = None
+
 
 class PreloadRuleSetErrorType(enum.StrEnum):
 
@@ -6700,6 +6790,7 @@ class PreloadSpeculationAction(enum.StrEnum):
 
     PREFETCH = "Prefetch"
     PRERENDER = "Prerender"
+    PRERENDERUNTILSCRIPT = "PrerenderUntilScript"
 
 
 class PreloadSpeculationTargetHint(enum.StrEnum):
@@ -7791,23 +7882,6 @@ class SystemInfoImageType(enum.StrEnum):
     UNKNOWN = "unknown"
 
 
-class SystemInfoImageDecodeAcceleratorCapability(CDPObject):
-    """ Describes a supported image decoding profile with its associated minimum and
-    maximum resolutions and subsampling. """
-
-    # Image coded, e.g. Jpeg.
-    imageType: SystemInfo.ImageType
-
-    # Maximum supported dimensions of the image in pixels.
-    maxDimensions: SystemInfo.Size
-
-    # Minimum supported dimensions of the image in pixels.
-    minDimensions: SystemInfo.Size
-
-    # Optional array of supported subsampling formats, e.g. 4:2:0, if known.
-    subsamplings: list[SystemInfo.SubsamplingFormat]
-
-
 class SystemInfoGPUInfo(CDPObject):
     """ Provides information about the GPU(s) on the system. """
 
@@ -7828,9 +7902,6 @@ class SystemInfoGPUInfo(CDPObject):
 
     # Supported accelerated video encoding capabilities.
     videoEncoding: list[SystemInfo.VideoEncodeAcceleratorCapability]
-
-    # Supported accelerated image decoding capabilities.
-    imageDecoding: list[SystemInfo.ImageDecodeAcceleratorCapability]
 
 
 class SystemInfoProcessInfo(CDPObject):
@@ -8575,7 +8646,7 @@ class RuntimeRemoteObject(CDPObject):
     type: Literal['object', 'function', 'undefined', 'string', 'number', 'boolean', 'symbol', 'bigint']
 
     # Object subtype hint. Specified for `object` type values only. NOTE: If youchange anything here, make sure to also update `subtype` in `ObjectPreview` and`PropertyPreview` below.
-    subtype: Literal['array', 'null', 'node', 'regexp', 'date', 'map', 'set', 'weakmap', 'weakset', 'iterator', 'generator', 'error', 'proxy', 'promise', 'typedarray', 'arraybuffer', 'dataview', 'webassemblymemory', 'wasmvalue'] | None = None
+    subtype: Literal['array', 'null', 'node', 'regexp', 'date', 'map', 'set', 'weakmap', 'weakset', 'iterator', 'generator', 'error', 'proxy', 'promise', 'typedarray', 'arraybuffer', 'dataview', 'webassemblymemory', 'wasmvalue', 'trustedtype'] | None = None
 
     # Object class (constructor) name. Specified for `object` type values only.
     className: str | None = None
@@ -8617,7 +8688,7 @@ class RuntimeObjectPreview(CDPObject):
     type: Literal['object', 'function', 'undefined', 'string', 'number', 'boolean', 'symbol', 'bigint']
 
     # Object subtype hint. Specified for `object` type values only.
-    subtype: Literal['array', 'null', 'node', 'regexp', 'date', 'map', 'set', 'weakmap', 'weakset', 'iterator', 'generator', 'error', 'proxy', 'promise', 'typedarray', 'arraybuffer', 'dataview', 'webassemblymemory', 'wasmvalue'] | None = None
+    subtype: Literal['array', 'null', 'node', 'regexp', 'date', 'map', 'set', 'weakmap', 'weakset', 'iterator', 'generator', 'error', 'proxy', 'promise', 'typedarray', 'arraybuffer', 'dataview', 'webassemblymemory', 'wasmvalue', 'trustedtype'] | None = None
 
     # String representation of the object.
     description: str | None = None
@@ -8647,7 +8718,7 @@ class RuntimePropertyPreview(CDPObject):
     valuePreview: Runtime.ObjectPreview | None = None
 
     # Object subtype hint. Specified for `object` type values only.
-    subtype: Literal['array', 'null', 'node', 'regexp', 'date', 'map', 'set', 'weakmap', 'weakset', 'iterator', 'generator', 'error', 'proxy', 'promise', 'typedarray', 'arraybuffer', 'dataview', 'webassemblymemory', 'wasmvalue'] | None = None
+    subtype: Literal['array', 'null', 'node', 'regexp', 'date', 'map', 'set', 'weakmap', 'weakset', 'iterator', 'generator', 'error', 'proxy', 'promise', 'typedarray', 'arraybuffer', 'dataview', 'webassemblymemory', 'wasmvalue', 'trustedtype'] | None = None
 
 
 class RuntimeEntryPreview(CDPObject):
@@ -9032,6 +9103,7 @@ class CSS:
     CSSKeyframesRule = CSSCSSKeyframesRule
     CSSPropertyRegistration = CSSCSSPropertyRegistration
     CSSFontPaletteValuesRule = CSSCSSFontPaletteValuesRule
+    CSSAtRule = CSSCSSAtRule
     CSSPropertyRule = CSSCSSPropertyRule
     CSSFunctionParameter = CSSCSSFunctionParameter
     CSSFunctionConditionNode = CSSCSSFunctionConditionNode
@@ -9298,6 +9370,8 @@ class Network:
     SignedExchangeError = NetworkSignedExchangeError
     SignedExchangeInfo = NetworkSignedExchangeInfo
     ContentEncoding = NetworkContentEncoding
+    NetworkConditions = NetworkNetworkConditions
+    BlockPattern = NetworkBlockPattern
     DirectSocketDnsQueryType = NetworkDirectSocketDnsQueryType
     DirectTCPSocketOptions = NetworkDirectTCPSocketOptions
     DirectUDPSocketOptions = NetworkDirectUDPSocketOptions
@@ -9528,7 +9602,6 @@ class SystemInfo:
     VideoEncodeAcceleratorCapability = SystemInfoVideoEncodeAcceleratorCapability
     SubsamplingFormat = SystemInfoSubsamplingFormat
     ImageType = SystemInfoImageType
-    ImageDecodeAcceleratorCapability = SystemInfoImageDecodeAcceleratorCapability
     GPUInfo = SystemInfoGPUInfo
     ProcessInfo = SystemInfoProcessInfo
 

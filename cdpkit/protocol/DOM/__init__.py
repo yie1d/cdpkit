@@ -1,4 +1,5 @@
 from .events import (
+    AffectedByStartingStylesFlagUpdated,
     AttributeModified,
     AttributeRemoved,
     CharacterDataModified,
@@ -121,6 +122,7 @@ __all__ = [
     PseudoElementAdded,
     TopLayerElementsUpdated,
     ScrollableFlagUpdated,
+    AffectedByStartingStylesFlagUpdated,
     PseudoElementRemoved,
     SetChildNodes,
     ShadowRootPopped,

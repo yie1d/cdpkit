@@ -324,6 +324,7 @@ class RequestWillBeSentExtraInfo(CDPEvent):
     connectTiming: Network.ConnectTiming | None = None  # experimental
     clientSecurityState: Network.ClientSecurityState | None = None
     siteHasCookieInOtherPartition: bool | None = None
+    appliedNetworkConditionsId: str | None = None
 
 
 class ResponseReceivedExtraInfo(CDPEvent):
@@ -369,39 +370,6 @@ class PolicyUpdated(CDPEvent):
     """ Fired once security policy has been updated. """
 
     ...
-
-
-class SubresourceWebBundleMetadataReceived(CDPEvent):
-    """ Fired once when parsing the .wbn file has succeeded.
-    The event contains the information about the web bundle contents. """
-
-    requestId: Network.RequestId
-    urls: list[str]
-
-
-class SubresourceWebBundleMetadataError(CDPEvent):
-    """ Fired once when parsing the .wbn file has failed. """
-
-    requestId: Network.RequestId
-    errorMessage: str
-
-
-class SubresourceWebBundleInnerResponseParsed(CDPEvent):
-    """ Fired when handling requests for resources within a .wbn file.
-    Note: this will only be fired for resources that are requested by the webpage. """
-
-    innerRequestId: Network.RequestId
-    innerRequestURL: str
-    bundleRequestId: Network.RequestId | None = None
-
-
-class SubresourceWebBundleInnerResponseError(CDPEvent):
-    """ Fired when request for resources within a .wbn file failed. """
-
-    innerRequestId: Network.RequestId
-    innerRequestURL: str
-    errorMessage: str
-    bundleRequestId: Network.RequestId | None = None
 
 
 class ReportingApiReportAdded(CDPEvent):

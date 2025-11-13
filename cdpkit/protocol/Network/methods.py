@@ -231,8 +231,9 @@ class EmulateNetworkConditionsInput(InputModel):
     packetReordering: bool | None = None  # experimental
 
 
-class EmulateNetworkConditions(CDPMethod[None]):
-    """ Activates emulation of network conditions. """
+class EmulateNetworkConditions(CDPMethod[None]):  # deprecated
+    """ Activates emulation of network conditions. This command is deprecated in favor of the emulateNetworkConditionsByRule
+    and overrideNetworkState commands, which can be used together to the same effect. """
 
     INPUT_VALIDATOR = EmulateNetworkConditionsInput
     OUTPUT_VALIDATOR = None
@@ -258,6 +259,70 @@ class EmulateNetworkConditions(CDPMethod[None]):
             packetLoss=packet_loss,
             packetQueueLength=packet_queue_length,
             packetReordering=packet_reordering
+        )
+
+
+class EmulateNetworkConditionsByRuleInput(InputModel):
+
+    offline: bool
+    matchedNetworkConditions: list[Network.NetworkConditions]
+
+
+class EmulateNetworkConditionsByRuleOutput(OutputModel):
+
+    ruleIds: list[str]
+
+
+class EmulateNetworkConditionsByRule(CDPMethod[EmulateNetworkConditionsByRuleOutput]):  # experimental
+    """ Activates emulation of network conditions for individual requests using URL match patterns. Unlike the deprecated
+    Network.emulateNetworkConditions this method does not affect `navigator` state. Use Network.overrideNetworkState to
+    explicitly modify `navigator` behavior. """
+
+    INPUT_VALIDATOR = EmulateNetworkConditionsByRuleInput
+    OUTPUT_VALIDATOR = EmulateNetworkConditionsByRuleOutput
+
+    def __init__(
+        self,
+        *,
+        offline: bool,
+        matched_network_conditions: list[Network.NetworkConditions]
+    ):
+        super().__init__(
+            offline=offline,
+            matchedNetworkConditions=matched_network_conditions
+        )
+
+
+class OverrideNetworkStateInput(InputModel):
+
+    offline: bool
+    latency: float
+    downloadThroughput: float
+    uploadThroughput: float
+    connectionType: Network.ConnectionType | None = None
+
+
+class OverrideNetworkState(CDPMethod[None]):  # experimental
+    """ Override the state of navigator.onLine and navigator.connection. """
+
+    INPUT_VALIDATOR = OverrideNetworkStateInput
+    OUTPUT_VALIDATOR = None
+
+    def __init__(
+        self,
+        *,
+        offline: bool,
+        latency: float,
+        download_throughput: float,
+        upload_throughput: float,
+        connection_type: Network.ConnectionType | None = None
+    ):
+        super().__init__(
+            offline=offline,
+            latency=latency,
+            downloadThroughput=download_throughput,
+            uploadThroughput=upload_throughput,
+            connectionType=connection_type
         )
 
 
@@ -530,7 +595,8 @@ class SearchInResponseBody(CDPMethod[SearchInResponseBodyOutput]):  # experiment
 
 class SetBlockedURLsInput(InputModel):
 
-    urls: list[str]
+    urlPatterns: list[Network.BlockPattern] | None = None
+    urls: list[str] | None = None  # deprecated
 
 
 class SetBlockedURLs(CDPMethod[None]):  # experimental
@@ -542,9 +608,11 @@ class SetBlockedURLs(CDPMethod[None]):  # experimental
     def __init__(
         self,
         *,
-        urls: list[str]
+        url_patterns: list[Network.BlockPattern] | None = None,
+        urls: list[str] | None = None
     ):
         super().__init__(
+            urlPatterns=url_patterns,
             urls=urls
         )
 

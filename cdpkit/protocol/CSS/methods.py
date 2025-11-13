@@ -382,6 +382,7 @@ class GetMatchedStylesForNodeOutput(OutputModel):
     cssPropertyRules: list[CSS.CSSPropertyRule] | None = None
     cssPropertyRegistrations: list[CSS.CSSPropertyRegistration] | None = None
     cssFontPaletteValuesRule: CSS.CSSFontPaletteValuesRule | None = None
+    cssAtRules: list[CSS.CSSAtRule] | None = None
     parentLayoutNodeId: DOM.NodeId | None = None  # experimental
     cssFunctionRules: list[CSS.CSSFunctionRule] | None = None  # experimental
 

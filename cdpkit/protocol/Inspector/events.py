@@ -29,3 +29,9 @@ class TargetReloadedAfterCrash(CDPEvent):
     """ Fired when debugging target has reloaded after crash """
 
     ...
+
+
+class WorkerScriptLoaded(CDPEvent):
+    """ Fired on worker targets when main worker script and any imported scripts have been evaluated. """
+
+    ...

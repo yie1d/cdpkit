@@ -13,7 +13,6 @@ from __future__ import annotations
 from cdpkit.protocol._types import (
     SystemInfoGPUDevice,
     SystemInfoGPUInfo,
-    SystemInfoImageDecodeAcceleratorCapability,
     SystemInfoImageType,
     SystemInfoProcessInfo,
     SystemInfoSize,
@@ -28,6 +27,5 @@ VideoDecodeAcceleratorCapability = SystemInfoVideoDecodeAcceleratorCapability
 VideoEncodeAcceleratorCapability = SystemInfoVideoEncodeAcceleratorCapability
 SubsamplingFormat = SystemInfoSubsamplingFormat
 ImageType = SystemInfoImageType
-ImageDecodeAcceleratorCapability = SystemInfoImageDecodeAcceleratorCapability
 GPUInfo = SystemInfoGPUInfo
 ProcessInfo = SystemInfoProcessInfo

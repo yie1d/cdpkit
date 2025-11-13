@@ -18,6 +18,7 @@ from __future__ import annotations
 from cdpkit.protocol._types import (
     CSSComputedStyleExtraFields,
     CSSCSSAnimationStyle,
+    CSSCSSAtRule,
     CSSCSSComputedStyleProperty,
     CSSCSSContainerQuery,
     CSSCSSFontPaletteValuesRule,
@@ -101,6 +102,7 @@ CSSPositionTryRule = CSSCSSPositionTryRule
 CSSKeyframesRule = CSSCSSKeyframesRule
 CSSPropertyRegistration = CSSCSSPropertyRegistration
 CSSFontPaletteValuesRule = CSSCSSFontPaletteValuesRule
+CSSAtRule = CSSCSSAtRule
 CSSPropertyRule = CSSCSSPropertyRule
 CSSFunctionParameter = CSSCSSFunctionParameter
 CSSFunctionConditionNode = CSSCSSFunctionConditionNode

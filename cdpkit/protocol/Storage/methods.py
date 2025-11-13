@@ -29,8 +29,9 @@ class GetStorageKeyForFrameOutput(OutputModel):
     storageKey: Storage.SerializedStorageKey
 
 
-class GetStorageKeyForFrame(CDPMethod[GetStorageKeyForFrameOutput]):
-    """ Returns a storage key given a frame id. """
+class GetStorageKeyForFrame(CDPMethod[GetStorageKeyForFrameOutput]):  # deprecated
+    """ Returns a storage key given a frame id.
+    Deprecated. Please use Storage.getStorageKey instead. """
 
     INPUT_VALIDATOR = GetStorageKeyForFrameInput
     OUTPUT_VALIDATOR = GetStorageKeyForFrameOutput
@@ -39,6 +40,33 @@ class GetStorageKeyForFrame(CDPMethod[GetStorageKeyForFrameOutput]):
         self,
         *,
         frame_id: Page.FrameId
+    ):
+        super().__init__(
+            frameId=frame_id
+        )
+
+
+class GetStorageKeyInput(InputModel):
+
+    frameId: Page.FrameId | None = None
+
+
+class GetStorageKeyOutput(OutputModel):
+
+    storageKey: Storage.SerializedStorageKey
+
+
+class GetStorageKey(CDPMethod[GetStorageKeyOutput]):  # experimental
+    """ Returns storage key for the given frame. If no frame ID is provided,
+    the storage key of the target executing this command is returned. """
+
+    INPUT_VALIDATOR = GetStorageKeyInput
+    OUTPUT_VALIDATOR = GetStorageKeyOutput
+
+    def __init__(
+        self,
+        *,
+        frame_id: Page.FrameId | None = None
     ):
         super().__init__(
             frameId=frame_id

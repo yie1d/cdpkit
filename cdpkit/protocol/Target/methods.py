@@ -491,6 +491,7 @@ class SetRemoteLocations(CDPMethod[None]):  # experimental
 class OpenDevToolsInput(InputModel):
 
     targetId: Target.TargetID
+    panelId: str | None = None
 
 
 class OpenDevToolsOutput(OutputModel):
@@ -507,8 +508,10 @@ class OpenDevTools(CDPMethod[OpenDevToolsOutput]):  # experimental
     def __init__(
         self,
         *,
-        target_id: Target.TargetID
+        target_id: Target.TargetID,
+        panel_id: str | None = None
     ):
         super().__init__(
-            targetId=target_id
+            targetId=target_id,
+            panelId=panel_id
         )
