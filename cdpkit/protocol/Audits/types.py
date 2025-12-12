@@ -55,6 +55,8 @@ from cdpkit.protocol._types import (
     AuditsNavigatorUserAgentIssueDetails,
     AuditsPartitioningBlobURLInfo,
     AuditsPartitioningBlobURLIssueDetails,
+    AuditsPermissionElementIssueDetails,
+    AuditsPermissionElementIssueType,
     AuditsPropertyRuleIssueDetails,
     AuditsPropertyRuleIssueReason,
     AuditsQuirksModeIssueDetails,
@@ -129,6 +131,8 @@ PropertyRuleIssueReason = AuditsPropertyRuleIssueReason
 PropertyRuleIssueDetails = AuditsPropertyRuleIssueDetails
 UserReidentificationIssueType = AuditsUserReidentificationIssueType
 UserReidentificationIssueDetails = AuditsUserReidentificationIssueDetails
+PermissionElementIssueType = AuditsPermissionElementIssueType
+PermissionElementIssueDetails = AuditsPermissionElementIssueDetails
 InspectorIssueCode = AuditsInspectorIssueCode
 InspectorIssueDetails = AuditsInspectorIssueDetails
 IssueId = AuditsIssueId

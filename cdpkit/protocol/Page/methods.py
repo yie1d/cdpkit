@@ -1352,3 +1352,30 @@ class SetPrerenderingAllowed(CDPMethod[None]):  # experimental
         super().__init__(
             isAllowed=is_allowed
         )
+
+
+class GetAnnotatedPageContentInput(InputModel):
+
+    includeActionableInformation: bool | None = None
+
+
+class GetAnnotatedPageContentOutput(OutputModel):
+
+    content: str
+
+
+class GetAnnotatedPageContent(CDPMethod[GetAnnotatedPageContentOutput]):  # experimental
+    """ Get the annotated page content for the main frame.
+    This is an experimental command that is subject to change. """
+
+    INPUT_VALIDATOR = GetAnnotatedPageContentInput
+    OUTPUT_VALIDATOR = GetAnnotatedPageContentOutput
+
+    def __init__(
+        self,
+        *,
+        include_actionable_information: bool | None = None
+    ):
+        super().__init__(
+            includeActionableInformation=include_actionable_information
+        )

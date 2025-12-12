@@ -19,6 +19,7 @@ from .methods import (
     DisposeBrowserContext,
     ExposeDevToolsProtocol,
     GetBrowserContexts,
+    GetDevToolsTarget,
     GetTargetInfo,
     GetTargets,
     OpenDevTools,
@@ -61,5 +62,6 @@ __all__ = [
     AutoAttachRelated,
     SetDiscoverTargets,
     SetRemoteLocations,
+    GetDevToolsTarget,
     OpenDevTools,
 ]

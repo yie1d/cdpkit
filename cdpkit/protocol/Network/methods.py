@@ -21,40 +21,6 @@ from cdpkit.protocol._types import (
 from cdpkit.protocol.base import CDPMethod, InputModel, OutputModel
 
 
-class GetIPProtectionProxyStatusOutput(OutputModel):
-
-    status: Network.IpProxyStatus
-
-
-class GetIPProtectionProxyStatus(CDPMethod[GetIPProtectionProxyStatusOutput]):  # experimental
-    """ Returns enum representing if IP Proxy of requests is available
-    or reason it is not active. """
-
-    INPUT_VALIDATOR = None
-    OUTPUT_VALIDATOR = GetIPProtectionProxyStatusOutput
-
-
-class SetIPProtectionProxyBypassEnabledInput(InputModel):
-
-    enabled: bool
-
-
-class SetIPProtectionProxyBypassEnabled(CDPMethod[None]):  # experimental
-    """ Sets bypass IP Protection Proxy boolean. """
-
-    INPUT_VALIDATOR = SetIPProtectionProxyBypassEnabledInput
-    OUTPUT_VALIDATOR = None
-
-    def __init__(
-        self,
-        *,
-        enabled: bool
-    ):
-        super().__init__(
-            enabled=enabled
-        )
-
-
 class SetAcceptedEncodingsInput(InputModel):
 
     encodings: list[Network.ContentEncoding]

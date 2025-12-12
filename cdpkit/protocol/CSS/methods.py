@@ -25,7 +25,7 @@ from cdpkit.protocol.base import JSON_DICT, CDPMethod, InputModel, OutputModel
 
 class AddRuleInput(InputModel):
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
     ruleText: str
     location: CSS.SourceRange
     nodeForPropertySyntaxValidation: DOM.NodeId | None = None  # experimental
@@ -46,7 +46,7 @@ class AddRule(CDPMethod[AddRuleOutput]):
     def __init__(
         self,
         *,
-        style_sheet_id: CSS.StyleSheetId,
+        style_sheet_id: DOM.StyleSheetId,
         rule_text: str,
         location: CSS.SourceRange,
         node_for_property_syntax_validation: DOM.NodeId | None = None
@@ -61,7 +61,7 @@ class AddRule(CDPMethod[AddRuleOutput]):
 
 class CollectClassNamesInput(InputModel):
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
 
 
 class CollectClassNamesOutput(OutputModel):
@@ -78,7 +78,7 @@ class CollectClassNames(CDPMethod[CollectClassNamesOutput]):
     def __init__(
         self,
         *,
-        style_sheet_id: CSS.StyleSheetId
+        style_sheet_id: DOM.StyleSheetId
     ):
         super().__init__(
             styleSheetId=style_sheet_id
@@ -93,7 +93,7 @@ class CreateStyleSheetInput(InputModel):
 
 class CreateStyleSheetOutput(OutputModel):
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
 
 
 class CreateStyleSheet(CDPMethod[CreateStyleSheetOutput]):
@@ -381,7 +381,6 @@ class GetMatchedStylesForNodeOutput(OutputModel):
     activePositionFallbackIndex: int | None = None
     cssPropertyRules: list[CSS.CSSPropertyRule] | None = None
     cssPropertyRegistrations: list[CSS.CSSPropertyRegistration] | None = None
-    cssFontPaletteValuesRule: CSS.CSSFontPaletteValuesRule | None = None
     cssAtRules: list[CSS.CSSAtRule] | None = None
     parentLayoutNodeId: DOM.NodeId | None = None  # experimental
     cssFunctionRules: list[CSS.CSSFunctionRule] | None = None  # experimental
@@ -456,7 +455,7 @@ class GetPlatformFontsForNode(CDPMethod[GetPlatformFontsForNodeOutput]):
 
 class GetStyleSheetTextInput(InputModel):
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
 
 
 class GetStyleSheetTextOutput(OutputModel):
@@ -473,7 +472,7 @@ class GetStyleSheetText(CDPMethod[GetStyleSheetTextOutput]):
     def __init__(
         self,
         *,
-        style_sheet_id: CSS.StyleSheetId
+        style_sheet_id: DOM.StyleSheetId
     ):
         super().__init__(
             styleSheetId=style_sheet_id
@@ -511,7 +510,7 @@ class GetLayersForNode(CDPMethod[GetLayersForNodeOutput]):  # experimental
 
 class GetLocationForSelectorInput(InputModel):
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
     selectorText: str
 
 
@@ -530,7 +529,7 @@ class GetLocationForSelector(CDPMethod[GetLocationForSelectorOutput]):  # experi
     def __init__(
         self,
         *,
-        style_sheet_id: CSS.StyleSheetId,
+        style_sheet_id: DOM.StyleSheetId,
         selector_text: str
     ):
         super().__init__(
@@ -633,7 +632,7 @@ class SetEffectivePropertyValueForNode(CDPMethod[None]):
 
 class SetPropertyRulePropertyNameInput(InputModel):
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
     range: CSS.SourceRange
     propertyName: str
 
@@ -652,7 +651,7 @@ class SetPropertyRulePropertyName(CDPMethod[SetPropertyRulePropertyNameOutput]):
     def __init__(
         self,
         *,
-        style_sheet_id: CSS.StyleSheetId,
+        style_sheet_id: DOM.StyleSheetId,
         range_: CSS.SourceRange,
         property_name: str
     ):
@@ -665,7 +664,7 @@ class SetPropertyRulePropertyName(CDPMethod[SetPropertyRulePropertyNameOutput]):
 
 class SetKeyframeKeyInput(InputModel):
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
     range: CSS.SourceRange
     keyText: str
 
@@ -684,7 +683,7 @@ class SetKeyframeKey(CDPMethod[SetKeyframeKeyOutput]):
     def __init__(
         self,
         *,
-        style_sheet_id: CSS.StyleSheetId,
+        style_sheet_id: DOM.StyleSheetId,
         range_: CSS.SourceRange,
         key_text: str
     ):
@@ -697,7 +696,7 @@ class SetKeyframeKey(CDPMethod[SetKeyframeKeyOutput]):
 
 class SetMediaTextInput(InputModel):
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
     range: CSS.SourceRange
     text: str
 
@@ -716,7 +715,7 @@ class SetMediaText(CDPMethod[SetMediaTextOutput]):
     def __init__(
         self,
         *,
-        style_sheet_id: CSS.StyleSheetId,
+        style_sheet_id: DOM.StyleSheetId,
         range_: CSS.SourceRange,
         text: str
     ):
@@ -729,7 +728,7 @@ class SetMediaText(CDPMethod[SetMediaTextOutput]):
 
 class SetContainerQueryTextInput(InputModel):
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
     range: CSS.SourceRange
     text: str
 
@@ -748,7 +747,7 @@ class SetContainerQueryText(CDPMethod[SetContainerQueryTextOutput]):  # experime
     def __init__(
         self,
         *,
-        style_sheet_id: CSS.StyleSheetId,
+        style_sheet_id: DOM.StyleSheetId,
         range_: CSS.SourceRange,
         text: str
     ):
@@ -761,7 +760,7 @@ class SetContainerQueryText(CDPMethod[SetContainerQueryTextOutput]):  # experime
 
 class SetSupportsTextInput(InputModel):
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
     range: CSS.SourceRange
     text: str
 
@@ -780,7 +779,7 @@ class SetSupportsText(CDPMethod[SetSupportsTextOutput]):  # experimental
     def __init__(
         self,
         *,
-        style_sheet_id: CSS.StyleSheetId,
+        style_sheet_id: DOM.StyleSheetId,
         range_: CSS.SourceRange,
         text: str
     ):
@@ -793,7 +792,7 @@ class SetSupportsText(CDPMethod[SetSupportsTextOutput]):  # experimental
 
 class SetScopeTextInput(InputModel):
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
     range: CSS.SourceRange
     text: str
 
@@ -812,7 +811,7 @@ class SetScopeText(CDPMethod[SetScopeTextOutput]):  # experimental
     def __init__(
         self,
         *,
-        style_sheet_id: CSS.StyleSheetId,
+        style_sheet_id: DOM.StyleSheetId,
         range_: CSS.SourceRange,
         text: str
     ):
@@ -825,7 +824,7 @@ class SetScopeText(CDPMethod[SetScopeTextOutput]):  # experimental
 
 class SetRuleSelectorInput(InputModel):
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
     range: CSS.SourceRange
     selector: str
 
@@ -844,7 +843,7 @@ class SetRuleSelector(CDPMethod[SetRuleSelectorOutput]):
     def __init__(
         self,
         *,
-        style_sheet_id: CSS.StyleSheetId,
+        style_sheet_id: DOM.StyleSheetId,
         range_: CSS.SourceRange,
         selector: str
     ):
@@ -857,7 +856,7 @@ class SetRuleSelector(CDPMethod[SetRuleSelectorOutput]):
 
 class SetStyleSheetTextInput(InputModel):
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
     text: str
 
 
@@ -875,7 +874,7 @@ class SetStyleSheetText(CDPMethod[SetStyleSheetTextOutput]):
     def __init__(
         self,
         *,
-        style_sheet_id: CSS.StyleSheetId,
+        style_sheet_id: DOM.StyleSheetId,
         text: str
     ):
         super().__init__(

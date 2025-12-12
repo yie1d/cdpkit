@@ -30,6 +30,13 @@ class AttributeModified(CDPEvent):
     value: str
 
 
+class AdoptedStyleSheetsModified(CDPEvent):
+    """ Fired when `Element`'s adoptedStyleSheets are modified. """
+
+    nodeId: DOM.NodeId
+    adoptedStyleSheets: list[DOM.StyleSheetId] | None = None  # experimental
+
+
 class AttributeRemoved(CDPEvent):
     """ Fired when `Element`'s attribute is removed. """
 

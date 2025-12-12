@@ -45,13 +45,13 @@ class StyleSheetAdded(CDPEvent):
 class StyleSheetChanged(CDPEvent):
     """ Fired whenever a stylesheet is changed as a result of the client operation. """
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
 
 
 class StyleSheetRemoved(CDPEvent):
     """ Fired whenever an active document stylesheet is removed. """
 
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
 
 
 class ComputedStyleUpdated(CDPEvent):

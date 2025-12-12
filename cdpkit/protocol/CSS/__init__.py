@@ -51,7 +51,6 @@ from .types import (
     CSSAtRule,
     CSSComputedStyleProperty,
     CSSContainerQuery,
-    CSSFontPaletteValuesRule,
     CSSFunctionConditionNode,
     CSSFunctionNode,
     CSSFunctionParameter,
@@ -89,13 +88,11 @@ from .types import (
     SourceRange,
     Specificity,
     StyleDeclarationEdit,
-    StyleSheetId,
     StyleSheetOrigin,
     Value,
 )
 
 __all__ = [
-    StyleSheetId,
     StyleSheetOrigin,
     PseudoElementMatches,
     CSSAnimationStyle,
@@ -132,7 +129,6 @@ __all__ = [
     CSSPositionTryRule,
     CSSKeyframesRule,
     CSSPropertyRegistration,
-    CSSFontPaletteValuesRule,
     CSSAtRule,
     CSSPropertyRule,
     CSSFunctionParameter,

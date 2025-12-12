@@ -488,6 +488,33 @@ class SetRemoteLocations(CDPMethod[None]):  # experimental
         )
 
 
+class GetDevToolsTargetInput(InputModel):
+
+    targetId: Target.TargetID
+
+
+class GetDevToolsTargetOutput(OutputModel):
+
+    targetId: Target.TargetID | None = None
+
+
+class GetDevToolsTarget(CDPMethod[GetDevToolsTargetOutput]):  # experimental
+    """ Gets the targetId of the DevTools page target opened for the given target
+    (if any). """
+
+    INPUT_VALIDATOR = GetDevToolsTargetInput
+    OUTPUT_VALIDATOR = GetDevToolsTargetOutput
+
+    def __init__(
+        self,
+        *,
+        target_id: Target.TargetID
+    ):
+        super().__init__(
+            targetId=target_id
+        )
+
+
 class OpenDevToolsInput(InputModel):
 
     targetId: Target.TargetID

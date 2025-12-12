@@ -34,10 +34,12 @@ from cdpkit.protocol._types import (
     DOMScrollOrientation,
     DOMShadowRootType,
     DOMShapeOutsideInfo,
+    DOMStyleSheetId,
 )
 
 NodeId = DOMNodeId
 BackendNodeId = DOMBackendNodeId
+StyleSheetId = DOMStyleSheetId
 BackendNode = DOMBackendNode
 PseudoType = DOMPseudoType
 ShadowRootType = DOMShadowRootType

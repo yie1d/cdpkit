@@ -47,6 +47,7 @@ from .methods import (
     Enable,
     GenerateTestReport,
     GetAdScriptAncestry,
+    GetAnnotatedPageContent,
     GetAppId,
     GetAppManifest,
     GetFrameTree,
@@ -302,4 +303,5 @@ __all__ = [
     WaitForDebugger,
     SetInterceptFileChooserDialog,
     SetPrerenderingAllowed,
+    GetAnnotatedPageContent,
 ]

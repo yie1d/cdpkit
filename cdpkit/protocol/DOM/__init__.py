@@ -1,4 +1,5 @@
 from .events import (
+    AdoptedStyleSheetsModified,
     AffectedByStartingStylesFlagUpdated,
     AttributeModified,
     AttributeRemoved,
@@ -90,11 +91,13 @@ from .types import (
     ScrollOrientation,
     ShadowRootType,
     ShapeOutsideInfo,
+    StyleSheetId,
 )
 
 __all__ = [
     NodeId,
     BackendNodeId,
+    StyleSheetId,
     BackendNode,
     PseudoType,
     ShadowRootType,
@@ -111,6 +114,7 @@ __all__ = [
     Rect,
     CSSComputedStyleProperty,
     AttributeModified,
+    AdoptedStyleSheetsModified,
     AttributeRemoved,
     CharacterDataModified,
     ChildNodeCountUpdated,

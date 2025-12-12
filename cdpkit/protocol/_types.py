@@ -827,12 +827,16 @@ class AuditsGenericIssueErrorType(enum.StrEnum):
     FORMINPUTWITHNOLABELERROR = "FormInputWithNoLabelError"
     FORMAUTOCOMPLETEATTRIBUTEEMPTYERROR = "FormAutocompleteAttributeEmptyError"
     FORMEMPTYIDANDNAMEATTRIBUTESFORINPUTERROR = "FormEmptyIdAndNameAttributesForInputError"
-    FORMARIALABELLEDBYTONONEXISTINGID = "FormAriaLabelledByToNonExistingId"
+    FORMARIALABELLEDBYTONONEXISTINGIDERROR = "FormAriaLabelledByToNonExistingIdError"
     FORMINPUTASSIGNEDAUTOCOMPLETEVALUETOIDORNAMEATTRIBUTEERROR = "FormInputAssignedAutocompleteValueToIdOrNameAttributeError"
-    FORMLABELHASNEITHERFORNORNESTEDINPUT = "FormLabelHasNeitherForNorNestedInput"
+    FORMLABELHASNEITHERFORNORNESTEDINPUTERROR = "FormLabelHasNeitherForNorNestedInputError"
     FORMLABELFORMATCHESNONEXISTINGIDERROR = "FormLabelForMatchesNonExistingIdError"
     FORMINPUTHASWRONGBUTWELLINTENDEDAUTOCOMPLETEVALUEERROR = "FormInputHasWrongButWellIntendedAutocompleteValueError"
     RESPONSEWASBLOCKEDBYORB = "ResponseWasBlockedByORB"
+    NAVIGATIONENTRYMARKEDSKIPPABLE = "NavigationEntryMarkedSkippable"
+    AUTOFILLANDMANUALTEXTPOLICYCONTROLLEDFEATURESINFO = "AutofillAndManualTextPolicyControlledFeaturesInfo"
+    AUTOFILLPOLICYCONTROLLEDFEATUREINFO = "AutofillPolicyControlledFeatureInfo"
+    MANUALTEXTPOLICYCONTROLLEDFEATUREINFO = "ManualTextPolicyControlledFeatureInfo"
 
 
 class AuditsGenericIssueDetails(CDPObject):
@@ -1092,6 +1096,58 @@ class AuditsUserReidentificationIssueDetails(CDPObject):
     sourceCodeLocation: Audits.SourceCodeLocation | None = None
 
 
+class AuditsPermissionElementIssueType(enum.StrEnum):
+
+    INVALIDTYPE = "InvalidType"
+    FENCEDFRAMEDISALLOWED = "FencedFrameDisallowed"
+    CSPFRAMEANCESTORSMISSING = "CspFrameAncestorsMissing"
+    PERMISSIONSPOLICYBLOCKED = "PermissionsPolicyBlocked"
+    PADDINGRIGHTUNSUPPORTED = "PaddingRightUnsupported"
+    PADDINGBOTTOMUNSUPPORTED = "PaddingBottomUnsupported"
+    INSETBOXSHADOWUNSUPPORTED = "InsetBoxShadowUnsupported"
+    REQUESTINPROGRESS = "RequestInProgress"
+    UNTRUSTEDEVENT = "UntrustedEvent"
+    REGISTRATIONFAILED = "RegistrationFailed"
+    TYPENOTSUPPORTED = "TypeNotSupported"
+    INVALIDTYPEACTIVATION = "InvalidTypeActivation"
+    SECURITYCHECKSFAILED = "SecurityChecksFailed"
+    ACTIVATIONDISABLED = "ActivationDisabled"
+    GEOLOCATIONDEPRECATED = "GeolocationDeprecated"
+    INVALIDDISPLAYSTYLE = "InvalidDisplayStyle"
+    NONOPAQUECOLOR = "NonOpaqueColor"
+    LOWCONTRAST = "LowContrast"
+    FONTSIZETOOSMALL = "FontSizeTooSmall"
+    FONTSIZETOOLARGE = "FontSizeTooLarge"
+    INVALIDSIZEVALUE = "InvalidSizeValue"
+
+
+class AuditsPermissionElementIssueDetails(CDPObject):
+    """ This issue warns about improper usage of the <permission> element. """
+
+    issueType: Audits.PermissionElementIssueType
+
+    # The value of the type attribute.
+    type: str | None = None
+
+    # The node ID of the <permission> element.
+    nodeId: DOM.BackendNodeId | None = None
+
+    # True if the issue is a warning, false if it is an error.
+    isWarning: bool | None = None
+
+    # Fields for message construction: Used for messages that reference aspecific permission name
+    permissionName: str | None = None
+
+    # Used for messages about occlusion
+    occluderNodeInfo: str | None = None
+
+    # Used for messages about occluder's parent
+    occluderParentNodeInfo: str | None = None
+
+    # Used for messages about activation disabled reason
+    disableReason: str | None = None
+
+
 class AuditsInspectorIssueCode(enum.StrEnum):
     """ A unique identifier for the type of issue. Each type may use one of the
     optional fields in InspectorIssueDetails to convey more specific
@@ -1123,6 +1179,7 @@ class AuditsInspectorIssueCode(enum.StrEnum):
     SRIMESSAGESIGNATUREISSUE = "SRIMessageSignatureIssue"
     UNENCODEDDIGESTISSUE = "UnencodedDigestIssue"
     USERREIDENTIFICATIONISSUE = "UserReidentificationIssue"
+    PERMISSIONELEMENTISSUE = "PermissionElementIssue"
 
 
 class AuditsInspectorIssueDetails(CDPObject):
@@ -1181,6 +1238,8 @@ class AuditsInspectorIssueDetails(CDPObject):
     unencodedDigestIssueDetails: Audits.UnencodedDigestIssueDetails | None = None
 
     userReidentificationIssueDetails: Audits.UserReidentificationIssueDetails | None = None
+
+    permissionElementIssueDetails: Audits.PermissionElementIssueDetails | None = None
 
 
 """ A unique id for a DevTools inspector issue. Allows other entities (e.g.
@@ -1578,9 +1637,6 @@ class BrowserPrivacySandboxAPI(enum.StrEnum):
     TRUSTEDKEYVALUE = "TrustedKeyValue"
 
 
-CSSStyleSheetId = str
-
-
 class CSSStyleSheetOrigin(enum.StrEnum):
     """ Stylesheet type: "injected" for stylesheets injected via extension, "user-agent" for user-agent
     stylesheets, "inspector" for stylesheets created by the inspector (i.e. those holding the "via
@@ -1693,7 +1749,7 @@ class CSSCSSStyleSheetHeader(CDPObject):
     """ CSS stylesheet metainformation. """
 
     # The stylesheet identifier.
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
 
     # Owner frame identifier.
     frameId: Page.FrameId
@@ -1751,7 +1807,7 @@ class CSSCSSRule(CDPObject):
     """ CSS rule representation. """
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None
+    styleSheetId: DOM.StyleSheetId | None = None
 
     # Rule selector data.
     selectorList: CSS.SelectorList
@@ -1807,7 +1863,7 @@ class CSSRuleUsage(CDPObject):
     """ CSS coverage information. """
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
 
     # Offset of the start of the rule (including selector) from the beginning ofthe stylesheet.
     startOffset: float
@@ -1866,7 +1922,7 @@ class CSSCSSStyle(CDPObject):
     """ CSS style representation. """
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None
+    styleSheetId: DOM.StyleSheetId | None = None
 
     # CSS properties in the style.
     cssProperties: list[CSS.CSSProperty]
@@ -1928,7 +1984,7 @@ class CSSCSSMedia(CDPObject):
     range: CSS.SourceRange | None = None
 
     # Identifier of the stylesheet containing this object (if exists).
-    styleSheetId: CSS.StyleSheetId | None = None
+    styleSheetId: DOM.StyleSheetId | None = None
 
     # Array of media queries.
     mediaList: list[CSS.MediaQuery] | None = None
@@ -1973,7 +2029,7 @@ class CSSCSSContainerQuery(CDPObject):
     range: CSS.SourceRange | None = None
 
     # Identifier of the stylesheet containing this object (if exists).
-    styleSheetId: CSS.StyleSheetId | None = None
+    styleSheetId: DOM.StyleSheetId | None = None
 
     # Optional name for the container.
     name: str | None = None
@@ -2004,7 +2060,7 @@ class CSSCSSSupports(CDPObject):
     range: CSS.SourceRange | None = None
 
     # Identifier of the stylesheet containing this object (if exists).
-    styleSheetId: CSS.StyleSheetId | None = None
+    styleSheetId: DOM.StyleSheetId | None = None
 
 
 class CSSCSSScope(CDPObject):
@@ -2017,7 +2073,7 @@ class CSSCSSScope(CDPObject):
     range: CSS.SourceRange | None = None
 
     # Identifier of the stylesheet containing this object (if exists).
-    styleSheetId: CSS.StyleSheetId | None = None
+    styleSheetId: DOM.StyleSheetId | None = None
 
 
 class CSSCSSLayer(CDPObject):
@@ -2030,7 +2086,7 @@ class CSSCSSLayer(CDPObject):
     range: CSS.SourceRange | None = None
 
     # Identifier of the stylesheet containing this object (if exists).
-    styleSheetId: CSS.StyleSheetId | None = None
+    styleSheetId: DOM.StyleSheetId | None = None
 
 
 class CSSCSSStartingStyle(CDPObject):
@@ -2040,7 +2096,7 @@ class CSSCSSStartingStyle(CDPObject):
     range: CSS.SourceRange | None = None
 
     # Identifier of the stylesheet containing this object (if exists).
-    styleSheetId: CSS.StyleSheetId | None = None
+    styleSheetId: DOM.StyleSheetId | None = None
 
 
 class CSSCSSLayerData(CDPObject):
@@ -2130,7 +2186,7 @@ class CSSCSSTryRule(CDPObject):
     """ CSS try rule representation. """
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None
+    styleSheetId: DOM.StyleSheetId | None = None
 
     # Parent stylesheet's origin.
     origin: CSS.StyleSheetOrigin
@@ -2146,7 +2202,7 @@ class CSSCSSPositionTryRule(CDPObject):
     name: CSS.Value
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None
+    styleSheetId: DOM.StyleSheetId | None = None
 
     # Parent stylesheet's origin.
     origin: CSS.StyleSheetOrigin
@@ -2179,22 +2235,6 @@ class CSSCSSPropertyRegistration(CDPObject):
     syntax: str
 
 
-class CSSCSSFontPaletteValuesRule(CDPObject):
-    """ CSS font-palette-values rule representation. """
-
-    # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None
-
-    # Parent stylesheet's origin.
-    origin: CSS.StyleSheetOrigin
-
-    # Associated font palette name.
-    fontPaletteName: CSS.Value
-
-    # Associated style declaration.
-    style: CSS.CSSStyle
-
-
 class CSSCSSAtRule(CDPObject):
     """ CSS generic @rule representation. """
 
@@ -2208,7 +2248,7 @@ class CSSCSSAtRule(CDPObject):
     name: CSS.Value | None = None
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None
+    styleSheetId: DOM.StyleSheetId | None = None
 
     # Parent stylesheet's origin.
     origin: CSS.StyleSheetOrigin
@@ -2221,7 +2261,7 @@ class CSSCSSPropertyRule(CDPObject):
     """ CSS property at-rule representation. """
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None
+    styleSheetId: DOM.StyleSheetId | None = None
 
     # Parent stylesheet's origin.
     origin: CSS.StyleSheetOrigin
@@ -2279,7 +2319,7 @@ class CSSCSSFunctionRule(CDPObject):
     name: CSS.Value
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None
+    styleSheetId: DOM.StyleSheetId | None = None
 
     # Parent stylesheet's origin.
     origin: CSS.StyleSheetOrigin
@@ -2295,7 +2335,7 @@ class CSSCSSKeyframeRule(CDPObject):
     """ CSS keyframe rule representation. """
 
     # The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
-    styleSheetId: CSS.StyleSheetId | None = None
+    styleSheetId: DOM.StyleSheetId | None = None
 
     # Parent stylesheet's origin.
     origin: CSS.StyleSheetOrigin
@@ -2311,7 +2351,7 @@ class CSSStyleDeclarationEdit(CDPObject):
     """ A descriptor of operation to mutate style declaration text. """
 
     # The css style sheet identifier.
-    styleSheetId: CSS.StyleSheetId
+    styleSheetId: DOM.StyleSheetId
 
     # The range of the style text in the enclosing stylesheet.
     range: CSS.SourceRange
@@ -2414,6 +2454,9 @@ DOMNodeId = int
 front-end. """
 
 DOMBackendNodeId = int
+""" Unique identifier for a CSS stylesheet. """
+
+DOMStyleSheetId = str
 
 
 class DOMBackendNode(CDPObject):
@@ -2471,7 +2514,6 @@ class DOMPseudoType(enum.StrEnum):
     PICKER = "picker"
     PERMISSION_ICON = "permission-icon"
     OVERSCROLL_AREA_PARENT = "overscroll-area-parent"
-    OVERSCROLL_CLIENT_AREA = "overscroll-client-area"
 
 
 class DOMShadowRootType(enum.StrEnum):
@@ -2611,6 +2653,8 @@ class DOMNode(CDPObject):
     isScrollable: bool | None = None  # experimental
 
     affectedByStartingStyles: bool | None = None  # experimental
+
+    adoptedStyleSheets: list[DOM.StyleSheetId] | None = None  # experimental
 
 
 class DOMDetachedElementInfo(CDPObject):
@@ -4376,19 +4420,6 @@ class NetworkBlockedReason(enum.StrEnum):
     SRI_MESSAGE_SIGNATURE_MISMATCH = "sri-message-signature-mismatch"
 
 
-class NetworkIpProxyStatus(enum.StrEnum):
-    """ Sets Controls for IP Proxy of requests.
-    Page reload is required before the new behavior will be observed. """
-
-    AVAILABLE = "Available"
-    FEATURENOTENABLED = "FeatureNotEnabled"
-    MASKEDDOMAINLISTNOTENABLED = "MaskedDomainListNotEnabled"
-    MASKEDDOMAINLISTNOTPOPULATED = "MaskedDomainListNotPopulated"
-    AUTHTOKENSUNAVAILABLE = "AuthTokensUnavailable"
-    UNAVAILABLE = "Unavailable"
-    BYPASSEDBYDEVTOOLS = "BypassedByDevTools"
-
-
 class NetworkCorsError(enum.StrEnum):
     """ The reason why request was blocked. """
 
@@ -4584,9 +4615,6 @@ class NetworkResponse(CDPObject):
 
     # Security details for the request.
     securityDetails: Network.SecurityDetails | None = None
-
-    # Indicates whether the request was sent through IP Protection proxies. Ifset to true, the request used the IP Protection privacy feature.
-    isIpProtectionUsed: bool | None = None  # experimental
 
 
 class NetworkWebSocketRequest(CDPObject):
@@ -5118,6 +5146,13 @@ class NetworkDirectUDPSocketOptions(CDPObject):
 
     # Expected to be unsigned integer.
     receiveBufferSize: float | None = None
+
+    multicastLoopback: bool | None = None
+
+    # Unsigned int 8.
+    multicastTimeToLive: int | None = None
+
+    multicastAllowAddressSharing: bool | None = None
 
 
 class NetworkDirectUDPMessage(CDPObject):
@@ -5743,6 +5778,7 @@ class PagePermissionsPolicyFeature(enum.StrEnum):
     AMBIENT_LIGHT_SENSOR = "ambient-light-sensor"
     ARIA_NOTIFY = "aria-notify"
     ATTRIBUTION_REPORTING = "attribution-reporting"
+    AUTOFILL = "autofill"
     AUTOPLAY = "autoplay"
     BLUETOOTH = "bluetooth"
     BROWSING_TOPICS = "browsing-topics"
@@ -5808,6 +5844,7 @@ class PagePermissionsPolicyFeature(enum.StrEnum):
     LOCAL_FONTS = "local-fonts"
     LOCAL_NETWORK_ACCESS = "local-network-access"
     MAGNETOMETER = "magnetometer"
+    MANUAL_TEXT = "manual-text"
     MEDIA_PLAYBACK_WHILE_NOT_VISIBLE = "media-playback-while-not-visible"
     MICROPHONE = "microphone"
     MIDI = "midi"
@@ -5825,7 +5862,6 @@ class PagePermissionsPolicyFeature(enum.StrEnum):
     RUN_AD_AUCTION = "run-ad-auction"
     SCREEN_WAKE_LOCK = "screen-wake-lock"
     SERIAL = "serial"
-    SHARED_AUTOFILL = "shared-autofill"
     SHARED_STORAGE = "shared-storage"
     SHARED_STORAGE_SELECT_URL = "shared-storage-select-url"
     SMART_CARD = "smart-card"
@@ -9011,6 +9047,8 @@ class Audits:
     PropertyRuleIssueDetails = AuditsPropertyRuleIssueDetails
     UserReidentificationIssueType = AuditsUserReidentificationIssueType
     UserReidentificationIssueDetails = AuditsUserReidentificationIssueDetails
+    PermissionElementIssueType = AuditsPermissionElementIssueType
+    PermissionElementIssueDetails = AuditsPermissionElementIssueDetails
     InspectorIssueCode = AuditsInspectorIssueCode
     InspectorIssueDetails = AuditsInspectorIssueDetails
     IssueId = AuditsIssueId
@@ -9065,7 +9103,6 @@ class Browser:
 
 class CSS:
 
-    StyleSheetId = CSSStyleSheetId
     StyleSheetOrigin = CSSStyleSheetOrigin
     PseudoElementMatches = CSSPseudoElementMatches
     CSSAnimationStyle = CSSCSSAnimationStyle
@@ -9102,7 +9139,6 @@ class CSS:
     CSSPositionTryRule = CSSCSSPositionTryRule
     CSSKeyframesRule = CSSCSSKeyframesRule
     CSSPropertyRegistration = CSSCSSPropertyRegistration
-    CSSFontPaletteValuesRule = CSSCSSFontPaletteValuesRule
     CSSAtRule = CSSCSSAtRule
     CSSPropertyRule = CSSCSSPropertyRule
     CSSFunctionParameter = CSSCSSFunctionParameter
@@ -9132,6 +9168,7 @@ class DOM:
 
     NodeId = DOMNodeId
     BackendNodeId = DOMBackendNodeId
+    StyleSheetId = DOMStyleSheetId
     BackendNode = DOMBackendNode
     PseudoType = DOMPseudoType
     ShadowRootType = DOMShadowRootType
@@ -9336,7 +9373,6 @@ class Network:
     SecurityDetails = NetworkSecurityDetails
     CertificateTransparencyCompliance = NetworkCertificateTransparencyCompliance
     BlockedReason = NetworkBlockedReason
-    IpProxyStatus = NetworkIpProxyStatus
     CorsError = NetworkCorsError
     CorsErrorStatus = NetworkCorsErrorStatus
     ServiceWorkerResponseSource = NetworkServiceWorkerResponseSource

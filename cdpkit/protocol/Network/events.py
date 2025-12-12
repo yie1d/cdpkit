@@ -261,6 +261,18 @@ class DirectTCPSocketChunkReceived(CDPEvent):
     timestamp: Network.MonotonicTime
 
 
+class DirectUDPSocketJoinedMulticastGroup(CDPEvent):
+
+    identifier: Network.RequestId
+    IPAddress: str
+
+
+class DirectUDPSocketLeftMulticastGroup(CDPEvent):
+
+    identifier: Network.RequestId
+    IPAddress: str
+
+
 class DirectUDPSocketCreated(CDPEvent):
     """ Fired upon direct_socket.UDPSocket creation. """
 

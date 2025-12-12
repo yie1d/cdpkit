@@ -21,7 +21,6 @@ from cdpkit.protocol._types import (
     CSSCSSAtRule,
     CSSCSSComputedStyleProperty,
     CSSCSSContainerQuery,
-    CSSCSSFontPaletteValuesRule,
     CSSCSSFunctionConditionNode,
     CSSCSSFunctionNode,
     CSSCSSFunctionParameter,
@@ -59,12 +58,10 @@ from cdpkit.protocol._types import (
     CSSSourceRange,
     CSSSpecificity,
     CSSStyleDeclarationEdit,
-    CSSStyleSheetId,
     CSSStyleSheetOrigin,
     CSSValue,
 )
 
-StyleSheetId = CSSStyleSheetId
 StyleSheetOrigin = CSSStyleSheetOrigin
 PseudoElementMatches = CSSPseudoElementMatches
 CSSAnimationStyle = CSSCSSAnimationStyle
@@ -101,7 +98,6 @@ CSSTryRule = CSSCSSTryRule
 CSSPositionTryRule = CSSCSSPositionTryRule
 CSSKeyframesRule = CSSCSSKeyframesRule
 CSSPropertyRegistration = CSSCSSPropertyRegistration
-CSSFontPaletteValuesRule = CSSCSSFontPaletteValuesRule
 CSSAtRule = CSSCSSAtRule
 CSSPropertyRule = CSSCSSPropertyRule
 CSSFunctionParameter = CSSCSSFunctionParameter
