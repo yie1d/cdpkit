@@ -37,6 +37,18 @@ class GetCategories(CDPMethod[GetCategoriesOutput]):  # experimental
     OUTPUT_VALIDATOR = GetCategoriesOutput
 
 
+class GetTrackEventDescriptorOutput(OutputModel):
+
+    descriptor: str
+
+
+class GetTrackEventDescriptor(CDPMethod[GetTrackEventDescriptorOutput]):  # experimental
+    """ Return a descriptor for all available tracing categories. """
+
+    INPUT_VALIDATOR = None
+    OUTPUT_VALIDATOR = GetTrackEventDescriptorOutput
+
+
 class RecordClockSyncMarkerInput(InputModel):
 
     syncId: str

@@ -100,6 +100,7 @@ class RequestWillBeSent(CDPEvent):
     type: Network.ResourceType | None = None
     frameId: Page.FrameId | None = None
     hasUserGesture: bool | None = None
+    renderBlockingBehavior: Network.RenderBlockingBehavior | None = None  # experimental
 
 
 class ResourceChangedPriority(CDPEvent):

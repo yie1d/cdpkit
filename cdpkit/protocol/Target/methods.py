@@ -178,6 +178,7 @@ class CreateBrowserContext(CDPMethod[CreateBrowserContextOutput]):
 class GetBrowserContextsOutput(OutputModel):
 
     browserContextIds: list[Browser.BrowserContextID]
+    defaultBrowserContextId: Browser.BrowserContextID | None = None  # experimental
 
 
 class GetBrowserContexts(CDPMethod[GetBrowserContextsOutput]):

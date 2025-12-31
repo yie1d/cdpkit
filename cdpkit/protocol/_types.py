@@ -1541,7 +1541,9 @@ class BrowserPermissionType(enum.StrEnum):
     IDLEDETECTION = "idleDetection"
     KEYBOARDLOCK = "keyboardLock"
     LOCALFONTS = "localFonts"
+    LOCALNETWORK = "localNetwork"
     LOCALNETWORKACCESS = "localNetworkAccess"
+    LOOPBACKNETWORK = "loopbackNetwork"
     MIDI = "midi"
     MIDISYSEX = "midiSysex"
     NFC = "nfc"
@@ -4262,6 +4264,16 @@ class NetworkResourcePriority(enum.StrEnum):
     VERYHIGH = "VeryHigh"
 
 
+class NetworkRenderBlockingBehavior(enum.StrEnum):
+    """ The render blocking behavior of a resource request. """
+
+    BLOCKING = "Blocking"
+    INBODYPARSERBLOCKING = "InBodyParserBlocking"
+    NONBLOCKING = "NonBlocking"
+    NONBLOCKINGDYNAMIC = "NonBlockingDynamic"
+    POTENTIALLYBLOCKING = "PotentiallyBlocking"
+
+
 class NetworkPostDataEntry(CDPObject):
     """ Post data entry for HTTP request """
 
@@ -5842,7 +5854,9 @@ class PagePermissionsPolicyFeature(enum.StrEnum):
     LANGUAGE_DETECTOR = "language-detector"
     LANGUAGE_MODEL = "language-model"
     LOCAL_FONTS = "local-fonts"
+    LOCAL_NETWORK = "local-network"
     LOCAL_NETWORK_ACCESS = "local-network-access"
+    LOOPBACK_NETWORK = "loopback-network"
     MAGNETOMETER = "magnetometer"
     MANUAL_TEXT = "manual-text"
     MEDIA_PLAYBACK_WHILE_NOT_VISIBLE = "media-playback-while-not-visible"
@@ -9367,6 +9381,7 @@ class Network:
     CookieSourceScheme = NetworkCookieSourceScheme
     ResourceTiming = NetworkResourceTiming
     ResourcePriority = NetworkResourcePriority
+    RenderBlockingBehavior = NetworkRenderBlockingBehavior
     PostDataEntry = NetworkPostDataEntry
     Request = NetworkRequest
     SignedCertificateTimestamp = NetworkSignedCertificateTimestamp

@@ -59,6 +59,7 @@ from cdpkit.protocol._types import (
     NetworkNetworkConditions,
     NetworkPostDataEntry,
     NetworkPrivateNetworkRequestPolicy,
+    NetworkRenderBlockingBehavior,
     NetworkReportId,
     NetworkReportingApiEndpoint,
     NetworkReportingApiReport,
@@ -104,6 +105,7 @@ CookiePriority = NetworkCookiePriority
 CookieSourceScheme = NetworkCookieSourceScheme
 ResourceTiming = NetworkResourceTiming
 ResourcePriority = NetworkResourcePriority
+RenderBlockingBehavior = NetworkRenderBlockingBehavior
 PostDataEntry = NetworkPostDataEntry
 Request = NetworkRequest
 SignedCertificateTimestamp = NetworkSignedCertificateTimestamp

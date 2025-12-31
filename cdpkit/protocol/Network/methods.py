@@ -325,6 +325,32 @@ class Enable(CDPMethod[None]):
         )
 
 
+class ConfigureDurableMessagesInput(InputModel):
+
+    maxTotalBufferSize: int | None = None
+    maxResourceBufferSize: int | None = None
+
+
+class ConfigureDurableMessages(CDPMethod[None]):  # experimental
+    """ Configures storing response bodies outside of renderer, so that these survive
+    a cross-process navigation.
+    If maxTotalBufferSize is not set, durable messages are disabled. """
+
+    INPUT_VALIDATOR = ConfigureDurableMessagesInput
+    OUTPUT_VALIDATOR = None
+
+    def __init__(
+        self,
+        *,
+        max_total_buffer_size: int | None = None,
+        max_resource_buffer_size: int | None = None
+    ):
+        super().__init__(
+            maxTotalBufferSize=max_total_buffer_size,
+            maxResourceBufferSize=max_resource_buffer_size
+        )
+
+
 class GetAllCookiesOutput(OutputModel):
 
     cookies: list[Network.Cookie]

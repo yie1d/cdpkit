@@ -1,5 +1,5 @@
 from .events import BufferUsage, DataCollected, TracingComplete
-from .methods import End, GetCategories, RecordClockSyncMarker, RequestMemoryDump, Start
+from .methods import End, GetCategories, GetTrackEventDescriptor, RecordClockSyncMarker, RequestMemoryDump, Start
 from .types import (
     MemoryDumpConfig,
     MemoryDumpLevelOfDetail,
@@ -21,6 +21,7 @@ __all__ = [
     TracingComplete,
     End,
     GetCategories,
+    GetTrackEventDescriptor,
     RecordClockSyncMarker,
     RequestMemoryDump,
     Start,
