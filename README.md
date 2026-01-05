@@ -1,3 +1,15 @@
+## ⚠️ DEPRECATED - This project is no longer maintained
+
+**We recommend using [cdp-use](https://github.com/browser-use/cdp-use) instead.**
+
+cdp-use is a more modern, type-safe Python CDP client with:
+- Zero runtime overhead (TypedDict instead of Pydantic)
+- Better API design and IDE support
+- Lighter dependencies
+- Active maintenance
+
+---
+
 ## CDPKit: A Python Implementation of the CDP([Chrome DevTools Protocol](https://github.com/ChromeDevTools/devtools-protocol/tree/master/json))Toolkit
 
 English  | [中文](doc/README_cn.md) 

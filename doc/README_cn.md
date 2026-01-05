@@ -1,3 +1,15 @@
+## ⚠️ 已停止维护 - 本项目不再更新
+
+**我们推荐使用 [cdp-use](https://github.com/browser-use/cdp-use) 作为替代。**
+
+cdp-use 是一个更现代、类型安全的 Python CDP 客户端，具有以下优势：
+- 零运行时开销（使用 TypedDict 而非 Pydantic）
+- 更优雅的 API 设计和 IDE 支持
+- 更少的依赖
+- 持续维护中
+
+---
+
 ## CDPKit: 用 Python 实现的CDP([Chrome DevTools Protocol](https://github.com/ChromeDevTools/devtools-protocol/tree/master/json))工具箱
 
 [English](../README.md)  | 中文
